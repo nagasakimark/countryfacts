@@ -1,0 +1,275 @@
+{
+ "meta": {
+  "inboundYear": "2024年（JNTO訪日外客統計・確定値）",
+  "outboundYear": "2024年（受入国統計をJNTOがまとめた日本人訪問者数、推計・約を含む。主要渡航先のみ）",
+  "residentsYear": "2024年末（出入国在留管理庁 在留外国人統計）",
+  "abroadYear": "2023年10月1日現在（外務省 海外在留邦人数調査統計）",
+  "sources": [
+   "日本政府観光局（JNTO）訪日外客統計・日本人訪問者数（受入国統計まとめ）",
+   "外務省 海外在留邦人数調査統計",
+   "出入国在留管理庁 在留外国人統計"
+  ]
+ },
+ "links": {
+  "KOR": {
+   "inboundToJapan": 8817765,
+   "outboundFromJapan": 2800000,
+   "outboundApprox": true,
+   "residentsInJapan": 409238,
+   "japaneseAbroad": 42547
+  },
+  "CHN": {
+   "inboundToJapan": 6981342,
+   "outboundFromJapan": 800000,
+   "outboundApprox": true,
+   "residentsInJapan": 873286,
+   "japaneseAbroad": 101786
+  },
+  "TWN": {
+   "inboundToJapan": 6044316,
+   "outboundFromJapan": 1000000,
+   "outboundApprox": true,
+   "residentsInJapan": 70147,
+   "japaneseAbroad": 21102
+  },
+  "HKG": {
+   "inboundToJapan": 2683391,
+   "outboundFromJapan": 800000,
+   "outboundApprox": true,
+   "japaneseAbroad": 22930
+  },
+  "MAC": {
+   "inboundToJapan": 123779
+  },
+  "USA": {
+   "inboundToJapan": 2724594,
+   "outboundFromJapan": 1200000,
+   "outboundApprox": true,
+   "residentsInJapan": 66111,
+   "japaneseAbroad": 414615
+  },
+  "THA": {
+   "inboundToJapan": 1148848,
+   "outboundFromJapan": 800000,
+   "outboundApprox": true,
+   "residentsInJapan": 65398,
+   "japaneseAbroad": 72308
+  },
+  "AUS": {
+   "inboundToJapan": 920196,
+   "outboundFromJapan": 300000,
+   "outboundApprox": true,
+   "residentsInJapan": 13015,
+   "japaneseAbroad": 99830
+  },
+  "PHL": {
+   "inboundToJapan": 818659,
+   "residentsInJapan": 341518,
+   "japaneseAbroad": 12989
+  },
+  "SGP": {
+   "inboundToJapan": 691226,
+   "outboundFromJapan": 400000,
+   "outboundApprox": true,
+   "residentsInJapan": 3739,
+   "japaneseAbroad": 31366
+  },
+  "MYS": {
+   "inboundToJapan": 506883,
+   "residentsInJapan": 11968,
+   "japaneseAbroad": 20657
+  },
+  "IDN": {
+   "inboundToJapan": 517651,
+   "residentsInJapan": 199824,
+   "japaneseAbroad": 15510
+  },
+  "VNM": {
+   "inboundToJapan": 621173,
+   "outboundFromJapan": 500000,
+   "outboundApprox": true,
+   "residentsInJapan": 634361,
+   "japaneseAbroad": 18949
+  },
+  "CAN": {
+   "inboundToJapan": 579445,
+   "residentsInJapan": 12226,
+   "japaneseAbroad": 75112
+  },
+  "GBR": {
+   "inboundToJapan": 437230,
+   "outboundFromJapan": 200000,
+   "outboundApprox": true,
+   "residentsInJapan": 21139,
+   "japaneseAbroad": 64970
+  },
+  "FRA": {
+   "inboundToJapan": 385071,
+   "outboundFromJapan": 250000,
+   "outboundApprox": true,
+   "residentsInJapan": 16215,
+   "japaneseAbroad": 36204
+  },
+  "DEU": {
+   "inboundToJapan": 325870,
+   "outboundFromJapan": 200000,
+   "outboundApprox": true,
+   "residentsInJapan": 8749,
+   "japaneseAbroad": 42079
+  },
+  "ITA": {
+   "inboundToJapan": 229785,
+   "residentsInJapan": 5556,
+   "japaneseAbroad": 11856
+  },
+  "ESP": {
+   "inboundToJapan": 182284,
+   "residentsInJapan": 4146,
+   "japaneseAbroad": 9712
+  },
+  "IND": {
+   "inboundToJapan": 233061,
+   "residentsInJapan": 53974,
+   "japaneseAbroad": 8197
+  },
+  "NLD": {
+   "inboundToJapan": 102981,
+   "residentsInJapan": 1881
+  },
+  "CHE": {
+   "inboundToJapan": 72193,
+   "residentsInJapan": 1393,
+   "japaneseAbroad": 11940
+  },
+  "BEL": {
+   "inboundToJapan": 47063
+  },
+  "POL": {
+   "inboundToJapan": 63828,
+   "residentsInJapan": 1865
+  },
+  "AUT": {
+   "inboundToJapan": 36820
+  },
+  "PRT": {
+   "inboundToJapan": 42300
+  },
+  "IRL": {
+   "inboundToJapan": 32995,
+   "residentsInJapan": 1392
+  },
+  "SWE": {
+   "inboundToJapan": 52099,
+   "residentsInJapan": 1971
+  },
+  "DNK": {
+   "inboundToJapan": 40950
+  },
+  "NOR": {
+   "inboundToJapan": 28901
+  },
+  "FIN": {
+   "inboundToJapan": 28780
+  },
+  "RUS": {
+   "inboundToJapan": 99264,
+   "residentsInJapan": 11982
+  },
+  "TUR": {
+   "inboundToJapan": 62099,
+   "residentsInJapan": 7711
+  },
+  "ISR": {
+   "inboundToJapan": 59499
+  },
+  "MEX": {
+   "inboundToJapan": 151835,
+   "residentsInJapan": 3702,
+   "japaneseAbroad": 10253
+  },
+  "BRA": {
+   "inboundToJapan": 85609,
+   "residentsInJapan": 211907,
+   "japaneseAbroad": 46902
+  },
+  "NZL": {
+   "inboundToJapan": 115012,
+   "residentsInJapan": 4022,
+   "japaneseAbroad": 20620
+  },
+  "MNG": {
+   "inboundToJapan": 53049,
+   "residentsInJapan": 21240
+  },
+  "NPL": {
+   "residentsInJapan": 233043
+  },
+  "MMR": {
+   "residentsInJapan": 134574
+  },
+  "LKA": {
+   "residentsInJapan": 63472
+  },
+  "PER": {
+   "residentsInJapan": 49247
+  },
+  "BGD": {
+   "residentsInJapan": 35073
+  },
+  "PAK": {
+   "residentsInJapan": 29647
+  },
+  "KHM": {
+   "residentsInJapan": 26827
+  },
+  "UZB": {
+   "residentsInJapan": 7107
+  },
+  "BOL": {
+   "residentsInJapan": 6753
+  },
+  "AFG": {
+   "residentsInJapan": 6351
+  },
+  "LAO": {
+   "residentsInJapan": 4442
+  },
+  "IRN": {
+   "residentsInJapan": 4399
+  },
+  "NGA": {
+   "residentsInJapan": 4318
+  },
+  "UKR": {
+   "residentsInJapan": 4176
+  },
+  "ARG": {
+   "residentsInJapan": 3523,
+   "japaneseAbroad": 10864
+  },
+  "GHA": {
+   "residentsInJapan": 3124
+  },
+  "COL": {
+   "residentsInJapan": 2774
+  },
+  "EGY": {
+   "residentsInJapan": 2450
+  },
+  "ROU": {
+   "residentsInJapan": 2310
+  },
+  "PRY": {
+   "residentsInJapan": 2266
+  },
+  "SYR": {
+   "residentsInJapan": 1584
+  },
+  "ZAF": {
+   "residentsInJapan": 1560
+  },
+  "CMR": {
+   "residentsInJapan": 1558
+  }
+ }
+}

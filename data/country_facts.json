@@ -1,0 +1,1436 @@
+{
+ "meta": {
+  "hdiYear": "2023（UNDP HDR 2025, via Our World in Data）",
+  "lifeYear": "2023（UN DESA WPP, via Our World in Data）",
+  "schoolingYear": "最新年（UNDP, via Our World in Data）",
+  "happinessYears": "2021-2023平均（WHR/Gallup, via Our World in Data）",
+  "mcmealDate": "2026年9月（Numbeo 集計）",
+  "fxNote": "マックセット円換算は目安レート（1ドル=155円）で換算・四捨五入",
+  "sources": [
+   "UNDP Human Development Report 2025 (HDI) — via Our World in Data (CC BY)",
+   "UN DESA World Population Prospects (life expectancy) — via Our World in Data (CC BY)",
+   "World Happiness Report / Gallup World Poll (Cantril ladder) — via Our World in Data (CC BY)",
+   "Numbeo Cost of Living, McMeal at McDonalds (crowdsourced survey average, 目安)"
+  ]
+ },
+ "facts": {
+  "ZWE": {
+   "hdi": 0.598,
+   "lifeExp": 62.8,
+   "schoolingExp": 11.1,
+   "happiness": 3.18,
+   "mcmealUsd": 6,
+   "mcmealJpy": 930
+  },
+  "ZMB": {
+   "hdi": 0.595,
+   "lifeExp": 66.3,
+   "schoolingExp": 11,
+   "happiness": 3.748
+  },
+  "YEM": {
+   "hdi": 0.47,
+   "lifeExp": 69.3,
+   "schoolingExp": 7.5,
+   "happiness": 3.879
+  },
+  "VNM": {
+   "hdi": 0.766,
+   "lifeExp": 74.6,
+   "schoolingExp": 15.5,
+   "happiness": 5.764,
+   "mcmealUsd": 4.58,
+   "mcmealJpy": 710
+  },
+  "VEN": {
+   "hdi": 0.709,
+   "lifeExp": 72.5,
+   "schoolingExp": 13,
+   "happiness": 5.248,
+   "mcmealUsd": 10,
+   "mcmealJpy": 1550
+  },
+  "VAT": {
+   "lifeExp": 83
+  },
+  "VUT": {
+   "hdi": 0.621,
+   "lifeExp": 71.5,
+   "schoolingExp": 11.8
+  },
+  "UZB": {
+   "hdi": 0.74,
+   "lifeExp": 72.4,
+   "schoolingExp": 12.5,
+   "happiness": 6.091,
+   "mcmealUsd": 4.67,
+   "mcmealJpy": 724
+  },
+  "URY": {
+   "hdi": 0.862,
+   "lifeExp": 78.1,
+   "schoolingExp": 17.5,
+   "happiness": 6.526,
+   "mcmealUsd": 12.43,
+   "mcmealJpy": 1927
+  },
+  "FSM": {
+   "hdi": 0.615,
+   "lifeExp": 67.2,
+   "schoolingExp": 11.5
+  },
+  "MHL": {
+   "hdi": 0.733,
+   "lifeExp": 66.9,
+   "schoolingExp": 16.4
+  },
+  "MNP": {
+   "lifeExp": 78.8
+  },
+  "VIR": {
+   "lifeExp": 75.5
+  },
+  "GUM": {
+   "lifeExp": 77.2
+  },
+  "ASM": {
+   "lifeExp": 72.9
+  },
+  "PRI": {
+   "lifeExp": 81.7,
+   "mcmealUsd": 10,
+   "mcmealJpy": 1550
+  },
+  "USA": {
+   "hdi": 0.938,
+   "lifeExp": 79.3,
+   "schoolingExp": 15.9,
+   "happiness": 6.865,
+   "mcmealUsd": 12,
+   "mcmealJpy": 1860
+  },
+  "SHN": {
+   "lifeExp": 76.8
+  },
+  "AIA": {
+   "lifeExp": 79.3
+  },
+  "FLK": {
+   "lifeExp": 79.2
+  },
+  "CYM": {
+   "lifeExp": 80.4
+  },
+  "BMU": {
+   "lifeExp": 82.3
+  },
+  "VGB": {
+   "lifeExp": 77.3
+  },
+  "TCA": {
+   "lifeExp": 78
+  },
+  "MSR": {
+   "lifeExp": 76.2
+  },
+  "JEY": {
+   "lifeExp": 79.7
+  },
+  "GGY": {
+   "lifeExp": 83.3
+  },
+  "IMN": {
+   "lifeExp": 81
+  },
+  "GBR": {
+   "hdi": 0.946,
+   "lifeExp": 81.3,
+   "schoolingExp": 17.8,
+   "happiness": 6.829,
+   "mcmealUsd": 10.8,
+   "mcmealJpy": 1674
+  },
+  "ARE": {
+   "hdi": 0.94,
+   "lifeExp": 82.9,
+   "schoolingExp": 15.6,
+   "happiness": 6.627,
+   "mcmealUsd": 9.49,
+   "mcmealJpy": 1471
+  },
+  "UKR": {
+   "hdi": 0.779,
+   "lifeExp": 73.4,
+   "schoolingExp": 13.3,
+   "happiness": 5.009,
+   "mcmealUsd": 6.03,
+   "mcmealJpy": 935
+  },
+  "UGA": {
+   "hdi": 0.582,
+   "lifeExp": 68.3,
+   "schoolingExp": 11.6,
+   "happiness": 4.469
+  },
+  "TKM": {
+   "hdi": 0.764,
+   "lifeExp": 70.1,
+   "schoolingExp": 13.2
+  },
+  "TUR": {
+   "hdi": 0.853,
+   "lifeExp": 77.2,
+   "schoolingExp": 19.8,
+   "happiness": 4.778,
+   "mcmealUsd": 8.64,
+   "mcmealJpy": 1339
+  },
+  "TUN": {
+   "hdi": 0.746,
+   "lifeExp": 76.5,
+   "schoolingExp": 14.7,
+   "happiness": 4.478,
+   "mcmealUsd": 5.13,
+   "mcmealJpy": 795
+  },
+  "TTO": {
+   "hdi": 0.807,
+   "lifeExp": 73.5,
+   "schoolingExp": 14.2
+  },
+  "TON": {
+   "hdi": 0.769,
+   "lifeExp": 72.9,
+   "schoolingExp": 17.8
+  },
+  "TGO": {
+   "hdi": 0.571,
+   "lifeExp": 62.7,
+   "schoolingExp": 13.1,
+   "happiness": 4.154
+  },
+  "TLS": {
+   "hdi": 0.634,
+   "lifeExp": 67.7,
+   "schoolingExp": 13.3
+  },
+  "THA": {
+   "hdi": 0.798,
+   "lifeExp": 76.4,
+   "schoolingExp": 15.4,
+   "happiness": 5.903,
+   "mcmealUsd": 6.62,
+   "mcmealJpy": 1026
+  },
+  "TZA": {
+   "hdi": 0.555,
+   "lifeExp": 67,
+   "schoolingExp": 8.6,
+   "happiness": 3.726
+  },
+  "TJK": {
+   "hdi": 0.691,
+   "lifeExp": 71.8,
+   "schoolingExp": 10.8,
+   "happiness": 5.329
+  },
+  "TWN": {
+   "lifeExp": 80.6,
+   "happiness": 6.517,
+   "mcmealUsd": 5.33,
+   "mcmealJpy": 826
+  },
+  "SYR": {
+   "hdi": 0.564,
+   "lifeExp": 72.1,
+   "schoolingExp": 7.4
+  },
+  "CHE": {
+   "hdi": 0.97,
+   "lifeExp": 84,
+   "schoolingExp": 16.7,
+   "happiness": 7.271,
+   "mcmealUsd": 18.36,
+   "mcmealJpy": 2846
+  },
+  "SWE": {
+   "hdi": 0.959,
+   "lifeExp": 83.3,
+   "schoolingExp": 19,
+   "happiness": 7.374,
+   "mcmealUsd": 11.28,
+   "mcmealJpy": 1748
+  },
+  "SWZ": {
+   "hdi": 0.695,
+   "lifeExp": 64.1,
+   "schoolingExp": 15.2,
+   "happiness": 3.949
+  },
+  "SUR": {
+   "hdi": 0.722,
+   "lifeExp": 73.6,
+   "schoolingExp": 11
+  },
+  "SSD": {
+   "hdi": 0.388,
+   "lifeExp": 57.6,
+   "schoolingExp": 5.6
+  },
+  "SDN": {
+   "hdi": 0.511,
+   "lifeExp": 66.3,
+   "schoolingExp": 8.6
+  },
+  "LKA": {
+   "hdi": 0.776,
+   "lifeExp": 77.5,
+   "schoolingExp": 13.1,
+   "happiness": 4.234,
+   "mcmealUsd": 7.6,
+   "mcmealJpy": 1178
+  },
+  "ESP": {
+   "hdi": 0.918,
+   "lifeExp": 83.7,
+   "schoolingExp": 17.8,
+   "happiness": 6.444,
+   "mcmealUsd": 11.55,
+   "mcmealJpy": 1790
+  },
+  "KOR": {
+   "hdi": 0.937,
+   "lifeExp": 84.3,
+   "schoolingExp": 16.6,
+   "happiness": 5.981,
+   "mcmealUsd": 6.5,
+   "mcmealJpy": 1008
+  },
+  "ZAF": {
+   "hdi": 0.741,
+   "lifeExp": 66.1,
+   "schoolingExp": 13.8,
+   "happiness": 5.297,
+   "mcmealUsd": 5.84,
+   "mcmealJpy": 905
+  },
+  "SOM": {
+   "hdi": 0.404,
+   "lifeExp": 58.8,
+   "schoolingExp": 7.5
+  },
+  "SLB": {
+   "hdi": 0.584,
+   "lifeExp": 70.5,
+   "schoolingExp": 11.3
+  },
+  "SVK": {
+   "hdi": 0.88,
+   "lifeExp": 78.3,
+   "schoolingExp": 14.9,
+   "happiness": 6.372,
+   "mcmealUsd": 9.24,
+   "mcmealJpy": 1432
+  },
+  "SVN": {
+   "hdi": 0.931,
+   "lifeExp": 81.6,
+   "schoolingExp": 17.5,
+   "happiness": 6.674,
+   "mcmealUsd": 9.24,
+   "mcmealJpy": 1432
+  },
+  "SGP": {
+   "hdi": 0.946,
+   "lifeExp": 83.7,
+   "schoolingExp": 16.7,
+   "happiness": 6.53,
+   "mcmealUsd": 8.66,
+   "mcmealJpy": 1342
+  },
+  "SLE": {
+   "hdi": 0.467,
+   "lifeExp": 61.8,
+   "schoolingExp": 9.1,
+   "happiness": 3.319
+  },
+  "SYC": {
+   "hdi": 0.848,
+   "lifeExp": 72.9,
+   "schoolingExp": 18.2
+  },
+  "SRB": {
+   "hdi": 0.833,
+   "lifeExp": 76.8,
+   "schoolingExp": 15,
+   "happiness": 6.244,
+   "mcmealUsd": 11.81,
+   "mcmealJpy": 1831
+  },
+  "SEN": {
+   "hdi": 0.53,
+   "lifeExp": 68.7,
+   "schoolingExp": 9.1,
+   "happiness": 4.957
+  },
+  "SAU": {
+   "hdi": 0.9,
+   "lifeExp": 78.7,
+   "schoolingExp": 16.9,
+   "happiness": 6.527,
+   "mcmealUsd": 8,
+   "mcmealJpy": 1240
+  },
+  "STP": {
+   "hdi": 0.637,
+   "lifeExp": 69.7,
+   "schoolingExp": 12.9
+  },
+  "SMR": {
+   "hdi": 0.915,
+   "lifeExp": 85.7,
+   "schoolingExp": 14.6
+  },
+  "WSM": {
+   "hdi": 0.708,
+   "lifeExp": 71.7,
+   "schoolingExp": 12.4
+  },
+  "VCT": {
+   "hdi": 0.798,
+   "lifeExp": 71.2,
+   "schoolingExp": 16.3
+  },
+  "LCA": {
+   "hdi": 0.748,
+   "lifeExp": 72.7,
+   "schoolingExp": 12.7
+  },
+  "KNA": {
+   "hdi": 0.84,
+   "lifeExp": 72.1,
+   "schoolingExp": 18.4
+  },
+  "RWA": {
+   "hdi": 0.578,
+   "lifeExp": 67.8,
+   "schoolingExp": 12.6
+  },
+  "RUS": {
+   "hdi": 0.832,
+   "lifeExp": 73.2,
+   "schoolingExp": 13.2,
+   "happiness": 5.635,
+   "mcmealUsd": 6.51,
+   "mcmealJpy": 1009
+  },
+  "ROU": {
+   "hdi": 0.845,
+   "lifeExp": 75.9,
+   "schoolingExp": 14.1,
+   "happiness": 6.519,
+   "mcmealUsd": 7.69,
+   "mcmealJpy": 1192
+  },
+  "QAT": {
+   "hdi": 0.886,
+   "lifeExp": 82.4,
+   "schoolingExp": 13.1,
+   "mcmealUsd": 8.21,
+   "mcmealJpy": 1273
+  },
+  "PRT": {
+   "hdi": 0.89,
+   "lifeExp": 82.4,
+   "schoolingExp": 17.5,
+   "happiness": 6.005,
+   "mcmealUsd": 10.38,
+   "mcmealJpy": 1609
+  },
+  "POL": {
+   "hdi": 0.906,
+   "lifeExp": 78.6,
+   "schoolingExp": 16.7,
+   "happiness": 6.275,
+   "mcmealUsd": 9.32,
+   "mcmealJpy": 1445
+  },
+  "PHL": {
+   "hdi": 0.72,
+   "lifeExp": 69.8,
+   "schoolingExp": 12.8,
+   "happiness": 5.825,
+   "mcmealUsd": 3.18,
+   "mcmealJpy": 493
+  },
+  "PER": {
+   "hdi": 0.794,
+   "lifeExp": 77.7,
+   "schoolingExp": 14.9,
+   "happiness": 5.642,
+   "mcmealUsd": 6.55,
+   "mcmealJpy": 1015
+  },
+  "PRY": {
+   "hdi": 0.756,
+   "lifeExp": 73.8,
+   "schoolingExp": 14,
+   "happiness": 5.764
+  },
+  "PNG": {
+   "hdi": 0.576,
+   "lifeExp": 66.1,
+   "schoolingExp": 11.5
+  },
+  "PAN": {
+   "hdi": 0.839,
+   "lifeExp": 79.6,
+   "schoolingExp": 13.3,
+   "happiness": 6.311,
+   "mcmealUsd": 8,
+   "mcmealJpy": 1240
+  },
+  "PLW": {
+   "hdi": 0.786,
+   "lifeExp": 69.3,
+   "schoolingExp": 14.1
+  },
+  "PAK": {
+   "hdi": 0.544,
+   "lifeExp": 67.6,
+   "schoolingExp": 7.9,
+   "happiness": 4.576,
+   "mcmealUsd": 5.41,
+   "mcmealJpy": 839
+  },
+  "OMN": {
+   "hdi": 0.858,
+   "lifeExp": 80,
+   "schoolingExp": 13.4,
+   "mcmealUsd": 9.11,
+   "mcmealJpy": 1412
+  },
+  "NOR": {
+   "hdi": 0.97,
+   "lifeExp": 83.3,
+   "schoolingExp": 18.8,
+   "happiness": 7.327,
+   "mcmealUsd": 16.09,
+   "mcmealJpy": 2494
+  },
+  "PRK": {
+   "lifeExp": 73.6,
+   "schoolingExp": 12.2
+  },
+  "NGA": {
+   "hdi": 0.56,
+   "lifeExp": 54.5,
+   "schoolingExp": 10.5,
+   "happiness": 4.805
+  },
+  "NER": {
+   "hdi": 0.419,
+   "lifeExp": 61.2,
+   "schoolingExp": 8.3,
+   "happiness": 4.687
+  },
+  "NIC": {
+   "hdi": 0.706,
+   "lifeExp": 74.9,
+   "schoolingExp": 11.5,
+   "happiness": 6.236
+  },
+  "NZL": {
+   "hdi": 0.938,
+   "lifeExp": 82.1,
+   "schoolingExp": 19.3,
+   "happiness": 7.117,
+   "mcmealUsd": 9.24,
+   "mcmealJpy": 1432
+  },
+  "NIU": {
+   "lifeExp": 70
+  },
+  "COK": {
+   "lifeExp": 75.3
+  },
+  "NLD": {
+   "hdi": 0.955,
+   "lifeExp": 82.2,
+   "schoolingExp": 18.6,
+   "happiness": 7.379,
+   "mcmealUsd": 14.21,
+   "mcmealJpy": 2203
+  },
+  "ABW": {
+   "lifeExp": 76.4
+  },
+  "CUW": {
+   "lifeExp": 76.8
+  },
+  "NPL": {
+   "hdi": 0.622,
+   "lifeExp": 70.4,
+   "schoolingExp": 13.8,
+   "happiness": 5.298,
+   "mcmealUsd": 6.55,
+   "mcmealJpy": 1015
+  },
+  "NRU": {
+   "hdi": 0.703,
+   "lifeExp": 62.1,
+   "schoolingExp": 12.8
+  },
+  "NAM": {
+   "hdi": 0.665,
+   "lifeExp": 67.4,
+   "schoolingExp": 11.8,
+   "happiness": 4.641
+  },
+  "MOZ": {
+   "hdi": 0.493,
+   "lifeExp": 63.6,
+   "schoolingExp": 10.8,
+   "happiness": 5.073
+  },
+  "MAR": {
+   "hdi": 0.71,
+   "lifeExp": 75.3,
+   "schoolingExp": 15.1,
+   "happiness": 4.919,
+   "mcmealUsd": 7.18,
+   "mcmealJpy": 1113
+  },
+  "ESH": {
+   "lifeExp": 71.4
+  },
+  "MNE": {
+   "hdi": 0.862,
+   "lifeExp": 77.1,
+   "schoolingExp": 15.5,
+   "happiness": 5.659,
+   "mcmealUsd": 10.94,
+   "mcmealJpy": 1696
+  },
+  "MNG": {
+   "hdi": 0.747,
+   "lifeExp": 71.7,
+   "schoolingExp": 13.6,
+   "happiness": 5.766
+  },
+  "MDA": {
+   "hdi": 0.785,
+   "lifeExp": 71.2,
+   "schoolingExp": 14.6,
+   "happiness": 5.831,
+   "mcmealUsd": 8.64,
+   "mcmealJpy": 1339
+  },
+  "MCO": {
+   "lifeExp": 86.4,
+   "schoolingExp": 21.7
+  },
+  "MEX": {
+   "hdi": 0.789,
+   "lifeExp": 75.1,
+   "schoolingExp": 14.5,
+   "happiness": 6.379,
+   "mcmealUsd": 9.92,
+   "mcmealJpy": 1538
+  },
+  "MUS": {
+   "hdi": 0.806,
+   "lifeExp": 74.9,
+   "schoolingExp": 14.2,
+   "happiness": 5.93,
+   "mcmealUsd": 6.9,
+   "mcmealJpy": 1070
+  },
+  "MRT": {
+   "hdi": 0.563,
+   "lifeExp": 68.5,
+   "schoolingExp": 7.9,
+   "happiness": 4.461
+  },
+  "MLT": {
+   "hdi": 0.924,
+   "lifeExp": 83.3,
+   "schoolingExp": 15.9,
+   "happiness": 6.364,
+   "mcmealUsd": 11.9,
+   "mcmealJpy": 1845
+  },
+  "MLI": {
+   "hdi": 0.419,
+   "lifeExp": 60.4,
+   "schoolingExp": 7,
+   "happiness": 4.303
+  },
+  "MDV": {
+   "hdi": 0.766,
+   "lifeExp": 81,
+   "schoolingExp": 12.8
+  },
+  "MYS": {
+   "hdi": 0.819,
+   "lifeExp": 76.7,
+   "schoolingExp": 12.7,
+   "happiness": 5.899,
+   "mcmealUsd": 4.92,
+   "mcmealJpy": 763
+  },
+  "MWI": {
+   "hdi": 0.517,
+   "lifeExp": 67.4,
+   "schoolingExp": 9.9,
+   "happiness": 3.555
+  },
+  "MDG": {
+   "hdi": 0.487,
+   "lifeExp": 63.6,
+   "schoolingExp": 9.1,
+   "happiness": 4.195
+  },
+  "MKD": {
+   "hdi": 0.815,
+   "lifeExp": 77.4,
+   "schoolingExp": 14.8,
+   "happiness": 5.274,
+   "mcmealUsd": 5.63,
+   "mcmealJpy": 873
+  },
+  "LUX": {
+   "hdi": 0.922,
+   "lifeExp": 82.2,
+   "schoolingExp": 14.4,
+   "happiness": 7.251,
+   "mcmealUsd": 15.02,
+   "mcmealJpy": 2328
+  },
+  "LTU": {
+   "hdi": 0.895,
+   "lifeExp": 76,
+   "schoolingExp": 16.5,
+   "happiness": 6.676,
+   "mcmealUsd": 9.24,
+   "mcmealJpy": 1432
+  },
+  "LIE": {
+   "hdi": 0.938,
+   "lifeExp": 83.6,
+   "schoolingExp": 15.4
+  },
+  "LBY": {
+   "hdi": 0.721,
+   "lifeExp": 69.3,
+   "schoolingExp": 12.9,
+   "happiness": 5.598
+  },
+  "LBR": {
+   "hdi": 0.51,
+   "lifeExp": 62.2,
+   "schoolingExp": 10.5,
+   "happiness": 4.478
+  },
+  "LSO": {
+   "hdi": 0.55,
+   "lifeExp": 57.4,
+   "schoolingExp": 11,
+   "happiness": 3.349
+  },
+  "LBN": {
+   "hdi": 0.752,
+   "lifeExp": 77.8,
+   "schoolingExp": 11.7,
+   "happiness": 2.685
+  },
+  "LVA": {
+   "hdi": 0.889,
+   "lifeExp": 76.2,
+   "schoolingExp": 16.5,
+   "happiness": 6.209,
+   "mcmealUsd": 8.09,
+   "mcmealJpy": 1254
+  },
+  "LAO": {
+   "hdi": 0.617,
+   "lifeExp": 69,
+   "schoolingExp": 9.6,
+   "happiness": 5.13
+  },
+  "KGZ": {
+   "hdi": 0.72,
+   "lifeExp": 71.7,
+   "schoolingExp": 12.7,
+   "happiness": 5.789,
+   "mcmealUsd": 5.72,
+   "mcmealJpy": 887
+  },
+  "KWT": {
+   "hdi": 0.852,
+   "lifeExp": 80.4,
+   "schoolingExp": 15.9,
+   "happiness": 6.528,
+   "mcmealUsd": 8.1,
+   "mcmealJpy": 1256
+  },
+  "KOS": {
+   "lifeExp": 78,
+   "happiness": 6.461,
+   "mcmealUsd": 5.78,
+   "mcmealJpy": 896
+  },
+  "KIR": {
+   "hdi": 0.644,
+   "lifeExp": 66.5,
+   "schoolingExp": 11.9
+  },
+  "KEN": {
+   "hdi": 0.628,
+   "lifeExp": 63.6,
+   "schoolingExp": 11.5,
+   "happiness": 4.5,
+   "mcmealUsd": 6.56,
+   "mcmealJpy": 1017
+  },
+  "KAZ": {
+   "hdi": 0.837,
+   "lifeExp": 74.4,
+   "schoolingExp": 14,
+   "happiness": 6.189,
+   "mcmealUsd": 7.82,
+   "mcmealJpy": 1212
+  },
+  "JOR": {
+   "hdi": 0.754,
+   "lifeExp": 77.8,
+   "schoolingExp": 13.1,
+   "happiness": 4.153,
+   "mcmealUsd": 7.05,
+   "mcmealJpy": 1093
+  },
+  "JPN": {
+   "hdi": 0.925,
+   "lifeExp": 84.7,
+   "schoolingExp": 15.5,
+   "happiness": 6.076,
+   "mcmealUsd": 5.18,
+   "mcmealJpy": 803
+  },
+  "JAM": {
+   "hdi": 0.72,
+   "lifeExp": 71.5,
+   "schoolingExp": 12.4,
+   "happiness": 5.798
+  },
+  "ITA": {
+   "hdi": 0.915,
+   "lifeExp": 83.7,
+   "schoolingExp": 16.7,
+   "happiness": 6.399,
+   "mcmealUsd": 11.55,
+   "mcmealJpy": 1790
+  },
+  "ISR": {
+   "hdi": 0.919,
+   "lifeExp": 82.4,
+   "schoolingExp": 14.9,
+   "happiness": 7.393,
+   "mcmealUsd": 19.65,
+   "mcmealJpy": 3046
+  },
+  "PSE": {
+   "hdi": 0.674,
+   "lifeExp": 65.2,
+   "schoolingExp": 13,
+   "happiness": 4.757
+  },
+  "IRL": {
+   "hdi": 0.949,
+   "lifeExp": 82.4,
+   "schoolingExp": 19.2,
+   "happiness": 6.93,
+   "mcmealUsd": 12.71,
+   "mcmealJpy": 1970
+  },
+  "IRQ": {
+   "hdi": 0.695,
+   "lifeExp": 72.3,
+   "schoolingExp": 12.4,
+   "happiness": 5.016,
+   "mcmealUsd": 7.25,
+   "mcmealJpy": 1124
+  },
+  "IRN": {
+   "hdi": 0.799,
+   "lifeExp": 77.7,
+   "schoolingExp": 14,
+   "happiness": 4.896,
+   "mcmealUsd": 4,
+   "mcmealJpy": 620
+  },
+  "IDN": {
+   "hdi": 0.728,
+   "lifeExp": 71.1,
+   "schoolingExp": 13.3,
+   "happiness": 5.362,
+   "mcmealUsd": 3.29,
+   "mcmealJpy": 510
+  },
+  "IND": {
+   "hdi": 0.685,
+   "lifeExp": 72,
+   "schoolingExp": 13,
+   "happiness": 3.956,
+   "mcmealUsd": 3.65,
+   "mcmealJpy": 566
+  },
+  "ISL": {
+   "hdi": 0.972,
+   "lifeExp": 82.7,
+   "schoolingExp": 18.9,
+   "happiness": 7.537
+  },
+  "HUN": {
+   "hdi": 0.87,
+   "lifeExp": 77,
+   "schoolingExp": 15.5,
+   "happiness": 6.048,
+   "mcmealUsd": 9.48,
+   "mcmealJpy": 1469
+  },
+  "HND": {
+   "hdi": 0.645,
+   "lifeExp": 72.9,
+   "schoolingExp": 10.2,
+   "happiness": 6.004
+  },
+  "HTI": {
+   "hdi": 0.554,
+   "lifeExp": 64.9,
+   "schoolingExp": 10.9
+  },
+  "GUY": {
+   "hdi": 0.776,
+   "lifeExp": 70.2,
+   "schoolingExp": 13
+  },
+  "GNB": {
+   "hdi": 0.514,
+   "lifeExp": 64.1,
+   "schoolingExp": 10.6
+  },
+  "GIN": {
+   "hdi": 0.5,
+   "lifeExp": 60.7,
+   "schoolingExp": 10.4,
+   "happiness": 4.995
+  },
+  "GTM": {
+   "hdi": 0.662,
+   "lifeExp": 72.6,
+   "schoolingExp": 10.7,
+   "happiness": 6.233
+  },
+  "GRD": {
+   "hdi": 0.791,
+   "lifeExp": 75.2,
+   "schoolingExp": 16.6
+  },
+  "GRC": {
+   "hdi": 0.908,
+   "lifeExp": 81.9,
+   "schoolingExp": 20.8,
+   "happiness": 5.938,
+   "mcmealUsd": 11.55,
+   "mcmealJpy": 1790
+  },
+  "GHA": {
+   "hdi": 0.628,
+   "lifeExp": 65.5,
+   "schoolingExp": 11.4,
+   "happiness": 4.589
+  },
+  "DEU": {
+   "hdi": 0.959,
+   "lifeExp": 81.4,
+   "schoolingExp": 17.3,
+   "happiness": 6.882,
+   "mcmealUsd": 12.71,
+   "mcmealJpy": 1970
+  },
+  "GEO": {
+   "hdi": 0.844,
+   "lifeExp": 74.5,
+   "schoolingExp": 16.8,
+   "happiness": 5.089,
+   "mcmealUsd": 9.62,
+   "mcmealJpy": 1491
+  },
+  "GMB": {
+   "hdi": 0.524,
+   "lifeExp": 65.9,
+   "schoolingExp": 9,
+   "happiness": 4.643
+  },
+  "GAB": {
+   "hdi": 0.733,
+   "lifeExp": 68.3,
+   "schoolingExp": 12.5,
+   "happiness": 5.033
+  },
+  "FRA": {
+   "hdi": 0.92,
+   "lifeExp": 83.3,
+   "schoolingExp": 16.1,
+   "happiness": 6.652,
+   "mcmealUsd": 13.86,
+   "mcmealJpy": 2148
+  },
+  "SPM": {
+   "lifeExp": 76.8
+  },
+  "WLF": {
+   "lifeExp": 78.6
+  },
+  "MAF": {
+   "lifeExp": 80.2
+  },
+  "BLM": {
+   "lifeExp": 84.3
+  },
+  "PYF": {
+   "lifeExp": 84.1
+  },
+  "NCL": {
+   "lifeExp": 78.8
+  },
+  "FIN": {
+   "hdi": 0.948,
+   "lifeExp": 81.9,
+   "schoolingExp": 19.5,
+   "happiness": 7.789,
+   "mcmealUsd": 12.71,
+   "mcmealJpy": 1970
+  },
+  "FJI": {
+   "hdi": 0.731,
+   "lifeExp": 67.3,
+   "schoolingExp": 13.8
+  },
+  "ETH": {
+   "hdi": 0.497,
+   "lifeExp": 67.3,
+   "schoolingExp": 9.2,
+   "happiness": 4.064
+  },
+  "EST": {
+   "hdi": 0.905,
+   "lifeExp": 79.2,
+   "schoolingExp": 16,
+   "happiness": 6.415,
+   "mcmealUsd": 11.55,
+   "mcmealJpy": 1790
+  },
+  "ERI": {
+   "hdi": 0.503,
+   "lifeExp": 68.6,
+   "schoolingExp": 7.3
+  },
+  "GNQ": {
+   "hdi": 0.674,
+   "lifeExp": 63.7,
+   "schoolingExp": 12.5
+  },
+  "SLV": {
+   "hdi": 0.678,
+   "lifeExp": 72.1,
+   "schoolingExp": 11.1,
+   "happiness": 6.237
+  },
+  "EGY": {
+   "hdi": 0.754,
+   "lifeExp": 71.6,
+   "schoolingExp": 13.1,
+   "happiness": 4.145,
+   "mcmealUsd": 4.82,
+   "mcmealJpy": 747
+  },
+  "ECU": {
+   "hdi": 0.777,
+   "lifeExp": 77.4,
+   "schoolingExp": 14.9,
+   "happiness": 5.606,
+   "mcmealUsd": 7,
+   "mcmealJpy": 1085
+  },
+  "DOM": {
+   "hdi": 0.776,
+   "lifeExp": 73.7,
+   "schoolingExp": 13.6,
+   "happiness": 5.71,
+   "mcmealUsd": 7.62,
+   "mcmealJpy": 1181
+  },
+  "DMA": {
+   "hdi": 0.761,
+   "lifeExp": 71.1,
+   "schoolingExp": 14.2
+  },
+  "DJI": {
+   "hdi": 0.513,
+   "lifeExp": 66,
+   "schoolingExp": 6.2
+  },
+  "GRL": {
+   "lifeExp": 70.1
+  },
+  "FRO": {
+   "lifeExp": 80.2
+  },
+  "DNK": {
+   "hdi": 0.962,
+   "lifeExp": 81.9,
+   "schoolingExp": 18.7,
+   "happiness": 7.602,
+   "mcmealUsd": 13.91,
+   "mcmealJpy": 2156
+  },
+  "CZE": {
+   "hdi": 0.915,
+   "lifeExp": 79.8,
+   "schoolingExp": 16.8,
+   "happiness": 6.862,
+   "mcmealUsd": 9.52,
+   "mcmealJpy": 1476
+  },
+  "CYP": {
+   "hdi": 0.913,
+   "lifeExp": 81.6,
+   "schoolingExp": 16.2,
+   "happiness": 6.14,
+   "mcmealUsd": 9.24,
+   "mcmealJpy": 1432
+  },
+  "CUB": {
+   "hdi": 0.762,
+   "lifeExp": 78.1,
+   "schoolingExp": 13.9,
+   "mcmealUsd": 6.5,
+   "mcmealJpy": 1008
+  },
+  "HRV": {
+   "hdi": 0.889,
+   "lifeExp": 78.6,
+   "schoolingExp": 16.3,
+   "happiness": 6.064,
+   "mcmealUsd": 9.59,
+   "mcmealJpy": 1486
+  },
+  "CIV": {
+   "hdi": 0.582,
+   "lifeExp": 61.9,
+   "schoolingExp": 11.4,
+   "happiness": 5.123
+  },
+  "CRI": {
+   "hdi": 0.833,
+   "lifeExp": 80.8,
+   "schoolingExp": 16.3,
+   "happiness": 6.715,
+   "mcmealUsd": 11.11,
+   "mcmealJpy": 1722
+  },
+  "COD": {
+   "hdi": 0.522,
+   "lifeExp": 61.9,
+   "schoolingExp": 10.9,
+   "happiness": 3.251
+  },
+  "COG": {
+   "hdi": 0.649,
+   "lifeExp": 65.8,
+   "schoolingExp": 12.7,
+   "happiness": 5.188
+  },
+  "COM": {
+   "hdi": 0.603,
+   "lifeExp": 66.8,
+   "schoolingExp": 13.3,
+   "happiness": 3.907
+  },
+  "COL": {
+   "hdi": 0.788,
+   "lifeExp": 77.7,
+   "schoolingExp": 14.3,
+   "happiness": 5.702,
+   "mcmealUsd": 10,
+   "mcmealJpy": 1550
+  },
+  "CHN": {
+   "hdi": 0.797,
+   "lifeExp": 78,
+   "schoolingExp": 15.5,
+   "happiness": 5.792,
+   "mcmealUsd": 5.21,
+   "mcmealJpy": 808
+  },
+  "MAC": {
+   "lifeExp": 83.1
+  },
+  "HKG": {
+   "hdi": 0.955,
+   "lifeExp": 85.5,
+   "schoolingExp": 16.9,
+   "happiness": 5.35,
+   "mcmealUsd": 6.37,
+   "mcmealJpy": 987
+  },
+  "CHL": {
+   "hdi": 0.878,
+   "lifeExp": 81.2,
+   "schoolingExp": 16.9,
+   "happiness": 6.289,
+   "mcmealUsd": 7.51,
+   "mcmealJpy": 1164
+  },
+  "TCD": {
+   "hdi": 0.416,
+   "lifeExp": 55.1,
+   "schoolingExp": 8.3,
+   "happiness": 4.373
+  },
+  "CAF": {
+   "hdi": 0.414,
+   "lifeExp": 57.4,
+   "schoolingExp": 7.4
+  },
+  "CPV": {
+   "hdi": 0.668,
+   "lifeExp": 76.1,
+   "schoolingExp": 11.4
+  },
+  "CAN": {
+   "hdi": 0.939,
+   "lifeExp": 82.6,
+   "schoolingExp": 15.9,
+   "happiness": 6.962,
+   "mcmealUsd": 10.79,
+   "mcmealJpy": 1672
+  },
+  "CMR": {
+   "hdi": 0.588,
+   "lifeExp": 63.7,
+   "schoolingExp": 10.8,
+   "happiness": 4.965
+  },
+  "KHM": {
+   "hdi": 0.606,
+   "lifeExp": 70.7,
+   "schoolingExp": 11.2,
+   "happiness": 4.458
+  },
+  "MMR": {
+   "hdi": 0.609,
+   "lifeExp": 66.9,
+   "schoolingExp": 11.5,
+   "happiness": 4.373
+  },
+  "BDI": {
+   "hdi": 0.439,
+   "lifeExp": 63.7,
+   "schoolingExp": 9.8
+  },
+  "BFA": {
+   "hdi": 0.459,
+   "lifeExp": 61.1,
+   "schoolingExp": 8.7,
+   "happiness": 4.619
+  },
+  "BGR": {
+   "hdi": 0.845,
+   "lifeExp": 75.6,
+   "schoolingExp": 15.3,
+   "happiness": 5.433,
+   "mcmealUsd": 10.63,
+   "mcmealJpy": 1648
+  },
+  "BRN": {
+   "hdi": 0.837,
+   "lifeExp": 75.3,
+   "schoolingExp": 13.7
+  },
+  "BRA": {
+   "hdi": 0.786,
+   "lifeExp": 75.8,
+   "schoolingExp": 15.8,
+   "happiness": 6.23,
+   "mcmealUsd": 7.78,
+   "mcmealJpy": 1206
+  },
+  "BWA": {
+   "hdi": 0.731,
+   "lifeExp": 69.2,
+   "schoolingExp": 11.4,
+   "happiness": 3.43
+  },
+  "BIH": {
+   "hdi": 0.804,
+   "lifeExp": 77.9,
+   "schoolingExp": 13.2,
+   "happiness": 5.759,
+   "mcmealUsd": 7.67,
+   "mcmealJpy": 1189
+  },
+  "BOL": {
+   "hdi": 0.733,
+   "lifeExp": 68.6,
+   "schoolingExp": 15.6,
+   "happiness": 5.689,
+   "mcmealUsd": 4.15,
+   "mcmealJpy": 643
+  },
+  "BTN": {
+   "hdi": 0.698,
+   "lifeExp": 73,
+   "schoolingExp": 13.2
+  },
+  "BEN": {
+   "hdi": 0.515,
+   "lifeExp": 60.8,
+   "schoolingExp": 10.4,
+   "happiness": 4.458
+  },
+  "BLZ": {
+   "hdi": 0.721,
+   "lifeExp": 73.6,
+   "schoolingExp": 12
+  },
+  "BEL": {
+   "hdi": 0.951,
+   "lifeExp": 82.1,
+   "schoolingExp": 19,
+   "happiness": 6.853,
+   "mcmealUsd": 13.86,
+   "mcmealJpy": 2148
+  },
+  "BLR": {
+   "hdi": 0.824,
+   "lifeExp": 74.4,
+   "schoolingExp": 13.7,
+   "mcmealUsd": 6.58,
+   "mcmealJpy": 1020
+  },
+  "BRB": {
+   "hdi": 0.811,
+   "lifeExp": 76.2,
+   "schoolingExp": 16.6
+  },
+  "BGD": {
+   "hdi": 0.685,
+   "lifeExp": 74.7,
+   "schoolingExp": 12.3,
+   "happiness": 4.441,
+   "mcmealUsd": 4.47,
+   "mcmealJpy": 693
+  },
+  "BHR": {
+   "hdi": 0.899,
+   "lifeExp": 81.3,
+   "schoolingExp": 15.9,
+   "happiness": 6.26,
+   "mcmealUsd": 7.96,
+   "mcmealJpy": 1234
+  },
+  "BHS": {
+   "hdi": 0.82,
+   "lifeExp": 74.6,
+   "schoolingExp": 11.9
+  },
+  "AZE": {
+   "hdi": 0.789,
+   "lifeExp": 74.4,
+   "schoolingExp": 12.9,
+   "happiness": 5.033,
+   "mcmealUsd": 7.65,
+   "mcmealJpy": 1186
+  },
+  "AUT": {
+   "hdi": 0.93,
+   "lifeExp": 82,
+   "schoolingExp": 16.3,
+   "happiness": 7.055,
+   "mcmealUsd": 13.86,
+   "mcmealJpy": 2148
+  },
+  "AUS": {
+   "hdi": 0.958,
+   "lifeExp": 83.9,
+   "schoolingExp": 20.7,
+   "happiness": 7.105,
+   "mcmealUsd": 11.07,
+   "mcmealJpy": 1716
+  },
+  "ARM": {
+   "hdi": 0.811,
+   "lifeExp": 75.7,
+   "schoolingExp": 14.4,
+   "happiness": 5.399,
+   "mcmealUsd": 9.64,
+   "mcmealJpy": 1494
+  },
+  "ARG": {
+   "hdi": 0.865,
+   "lifeExp": 77.4,
+   "schoolingExp": 18.8,
+   "happiness": 6.06,
+   "mcmealUsd": 13,
+   "mcmealJpy": 2015
+  },
+  "ATG": {
+   "hdi": 0.851,
+   "lifeExp": 77.6,
+   "schoolingExp": 15.5
+  },
+  "AGO": {
+   "hdi": 0.616,
+   "lifeExp": 64.6,
+   "schoolingExp": 12.2
+  },
+  "AND": {
+   "hdi": 0.913,
+   "lifeExp": 84,
+   "schoolingExp": 14.5
+  },
+  "DZA": {
+   "hdi": 0.763,
+   "lifeExp": 76.3,
+   "schoolingExp": 15.5,
+   "happiness": 5.272,
+   "mcmealUsd": 3.93,
+   "mcmealJpy": 609
+  },
+  "ALB": {
+   "hdi": 0.81,
+   "lifeExp": 79.6,
+   "schoolingExp": 14.5,
+   "happiness": 5.26,
+   "mcmealUsd": 8.81,
+   "mcmealJpy": 1366
+  },
+  "AFG": {
+   "hdi": 0.496,
+   "lifeExp": 66,
+   "schoolingExp": 10.8,
+   "happiness": 1.995
+  },
+  "SXM": {
+   "lifeExp": 76.4
+  },
+  "TUV": {
+   "hdi": 0.689,
+   "lifeExp": 67.1,
+   "schoolingExp": 12.4
+  }
+ }
+}
