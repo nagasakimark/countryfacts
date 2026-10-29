@@ -1,20 +1,48 @@
 <!doctype html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ほんとうの おおきさ — せかいの くに くらべ</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <script type="module" crossorigin src="./assets/index-98aCBJ3m.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Dbk1JiM8.css">
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>せかい くらべっこ — Compare the World</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/"><span class="brand-globe">🌏</span><span><b>せかい くらべっこ</b><small>Compare the World</small></span></a>
+    <div class="top-actions">
+      <button class="iconbtn" id="btn-sound" title="おと">🔊</button>
+      <button class="iconbtn help" id="btn-help" title="つかいかた">❓ <span>つかいかた</span></button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+
+  <nav class="bottomnav" id="nav">
+    <a href="#/" data-nav="home"><span>🏠</span>ホーム</a>
+    <a href="#/map" data-nav="map"><span>🗺️</span>ちずで さがす</a>
+    <a href="#/size" data-nav="size"><span>📏</span>大きさ くらべ</a>
+    <a href="#/games" data-nav="games"><span>🎮</span>ゲーム</a>
+    <a href="#/passport" data-nav="passport"><span>🛂</span>パスポート</a>
+  </nav>
+
+  <div id="modal-root"></div>
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="vendor/d3.min.js"></script>
+  <script src="vendor/topojson-client.min.js"></script>
+  <script src="data/world.js"></script>
+  <script src="data/countries.js"></script>
+  <script src="data/fun.js"></script>
+  <script src="data/media.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/maps.js"></script>
+  <script src="js/screens.js"></script>
+  <script src="js/country.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/app.js"></script>
+</body>
 </html>
