@@ -260,9 +260,24 @@ var App = window.App = { screens: {}, cleanups: [] };
   App.pick = function (a) { return a[Math.floor(Math.random() * a.length)]; };
   App.imgOrEmoji = function (item, cls) {
     if (!item) return '';
-    if (item.img) return '<div class="pic ' + (cls || '') + '"><img src="' + item.img + '" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\');this.remove()"><span class="pic-emoji">' + item.emoji + '</span></div>';
+    if (item.img) return '<div class="pic ' + (cls || '') + '"><img src="' + item.img + '" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\');this.remove()"><span class="pic-emoji">' + item.emoji + '</span><button type="button" class="zoom" data-zoom="' + item.img + '" aria-label="大きく 見る">🔍 <span>大きく</span></button></div>';
     return '<div class="pic noimg ' + (cls || '') + '"><span class="pic-emoji">' + item.emoji + '</span></div>';
   };
+
+  // tap the zoom button (or a small photo) to see the whole picture
+  App.zoomImage = function (src) {
+    var m = App.modal('<div class="zoomview"><img src="' + App.esc(src) + '" alt=""><button type="button" class="btn primary" data-close>✕ とじる</button></div>', { cls: 'zoommodal' });
+    m.el.querySelector('button').focus();
+  };
+  document.addEventListener('click', function (e) {
+    var z = e.target.closest && e.target.closest('[data-zoom]');
+    if (z) { e.preventDefault(); App.zoomImage(z.getAttribute('data-zoom')); return; }
+    var j = e.target.closest && e.target.closest('.jp-mini img');
+    if (j) App.zoomImage(j.getAttribute('src'));
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { var r = document.getElementById('modal-root'); if (r && r.querySelector('.zoommodal')) r.innerHTML = ''; }
+  });
 
   // search: katakana, hiragana, kanji readings, English
   function toKata(s) { return s.replace(/[ぁ-ゖ]/g, function (ch) { return String.fromCharCode(ch.charCodeAt(0) + 0x60); }); }

@@ -434,3 +434,12 @@ body[data-screen="map"] main, body[data-screen="size"] main { max-width: none; p
 
 .tab[data-k="challenge"] { background: var(--sun-t); border-color: var(--sun); box-shadow: 0 4px 0 var(--sun-d); }
 .tab.on[data-k="challenge"] { background: var(--sun); color: var(--ink); border-color: var(--sun-d); }
+
+/* photo zoom */
+.pic .zoom { position: absolute; right: 8px; bottom: 8px; z-index: 2; display: inline-flex; align-items: center; gap: 4px; font: inherit; font-weight: 800; font-size: .9rem; color: var(--ink); background: var(--sun); border: 3px solid #fff; border-radius: 999px; padding: 5px 12px; cursor: pointer; box-shadow: 0 3px 0 var(--sun-d); }
+.pic .zoom:hover { filter: brightness(1.05); }
+.pic .zoom:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--sun-d); }
+.pic .zoom:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.jp-mini img { cursor: zoom-in; }
+.modal.zoommodal { max-width: 760px; padding: 14px; text-align: center; }
+.zoomview img { display: block; width: 100%; max-height: 70vh; object-fit: contain; border-radius: 16px; background: var(--sky); margin-bottom: 12px; }
