@@ -34,4 +34,4 @@ Shapes, area base: Natural Earth; areas: official figures via `world-countries`.
 
 ## せかいたんけん (new game-style layout)
 
-`tanken/index.html` is the new front end: a paper-craft globe, postcard board with photos, stamps and tunnels to the next country. It reuses `data/`, `img/`, `audio/` and `vendor/` from this repo, so nothing is duplicated. Open `/tanken/` on GitHub Pages. The original app at the repo root is unchanged for now.
+`tanken/index.html` is the new front end: a zoomable world map (canvas, drawn only when something changes) with flags, Japanese country names, landmark icons, border lines, and a search box that takes English, kanji, katakana or hiragana (also capital names). Tap a country to fly to it and open its postcard board. It reuses `data/`, `img/`, `audio/` and `vendor/` from this repo. Flags are from flag-icons (MIT, in `tanken/flags/`). The original app at the repo root is unchanged.
