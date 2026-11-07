@@ -31,3 +31,7 @@ Phrases with no open-licensed recording found (Thai "thank you", Vietnamese "xin
 ## Sources
 
 Shapes, area base: Natural Earth; areas: official figures via `world-countries`. Life expectancy and schooling: UN (via Our World in Data). Happiness: World Happiness Report. McDonald's prices: Numbeo (Sept 2026, ¥155/$). Travel: JNTO 2024. Residents: Immigration Services Agency (end of 2024), MOFA (Oct 2023). Photos and audio: Wikimedia Commons (various CC licenses, full list with authors on the app's about page; many recordings from Lingua Libre). Libraries: d3 and topojson-client (in `vendor/`).
+
+## せかいたんけん (new game-style layout)
+
+`tanken/index.html` is the new front end: a paper-craft globe, postcard board with photos, stamps and tunnels to the next country. It reuses `data/`, `img/`, `audio/` and `vendor/` from this repo, so nothing is duplicated. Open `/tanken/` on GitHub Pages. The original app at the repo root is unchanged for now.

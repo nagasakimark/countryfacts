@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>せかいたんけん</title>
+<style>
+:root{--ink:#3b2a5c;--paper:#fff3d6;--sea1:#2b6fd6;--sea2:#1a3f9e;--sun:#ffc531;--pink:#ff6f91;--mint:#33c9a0;--red:#ff5a4d;
+--font:"RocknRoll One","Hiragino Maru Gothic ProN","M PLUS Rounded 1c","Yu Gothic UI","Meiryo",system-ui,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#0f1f55;overflow:hidden;font-family:var(--font);color:var(--ink);user-select:none}
+#wrap{position:fixed;inset:0;display:grid;place-items:center}
+#stage{width:1366px;height:598px;position:relative;transform-origin:center;overflow:hidden;border-radius:18px;
+background:radial-gradient(ellipse at 30% 50%,#3d86ee 0%,#2b6fd6 35%,#1a3f9e 100%)}
+canvas{position:absolute;left:0;top:0}
+/* paper waves behind globe */
+.wave{position:absolute;left:-40px;right:-40px;border-radius:50%;opacity:.35;pointer-events:none}
+/* HUD */
+#hud{position:absolute;left:14px;top:12px;display:flex;gap:10px;align-items:center;z-index:5}
+.pill{background:var(--paper);border:4px solid var(--ink);border-radius:999px;padding:4px 14px 4px 10px;font-size:20px;box-shadow:0 5px 0 var(--ink);display:flex;gap:8px;align-items:center}
+.pill b{font-size:24px}
+.title{background:var(--sun);transform:rotate(-2deg);font-size:24px;padding:4px 18px}
+/* dock */
+#dock{position:absolute;left:440px;bottom:12px;transform:translateX(-50%);display:flex;gap:12px;z-index:5}
+.toy{width:74px;height:74px;border-radius:24px;border:4px solid var(--ink);box-shadow:0 7px 0 var(--ink);display:grid;place-items:center;cursor:pointer;position:relative;transition:transform .12s;font-size:13px}
+.toy:hover{transform:translateY(-8px) rotate(-4deg)}
+.toy:active{transform:translateY(4px);box-shadow:0 2px 0 var(--ink)}
+.toy svg{width:42px;height:42px;margin-top:-6px}
+.toy span{position:absolute;bottom:3px;font-size:11px;white-space:nowrap;color:var(--ink);background:#fff;border-radius:8px;padding:0 6px;border:2px solid var(--ink)}
+#bubble{position:absolute;left:20px;top:74px;max-width:190px;font-size:16px;background:#fff;border:4px solid var(--ink);border-radius:22px;padding:10px 14px;font-size:17px;line-height:1.35;z-index:6;box-shadow:0 5px 0 var(--ink);transition:transform .2s}
+
+/* board */
+#board{position:absolute;right:16px;top:14px;width:520px;height:570px;z-index:4;transform:translateX(620px) rotate(6deg);transition:transform .55s cubic-bezier(.2,1.4,.4,1)}
+#board.on{transform:translateX(0) rotate(1deg)}
+.card{position:absolute;inset:0;background:var(--paper);border:5px solid var(--ink);border-radius:20px;box-shadow:0 10px 0 rgba(15,20,60,.55);
+background-image:radial-gradient(#f2dfae 1.2px,transparent 1.4px);background-size:14px 14px;padding:14px 18px;overflow:hidden}
+.tape{position:absolute;width:86px;height:26px;background:rgba(255,197,49,.75);border:2px dashed rgba(59,42,92,.35);z-index:3}
+.head{display:flex;align-items:center;gap:12px;margin-top:2px}
+.stampcode{width:70px;height:70px;border-radius:50%;border:5px solid var(--red);color:var(--red);display:grid;place-items:center;font-size:24px;transform:rotate(-12deg);background:#fff;flex:none}
+.stampcode.pop{animation:pop .7s cubic-bezier(.2,2.2,.4,1)}
+@keyframes pop{0%{transform:scale(3) rotate(40deg);opacity:0}100%{transform:scale(1) rotate(-12deg);opacity:1}}
+.head h1{margin:0;font-size:38px;line-height:1}
+.head small{display:block;font-size:15px;opacity:.7}
+.say{margin-left:auto;background:var(--pink);color:#fff;border:4px solid var(--ink);border-radius:20px;box-shadow:0 5px 0 var(--ink);padding:6px 12px;font-size:20px;cursor:pointer;line-height:1.1;text-align:center}
+.say:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.say small{color:#fff;opacity:.9}
+.row{display:flex;gap:12px;margin-top:16px;justify-content:center}
+.pol{width:148px;background:#fff;border:3px solid var(--ink);padding:7px 7px 10px;box-shadow:0 6px 0 rgba(59,42,92,.3);cursor:pointer;perspective:600px;transition:transform .2s}
+.pol:nth-child(1){transform:rotate(-4deg)}.pol:nth-child(2){transform:rotate(3deg) translateY(8px)}.pol:nth-child(3){transform:rotate(-2deg)}
+.pol:hover{transform:rotate(0) scale(1.08) translateY(-6px);z-index:5}
+.pol img{width:100%;height:112px;object-fit:cover;display:block;border:2px solid var(--ink)}
+.pol div{font-size:13px;text-align:center;margin-top:6px;line-height:1.25;min-height:34px}
+.pol i{display:block;font-style:normal;font-size:11px;opacity:.6}
+.notes{margin-top:26px;display:flex;flex-direction:column;gap:10px}
+.note{background:#fff9a8;border:3px solid var(--ink);padding:8px 12px 8px 36px;font-size:17px;line-height:1.35;position:relative;border-radius:6px 16px 6px 6px;box-shadow:0 4px 0 rgba(59,42,92,.25)}
+.note:nth-child(2){transform:rotate(-1deg);background:#c7f3df}
+.note:before{content:"?!";position:absolute;left:6px;top:7px;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;display:grid;place-items:center;border:2px solid var(--ink)}
+.holes{position:absolute;left:18px;right:18px;bottom:14px}
+.holes h3{margin:0 0 6px;font-size:16px;opacity:.75}
+.holes div{display:flex;gap:10px}
+.hole{flex:1;border:4px solid var(--ink);border-radius:18px;padding:7px 8px 8px;color:#fff;cursor:pointer;box-shadow:0 5px 0 var(--ink);font-size:17px;line-height:1.15;position:relative;overflow:hidden}
+.hole small{display:block;font-size:11px;opacity:.9;white-space:nowrap}.hole{font-size:15px;min-height:58px;text-align:left;word-break:keep-all;padding-right:30px}
+.hole:hover{transform:translateY(-4px)}
+.hole:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.hole:after{content:"";position:absolute;right:-12px;top:-12px;width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.25);box-shadow:0 0 0 8px rgba(0,0,0,.12)}
+#x{position:absolute;right:-6px;top:-8px;width:40px;height:40px;border-radius:50%;background:var(--red);color:#fff;border:4px solid var(--ink);z-index:6;font-size:20px;cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 0 var(--ink)}
+#tip{position:absolute;left:50%;top:14px;transform:translateX(-90%);z-index:5;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:3px 14px;font-size:18px;opacity:0;transition:opacity .15s;pointer-events:none}
+#conf{position:absolute;inset:0;pointer-events:none;z-index:9}
+</style></head><body>
+<div id="wrap"><div id="stage">
+ <canvas id="cv" width="1366" height="598"></canvas>
+ <div id="hud"><div class="pill title">せかいたんけん</div><div class="pill">スタンプ <b id="cnt">0</b> / 35</div></div>
+ <div id="tip"></div>
+ <div id="bubble">地球を まわして、 行きたい 国を タッチしてね。</div>
+ <div id="dock"></div>
+ <div id="board"><div id="x" onclick="closeBoard()">✕</div><div class="card" id="card"></div></div>
+ <canvas id="conf" width="1366" height="598"></canvas>
+</div></div>
+<script src="../vendor/d3.min.js"></script><script src="../vendor/topojson-client.min.js"></script>
+<script src="../data/world.js"></script><script src="../data/countries.js"></script><script src="../data/fun.js"></script><script src="../data/media.js"></script>
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+/* ---- scale stage ---- */
+function fit(){var s=Math.min(innerWidth/1366,innerHeight/598);$('#stage').style.transform='scale('+s+')'}
+addEventListener('resize',fit);fit();
+/* ---- data ---- */
+var byId={};COUNTRIES.forEach(function(c){byId[c.id]=c});
+var feat=topojson.feature(WORLD_TOPO,WORLD_TOPO.objects.countries).features;
+var feats=Object.keys(FUN).map(function(k){return byId[k]}).filter(Boolean);
+var COL={'アジア':'#ffd54a','ヨーロッパ':'#7db7ff','アフリカ':'#ff9a62','北アメリカ':'#5fd08f','南アメリカ':'#c39bff','オセアニア':'#4fd9cc'};
+var HOLE=['#7a4bd8','#ff7a2f','#16a085'];
+var visited=JSON.parse(localStorage.getItem('mock-visited')||'[]');
+function upd(){$('#cnt').textContent=visited.length}upd();
+/* ---- audio ---- */
+var ac;function tone(f,d,t,v){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.type=t||'triangle';o.frequency.value=f;g.gain.value=v||.12;o.connect(g);g.connect(ac.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);o.stop(ac.currentTime+d)}catch(e){}}
+function boing(){tone(330,.12);setTimeout(function(){tone(520,.14)},70)}
+function stampSnd(){tone(110,.2,'square',.2);setTimeout(function(){tone(660,.1);setTimeout(function(){tone(880,.2)},90)},120)}
+/* ---- globe ---- */
+var cv=$('#cv'),ctx=cv.getContext('2d'),cx=400,cy=299,R=268;
+var proj=d3.geoOrthographic().translate([cx,cy]).scale(R).clipAngle(90).rotate([-135,-20]);
+var path=d3.geoPath(proj,ctx);
+var sel=null,hover=null,t0=0,spin=true,drag=null;
+function cname(f){var c=byId[f.properties.id];return c}
+function draw(t){
+ ctx.clearRect(0,0,1366,598);
+ // paper wave rings
+ for(var i=3;i>=0;i--){ctx.beginPath();ctx.arc(cx,cy+6+i*0,R+18+i*22+Math.sin(t/900+i)*3,0,7);ctx.fillStyle=['rgba(255,255,255,.07)','rgba(255,255,255,.07)','rgba(255,255,255,.06)','rgba(255,255,255,.05)'][i];ctx.fill()}
+ // shadow
+ ctx.beginPath();ctx.ellipse(cx+6,cy+R+16,R*.8,16,0,0,7);ctx.fillStyle='rgba(8,16,60,.35)';ctx.fill();
+ // sphere
+ ctx.beginPath();path({type:'Sphere'});var g=ctx.createRadialGradient(cx-90,cy-110,40,cx,cy,R);g.addColorStop(0,'#74c2ff');g.addColorStop(1,'#2f7fe0');ctx.fillStyle=g;ctx.fill();ctx.lineWidth=6;ctx.strokeStyle='#3b2a5c';ctx.stroke();
+ // grid dashes
+ ctx.beginPath();path(d3.geoGraticule10());ctx.strokeStyle='rgba(255,255,255,.18)';ctx.lineWidth=1.2;ctx.setLineDash([3,6]);ctx.stroke();ctx.setLineDash([]);
+ // land: pass 1 paper shadow, pass 2 face
+ var lift=function(f){var id=f.properties.id,c=byId[id];return id===sel?10:(id===hover?6:(FUN[id]?3:1.5))};
+ feat.forEach(function(f){if(f.properties.id==='ATA')return;var l=lift(f);ctx.save();ctx.translate(l*.5,l);ctx.beginPath();path(f);ctx.fillStyle='rgba(20,10,70,.45)';ctx.fill();ctx.restore()});
+ feat.forEach(function(f){if(f.properties.id==='ATA')return;var id=f.properties.id,c=byId[id],l=lift(f);ctx.save();ctx.translate(0,-l*.6);
+  ctx.beginPath();path(f);
+  var base=c&&COL[c.region]||'#d9d2ef';
+  if(!FUN[id]&&id!=='JPN')ctx.fillStyle=mix(base,'#e9e6f5',.55);else ctx.fillStyle=base;
+  if(id===sel)ctx.fillStyle='#fff3d6';
+  ctx.fill();ctx.lineWidth=id===sel?4:2;ctx.strokeStyle=id===sel?'#ff5a4d':'#fff';ctx.stroke();
+  if(visited.indexOf(id)>-1){var ctr=path.centroid(f);if(ctr&&isFinite(ctr[0])&&d3.geoDistance(d3.geoCentroid(f),[-proj.rotate()[0],-proj.rotate()[1]])<1.2){ctx.fillStyle='#ff5a4d';ctx.beginPath();ctx.arc(ctr[0],ctr[1]-2,5,0,7);ctx.fill();ctx.lineWidth=2;ctx.strokeStyle='#fff';ctx.stroke()}}
+  ctx.restore()});
+ // featured star pulses
+ feats.forEach(function(c){if(visited.indexOf(c.id)>-1||c.id===sel)return;var p=proj(c.cen);var vis=d3.geoDistance(c.cen,[-proj.rotate()[0],-proj.rotate()[1]])<1.35;if(!vis||!p)return;var s=1+Math.sin(t/300+c.pop%7)*.18;star(p[0],p[1]-6,8*s)});
+ // gloss
+ ctx.beginPath();ctx.ellipse(cx-110,cy-150,60,26,-0.7,0,7);ctx.fillStyle='rgba(255,255,255,.14)';ctx.fill();
+ // JP pin
+ var jp=proj([139,37]);if(jp&&d3.geoDistance([139,37],[-proj.rotate()[0],-proj.rotate()[1]])<1.4){ctx.fillStyle='#ff5a4d';ctx.beginPath();ctx.arc(jp[0],jp[1]-14,9,0,7);ctx.fill();ctx.lineWidth=3;ctx.strokeStyle='#3b2a5c';ctx.stroke();ctx.fillStyle='#3b2a5c';ctx.font='12px sans-serif';ctx.fillText('にほん',jp[0]+13,jp[1]-10)}
+}
+function star(x,y,r){ctx.beginPath();for(var i=0;i<10;i++){var a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;ctx.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr)}ctx.closePath();ctx.fillStyle='#fff';ctx.fill();ctx.lineWidth=2.5;ctx.strokeStyle='#3b2a5c';ctx.stroke()}
+function mix(a,b,t){var A=parseInt(a.slice(1),16),B=parseInt(b.slice(1),16),r=function(s){return Math.round(((A>>s)&255)*(1-t)+((B>>s)&255)*t)};return 'rgb('+r(16)+','+r(8)+','+r(0)+')'}
+function loop(t){if(spin&&!drag&&!sel){var r=proj.rotate();proj.rotate([r[0]+0.12,r[1]])}draw(t);requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+/* ---- picking ---- */
+function pick(x,y){var ll=proj.invert([x,y]);if(!ll||d3.geoDistance(ll,[-proj.rotate()[0],-proj.rotate()[1]])>1.5)return null;
+ var h=null;for(var i=0;i<feat.length;i++){if(feat[i].properties.id!=='ATA'&&d3.geoContains(feat[i],ll)){h=feat[i].properties.id;break}}return h}
+function pos(e){var r=$('#stage').getBoundingClientRect(),s=r.width/1366;var p=e.touches?e.touches[0]:e;return [(p.clientX-r.left)/s,(p.clientY-r.top)/s]}
+var moved=0;
+cv.addEventListener('pointerdown',function(e){var p=pos(e);if(Math.hypot(p[0]-cx,p[1]-cy)<R){drag={p:p,r:proj.rotate()};moved=0;cv.setPointerCapture(e.pointerId)}});
+cv.addEventListener('pointermove',function(e){var p=pos(e);
+ if(drag){var dx=p[0]-drag.p[0],dy=p[1]-drag.p[1];moved=Math.max(moved,Math.hypot(dx,dy));proj.rotate([drag.r[0]+dx*.4,Math.max(-70,Math.min(70,drag.r[1]-dy*.4))])}
+ else{var id=pick(p[0],p[1]);if(id!==hover){hover=id;var c=id&&byId[id];var t=$('#tip');if(c){t.textContent=c.ja+(FUN[id]?'  ★':'');t.style.opacity=1}else t.style.opacity=0;cv.style.cursor=id?'pointer':'grab'}
+  if(hover){$('#tip').style.left=p[0]+'px'}}});
+cv.addEventListener('pointerup',function(e){var p=pos(e);if(drag&&moved<5){var id=pick(p[0],p[1]);if(id)choose(id)}drag=null});
+/* ---- choose ---- */
+function rotateTo(id,done){var f=feat.filter(function(x){return x.properties.id===id})[0];if(!f)return done&&done();var c=d3.geoCentroid(f);var a=proj.rotate(),b=[-c[0],Math.max(-45,Math.min(45,-c[1]))];var i=d3.interpolate(a,b),s=performance.now();(function st(n){var k=Math.min(1,(n-s)/800),e=1-Math.pow(1-k,3);proj.rotate(i(e));if(k<1)requestAnimationFrame(st);else done&&done()})(s)}
+function choose(id){var c=byId[id];if(!c)return;sel=id;boing();rotateTo(id);
+ if(!FUN[id]){fill(c,null)}else fill(c,FUN[id]);
+ $('#board').classList.add('on');
+ say(c.ja+'！ '+(FUN[id]?'どんな ところ かな？':'ここは まだ ひみつの 国。 すぐ 行けるように なるよ！'))}
+function closeBoard(){sel=null;$('#board').classList.remove('on')}window.closeBoard=closeBoard;
+function say(t){var b=$('#bubble');b.textContent=t;b.style.transform='scale(1.06)';setTimeout(function(){b.style.transform=''},160)}
+var talk=['「？！」の ふせんを 見つけてね。','ほしの 国から 行ってみよう！','あなに 入ると 次の 国へ ワープ！'];var ti=0;
+
+/* ---- board ---- */
+function fill(c,f){
+ var el=$('#card');
+ if(!f){el.innerHTML='<div class="head"><div class="stampcode">'+c.a2+'</div><div><h1>'+c.ja+'</h1><small>'+c.en+'・首都 '+c.capJa+'</small></div></div><div class="notes" style="margin-top:60px"><div class="note">この 国の ページは これから つくるよ。</div></div>';return}
+ var first=visited.indexOf(c.id)<0;
+ var near=feats.filter(function(x){return x.id!==c.id&&x.region===c.region});if(near.length<2)near=feats.filter(function(x){return x.id!==c.id});
+ var l1=near[Math.floor(Math.random()*near.length)],l2=feats.filter(function(x){return x.region!==c.region})[Math.floor(Math.random()*20)]||feats[0];
+ var l3=feats.filter(function(x){return x.id!==c.id&&x.id!==l1.id&&x.id!==l2.id&&x.region===c.region})[0]||feats[3];
+ var aud=MEDIA.audio[c.id+'_hello']||MEDIA.audio[(c.id==='MEX'||c.id==='PER'||c.id==='ARG'?'ES':c.id)+'_hello'];
+ var im=function(k){return MEDIA.img[c.id+'_'+k]};
+ el.innerHTML='<div class="tape" style="left:40px;top:-8px;transform:rotate(-6deg)"></div><div class="tape" style="right:50px;top:-8px;transform:rotate(5deg)"></div>'+
+ '<div class="head"><div class="stampcode '+(first?'pop':'')+'">'+c.a2+'</div><div><h1>'+c.ja+'</h1><small>'+c.en+'・首都 '+c.capJa+'</small></div>'+
+ '<div class="say" id="say">'+f.hello.text+'<small>きいてみよう ▶</small></div></div>'+
+ '<div class="row">'+['dish:たべもの','animal:どうぶつ','sport:スポーツ'].map(function(k){var kk=k.split(':');var nm=kk[0]==='sport'?f.sport.replace(/[^　-鿿゠-ヿー ]/g,'').trim():(f[kk[0]]||{}).name;return '<div class="pol" data-n="'+nm+'"><img src="../'+im(kk[0])+'" alt=""><div><i>'+kk[1]+'</i>'+nm.replace(/（.*）/,'')+'</div></div>'}).join('')+'</div>'+
+ '<div class="notes">'+f.facts.slice(0,2).map(function(t){return '<div class="note">'+t+'</div>'}).join('')+'</div>'+
+ '<div class="holes"><h3>▼ あなに 入って 次の 国へ</h3><div>'+[[l1,'ちかくの 国'],[l2,'ぐうぜん！'],[l3,'もっと 知りたい']].map(function(a,i){return '<div class="hole" data-id="'+a[0].id+'" style="background:'+HOLE[i]+'"><small>'+a[1]+'</small>'+a[0].ja+'</div>'}).join('')+'</div></div>';
+ $('#say').onclick=function(){boing();if(aud){var a=new Audio('../'+(aud[0]||aud));a.play().catch(function(){})}};
+ Array.prototype.forEach.call(el.querySelectorAll('.hole'),function(h){h.onclick=function(){choose(h.dataset.id)}});
+ Array.prototype.forEach.call(el.querySelectorAll('.pol'),function(p){p.onclick=function(){tone(700,.1);say(p.dataset.n.replace(/（.*）/,'')+'！')}});
+ if(first){visited.push(c.id);localStorage.setItem('mock-visited',JSON.stringify(visited));upd();setTimeout(function(){stampSnd();confetti()},350)}
+}
+/* ---- confetti ---- */
+var cf=$('#conf'),cc=cf.getContext('2d'),ps=[];
+function confetti(){for(var i=0;i<60;i++)ps.push({x:1000,y:120,vx:(Math.random()-.5)*14,vy:-Math.random()*10-2,c:['#ffc531','#ff6f91','#33c9a0','#fff','#7a4bd8'][i%5],r:Math.random()*6,l:70})}
+(function lp(){cc.clearRect(0,0,1366,598);ps=ps.filter(function(p){return p.l>0});ps.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.5;p.l--;cc.save();cc.translate(p.x,p.y);cc.rotate(p.r+=.2);cc.fillStyle=p.c;cc.fillRect(-5,-3,10,6);cc.restore()});requestAnimationFrame(lp)})();
+/* ---- dock ---- */
+var toys=[['#ffc531','さがす','<circle cx="20" cy="20" r="11" fill="#fff" stroke="#3b2a5c" stroke-width="4"/><path d="M29 29l10 10" stroke="#3b2a5c" stroke-width="6" stroke-linecap="round"/>',function(){say('なんの 国を さがす？ （この ボタンは まだ 見本だよ）')}],
+ ['#ff6f91','さいず','<path d="M6 30h12V16H6zM22 30h14V8H22z" fill="#fff" stroke="#3b2a5c" stroke-width="4" stroke-linejoin="round"/>',function(){say('日本と 大きさを くらべよう！（見本）')}],
+ ['#33c9a0','ことば','<path d="M4 8h30v20H18l-8 8v-8H4z" fill="#fff" stroke="#3b2a5c" stroke-width="4" stroke-linejoin="round"/><circle cx="12" cy="18" r="2.5" fill="#3b2a5c"/><circle cx="19" cy="18" r="2.5" fill="#3b2a5c"/><circle cx="26" cy="18" r="2.5" fill="#3b2a5c"/>',function(){say('国の ことばで あいさつ！（見本）')}],
+ ['#7a4bd8','クイズ','<path d="M12 14a8 8 0 1 1 12 7c-3 2-4 3-4 6" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="36" r="3.5" fill="#fff" stroke="#3b2a5c" stroke-width="2"/>',function(){say('クイズに ちょうせん！（見本）')}],
+ ['#ff7a2f','ランダム','<rect x="6" y="6" width="28" height="28" rx="7" fill="#fff" stroke="#3b2a5c" stroke-width="4"/><circle cx="14" cy="14" r="3" fill="#3b2a5c"/><circle cx="20" cy="20" r="3" fill="#3b2a5c"/><circle cx="26" cy="26" r="3" fill="#3b2a5c"/>',function(){choose(feats[Math.floor(Math.random()*feats.length)].id)}],
+ ['#4fb3ff','ずかん','<rect x="8" y="4" width="24" height="32" rx="4" fill="#fff" stroke="#3b2a5c" stroke-width="4"/><circle cx="20" cy="18" r="6" fill="none" stroke="#ff5a4d" stroke-width="3"/>',function(){say('スタンプを '+visited.length+' こ ゲット！ 全部で 35 こ だよ。')}]];
+$('#dock').innerHTML=toys.map(function(t,i){return '<div class="toy" style="background:'+t[0]+'" data-i="'+i+'"><svg viewBox="0 0 40 40">'+t[2]+'</svg><span>'+t[1]+'</span></div>'}).join('');
+Array.prototype.forEach.call(document.querySelectorAll('.toy'),function(e){e.onclick=function(){boing();toys[e.dataset.i][3]()}});
+setTimeout(function(){choose('BRA')},900);
+})();
+</script></body></html>
