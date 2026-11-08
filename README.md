@@ -34,4 +34,8 @@ Shapes, area base: Natural Earth; areas: official figures via `world-countries`.
 
 ## せかいたんけん (new game-style layout)
 
-`tanken/index.html` is the new front end: a zoomable world map (canvas, drawn only when something changes) with flags, Japanese country names, landmark icons, border lines, and a search box that takes English, kanji, katakana or hiragana (also capital names). Tap a country to fly to it and open its postcard board. It reuses `data/`, `img/`, `audio/` and `vendor/` from this repo. Flags are from flag-icons (MIT, in `tanken/flags/`). The original app at the repo root is unchanged.
+`index.html` is the default front end: a zoomable globe (canvas, drawn only when something changes) with flags, Japanese country names, landmark icons, border lines, and a search box that takes English, kanji, katakana or hiragana (also capital names). Tap a country to fly to it and open its card. The 36 featured countries (Japan + 35) have six pages: もよう, れきし (history), ひと・ことば (people, religion, languages), くらし (currency, culture, festivals), くらべる, クイズ. Other countries get もよう and くらべる.
+
+- `data/atlas.js`: cultural content (draft, needs fact-check and co-teacher review). Check kanji with `python3 tools/kcheck.py data/atlas.js` (grade 5 limit).
+- `classic.html`: the original app (true-size, games, passport). The old `tanken/` URL redirects to the root.
+- Flags from flag-icons (MIT) in `flags/`. No network needed at runtime.
