@@ -22,8 +22,19 @@ window.makeWorld = function (env) {
     t = Math.max(0, Math.min(1, t)); return Math.hypot(px - ax - t * dx, py - ay - t * dy);
   }
   function fbm(x, y) { return noise(x, y) * 0.5 + noise(x * 2.1 + 5, y * 2.1) * 0.3 + noise(x * 4.3, y * 4.3 + 7) * 0.2; }
-  var H0 = 0.0018;
+  var H0 = 0.0016, ELEV = (function () { try { var b = atob(window.ELEV05 || ''), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a.length === 720 * 361 ? a : null; } catch (e) { return null; } })();
+  var EXAG = 0.005 / 6400; // world units per metre: Everest stands about 0.005 above the sea (≈ 6.5 × true height)
+  function elevM(lon, lat) { // metres, bilinear on the 0.5° NASA/GEBCO grid
+    var x = (lon + 180) * 2, y = (90 - lat) * 2, i = Math.floor(x), j = Math.max(0, Math.min(359, Math.floor(y))), fx = x - i, fy = Math.min(1, y - j), i0 = ((i % 720) + 720) % 720, i1 = (i0 + 1) % 720;
+    var v = (ELEV[j * 720 + i0] * (1 - fx) + ELEV[j * 720 + i1] * fx) * (1 - fy) + (ELEV[(j + 1) * 720 + i0] * (1 - fx) + ELEV[(j + 1) * 720 + i1] * fx) * fy;
+    return v / 255 * 6400;
+  }
+  W.elevM = function (lon, lat) { return ELEV ? elevM(lon, lat) : 0; };
   function height(lon, lat) {
+    if (ELEV) return H0 + elevM(lon, lat) * EXAG + 0.0003 * noise(lon * 0.9, lat * 0.9);
+    return heightFake(lon, lat);
+  }
+  function heightFake(lon, lat) {
     var h = H0 + 0.0022 * fbm(lon / 5, lat / 5) + 0.0008 * noise(lon * 1.1, lat * 1.1);
     for (var i = 0; i < RANGES.length; i++) {
       var R = RANGES[i], p = R[0], d = 99; if (Math.abs(lat - p[0][1]) > 40) continue;
@@ -63,7 +74,20 @@ window.makeWorld = function (env) {
   var SAVANNA = [[-17, 8, 42, 15], [24, -11, 41, 8], [14, -26, 33, -11], [-60, -22, -40, -5], [125, -19, 145, -11], [74, 15, 84, 23], [-100, 30, -95, 45], [-104, 37, -97, 48], [112, -35, 120, -28]];
   var RAIN = [[-76, -13, -48, 5], [9, -6, 30, 5], [95, -10, 150, 20], [-90, 8, -76, 18], [-10, 4, 8, 9], [72, 8, 77, 15], [-58, -28, -45, -20]];
   function inB(lon, lat, b, m) { return lon > b[0] - m && lon < b[2] + m && lat > b[1] - m && lat < b[3] + m; }
+  var LT = (function () { try { var b = atob(window.LANDTYPE_RLE || ''), out = new Uint8Array(1440 * 720), k = 0; for (var i = 0; i < b.length; i += 2) { var v = b.charCodeAt(i), n = b.charCodeAt(i + 1); out.fill(v, k, k + n); k += n; } return k === out.length ? out : null; } catch (e) { return null; } })();
+  var LTMAP = [B.grass, B.snow, B.desert, B.savanna, B.grass, B.forest, B.taiga, B.tundra];
   function biome(lon, lat, h) {
+    if (LT) {
+      var i = ((Math.floor((lon + 180) * 4) % 1440) + 1440) % 1440, j = Math.max(0, Math.min(719, Math.floor((90 - lat) * 4))), c = LT[j * 1440 + i];
+      if (c === 0) { // coast pixel: borrow a neighbour
+        for (var d = 1; d <= 2 && c === 0; d++) { var a = [LT[j * 1440 + (i + d) % 1440], LT[j * 1440 + (i - d + 1440) % 1440], LT[Math.min(719, j + d) * 1440 + i], LT[Math.max(0, j - d) * 1440 + i]]; for (var q = 0; q < 4; q++) if (a[q]) { c = a[q]; break; } }
+      }
+      if (c === 6) return Math.abs(lat) < 28 ? B.rain : B.taiga;
+      return LTMAP[c];
+    }
+    return biomeFake(lon, lat, h);
+  }
+  function biomeFake(lon, lat, h) {
     if (lat < -60 || (lon > -73 && lon < -12 && lat > 61 && lat < 84 && !(lon > -55 && lat < 64))) return B.snow;
     if (h > 0.0095) return B.snow;
     var m = (noise(lon * 0.35, lat * 0.35) - 0.5) * 5;
@@ -94,7 +118,7 @@ window.makeWorld = function (env) {
   function landCols(lon, lat, h, base) {
     c1.set(base).offsetHSL(0, 0, (fbm(lon / 3, lat / 3) - 0.5) * 0.08);
     c2.set(BCOL[bFast(lon, lat)]).offsetHSL(0, 0, (fbm(lon * 1.3, lat * 1.3) - 0.5) * 0.12);
-    if (h > 0.007 && h <= 0.0095) c2.lerp(new T.Color('#8f8a80'), 0.6);
+    if (h > 0.0045) c2.lerp(new T.Color('#8f8a80'), 0.5);
   }
   var t0 = performance.now(); W.prepGrids(); W.gridMs = Math.round(performance.now() - t0);
   feat.forEach(function (f, fi) {
@@ -130,12 +154,25 @@ window.makeWorld = function (env) {
   lg.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); lg.setAttribute('color', new T.Float32BufferAttribute(col, 3));
   lg.setAttribute('bcol', new T.Float32BufferAttribute(bcol, 3)); lg.setAttribute('cid', new T.Float32BufferAttribute(cid, 1));
   lg.setIndex(idx); lg.computeVertexNormals(); lg.computeBoundingSphere();
-  var U = W.uniforms = { uNear: { value: 0 }, uSel: { value: -9 } };
+  var U = W.uniforms = { uNear: { value: 0 }, uSel: { value: -9 }, uRelief: { value: null }, uSat: { value: null }, uShade: { value: 0 } };
+  var tl = new T.TextureLoader();
+  tl.load('data/relief.png', function (t) { t.wrapS = T.RepeatWrapping; t.minFilter = T.LinearFilter; t.generateMipmaps = false; U.uRelief.value = t; U.uShade.value = 1; if (W.onReady) W.onReady(); });
+  tl.load('data/earth.jpg', function (t) { t.colorSpace = T.SRGBColorSpace; t.wrapS = T.RepeatWrapping; U.uSat.value = t; if (W.onReady) W.onReady(); });
   var landMat = new T.MeshLambertMaterial({ vertexColors: true });
   landMat.userData.preKey = 'land'; landMat.userData.pre = function (sh) {
-    sh.uniforms.uNear = U.uNear; sh.uniforms.uSel = U.uSel;
-    sh.vertexShader = 'attribute vec3 bcol; attribute float cid; uniform float uNear; uniform float uSel;\n' + sh.vertexShader.replace('#include <color_vertex>',
-      '#include <color_vertex>\n  vColor.rgb = mix(vColor.rgb, bcol, uNear);\n  if (abs(cid - uSel) < 0.5) vColor.rgb = mix(vColor.rgb, vec3(1.0, 0.93, 0.78), 0.55);');
+    for (var k in U) sh.uniforms[k] = U[k];
+    sh.vertexShader = 'attribute vec3 bcol; attribute float cid; uniform float uNear; uniform float uSel; varying vec3 vLN; varying float vTop;\n' + sh.vertexShader.replace('#include <color_vertex>',
+      '#include <color_vertex>\n  vLN = normalize(position); vTop = cid < -0.5 ? 0.0 : 1.0;\n  vColor.rgb = mix(vColor.rgb, bcol, uNear);\n  if (abs(cid - uSel) < 0.5) vColor.rgb = mix(vColor.rgb, vec3(1.0, 0.93, 0.78), 0.55);');
+    sh.fragmentShader = 'uniform sampler2D uRelief; uniform sampler2D uSat; uniform float uNear; uniform float uShade; varying vec3 vLN; varying float vTop;\n' +
+      'vec2 llUV(vec3 n){ return vec2(atan(-n.z, n.x) * 0.15915494 + 0.5, asin(clamp(n.y, -1.0, 1.0)) * 0.31830989 + 0.5); }\n' +
+      sh.fragmentShader.replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\n' +
+      '  if (vTop > 0.5 && uShade > 0.5) {\n' +
+      '    vec3 n = normalize(vLN); vec2 uv = llUV(n); float cl = max(0.2, sqrt(1.0 - n.y * n.y));\n' +
+      '    float h0 = texture2D(uRelief, uv).r, hE = texture2D(uRelief, uv + vec2(1.0 / 2048.0, 0.0)).r, hN = texture2D(uRelief, uv + vec2(0.0, 1.0 / 1024.0)).r;\n' +
+      '    vec3 e = normalize(cross(vec3(0.0, 1.0, 0.0), n)); vec3 t = cross(n, e);\n' +
+      '    float k = 6400.0 / 6371000.0 * 55.0; float sx = (hE - h0) * k / (6.2831853 / 2048.0 * cl), sy = (hN - h0) * k / (3.1415927 / 1024.0);\n' +
+      '    vec3 wn = normalize(n - e * sx - t * sy); normal = normalize((viewMatrix * vec4(wn, 0.0)).xyz);\n' +
+      '  }').replace('#include <color_fragment>', '#include <color_fragment>\n  if (uNear > 0.01 && vTop > 0.5) { vec3 sc = texture2D(uSat, llUV(normalize(vLN))).rgb; diffuseColor.rgb = mix(diffuseColor.rgb, sc * 1.25, uNear * 0.85); }');
   };
   env.nightify(landMat, true);
   var land = new T.Mesh(lg, landMat); scene.add(land); W.land = land;
@@ -162,16 +199,8 @@ window.makeWorld = function (env) {
   })();
 
   /* ---------- ocean ---------- */
-  W.oceanTexture = function () {
-    var c = document.createElement('canvas'); c.width = 2048; c.height = 1024; var x = c.getContext('2d');
-    var g = x.createLinearGradient(0, 0, 0, 1024); g.addColorStop(0, '#0d3a78'); g.addColorStop(0.5, '#1658a8'); g.addColorStop(1, '#0d3a78'); x.fillStyle = g; x.fillRect(0, 0, 2048, 1024);
-    var gp = d3.geoPath(d3.geoEquirectangular().scale(2048 / (2 * Math.PI)).translate([1024, 512]).precision(0.3), x);
-    x.beginPath(); feat.forEach(function (f) { gp(f); });
-    x.save(); x.filter = 'blur(12px)'; x.strokeStyle = 'rgba(40,120,190,.6)'; x.lineWidth = 22; x.stroke(); x.restore();
-    x.save(); x.filter = 'blur(3px)'; x.strokeStyle = 'rgba(80,190,220,.75)'; x.lineWidth = 5; x.stroke(); x.restore();
-    x.fillStyle = '#c9b98a'; x.fill();
-    var t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; t.anisotropy = 4; return t;
-  };
+  W.oceanTexture = function (cb) { new T.TextureLoader().load('data/ocean.jpg', function (t) { t.colorSpace = T.SRGBColorSpace; t.anisotropy = 4; cb(t); }); };
+
 
   /* ---------- roads, rails, sea lanes ---------- */
   (function () {

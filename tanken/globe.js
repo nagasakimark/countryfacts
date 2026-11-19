@@ -121,7 +121,8 @@
   updSun(); setInterval(updSun, 30000);
   /* ---------- the world: raised land, ocean, borders, roads, scenery ---------- */
   var WORLD = G.world = makeWorld({ scene: scene, ll2v: ll2v, feat: feat, FILL: FILL, nightify: nightify, routes: ROUTES });
-  globe.material.map = WORLD.oceanTexture(); globe.material.needsUpdate = true;
+  globe.material.color.set(0x1a5aa6); WORLD.oceanTexture(function (t) { globe.material.map = t; globe.material.color.set(0xffffff); globe.material.needsUpdate = true; lastSig = ''; });
+  WORLD.onReady = function () { lastSig = ''; };
   var FIDX = {}; feat.forEach(function (f, i) { FIDX[f.properties.id] = i; });
 
   (function lights() {
