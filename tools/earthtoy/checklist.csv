@@ -7,7 +7,7 @@ Landmark,Bhutan,Paro Taktsang (Tiger's Nest),yes,tigersnest,Tiger's Nest (Paro T
 Landmark,Brunei,Omar Ali Saifuddien Mosque,yes,omarali,Omar Ali Saifuddien Mosque
 Landmark,Cambodia,Angkor Wat,yes,angkor,Angkor Wat
 Landmark,Cambodia,Bayon,no,,
-Landmark,China,Beijing National Stadium (Bird's Nest),no,,
+Landmark,China,Beijing National Stadium (Bird's Nest),yes,birdsnest,Beijing National Stadium (Bird's Nest)
 Landmark,China,Bell Tower of Xi'an,no,,
 Landmark,China,Canton Tower,no,,
 Landmark,China,CCTV Headquarters,no,,
@@ -78,7 +78,7 @@ Landmark,Hong Kong,Star Ferry,yes,starferry,Star Ferry
 Landmark,Hong Kong,Tian Tan Buddha,yes,tiantan,Tian Tan Buddha
 Landmark,Hong Kong,Two International Finance Centre,no,,
 Landmark,India,Agra Fort,no,,
-Landmark,India,Ajanta Caves,no,,
+Landmark,India,Ajanta Caves,yes,ajanta,Ajanta Caves
 Landmark,India,Amber Fort,yes,amberfort,Amber Fort
 Landmark,India,Antilia,no,,
 Landmark,India,Bangalore Palace,no,,
@@ -203,7 +203,7 @@ Landmark,Pakistan,Bahria Icon Tower,no,,
 Landmark,Pakistan,Faisal Mosque,yes,faisal,Faisal Mosque
 Landmark,Pakistan,Frere Hall,no,,
 Landmark,Pakistan,Mazar-e-Quaid,no,,
-Landmark,Pakistan,Minar-e-Pakistan,no,,
+Landmark,Pakistan,Minar-e-Pakistan,yes,minarpak,Minar-e-Pakistan
 Landmark,Palestinian Territories,Church of the Holy Sepulchre,no,,
 Landmark,Palestinian Territories,Dome of the Rock,no,,
 Landmark,Palestinian Territories,Western Wall,no,,
@@ -238,9 +238,9 @@ Landmark,Singapore,"Supertree Grove, Gardens by the Bay",no,,
 Landmark,South Korea,63 Building,no,,
 Landmark,South Korea,Bulguksa Temple,yes,bulguksa,Bulguksa Temple
 Landmark,South Korea,Busan International Finance Center (BIFC),no,,
-Landmark,South Korea,Changdeokgung Palace,no,,
+Landmark,South Korea,Changdeokgung Palace,yes,changdeok,Changdeokgung Palace
 Landmark,South Korea,Dokdo,no,,
-Landmark,South Korea,Dol Hareubang (Jeju),no,,
+Landmark,South Korea,Dol Hareubang (Jeju),yes,dolhareubang,Dol Hareubang (Jeju)
 Landmark,South Korea,Dongdaemun Design Plaza,no,,
 Landmark,South Korea,Gwangan Bridge,no,,
 Landmark,South Korea,Gyeongbokgung Palace,yes,gyeongbok,Gyeongbokgung Palace
@@ -455,7 +455,7 @@ Landmark,Egypt,Pyramids of Giza,yes,pyramid,Pyramids of Giza
 Landmark,Egypt,Step Pyramid of Djoser,no,,
 Landmark,Egypt,Suez Canal,no,,
 Landmark,Egypt,Temple of Hatshepsut,yes,hatshepsut,Temple of Hatshepsut
-Landmark,Egypt,Valley of the Kings,no,,
+Landmark,Egypt,Valley of the Kings,yes,valleykings,Valley of the Kings
 Landmark,Equatorial Guinea,"St. Elizabeth's Cathedral, Malabo",yes,malabo,"St. Elizabeth's Cathedral, Malabo"
 Landmark,Eritrea,Fiat Tagliero Building,yes,fiattagliero,Fiat Tagliero Building
 Landmark,Eswatini,Sibebe Rock,yes,sibebe,Sibebe Rock
@@ -566,9 +566,9 @@ Landmark,Jamaica,Rose Hall Great House,no,,
 Landmark,Mexico,Chichén Itzá,yes,chichen,Chichén Itzá
 Landmark,Mexico,Mexico City Metropolitan Cathedral,no,,
 Landmark,Mexico,Museo Soumaya,no,,
-Landmark,Mexico,Palacio de Bellas Artes,no,,
+Landmark,Mexico,Palacio de Bellas Artes,yes,bellasartes,Palacio de Bellas Artes
 Landmark,Mexico,Pyramid of the Magician,no,,
-Landmark,Mexico,Templo Mayor,no,,
+Landmark,Mexico,Templo Mayor,yes,templomayor,Templo Mayor
 Landmark,Mexico,Teotihuacan,yes,teotihuacan,Teotihuacan
 Landmark,Mexico,Torre Latinoamericana,no,,
 Landmark,Mexico,Torre Reforma,no,,

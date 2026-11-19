@@ -631,7 +631,23 @@ TOY.landmarks = [
 {id:'delphi',c:'GRC',ll:[22.5011,38.4824],m:'delphi',ja:'デルフィ',en:'Delphi',k:'でるふぃ ぎりしゃ',
   t:'ギリシャの 山の {中腹|ちゅうふく}に ある 古代の {聖地|せいち}。 むかしの ギリシャ人は ここを 「世界の まん中」と 考えた。',te:'An ancient sacred site on a mountainside in Greece. The ancient Greeks believed it was the centre of the world.'},
 {id:'fortjesus',c:'KEN',ll:[39.6797,-4.0628],m:'fortjesus',ja:'ジーザス{要塞|ようさい}',en:'Fort Jesus',k:'じーざすようさい けにあ もんばさ',
-  t:'ケニアの モンバサの 海ぞいの とりで。 400年前に ポルトガルが つくった。 上から 見ると 人が ねている 形に 見える。',te:'A fort on the coast of Mombasa, Kenya, built by the Portuguese 400 years ago. From above, it looks like a person lying down.'}
+  t:'ケニアの モンバサの 海ぞいの とりで。 400年前に ポルトガルが つくった。 上から 見ると 人が ねている 形に 見える。',te:'A fort on the coast of Mombasa, Kenya, built by the Portuguese 400 years ago. From above, it looks like a person lying down.'},
+{id:'bellasartes',c:'MEX',ll:[-99.1413,19.4352],m:'bellasartes',ja:'ベジャス・アルテス{宮殿|きゅうでん}',en:'Palacio de Bellas Artes',k:'べじゃすあるてす きゅうでん めきしこ',
+  t:'メキシコシティの 白い 大理石の {劇場|げきじょう}。 オレンジと 金色の ドームが 目立つ。 中には メキシコの 画家たちの 大きな かべ画が ある。',te:'A white marble theatre in Mexico City with an orange-and-gold dome. Inside are huge murals by Mexican painters.'},
+{id:'templomayor',c:'MEX',ll:[-99.1314,19.4351],m:'templomayor',ja:'テンプロ・マヨール',en:'Templo Mayor',k:'てんぷろまよーる めきしこ あすてか',
+  t:'メキシコシティの まん中で 見つかった、 アステカの 都の 大きな {神殿|しんでん}の あと。 上には 2つの お寺が ならんで いた。',te:'The ruins of the great temple of the Aztec capital, found in the middle of Mexico City. Two shrines once stood side by side on top.'},
+{id:'minarpak',c:'PAK',ll:[74.3095,31.5925],m:'minarpak',ja:'ミナーレ・パーキスターン',en:'Minar-e-Pakistan',k:'みなーれぱーきすたーん ぱきすたん らほーる',
+  t:'パキスタンの ラホールに 立つ 62mの {塔|とう}。 1940年に、 パキスタンを つくろうと 決めた 場所に たてられた。 下は 花の 形。',te:'A 62 m tower in Lahore, Pakistan, built where the decision to create Pakistan was made in 1940. Its base is shaped like a flower.'},
+{id:'valleykings',c:'EGY',ll:[32.6014,25.7402],m:'valleykings',ja:'王家の谷',en:'Valley of the Kings',k:'おうけのたに えじぷと',
+  t:'エジプトの かわいた 谷。 古代エジプトの 王さまたちの お墓が 60いじょう 見つかった。 ツタンカーメンの 黄金の マスクも ここから。',te:'A dry valley in Egypt where over 60 tombs of ancient Egyptian kings were found — including the tomb of Tutankhamun with his golden mask.'},
+{id:'ajanta',c:'IND',ll:[75.7033,20.5519],m:'ajanta',ja:'アジャンター{石窟|せっくつ}',en:'Ajanta Caves',k:'あじゃんたーせっくつ いんど',
+  t:'インドの 川ぞいの がけを ほって つくった 30の ほら{穴|あな}の お寺。 中には 2000年前の 仏教の かべ画が のこって いる。',te:'Thirty cave temples carved into a cliff above a river in India. Buddhist wall paintings 2,000 years old survive inside.'},
+{id:'birdsnest',c:'CHN',ll:[116.3906,39.9928],m:'birdsnest',ja:'北京国家体育場(鳥の巣)',en:'Beijing National Stadium',k:'とりのす ぺきん たいいくじょう ちゅうごく',
+  t:'中国の 北京の スタジアム。 鉄の はりが 鳥の 巣のように あみ目に なって いる。 2008年と 2022年の オリンピックで 使われた。',te:'A stadium in Beijing, China, wrapped in steel beams woven like a bird\'s nest. It was used for the 2008 and 2022 Olympics.'},
+{id:'changdeok',c:'KOR',ll:[126.9910,37.5794],m:'changdeok',ja:'{昌徳宮|チャンドックン}',en:'Changdeokgung Palace',k:'ちゃんどっくん かんこく そうる きゅうでん',
+  t:'{韓国|かんこく}の ソウルに ある 王さまの 宮{殿|でん}。 自然の 山の 形に あわせて つくられた。 「ひみつの 庭」の {紅葉|こうよう}が きれい。',te:'A royal palace in Seoul, South Korea, built to fit the natural shape of the hills. Its "Secret Garden" is beautiful in autumn.'},
+{id:'dolhareubang',c:'KOR',ll:[126.53,33.5],m:'dolhareubang',ja:'トルハルバン',en:'Dol Hareubang',k:'とるはるばん ちぇじゅとう かんこく',
+  t:'{韓国|かんこく}の {済州島|チェジュとう}の 「石の おじいさん」。 大きな 目と ぼうしの 黒い 石の 像で、 島を 守る と 言われる。',te:'The "stone grandfathers" of Jeju Island, South Korea. These black stone statues with big eyes and hats are said to protect the island.'}
 ];
 
 TOY.animals = [
