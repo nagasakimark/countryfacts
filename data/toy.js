@@ -727,7 +727,23 @@ TOY.landmarks = [
 {id:'chapelbridge',c:'CHE',ll:[8.3075,47.0517],m:'chapelbridge',ja:'カペル橋',en:'Chapel Bridge (Lucerne)',k:'かぺるばし すいす るつぇるん',
   t:'スイスの ルツェルンに ある、 屋根の ついた 木の 橋。 1365年ごろ できた、 ヨーロッパで いちばん 古い 屋根つきの 木の 橋の 1つ。 赤い 花で かざられて いる。',te:'A covered wooden bridge in Lucerne, Switzerland, built around 1365 — one of the oldest of its kind in Europe. It is decorated with red flowers.'},
 {id:'grandplace',c:'BEL',ll:[4.3524,50.8467],m:'grandplace',ja:'グラン・プラス',en:'Grand-Place (Brussels)',k:'ぐらんぷらす べるぎー ぶりゅっせる',
-  t:'ベルギーの ブリュッセルの 広場。 金の かざりの ある たてものに かこまれて いる。 2年に 1回、 広場に 花の じゅうたんが しかれる。',te:'The main square of Brussels, Belgium, surrounded by buildings decorated in gold. Every two years it is covered with a carpet of flowers.'}
+  t:'ベルギーの ブリュッセルの 広場。 金の かざりの ある たてものに かこまれて いる。 2年に 1回、 広場に 花の じゅうたんが しかれる。',te:'The main square of Brussels, Belgium, surrounded by buildings decorated in gold. Every two years it is covered with a carpet of flowers.'},
+{id:'kronborg',c:'DNK',ll:[12.6213,56.0390],m:'kronborg',ja:'クロンボー{城|じょう}',en:'Kronborg Castle',k:'くろんぼーじょう でんまーく はむれっと',
+  t:'デンマークの 海べに 立つ お{城|しろ}。 シェイクスピアの げき「ハムレット」の {舞台|ぶたい}。 昔は 前の せまい 海を 通る 船から お金を とっていた。',te:'A castle on the coast of Denmark, the setting of Shakespeare\'s play Hamlet. Ships passing through the narrow sea once had to pay a toll here.'},
+{id:'newgrange',c:'IRL',ll:[-6.4755,53.6947],m:'newgrange',ja:'ニューグレンジ',en:'Newgrange',k:'にゅーぐれんじ あいるらんど',
+  t:'アイルランドに ある、 5200年ほど 前の 大きな お{墓|はか}。 ピラミッドより 古い。 1年で 昼が いちばん 短い 日の 朝、 日の光が おくまで さしこむ。',te:'A huge ancient tomb in Ireland, about 5,200 years old — older than the pyramids. On the shortest day of the year, sunrise shines all the way down its passage.'},
+{id:'roraima',c:'VEN',ll:[-60.7628,5.1433],m:'roraima',ja:'ロライマ山',en:'Mount Roraima',k:'ろらいまさん べねずえら',
+  t:'ベネズエラ、 ブラジル、 ガイアナの さかいに ある、 テーブルのように 上が 平らな 山。 まわりは 高い がけで、 上には ここにしか いない 生き物も いる。',te:'A table mountain where Venezuela, Brazil and Guyana meet, with a flat top and sheer cliffs all round. Some living things there are found nowhere else.'},
+{id:'strokkur',c:'ISL',ll:[-20.3008,64.3128],m:'strokkur',ja:'ストロックル{間欠泉|かんけつせん}',en:'Strokkur geyser',k:'すとろっくる かんけつせん あいすらんど',
+  t:'アイスランドの {温泉|おんせん}の 谷に ある。 数分ごとに、 あつい お湯が 20mの 高さまで ふき上がる。',te:'A geyser in a hot-spring valley in Iceland. Every few minutes it shoots boiling water up to 20 m into the air.'},
+{id:'pinklake',c:'SEN',ll:[-17.2333,14.8389],m:'pinklake',ja:'ピンクの 湖（レトバ湖）',en:'Lake Retba (Pink Lake)',k:'ぴんくのみずうみ れとばこ せねがる',
+  t:'セネガルの 海の 近くに ある、 ピンク色の 湖。 とても しおからく、 小さな 生き物の 色で ピンクに 見える。 人びとが 船で しおを とる。',te:'A pink lake near the sea in Senegal. It is very salty, and tiny living things turn it pink. People collect salt from it by boat.'},
+{id:'nevsky',c:'BGR',ll:[23.3328,42.6959],m:'nevsky',ja:'アレクサンドル・ネフスキー{大聖堂|だいせいどう}',en:'Alexander Nevsky Cathedral',k:'あれくさんどるねふすきー だいせいどう ぶるがりあ そふぃあ',
+  t:'ブルガリアの ソフィアに ある 大きな 教会。 金色と 緑色の ドームが かがやく。 1912年に できた。',te:'A great cathedral in Sofia, Bulgaria, with shining gold and green domes, completed in 1912.'},
+{id:'xiengthong',c:'LAO',ll:[102.1430,19.8981],m:'xiengthong',ja:'ワット・シェントーン',en:'Wat Xieng Thong',k:'わっとしぇんとーん らおす るあんぱばーん',
+  t:'ラオスの ルアンパバーンに ある お寺。 1560年に できた。 地面 近くまで 下がる 何重もの 屋根と、 金色の もようが 美しい。',te:'A temple in Luang Prabang, Laos, built in 1560. Its layered roofs sweep almost to the ground, and its walls glitter with gold patterns.'},
+{id:'punakha',c:'BTN',ll:[89.8636,27.5826],m:'punakha',ja:'プナカ・ゾン',en:'Punakha Dzong',k:'ぷなかぞん ぶーたん',
+  t:'ブータンの 2つの 川が 出会う ところに 立つ、 お{城|しろ}と お寺を かねた たてもの。 春には むらさきの 花が さく。',te:'A fortress-monastery in Bhutan, standing where two rivers meet. In spring, purple jacaranda trees bloom around it.'}
 ];
 
 TOY.animals = [
@@ -789,7 +805,11 @@ TOY.animals = [
  {id:'walrus',e:'🦭',ll:[16.0,78.5],ja:'セイウチ',en:'Walrus',t:'ノルウェーの スバールバル{諸島|しょとう}の 氷の 上で くらす。 長い きばを 氷に さして、 体を 引き上げる。',te:'It lives on the ice around Svalbard, Norway. It digs its long tusks into the ice to haul itself out of the water.'},
  {id:'orca',e:'🐋',ll:[-127.5,50.5],ja:'シャチ',en:'Orca',t:'カナダの 西の 海に すむ。 家族で むれを つくり、 むれごとに ちがう 「ことば」で 話す。',te:'It lives in the seas off western Canada. Orcas live in family groups, and each group has its own "dialect" of calls.'},
  {id:'emu',e:'🐦',ll:[121.0,-28.0],ja:'エミュー',en:'Emu',t:'オーストラリアに すむ、 飛べない 大きな 鳥。 時速 50kmで 走る。 たまごを あたためるのは お父さん。',te:'A big Australian bird that cannot fly but can run at 50 km/h. The dad keeps the eggs warm.'},
- {id:'puffin',e:'🐧',ll:[-6.9,62.1],ja:'ニシツノメドリ',en:'Atlantic puffin',t:'フェロー{諸島|しょとう}の がけに すむ 鳥。 カラフルな くちばしに、 小さな 魚を 一度に 10ぴきいじょう くわえられる。',te:'A seabird of the cliffs of the Faroe Islands. It can hold more than 10 small fish at once in its colourful beak.'}
+ {id:'puffin',e:'🐧',ll:[-6.9,62.1],ja:'ニシツノメドリ',en:'Atlantic puffin',t:'フェロー{諸島|しょとう}の がけに すむ 鳥。 カラフルな くちばしに、 小さな 魚を 一度に 10ぴきいじょう くわえられる。',te:'A seabird of the cliffs of the Faroe Islands. It can hold more than 10 small fish at once in its colourful beak.'},
+ {id:'condor',e:'🦅',ll:[-70.3,-33.4],ja:'アンデスコンドル',en:'Andean condor',t:'チリの アンデス山脈に すむ、 世界で いちばん 大きな 飛ぶ 鳥の 1つ。 つばさを 広げると 3mほど。',te:'One of the biggest flying birds in the world, living in Chile\'s Andes. Its wings stretch about 3 m.'},
+ {id:'saiga',e:'🦌',ll:[66.0,48.0],ja:'サイガ',en:'Saiga antelope',t:'カザフスタンの 草原に すむ。 たれさがった 大きな 鼻で、 冬は つめたい 空気を あたため、 夏は すなぼこりを ふせぐ。',te:'It lives on the steppe of Kazakhstan. Its big droopy nose warms freezing air in winter and filters out dust in summer.'},
+ {id:'proboscis',e:'🐒',ll:[114.7,4.6],ja:'テングザル',en:'Proboscis monkey',t:'ブルネイなど ボルネオ島の 川べの 森に すむ。 オスの 長い 鼻は、 鳴き声を 大きく ひびかせる。',te:'It lives in riverside forests on Borneo, including Brunei. The male\'s long nose makes his calls louder.'},
+ {id:'fennec',e:'🦊',ll:[3.0,28.0],ja:'フェネック',en:'Fennec fox',t:'アルジェリアの サハラ{砂漠|さばく}に すむ 小さな キツネ。 大きな 耳で 体の 熱を 外に にがし、 すなの 下の 虫の 音も 聞く。',te:'A small fox of the Sahara in Algeria (its national animal). Its huge ears let out body heat and hear insects under the sand.'}
 ];
 
 /* Vehicles travel there and back forever. p = route points [lon,lat] (great-circle between points).

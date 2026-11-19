@@ -908,7 +908,7 @@ Animal,Mammal,Eurasian lynx,no,,
 Animal,Mammal,European bison,no,,
 Animal,Mammal,European hedgehog,no,,
 Animal,Mammal,European wildcat,no,,
-Animal,Mammal,Fennec fox,no,,
+Animal,Mammal,Fennec fox,yes,fennec,Fennec fox
 Animal,Mammal,Fin whale,no,,
 Animal,Mammal,Fossa,no,,
 Animal,Mammal,Franciscana dolphin,no,,
@@ -995,7 +995,7 @@ Animal,Mammal,Philippine tarsier,no,,
 Animal,Mammal,Plains zebra,yes,zebra,Zebra
 Animal,Mammal,Platypus,yes,platypus,Platypus
 Animal,Mammal,Polar bear,yes,polarbear,Polar bear
-Animal,Mammal,Proboscis monkey,no,,
+Animal,Mammal,Proboscis monkey,yes,proboscis,Proboscis monkey
 Animal,Mammal,Pronghorn,no,,
 Animal,Mammal,Przewalski's horse,no,,
 Animal,Mammal,Pygmy hippopotamus,no,,
@@ -1011,7 +1011,7 @@ Animal,Mammal,Ring-tailed lemur,yes,lemur,Ring-tailed lemur
 Animal,Mammal,Ringed seal,no,,
 Animal,Mammal,Rock hyrax,no,,
 Animal,Mammal,Sable,no,,
-Animal,Mammal,Saiga antelope,no,,
+Animal,Mammal,Saiga antelope,yes,saiga,Saiga antelope
 Animal,Mammal,Saola,no,,
 Animal,Mammal,Scimitar oryx,no,,
 Animal,Mammal,Sea otter,yes,otter,Sea otter
@@ -1061,7 +1061,7 @@ Animal,Bird,Adélie penguin,no,,
 Animal,Bird,African penguin,no,,
 Animal,Bird,American flamingo,no,,
 Animal,Bird,Andean cock-of-the-rock,no,,
-Animal,Bird,Andean condor,no,,
+Animal,Bird,Andean condor,yes,condor,Andean condor
 Animal,Bird,Atlantic puffin,yes,puffin,Atlantic puffin
 Animal,Bird,Australasian gannet,no,,
 Animal,Bird,Bald eagle,yes,eagle,Bald eagle

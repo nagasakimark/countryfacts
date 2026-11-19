@@ -393,4 +393,75 @@
     puf(0, 0, 1.2, 0, true); puf(-0.12, -0.08, 0.9, 0.6); puf(0.12, -0.1, 0.85, -0.5);
     return wrap(g, 0.6);
   };
+  /* ---------- Andean condor (Chile) ---------- */
+  M.custom.a_condor = function () {
+    var g = new T.Group();
+    var rk = new T.Mesh(new T.IcosahedronGeometry(0.16, 0), solid('#8a8278', { flatShading: true })); rk.scale.set(1.3, 0.7, 1); rk.position.y = 0.08; g.add(rk);
+    // one of the biggest flying birds: wings about 3 m wide, spread to soak up the sun on a rock
+    var b = bird({ len: 0.18, r: 0.06, tilt: 0.5, hr: 0.03, beak: 0.025, beakR: 0.01, beakDown: 0.012, beakCol: '#e8dcc0', eye: 0.005, legH: 0.0, col: function (x, y, z, p) { return p === 'head' ? '#c86a5a' : vary('#1d1c20', x, y, z, 0.04); } });
+    b.position.set(0, 0.16, 0); g.add(b);
+    var hc = b.userData.hc; tube(b, [[hc[0] - 0.04, hc[1] - 0.04, 0, 0.035, 0.02], [hc[0] - 0.02, hc[1] - 0.035, 0, 0.032, 0.018]], '#f6f6f4', 'ruff', 8, 0.3); // the white fluffy collar
+    var wmat = new T.MeshLambertMaterial({ color: '#1d1c20', flatShading: true }), wwh = new T.MeshLambertMaterial({ color: '#f2f2ee' });
+    [-1, 1].forEach(function (s) { var wg = new T.Group(); wg.position.set(-0.01, 0.07, s * 0.05); wg.rotation.x = -s * 0.18; b.add(wg);
+      var w = new T.Mesh(new T.BoxGeometry(0.11, 0.008, 0.3), wmat); w.position.z = s * 0.15; wg.add(w);
+      var wb = new T.Mesh(new T.BoxGeometry(0.05, 0.009, 0.22), wwh); wb.position.set(0.02, 0.001, s * 0.13); wg.add(wb);
+      for (var f = 0; f < 6; f++) { var fe = new T.Mesh(new T.BoxGeometry(0.075, 0.006, 0.014), wmat); fe.position.set(-0.03 + f * 0.012, 0, s * (0.31 + 0.015 * Math.sin(f))); fe.rotation.y = s * (0.3 - f * 0.12); wg.add(fe); } }); // white bands on top of the wings, finger-like tip feathers
+    // the snowy Andes behind
+    var mt = new T.Mesh(new T.ConeGeometry(0.14, 0.24, 6), solid('#7a7a82', { flatShading: true })); mt.position.set(-0.25, 0.12, -0.25); g.add(mt); var cap = new T.Mesh(new T.ConeGeometry(0.06, 0.1, 6), solid('#f4f7fa', { flatShading: true })); cap.position.set(-0.25, 0.2, -0.25); g.add(cap);
+    return wrap(g, 0.3);
+  };
+
+  /* ---------- saiga antelope (Kazakhstan) ---------- */
+  M.custom.a_saiga = function () {
+    var g = new T.Group();
+    var st = new T.Mesh(new T.CylinderGeometry(0.34, 0.36, 0.01, 12), solid('#c8b878', { flatShading: true })); st.position.y = 0.004; g.add(st);
+    var c = function (x, y, z, p) { if (y < 0.012) return '#3a3028'; if (p === 'body' && y < 0.17) return vary('#f2ece0', x, y, z, 0.03); return vary('#d8b888', x, y, z, 0.05); };
+    var l = quad({ sides: 10, L: 0.34, legH: 0.15, bR: 0.07, bW: 0.06, legR: 0.012, neck: { len: 0.05, ang: 0.5, r: 0.03 }, head: { len: 0.1, r: 0.035, snout: 0.035, ang: -0.5, eye: 0.006 }, earL: 0.02, earR: 0.01, tail: 0.04, col: c });
+    g.add(l);
+    var u = l.userData, tip = u.hp(0.95);
+    // its strange, droopy, bendy nose — it warms freezing air in winter and filters dust in summer
+    tube(l, [[tip[0] - 0.02, tip[1] + 0.005, 0, 0.026, 0.026], [tip[0] + 0.01, tip[1] - 0.01, 0, 0.022, 0.02], [tip[0] + 0.02, tip[1] - 0.03, 0, 0.016, 0.014]], '#c8a878', 'nose', 7, 0.1);
+    var hb = u.hp(0.2); [-1, 1].forEach(function (s) { tube(l, [[hb[0], hb[1] + 0.03, s * 0.012, 0.005, 0.005], [hb[0] + 0.005, hb[1] + 0.08, s * 0.016, 0.004, 0.004], [hb[0] + 0.015, hb[1] + 0.1, s * 0.014, 0.002, 0.002]], '#f0e8c8', 'horn', 4, 0); }); // amber horns (males)
+    // the endless grassland steppe, with another saiga behind
+    var b2 = quad({ sides: 9, L: 0.26, legH: 0.12, bR: 0.055, bW: 0.048, legR: 0.01, neck: { len: 0.04, ang: 0.5, r: 0.024 }, head: { len: 0.08, r: 0.028, snout: 0.028, ang: -0.6, eye: 0.005 }, earL: 0.016, earR: 0.008, tail: 0.03, col: c });
+    b2.position.set(-0.18, 0, -0.16); b2.rotation.y = 0.6; g.add(b2);
+    for (var k = 0; k < 16; k++) { var a = k / 16 * D2; cone(g, [Math.cos(a) * 0.3, 0, Math.sin(a) * 0.3], [Math.cos(a) * 0.31, 0.05, Math.sin(a) * 0.31], 0.006, '#a8a860', 3); }
+    return wrap(g, 0.6);
+  };
+
+  /* ---------- proboscis monkey (Brunei, Borneo) ---------- */
+  M.custom.a_proboscis = function () {
+    var g = new T.Group();
+    branch(g, [-0.3, 0.2, 0], [0.3, 0.22, 0.02], 0.02, '#6a4a32');
+    tube(g, [[0.2, 0.0, -0.05, 0.035, 0.035], [0.19, 0.22, 0.0, 0.025, 0.025]], function (x, y, z) { return vary('#6a4a32', x, y, z, 0.06); }, 'trunk', 6, 0.2);
+    leaves(g, -0.25, 0.3, -0.05, 7, 0.05, '#3f7a35'); leaves(g, 0.25, 0.32, -0.05, 6, 0.05, '#4f8a3f');
+    var w = new T.Mesh(new T.CylinderGeometry(0.3, 0.3, 0.01, 18), solid('#6a8a5a', { flatShading: true })); w.position.y = 0.004; g.add(w); // the mangrove river below
+    var fur = function (x, y, z) { return vary(y > 0.32 ? '#c8703a' : y > 0.27 ? '#d8b088' : '#e8dcc8', x, y, z, 0.05); };
+    // sitting on the branch: orange-brown on top, pale arms and legs, a big round belly
+    tube(g, [[0, 0.23, 0, 0.055, 0.05], [0.0, 0.28, 0, 0.065, 0.06], [0.005, 0.33, 0, 0.05, 0.045]], fur, 'body', 9, 0.15);
+    ball(g, 0.012, 0.38, 0, 0.035, '#c8703a', 1, 1, 1, 1);
+    // the famous long, droopy nose (males have the biggest ones — it makes their calls louder)
+    tube(g, [[0.04, 0.38, 0, 0.012, 0.012], [0.06, 0.37, 0, 0.016, 0.014], [0.07, 0.345, 0, 0.013, 0.012]], '#e8a088', 'nose', 7, 0.05);
+    [-1, 1].forEach(function (s) { eye(g, 0.04, 0.39, s * 0.014, 0.004);
+      tube(g, [[0.0, 0.32, s * 0.05, 0.012, 0.012], [0.03, 0.27, s * 0.06, 0.01, 0.01], [0.04, 0.23, s * 0.05, 0.009, 0.009]], '#e8dcc8', 'arm', 5, 0.1);
+      tube(g, [[0.02, 0.23, s * 0.035, 0.014, 0.014], [0.06, 0.2, s * 0.04, 0.012, 0.012], [0.05, 0.12, s * 0.04, 0.01, 0.01]], '#e8dcc8', 'leg', 5, 0.1); });
+    tube(g, [[-0.04, 0.23, 0, 0.01, 0.01], [-0.06, 0.12, 0, 0.009, 0.009], [-0.05, 0.03, 0.01, 0.007, 0.007]], '#e8dcc8', 'tail', 5, 0.05);
+    return wrap(g, 0.6);
+  };
+
+  /* ---------- fennec fox (Algeria, Sahara) ---------- */
+  M.custom.a_fennec = function () {
+    var g = new T.Group();
+    var dune = new T.Mesh(new T.SphereGeometry(0.3, 14, 6, 0, D2, 0, Math.PI / 2), solid('#e8c888', { flatShading: true })); dune.scale.set(1.2, 0.25, 0.9); g.add(dune);
+    var c = function (x, y, z, p) { if (y < 0.012) return '#c8a070'; if (p === 'body' && y < 0.14) return vary('#f6ecd8', x, y, z, 0.03); return vary('#e8c890', x, y, z, 0.04); };
+    var l = quad({ sides: 10, L: 0.22, legH: 0.08, bR: 0.05, bW: 0.045, legR: 0.012, neck: { len: 0.03, ang: 0.5, r: 0.028 }, head: { len: 0.08, r: 0.034, snout: 0.012, ang: -0.3, eye: 0.007 }, ears: false, tail: false, col: c });
+    l.position.y = 0.07; g.add(l);
+    var u = l.userData, ea = u.hp(0.15), tip = u.hp(1.0);
+    // gigantic ears (the biggest for its size of any fox) — they let heat out and hear bugs under the sand
+    [-1, 1].forEach(function (s) { cone(l, [ea[0] - 0.005, ea[1] + 0.02, s * 0.02], [ea[0] - 0.03, ea[1] + 0.12, s * 0.07], 0.03, '#e8c890', 5); cone(l, [ea[0] - 0.002, ea[1] + 0.025, s * 0.022], [ea[0] - 0.026, ea[1] + 0.105, s * 0.064], 0.018, '#f2b8a8', 5); });
+    ball(l, tip[0], tip[1], 0, 0.007, '#1d1a1a');
+    tube(l, [[-0.11, u.by, 0, 0.02, 0.02], [-0.17, u.by - 0.04, 0.02, 0.025, 0.025], [-0.2, u.by - 0.07, 0.05, 0.02, 0.02]], function (x, y) { return y < u.by - 0.06 ? '#3a2a20' : '#e8c890'; }, 'tail', 8, 0.1); // a black tip on the tail
+    var hole = new T.Mesh(new T.CircleGeometry(0.03, 10), solid('#6a4a2a')); hole.rotation.x = -Math.PI / 2 + 0.6; hole.position.set(-0.2, 0.05, 0.12); g.add(hole);
+    return wrap(g, 0.55);
+  };
 })();
