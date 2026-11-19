@@ -1,5 +1,5 @@
 Section,Country / group,MyEarthToy name,In our version,Our id,Our name
-Landmark,Afghanistan,"Blue Mosque, Mazar-i-Sharif",yes,bluemosque,"Blue Mosque, Mazar-i-Sharif"
+Landmark,Afghanistan,"Blue Mosque, Mazar-i-Sharif",yes,mazarmosque,"Blue Mosque, Mazar-i-Sharif"
 Landmark,Bangladesh,Ahsan Manzil,no,,
 Landmark,Bangladesh,Jatiya Sangsad Bhaban,yes,jatiya,Jatiya Sangsad Bhaban
 Landmark,Bangladesh,Lalbagh Fort (Tomb of Pari Bibi),yes,lalbagh,Lalbagh Fort
@@ -965,7 +965,7 @@ Animal,Mammal,Lion,yes,lion,Lion
 Animal,Mammal,Lion-tailed macaque,no,,
 Animal,Mammal,Llama,yes,llama,Llama
 Animal,Mammal,Malayan tapir,no,,
-Animal,Mammal,Mandrill,no,,
+Animal,Mammal,Mandrill,yes,mandrill,Mandrill
 Animal,Mammal,Maned wolf,no,,
 Animal,Mammal,Mantled howler,no,,
 Animal,Mammal,Marco Polo sheep,no,,
@@ -991,7 +991,7 @@ Animal,Mammal,Okapi,yes,okapi,Okapi
 Animal,Mammal,Orca,yes,orca,Orca
 Animal,Mammal,Pallas's cat,no,,
 Animal,Mammal,Patagonian mara,no,,
-Animal,Mammal,Philippine tarsier,no,,
+Animal,Mammal,Philippine tarsier,yes,tarsier,Philippine tarsier
 Animal,Mammal,Plains zebra,yes,zebra,Zebra
 Animal,Mammal,Platypus,yes,platypus,Platypus
 Animal,Mammal,Polar bear,yes,polarbear,Polar bear
@@ -1028,7 +1028,7 @@ Animal,Mammal,South American tapir,no,,
 Animal,Mammal,Southern elephant seal,no,,
 Animal,Mammal,Southern pudú,no,,
 Animal,Mammal,Southern right whale,no,,
-Animal,Mammal,Spectacled bear,no,,
+Animal,Mammal,Spectacled bear,yes,specbear,Spectacled bear
 Animal,Mammal,Sperm whale,no,,
 Animal,Mammal,Spinner dolphin,no,,
 Animal,Mammal,Spotted hyena,no,,
@@ -1105,7 +1105,7 @@ Animal,Bird,North Island brown kiwi,yes,kiwi,Kiwi
 Animal,Bird,Philippine eagle,no,,
 Animal,Bird,Raggiana bird-of-paradise,no,,
 Animal,Bird,Rainbow lorikeet,no,,
-Animal,Bird,Red-crowned crane,no,,
+Animal,Bird,Red-crowned crane,yes,crane,Red-crowned crane
 Animal,Bird,Resplendent quetzal,yes,quetzal,Resplendent quetzal
 Animal,Bird,Rhinoceros hornbill,no,,
 Animal,Bird,Rock ptarmigan,no,,

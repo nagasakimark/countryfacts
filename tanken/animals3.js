@@ -464,4 +464,68 @@
     var hole = new T.Mesh(new T.CircleGeometry(0.03, 10), solid('#6a4a2a')); hole.rotation.x = -Math.PI / 2 + 0.6; hole.position.set(-0.2, 0.05, 0.12); g.add(hole);
     return wrap(g, 0.55);
   };
+  /* ---------- Philippine tarsier (Bohol, Philippines) ---------- */
+  M.custom.a_tarsier = function () {
+    var g = new T.Group();
+    tube(g, [[0, 0, 0, 0.03, 0.03], [0.01, 0.35, 0, 0.022, 0.022]], function (x, y, z) { return vary('#6a5a44', x, y, z, 0.06); }, 'trunk', 7, 0.2);
+    leaves(g, 0.02, 0.38, -0.02, 6, 0.05, '#4f8a3f');
+    var fur = function (x, y, z) { return vary('#a8907a', x, y, z, 0.05); };
+    // a tiny primate (it fits in your hand) clinging to a branch, with gigantic eyes — each eye is as big as its brain
+    var m = new T.Group(); m.position.set(0.04, 0.16, 0); g.add(m);
+    tube(m, [[0.0, 0.0, 0, 0.03, 0.028], [0.005, 0.05, 0, 0.034, 0.03], [0.008, 0.08, 0, 0.026, 0.024]], fur, 'body', 9, 0.12);
+    ball(m, 0.015, 0.115, 0, 0.032, '#a8907a', 1, 1, 1.05, 1);
+    [-1, 1].forEach(function (s) { ball(m, 0.035, 0.12, s * 0.016, 0.017, '#c8a040', 0.6, 1, 1); ball(m, 0.043, 0.12, s * 0.016, 0.01, '#1d1a1a', 0.5, 1, 1); ball(m, 0.045, 0.125, s * 0.012, 0.003, '#ffffff', 0.5, 1, 1);
+      cone(m, [0.0, 0.135, s * 0.022], [-0.008, 0.16, s * 0.035], 0.012, '#c8a898', 5); // big thin ears
+      tube(m, [[0.015, 0.06, s * 0.025, 0.006, 0.006], [-0.01, 0.06, s * 0.03, 0.005, 0.005]], fur, 'arm', 4, 0.05); ball(m, -0.015, 0.06, s * 0.03, 0.007, '#c8a898', 1, 1.4, 1);
+      tube(m, [[0.0, 0.0, s * 0.02, 0.009, 0.009], [0.02, -0.04, s * 0.025, 0.007, 0.007], [-0.012, -0.05, s * 0.028, 0.005, 0.005]], fur, 'leg', 4, 0.05); }); // long jumping legs
+    tube(m, [[-0.01, -0.01, 0, 0.004, 0.004], [-0.02, -0.12, 0, 0.003, 0.003], [-0.018, -0.16, 0, 0.004, 0.006]], '#8a7a6a', 'tail', 4, 0); // a long thin tail with a tuft
+    return wrap(g, 1.1);
+  };
+
+  /* ---------- mandrill (Gabon) ---------- */
+  M.custom.a_mandrill = function () {
+    var g = new T.Group();
+    var fl = new T.Mesh(new T.CylinderGeometry(0.3, 0.32, 0.01, 12), solid('#5a7a3a', { flatShading: true })); fl.position.y = 0.004; g.add(fl);
+    var fur = function (x, y, z, p) { if (p === 'body' && y > 0.2 && x < -0.03) return vary('#5a7ad0', x, y, z, 0.05); return vary('#6a6448', x, y, z, 0.05); }; // olive fur; a blue-and-purple rump
+    // sitting up: the most colourful monkey of all — a bright red nose stripe with blue ridges on either side, and a golden beard
+    tube(g, [[-0.04, 0.02, 0, 0.07, 0.06], [-0.02, 0.1, 0, 0.075, 0.065], [0.0, 0.17, 0, 0.06, 0.055]], fur, 'body', 10, 0.15);
+    ball(g, 0.02, 0.23, 0, 0.045, '#5a5440', 1, 1, 1, 1);
+    var snout = new T.Mesh(new T.CylinderGeometry(0.022, 0.03, 0.07, 8), solid('#e8302a', { flatShading: true })); snout.rotation.z = -Math.PI / 2 + 0.2; snout.position.set(0.07, 0.215, 0); g.add(snout);
+    [-1, 1].forEach(function (s) { var rd = new T.Mesh(new T.CylinderGeometry(0.012, 0.018, 0.06, 6), solid('#3a8ad8', { flatShading: true })); rd.rotation.z = -Math.PI / 2 + 0.2; rd.position.set(0.065, 0.215, s * 0.024); g.add(rd); eye(g, 0.05, 0.245, s * 0.018, 0.005);
+      tube(g, [[0.0, 0.15, s * 0.05, 0.016, 0.016], [0.04, 0.08, s * 0.06, 0.014, 0.014], [0.06, 0.01, s * 0.05, 0.013, 0.01]], fur, 'arm', 6, 0.1);
+      tube(g, [[-0.03, 0.04, s * 0.05, 0.02, 0.02], [0.04, 0.03, s * 0.07, 0.016, 0.016], [0.05, 0.005, s * 0.05, 0.014, 0.01]], fur, 'leg', 6, 0.1); });
+    ball(g, 0.105, 0.21, 0, 0.012, '#e8302a'); ball(g, 0.05, 0.19, 0, 0.025, '#e8c050', 0.8, 0.8, 1.1); // the red nose tip and golden beard
+    for (var k = 0; k < 4; k++) { var tr = new T.Mesh(new T.SphereGeometry(0.06, 7, 5), solid('#2f6f3a', { flatShading: true })); tr.position.set(-0.25 + k * 0.17, 0.3, -0.25); g.add(tr); tube(g, [[-0.25 + k * 0.17, 0, -0.25, 0.015, 0.015], [-0.25 + k * 0.17, 0.27, -0.25, 0.012, 0.012]], '#6a5a44', 'trunk', 5, 0.1); }
+    return wrap(g, 1.2);
+  };
+
+  /* ---------- spectacled bear (Ecuador, Andes) ---------- */
+  M.custom.a_specbear = function () {
+    var g = new T.Group();
+    var fl = new T.Mesh(new T.CylinderGeometry(0.32, 0.34, 0.01, 12), solid('#7a9a5a', { flatShading: true })); fl.position.y = 0.004; g.add(fl);
+    var c = function (x, y, z, p) { if (p === 'head' && x > 0.3 && (Math.abs(z) < 0.02 || (y > 0.28 && Math.abs(z) > 0.015 && Math.abs(z) < 0.04))) return '#e8d8a8'; if (p === 'head' && x > 0.36) return '#c8b080'; return vary('#2a2420', x, y, z, 0.05); };
+    // the only bear in South America: black with cream rings round its eyes, like glasses
+    var l = quad({ sides: 10, L: 0.4, legH: 0.12, bR: 0.1, bW: 0.09, legR: 0.03, neck: { len: 0.04, ang: 0.3, r: 0.06 }, head: { len: 0.11, r: 0.055, snout: 0.03, ang: -0.25, eye: 0.007 }, earL: 0.02, earR: 0.02, tail: false, col: c });
+    g.add(l);
+    var ep = l.userData.hp(0.4); [-1, 1].forEach(function (s) { ball(l, ep[0] + 0.002, ep[1] + 0.017, s * 0.045, 0.02, '#f2e2b0', 0.8, 1, 0.5); ball(l, ep[0] + 0.006, ep[1] + 0.019, s * 0.047, 0.008, '#1d1a1a', 0.6, 1, 0.5); var mz = l.userData.hp(0.9); ball(l, mz[0], mz[1], 0, 0.03, '#e8d8a8', 1.1, 0.8, 0.9); ball(l, mz[0] + 0.028, mz[1] + 0.002, 0, 0.01, '#1d1a1a'); });
+    // it loves bromeliads and climbs trees to make a nest — a bromeliad plant and a cloud-forest tree
+    for (var k = 0; k < 7; k++) { var a = k / 7 * D2; cone(g, [0.3, 0.01, 0.15], [0.3 + Math.cos(a) * 0.05, 0.06, 0.15 + Math.sin(a) * 0.05], 0.01, '#5f9a45', 3); } ball(g, 0.3, 0.03, 0.15, 0.012, '#e8402a');
+    tube(g, [[-0.28, 0, -0.18, 0.03, 0.03], [-0.27, 0.4, -0.18, 0.02, 0.02]], '#6a5a44', 'trunk', 6, 0.15); leaves(g, -0.27, 0.42, -0.18, 7, 0.06, '#3f7a35');
+    return wrap(g, 0.55);
+  };
+
+  /* ---------- red-crowned crane (Hokkaido, Japan) ---------- */
+  M.custom.a_crane = function () {
+    var g = new T.Group();
+    var snow = new T.Mesh(new T.CylinderGeometry(0.34, 0.36, 0.015, 12), solid('#f4f7fa', { flatShading: true })); snow.position.y = 0.007; g.add(snow);
+    function crane(x, z, turn, dance) {
+      var b = bird({ len: 0.2, r: 0.06, tilt: dance ? 0.6 : 0.35, hr: 0.025, beak: 0.06, beakR: 0.007, beakDown: 0.0, beakCol: '#8a8a70', eye: 0.004, legH: 0.22, legCol: '#2a2a2e', col: function (x, y, z, p) { if (p === 'wing' && x < 0) return '#1d1c20'; return vary('#f8f8f6', x, y, z, 0.02); } });
+      var hc = b.userData.hc; ball(b, hc[0] - 0.004, hc[1] + 0.02, 0, 0.012, '#e8202a', 1, 0.5, 0.9); // the red crown: bare red skin on the top of the head
+      tube(b, [[hc[0] - 0.05, hc[1] - 0.12, 0, 0.02, 0.02], [hc[0] - 0.02, hc[1] - 0.05, 0, 0.014, 0.014], [hc[0], hc[1] - 0.01, 0, 0.016, 0.016]], function (x, y) { return y > hc[1] - 0.035 ? '#f8f8f6' : '#1d1c20'; }, 'neck', 6, 0.05); // black neck
+      if (dance) [-1, 1].forEach(function (s) { var w = new T.Mesh(new T.BoxGeometry(0.12, 0.006, 0.2), solid('#f8f8f6', { flatShading: true })); w.position.set(-0.02, 0.32, s * 0.12); w.rotation.x = -s * 0.5; b.add(w); var tip = new T.Mesh(new T.BoxGeometry(0.06, 0.007, 0.08), solid('#1d1c20')); tip.position.set(-0.06, 0.34, s * 0.16); tip.rotation.x = -s * 0.5; b.add(tip); });
+      b.position.set(x, 0.015, z); b.rotation.y = turn; g.add(b);
+    }
+    crane(0.06, 0.04, 0.3, true); crane(-0.12, -0.08, -0.4, false); // a pair dancing in the snow — cranes stay with the same partner for life
+    return wrap(g, 0.6);
+  };
 })();

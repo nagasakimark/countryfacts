@@ -456,7 +456,7 @@ TOY.landmarks = [
   t:'ソマリアの 岩の かげに のこる、 5000年いじょう前の 絵。 赤や 白で えがかれた 牛と 人が 今も あざやか。',te:'Rock shelters in Somalia with paintings over 5,000 years old. The cattle and people painted in red and white are still bright today.'},
 {id:'itaipu',c:'PRY',ll:[-54.5881,-25.4083],m:'itaipu',ja:'イタイプ・ダム',en:'Itaipu Dam',k:'いたいぷだむ ぱらぐあい ぶらじる',
   t:'パラグアイと ブラジルの さかいの 川に ある、 とても 大きな ダム。 パラグアイの 電気の ほとんどを つくって いる。',te:'A gigantic dam on the river between Paraguay and Brazil. It makes most of Paraguay\'s electricity.'},
-{id:'bluemosque',c:'AFG',ll:[67.1109,36.7092],m:'bluemosque',ja:'マザーリシャリーフの 青の モスク',en:'Blue Mosque, Mazar-i-Sharif',k:'あおのもすく あふがにすたん まざーりしゃりーふ',
+{id:'mazarmosque',c:'AFG',ll:[67.1109,36.7092],m:'bluemosque',ja:'マザーリシャリーフの 青の モスク',en:'Blue Mosque, Mazar-i-Sharif',k:'あおのもすく あふがにすたん まざーりしゃりーふ',
   t:'アフガニスタンの 町に ある、 青い タイルで おおわれた モスク。 白い ハトが たくさん いて、 春の お祭りの 中心に なる。',te:'A mosque in Afghanistan covered in blue tiles. Many white doves live here, and it is the centre of the spring New Year festival.'},
 {id:'jatiya',c:'BGD',ll:[90.3788,23.7626],m:'jatiya',ja:'バングラデシュ国会議事堂',en:'National Parliament House, Dhaka',k:'こっかいぎじどう ばんぐらでしゅ だっか',
   t:'バングラデシュの {首都|しゅと} ダッカの 国会。 コンクリートの かべに 大きな 丸や 三角の {穴|あな}が あいて いる。 まわりを 池が かこむ。',te:'Bangladesh\'s parliament in Dhaka. Its concrete walls are cut with giant circles and triangles, and a lake surrounds it.'},
@@ -743,7 +743,23 @@ TOY.landmarks = [
 {id:'xiengthong',c:'LAO',ll:[102.1430,19.8981],m:'xiengthong',ja:'ワット・シェントーン',en:'Wat Xieng Thong',k:'わっとしぇんとーん らおす るあんぱばーん',
   t:'ラオスの ルアンパバーンに ある お寺。 1560年に できた。 地面 近くまで 下がる 何重もの 屋根と、 金色の もようが 美しい。',te:'A temple in Luang Prabang, Laos, built in 1560. Its layered roofs sweep almost to the ground, and its walls glitter with gold patterns.'},
 {id:'punakha',c:'BTN',ll:[89.8636,27.5826],m:'punakha',ja:'プナカ・ゾン',en:'Punakha Dzong',k:'ぷなかぞん ぶーたん',
-  t:'ブータンの 2つの 川が 出会う ところに 立つ、 お{城|しろ}と お寺を かねた たてもの。 春には むらさきの 花が さく。',te:'A fortress-monastery in Bhutan, standing where two rivers meet. In spring, purple jacaranda trees bloom around it.'}
+  t:'ブータンの 2つの 川が 出会う ところに 立つ、 お{城|しろ}と お寺を かねた たてもの。 春には むらさきの 花が さく。',te:'A fortress-monastery in Bhutan, standing where two rivers meet. In spring, purple jacaranda trees bloom around it.'},
+{id:'valletta',c:'MLT',ll:[14.5146,35.8989],m:'valletta',ja:'バレッタ',en:'Valletta',k:'ばれった まるた',
+  t:'マルタの 首都。 450年ほど 前に {騎士|きし}たちが つくった、 大きな 石の かべに かこまれた 町。 家には カラフルな 木の バルコニーが ある。',te:'The capital of Malta: a whole city of honey-coloured stone built by knights about 450 years ago and wrapped in massive walls. Houses have colourful wooden balconies.'},
+{id:'treeoflife',c:'BHR',ll:[50.5797,25.9943],m:'treeoflife',ja:'生命の木',en:'Tree of Life (Bahrain)',k:'せいめいのき ばーれーん',
+  t:'バーレーンの {砂漠|さばく}に 1本だけ 立つ 木。 400年いじょう 生きて いる。 まわりに 水が ないのに、 どうやって 水を のんでいるのか なぞ。',te:'A single tree standing alone in the desert of Bahrain, over 400 years old. No one is quite sure where it finds its water.'},
+{id:'tosua',c:'WSM',ll:[-171.5622,-14.0484],m:'tosua',ja:'トスア・オーシャン・トレンチ',en:'To Sua Ocean Trench',k:'とすあ おーしゃんとれんち さもあ',
+  t:'サモアの 地面に あいた 深さ 30mの 大きな あな。 下には 海から トンネルで 流れこむ きれいな 水が あり、 長い はしごで おりて およげる。',te:'A giant 30 m-deep hole in the ground in Samoa. Clear seawater flows in through a tunnel from the ocean, and you climb down a long ladder to swim.'},
+{id:'cedars',c:'LBN',ll:[36.0476,34.2431],m:'cedars',ja:'神の {杉|すぎ}の 森',en:'Cedars of God',k:'かみのすぎのもり ればのん',
+  t:'レバノンの 山に ある レバノンスギの 森。 1000年いじょう 生きている 木も ある。 スギは レバノンの 国旗にも えがかれて いる。',te:'A grove of ancient cedar trees in the mountains of Lebanon. Some are over 1,000 years old, and a cedar appears on Lebanon\'s flag.'},
+{id:'maletsunyane',c:'LSO',ll:[28.0561,-29.8686],m:'maletsunyane',ja:'マレツニャーネの {滝|たき}',en:'Maletsunyane Falls',k:'まれつにゃーねのたき れそと',
+  t:'レソトの 山の 中に ある、 高さ 192mの {滝|たき}。 1回で まっすぐ 下まで 落ちる。 レソトは 国全体が 高い 山の 上に ある。',te:'A 192 m waterfall in the mountains of Lesotho that drops in a single leap. All of Lesotho lies high up in the mountains.'},
+{id:'xunantunich',c:'BLZ',ll:[-89.1386,17.0889],m:'xunantunich',ja:'シュナントゥニッチ',en:'Xunantunich',k:'しゅなんとぅにっち べりーず まや',
+  t:'ベリーズの ジャングルに ある マヤの いせき。 「エル・カスティーヨ」という 高さ 40mの ピラミッドが ある。 手で まわして 動かす いかだで 川を わたって 行く。',te:'Maya ruins in the jungle of Belize, with a 40 m pyramid called "El Castillo". You reach it by a hand-cranked ferry across the river.'},
+{id:'chinguetti',c:'MRT',ll:[-12.3633,20.4626],m:'chinguetti',ja:'シンゲッティ',en:'Chinguetti',k:'しんげってぃ もーりたにあ',
+  t:'モーリタニアの サハラ{砂漠|さばく}に ある 古い 町。 何百年も 前に 手で 書かれた 本の 図書館が のこる。 モスクの {塔|とう}の 上には ダチョウの たまごが 5つ。',te:'An old town in the Sahara in Mauritania, with libraries of handwritten books hundreds of years old. Five ostrich eggs sit on top of its mosque tower.'},
+{id:'predjama',c:'SVN',ll:[14.1270,45.8157],m:'predjama',ja:'プレッドヤマ{城|じょう}',en:'Predjama Castle',k:'ぷれっどやまじょう すろべにあ',
+  t:'スロベニアの 高い がけの とちゅうに ある、 どうくつの 入り口に はまるように たてられた お{城|しろ}。 750年ほど 前から ある。',te:'A castle built right into the mouth of a cave halfway up a cliff in Slovenia, first mentioned about 750 years ago.'}
 ];
 
 TOY.animals = [
@@ -809,7 +825,11 @@ TOY.animals = [
  {id:'condor',e:'🦅',ll:[-70.3,-33.4],ja:'アンデスコンドル',en:'Andean condor',t:'チリの アンデス山脈に すむ、 世界で いちばん 大きな 飛ぶ 鳥の 1つ。 つばさを 広げると 3mほど。',te:'One of the biggest flying birds in the world, living in Chile\'s Andes. Its wings stretch about 3 m.'},
  {id:'saiga',e:'🦌',ll:[66.0,48.0],ja:'サイガ',en:'Saiga antelope',t:'カザフスタンの 草原に すむ。 たれさがった 大きな 鼻で、 冬は つめたい 空気を あたため、 夏は すなぼこりを ふせぐ。',te:'It lives on the steppe of Kazakhstan. Its big droopy nose warms freezing air in winter and filters out dust in summer.'},
  {id:'proboscis',e:'🐒',ll:[114.7,4.6],ja:'テングザル',en:'Proboscis monkey',t:'ブルネイなど ボルネオ島の 川べの 森に すむ。 オスの 長い 鼻は、 鳴き声を 大きく ひびかせる。',te:'It lives in riverside forests on Borneo, including Brunei. The male\'s long nose makes his calls louder.'},
- {id:'fennec',e:'🦊',ll:[3.0,28.0],ja:'フェネック',en:'Fennec fox',t:'アルジェリアの サハラ{砂漠|さばく}に すむ 小さな キツネ。 大きな 耳で 体の 熱を 外に にがし、 すなの 下の 虫の 音も 聞く。',te:'A small fox of the Sahara in Algeria (its national animal). Its huge ears let out body heat and hear insects under the sand.'}
+ {id:'fennec',e:'🦊',ll:[3.0,28.0],ja:'フェネック',en:'Fennec fox',t:'アルジェリアの サハラ{砂漠|さばく}に すむ 小さな キツネ。 大きな 耳で 体の 熱を 外に にがし、 すなの 下の 虫の 音も 聞く。',te:'A small fox of the Sahara in Algeria (its national animal). Its huge ears let out body heat and hear insects under the sand.'},
+ {id:'tarsier',e:'🐒',ll:[124.0,9.8],ja:'フィリピンメガネザル',en:'Philippine tarsier',t:'フィリピンの ボホール島などに すむ、 手の ひらに のるほど 小さな サル。 目の 1つが {脳|のう}と 同じくらい 大きい。',te:'A tiny primate from the Philippines that fits in your hand. Each of its eyes is about as big as its brain.'},
+ {id:'mandrill',e:'🐒',ll:[11.5,-0.8],ja:'マンドリル',en:'Mandrill',t:'ガボンの 森に すむ。 赤と 青の あざやかな 顔で、 世界で いちばん カラフルな サルと 言われる。',te:'It lives in the forests of Gabon. With its bright red-and-blue face, it is said to be the most colourful monkey in the world.'},
+ {id:'specbear',e:'🐻',ll:[-78.3,-1.5],ja:'メガネグマ',en:'Spectacled bear',t:'エクアドルなど アンデスの 森に すむ、 南アメリカで ただ1つの クマ。 目の まわりの もようが メガネのように 見える。',te:'The only bear in South America, living in the Andes forests of Ecuador and nearby. The pale markings round its eyes look like glasses.'},
+ {id:'crane',e:'🐦',ll:[144.4,43.1],ja:'タンチョウ',en:'Red-crowned crane',t:'北海道の {釧路|くしろ}の しつ原に すむ。 頭の てっぺんが 赤い。 冬には つがいで ダンスを する。',te:'It lives in the wetlands of Kushiro, Hokkaido. The top of its head is red, and in winter pairs dance together in the snow.'}
 ];
 
 /* Vehicles travel there and back forever. p = route points [lon,lat] (great-circle between points).
