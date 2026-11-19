@@ -599,7 +599,23 @@ TOY.landmarks = [
 {id:'cordoba',c:'ESP',ll:[-4.7794,37.8789],m:'cordoba',ja:'コルドバの メスキータ',en:'Mosque–Cathedral of Córdoba',k:'こるどば めすきーた すぺいん',
   t:'スペインの コルドバに ある、 モスクの 中に 教会が ある めずらしい たてもの。 赤と 白の しまもようの アーチが 森のように ならぶ。',te:'A rare building in Córdoba, Spain: a church inside a mosque. Red-and-white striped arches stand in rows like a forest.'},
 {id:'fasil',c:'ETH',ll:[37.4686,12.6078],m:'fasil',ja:'ファシル・ゲビ',en:'Fasil Ghebbi',k:'ふぁしるげび えちおぴあ ごんだーる',
-  t:'エチオピアの ゴンダールに ある 石の お{城|しろ}。 丸い {塔|とう}に ドームが のって いる。 「アフリカの キャメロット」とも よばれる。',te:'A stone castle in Gondar, Ethiopia, with domed round towers. It is sometimes called the "Camelot of Africa".'}
+  t:'エチオピアの ゴンダールに ある 石の お{城|しろ}。 丸い {塔|とう}に ドームが のって いる。 「アフリカの キャメロット」とも よばれる。',te:'A stone castle in Gondar, Ethiopia, with domed round towers. It is sometimes called the "Camelot of Africa".'},
+{id:'lencois',c:'BRA',ll:[-43.1247,-2.4858],m:'lencois',ja:'レンソイス・マラニャンセス',en:'Lençóis Maranhenses',k:'れんそいす まらにゃんせす ぶらじる さきゅう',
+  t:'ブラジルの 白い すなの {丘|おか}が どこまでも つづく 国立公園。 雨の きせつには、 すなの 間に 青や 緑の みずうみが できる。',te:'A national park in Brazil where white sand dunes stretch on and on. In the rainy season, blue and green lagoons fill the gaps between them.'},
+{id:'pelourinho',c:'BRA',ll:[-38.5108,-12.9714],m:'pelourinho',ja:'ペロウリーニョ',en:'Pelourinho, Salvador',k:'ぺろうりーにょ さるばどーる ぶらじる',
+  t:'ブラジルの サルバドールの 古い 町なみ。 パステルカラーの 家が ならぶ。 アフリカから 伝わった 音楽や カポエイラが さかん。',te:'The old town of Salvador, Brazil, lined with pastel-coloured houses. Music and capoeira with African roots fill its streets.'},
+{id:'brasilia',c:'BRA',ll:[-47.8756,-15.7983],m:'brasilia',ja:'ブラジリア{大聖堂|だいせいどう}',en:'Cathedral of Brasília',k:'ぶらじりあだいせいどう ぶらじる',
+  t:'ブラジルの {首都|しゅと} ブラジリアの 教会。 16本の 白い 柱が、 いのる 手のように 空へ のびて いる。 中は ガラスで 明るい。',te:'A church in Brasília, the capital of Brazil. Sixteen white columns reach up to the sky like hands joined in prayer, and glass fills the gaps.'},
+{id:'koutoubia',c:'MAR',ll:[-7.9934,31.6237],m:'koutoubia',ja:'クトゥビア・モスク',en:'Koutoubia Mosque',k:'くとぅびあもすく もろっこ まらけしゅ',
+  t:'モロッコの マラケシュの 大きな モスク。 77mの 四角い ミナレットは 町の どこからでも 見える。',te:'A great mosque in Marrakesh, Morocco. Its 77 m square minaret can be seen from all over the city.'},
+{id:'knossos',c:'GRC',ll:[25.1631,35.2981],m:'knossos',ja:'クノッソス宮{殿|でん}',en:'Palace of Knossos',k:'くのっそすきゅうでん ぎりしゃ くれた',
+  t:'ギリシャの クレタ島の 3500年いじょう前の 宮{殿|でん}。 下が 細い 赤い 柱と、 牛の かべ画が 有名。 ミノタウロスの 神話の {舞台|ぶたい}。',te:'A palace on Crete, Greece, over 3,500 years old. It is famous for its red columns that are thinner at the bottom and its bull paintings. The Minotaur myth is set here.'},
+{id:'nasirmulk',c:'IRN',ll:[52.5486,29.6083],m:'nasirmulk',ja:'ナスィーロル・モルク・モスク',en:'Nasir al-Mulk Mosque',k:'ぴんくもすく なすぃーろるもるく いらん しーらーず',
+  t:'イランの シーラーズに ある 「ピンク・モスク」。 朝、 色ガラスの まどから 光が さしこみ、 ゆかが にじ色に なる。',te:'The "Pink Mosque" in Shiraz, Iran. In the morning, light shines through its coloured-glass windows and paints the floor like a rainbow.'},
+{id:'tulou',c:'CHN',ll:[117.06,24.58],m:'tulou',ja:'{福建土楼|ふっけんどろう}',en:'Fujian Tulou',k:'ふっけんどろう ちゅうごく',
+  t:'中国の 福建省に ある、 土で できた 丸い 大きな 家。 一つの 家に 何十もの 家族が いっしょに くらす。 {世界遺産|せかいいさん}。',te:'Big round houses made of earth in Fujian, China. Dozens of families live together in a single house. A World Heritage Site.'},
+{id:'intramuros',c:'PHL',ll:[120.9706,14.5953],m:'intramuros',ja:'サンチャゴ{要塞|ようさい}',en:'Fort Santiago, Intramuros',k:'さんちゃごようさい いんとらむろす ふぃりぴん まにら',
+  t:'フィリピンの マニラに ある、 スペイン時代の 石の {城|じょう}へきの 町 「イントラムロス」の とりで。 馬車で めぐる ことも できる。',te:'A fort in Intramuros, the old walled city of Manila, Philippines, from the Spanish era. You can tour it by horse-drawn carriage.'}
 ];
 
 TOY.animals = [

@@ -19,7 +19,7 @@ Landmark,China,Chongqing People's Auditorium,no,,
 Landmark,China,CITIC Tower (China Zun),no,,
 Landmark,China,FAST (Tianyan) Radio Telescope,no,,
 Landmark,China,Forbidden City,yes,forbidden,Forbidden City
-Landmark,China,Fujian Tulou,no,,
+Landmark,China,Fujian Tulou,yes,tulou,Fujian Tulou
 Landmark,China,Galaxy SOHO,no,,
 Landmark,China,"Gate to the East, Suzhou",no,,
 Landmark,China,Giant Wild Goose Pagoda,no,,
@@ -136,7 +136,7 @@ Landmark,Iran,Azadi Tower,no,,
 Landmark,Iran,Chogha Zanbil,no,,
 Landmark,Iran,Golestan Palace,no,,
 Landmark,Iran,Naqsh-e Jahan Square,yes,naqshejahan,Naqsh-e Jahan Square
-Landmark,Iran,Nasir al-Mulk Mosque,no,,
+Landmark,Iran,Nasir al-Mulk Mosque,yes,nasirmulk,Nasir al-Mulk Mosque
 Landmark,Iran,Persepolis,yes,persepolis,Persepolis
 Landmark,Iran,Tehran International Tower,no,,
 Landmark,Iraq,Al-Shaheed Monument,no,,
@@ -210,7 +210,7 @@ Landmark,Palestinian Territories,Western Wall,no,,
 Landmark,Philippines,Banaue Rice Terraces,yes,banaue,Banaue Rice Terraces
 Landmark,Philippines,Chocolate Hills,yes,chocolate,Chocolate Hills
 Landmark,Philippines,"El Nido, Palawan",no,,
-Landmark,Philippines,"Fort Santiago, Intramuros",no,,
+Landmark,Philippines,"Fort Santiago, Intramuros",yes,intramuros,"Fort Santiago, Intramuros"
 Landmark,Philippines,Manila Cathedral,no,,
 Landmark,Philippines,Manila City Hall,no,,
 Landmark,Philippines,Mayon Volcano,yes,mayon,Mayon Volcano
@@ -330,7 +330,7 @@ Landmark,Germany,Neuschwanstein Castle,yes,neuschwanstein,Neuschwanstein Castle
 Landmark,Germany,Reichstag Building,no,,
 Landmark,Greece,Delphi,no,,
 Landmark,Greece,Meteora,yes,meteora,Meteora
-Landmark,Greece,Palace of Knossos,no,,
+Landmark,Greece,Palace of Knossos,yes,knossos,Palace of Knossos
 Landmark,Greece,Parthenon,yes,parthenon,Parthenon
 Landmark,Greece,Santorini (Oia),yes,santorini,Santorini
 Landmark,Hungary,Buda Castle,no,,
@@ -485,7 +485,7 @@ Landmark,Morocco,Chefchaouen,yes,chefchaouen,Chefchaouen
 Landmark,Morocco,Erg Chebbi Dunes,no,,
 Landmark,Morocco,Hassan II Mosque,yes,hassan2,Hassan II Mosque
 Landmark,Morocco,Kasbah of the Udayas,no,,
-Landmark,Morocco,Koutoubia Mosque,no,,
+Landmark,Morocco,Koutoubia Mosque,yes,koutoubia,Koutoubia Mosque
 Landmark,Morocco,Volubilis,no,,
 Landmark,Mozambique,Maputo Central Railway Station,yes,maputo,Maputo Central Railway Station
 Landmark,Namibia,Sossusvlei & Deadvlei,yes,sossusvlei,Sossusvlei
@@ -718,17 +718,17 @@ Landmark,Bolivia,Salar de Uyuni,yes,uyuni,Salar de Uyuni
 Landmark,Bolivia,Tiwanaku (Gate of the Sun),no,,
 Landmark,Brazil,Altino Arantes Building (Farol Santander),no,,
 Landmark,Brazil,Amazon Rainforest,no,,
-Landmark,Brazil,Cathedral of Brasília,no,,
+Landmark,Brazil,Cathedral of Brasília,yes,brasilia,Cathedral of Brasília
 Landmark,Brazil,Central Bank of Brazil Headquarters,no,,
 Landmark,Brazil,Christ the Redeemer,yes,christ,Christ the Redeemer
 Landmark,Brazil,Edifício Copan,no,,
 Landmark,Brazil,Edifício Itália,no,,
 Landmark,Brazil,Iguazu Falls,yes,iguazu,Iguazu Falls
-Landmark,Brazil,Lençóis Maranhenses,no,,
+Landmark,Brazil,Lençóis Maranhenses,yes,lencois,Lençóis Maranhenses
 Landmark,Brazil,Maracanã Stadium,no,,
 Landmark,Brazil,Museum of Tomorrow,no,,
 Landmark,Brazil,National Congress of Brazil,no,,
-Landmark,Brazil,Pelourinho,no,,
+Landmark,Brazil,Pelourinho,yes,pelourinho,Pelourinho
 Landmark,Brazil,Rio de Janeiro Cathedral,no,,
 Landmark,Brazil,São Paulo Cathedral,no,,
 Landmark,Brazil,São Paulo Museum of Art (MASP),no,,
