@@ -215,7 +215,23 @@ TOY.landmarks = [
  {id:'torres',c:'CHL',ll:[-72.99,-50.94],m:'torres',ja:'トレス・デル・パイネ',en:'Torres del Paine',k:'とれすでるぱいね ちり ぱたごにあ',
   t:'チリの パタゴニアに ある、 3本の とがった 岩山。 名前は「青い {塔|とう}」という 意味。',te:'Three sharp granite towers in Chilean Patagonia. The name means "blue towers".'},
  {id:'cologne',c:'DEU',ll:[6.96,50.94],m:'cologne',ja:'ケルン{大聖堂|だいせいどう}',en:'Cologne Cathedral',k:'けるんだいせいどう どいつ',
-  t:'ドイツの ケルンに ある 大きな 教会。 高さ 157mの 2本の {塔|とう}が ある。 できあがるまで 600年 いじょう かかった。',te:'A huge cathedral in Cologne, Germany, with two 157 m spires. It took over 600 years to finish.'}
+  t:'ドイツの ケルンに ある 大きな 教会。 高さ 157mの 2本の {塔|とう}が ある。 できあがるまで 600年 いじょう かかった。',te:'A huge cathedral in Cologne, Germany, with two 157 m spires. It took over 600 years to finish.'},
+{id:'greatzim',c:'ZWE',ll:[30.93,-20.27],m:'greatzim',ja:'グレート・ジンバブエ',en:'Great Zimbabwe',k:'ぐれーとじんばぶえ',
+  t:'約800年 前に さかえた 王国の 石の 都。 セメントを 使わずに 石を つみ上げた かべが のこる。 ジンバブエという 国の 名前の もとに なった。',te:'The stone capital of a kingdom that thrived about 800 years ago. Its walls were built without mortar, and the country of Zimbabwe is named after it.'},
+ {id:'capecoast',c:'GHA',ll:[-1.24,5.10],m:'capecoast',ja:'ケープコースト{城|じょう}',en:'Cape Coast Castle',k:'けーぷこーすとじょう がーな',
+  t:'ガーナの 海ぞいの 白い とりで。 むかし アフリカの 人たちが ここから 無理やり 船で つれていかれた。 悲しい れきしを わすれないための 場所。',te:'A white fort on the coast of Ghana. Long ago, enslaved Africans were forced onto ships here. Today it helps people remember this sad history.'},
+ {id:'meroe',c:'SDN',ll:[33.75,16.94],m:'meroe',ja:'メロエの ピラミッド',en:'Pyramids of Meroë',k:'めろえ ぴらみっど すーだん',
+  t:'スーダンの さばくに 200 いじょう ならぶ、 細長い ピラミッド。 スーダンには エジプトより 多くの ピラミッドが ある。',te:'More than 200 steep, narrow pyramids stand in the desert of Sudan, which has more pyramids than Egypt.'},
+ {id:'ur',c:'IRQ',ll:[46.10,30.96],m:'ur',ja:'ウルの ジッグラト',en:'Ziggurat of Ur',k:'うる じっぐらと いらく',
+  t:'イラクに ある、 約4000年 前の {神殿|しんでん}の 土台。 レンガを つみ上げた、 大きな だんだんの たてもの。',te:'The stepped base of a temple in Iraq, built of bricks about 4,000 years ago.'},
+ {id:'malbork',c:'POL',ll:[19.03,54.04],m:'malbork',ja:'マルボルク{城|じょう}',en:'Malbork Castle',k:'まるぼるくじょう ぽーらんど',
+  t:'ポーランドに ある、 レンガで できた お{城|しろ}。 広さでは 世界で いちばん 大きな お{城|しろ}。',te:'A brick castle in Poland — the largest castle in the world by area.'},
+ {id:'stockholm',c:'SWE',ll:[18.05,59.33],m:'stockholm',ja:'ストックホルム{市庁舎|しちょうしゃ}',en:'Stockholm City Hall',k:'すとっくほるむしちょうしゃ すうぇーでん',
+  t:'スウェーデンの ストックホルムの 市役所。 毎年 ノーベル賞の パーティーが ここで ひらかれる。',te:'Stockholm\'s City Hall in Sweden, where the Nobel Prize banquet is held every year.'},
+ {id:'badshahi',c:'PAK',ll:[74.31,31.59],m:'badshahi',ja:'バードシャーヒー・モスク',en:'Badshahi Mosque',k:'ばーどしゃーひーもすく ぱきすたん らほーる',
+  t:'パキスタンの ラホールに ある 大きな モスク。 赤い 石と 白い ドームが 美しい。 約350年 前に できた。',te:'A huge mosque in Lahore, Pakistan, built about 350 years ago of red stone with white marble domes.'},
+ {id:'thatluang',c:'LAO',ll:[102.64,17.98],m:'thatluang',ja:'タートルアン',en:'Pha That Luang',k:'たーとるあん らおす びえんちゃん',
+  t:'ラオスの 首都 ビエンチャンに ある 金色の {仏塔|ぶっとう}。 国の シンボルで、 お札にも かかれている。',te:'A golden stupa in Vientiane, the symbol of Laos. It appears on the national emblem and on banknotes.'}
 ];
 
 TOY.animals = [
