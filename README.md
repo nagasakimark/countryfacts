@@ -42,6 +42,8 @@ The root `index.html` is the original app (true-size, games, passport). The 3D g
 - **Games**: どこかな？ (tap where a country, landmark or animal is, with north/south/east/west hints) and a flag quiz. Best scores are saved.
 - **ずかん (sticker book)**: landmarks, animals, rides and the country stamps. Tapping a ? gives a hint about where to look.
 - The 36 featured countries keep their six pages (もよう, れきし, ひと・ことば, くらし, くらべる, クイズ).
+- **Day and night** follow the real time: the side of the Earth where it is night now is dark, with city lights.
+- **City labels** with population appear as you zoom in (capitals have a red star). Japanese cities show Japanese names; other cities use English names.
 - **EN button**: switches the interface, names and the new content to English. The country pages' long texts are still Japanese only.
 - Progress is saved in the browser on that Chromebook only (`tanken-toy-v1`, plus the stamps shared with the passport).
 
@@ -51,4 +53,4 @@ Editing:
 - `data/atlas.js`: cultural content for the country pages (draft, needs fact-check and co-teacher review).
 - Flags from flag-icons (MIT) in `flags/`. No network needed at runtime.
 
-Credits: Three.js r159 (MIT, `vendor/three.LICENSE.txt`). The idea comes from My Earth Toy (myearthtoy.com). All models and text here are original.
+Credits: Three.js r159 (MIT, `vendor/three.LICENSE.txt`). City names, positions and populations (`data/cities.js`, `data/nightlights.jpg`): GeoNames (geonames.org, CC BY 4.0), via the all-the-cities package. The idea comes from My Earth Toy (myearthtoy.com). All models and text here are original.

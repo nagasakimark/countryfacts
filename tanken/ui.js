@@ -222,6 +222,7 @@
   var lastRideDir = 0;
   Globe.onRide = function (r, frac) {
     if (mode !== 'ride' || !arg || arg.id !== r.id) return;
+    var now = performance.now(); if (now - (Globe._rideUI || 0) < 200) return; Globe._rideUI = now;
     var p = $('#rp'), k = $('#rk'); if (!p) return;
     if (r.dir !== lastRideDir && lastRideDir !== 0 && r.wait <= 0) { lastRideDir = r.dir; render(); return; }
     lastRideDir = r.dir;

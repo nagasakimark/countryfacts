@@ -68,28 +68,37 @@
     var c = r.cum, lo = 0, hi = c.length - 1; d = Math.max(0, Math.min(r.len, d));
     while (hi - lo > 1) { var m = (lo + hi) >> 1; if (c[m] <= d) lo = m; else hi = m; }
     var seg = c[hi] - c[lo] || 1e-9, t = (d - c[lo]) / seg;
-    return d3.geoInterpolate(r.pts[lo], r.pts[hi])(t);
+    var ips = r.ips || (r.ips = []), f = ips[lo] || (ips[lo] = d3.geoInterpolate(r.pts[lo], r.pts[hi]));
+    return f(t);
   }
   G.routes = ROUTES;
 
   /* ---------- map texture ---------- */
   var TW = 4096, TH = 2048, tcv = document.createElement('canvas'); tcv.width = TW; tcv.height = TH;
   var tctx = tcv.getContext('2d', { willReadFrequently: true });
-  function paint(ctx, proj, scale) {
-    var gp = d3.geoPath(proj, ctx), w = ctx.canvas.width, h = ctx.canvas.height;
+  function paint(ctx, proj, scale, list, cheap) {
+    var gp = d3.geoPath(proj, ctx), w = ctx.canvas.width, h = ctx.canvas.height, F = list || feat;
     ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = '#2b6cb8'; ctx.fillRect(0, 0, w, h); ctx.restore();
     ctx.lineJoin = 'round'; ctx.lineCap = 'round';
     ctx.beginPath(); gp(d3.geoGraticule().step([30, 30])()); ctx.strokeStyle = 'rgba(255,255,255,.12)'; ctx.lineWidth = 1.2 * scale; ctx.stroke();
-    function allLand() { ctx.beginPath(); feat.forEach(function (f) { gp(f); }); }
-    // shallow water around the coasts (one blurred stroke for the whole world)
-    ctx.save(); ctx.filter = 'blur(' + Math.round(6 * scale) + 'px)'; ctx.strokeStyle = 'rgba(110,190,240,.75)'; ctx.lineWidth = 18 * scale; allLand(); ctx.stroke(); ctx.restore();
-    // land lifted off the sea: one soft shadow, then the country colours on top
-    ctx.save(); ctx.shadowColor = 'rgba(8,20,70,.6)'; ctx.shadowBlur = 9 * scale; ctx.shadowOffsetX = 2.5 * scale; ctx.shadowOffsetY = 4.5 * scale; ctx.fillStyle = '#2a2050'; allLand(); ctx.fill(); ctx.restore();
-    feat.forEach(function (f) { ctx.beginPath(); gp(f); ctx.fillStyle = FILL[f.properties.id]; ctx.fill(); });
-    // soft light rim just inside the coast
-    ctx.save(); allLand(); ctx.clip(); ctx.filter = 'blur(' + Math.round(3 * scale) + 'px)'; ctx.strokeStyle = 'rgba(255,255,255,.3)'; ctx.lineWidth = 4 * scale; allLand(); ctx.stroke(); ctx.restore();
+    function allLand() { ctx.beginPath(); F.forEach(function (f) { gp(f); }); }
+    if (cheap) {
+      // tiles: same look without blur filters (blur is what made repaints slow)
+      ctx.strokeStyle = 'rgba(110,190,240,.28)'; ctx.lineWidth = 22 * scale; allLand(); ctx.stroke();
+      ctx.strokeStyle = 'rgba(120,200,245,.4)'; ctx.lineWidth = 11 * scale; ctx.stroke();
+      ctx.save(); ctx.translate(2.5 * scale, 4 * scale); ctx.fillStyle = 'rgba(14,24,70,.45)'; allLand(); ctx.fill(); ctx.restore();
+      F.forEach(function (f) { ctx.beginPath(); gp(f); ctx.fillStyle = FILL[f.properties.id]; ctx.fill(); });
+    } else {
+      // shallow water around the coasts (one blurred stroke for the whole world)
+      ctx.save(); ctx.filter = 'blur(' + Math.round(6 * scale) + 'px)'; ctx.strokeStyle = 'rgba(110,190,240,.75)'; ctx.lineWidth = 18 * scale; allLand(); ctx.stroke(); ctx.restore();
+      // land lifted off the sea: one soft shadow, then the country colours on top
+      ctx.save(); ctx.shadowColor = 'rgba(8,20,70,.6)'; ctx.shadowBlur = 9 * scale; ctx.shadowOffsetX = 2.5 * scale; ctx.shadowOffsetY = 4.5 * scale; ctx.fillStyle = '#2a2050'; allLand(); ctx.fill(); ctx.restore();
+      F.forEach(function (f) { ctx.beginPath(); gp(f); ctx.fillStyle = FILL[f.properties.id]; ctx.fill(); });
+      // soft light rim just inside the coast
+      ctx.save(); allLand(); ctx.clip(); ctx.filter = 'blur(' + Math.round(3 * scale) + 'px)'; ctx.strokeStyle = 'rgba(255,255,255,.3)'; ctx.lineWidth = 4 * scale; allLand(); ctx.stroke(); ctx.restore();
+    }
     ctx.strokeStyle = 'rgba(55,30,90,.38)'; ctx.lineWidth = 1.1 * scale;
-    feat.forEach(function (f) { ctx.beginPath(); gp(f); ctx.stroke(); });
+    F.forEach(function (f) { ctx.beginPath(); gp(f); ctx.stroke(); });
     // routes on the ground: rails, roads, sea lanes
     ROUTES.forEach(function (r) {
       if (r.type === 'plane') return;
@@ -126,38 +135,96 @@
     sp.scale.set(2.95, 2.95, 1); sp.renderOrder = -1; scene.add(sp); G._glow = sp;
   })();
 
-  /* detail patch: a sharper painted map over the area you are looking at */
-  var patch = null, patchInfo = null, pcv = document.createElement('canvas'), pctx = pcv.getContext('2d');
-  function buildPatch(lon, lat, alt) {
-    var latSpan = Math.max(10, Math.min(70, alt * 95)), lat0 = Math.max(-85, lat - latSpan / 2), lat1 = Math.min(85, lat + latSpan / 2);
-    latSpan = lat1 - lat0; var lonSpan = Math.min(140, latSpan / Math.max(0.25, Math.cos(lat * D2R))), lon0 = lon - lonSpan / 2;
-    var PW = 2048, PH = Math.max(256, Math.min(2048, Math.round(PW * latSpan / lonSpan)));
-    pcv.width = PW; pcv.height = PH;
-    var k = PW / (lonSpan * D2R), pr = d3.geoEquirectangular().rotate([-lon, 0]).scale(k).translate([PW / 2, PH / 2 + (lat0 + latSpan / 2) * D2R * k]).precision(0.1);
-    // vertical scale differs from horizontal: squash with the canvas transform
-    var sy = (PH / (latSpan * D2R)) / k;
-    pctx.setTransform(1, 0, 0, sy, 0, PH / 2 * (1 - sy));
-    var sc = Math.max(0.6, Math.min(1.4, 2048 / (lonSpan / 360 * TW) * 0.45));
-    paint(pctx, pr, sc); highlight(pctx, pr, sc, G.sel);
-    pctx.setTransform(1, 0, 0, 1, 0, 0);
-    var geo = new T.SphereGeometry(1.0006, 64, 48, (lon0 + 180) * D2R, lonSpan * D2R, (90 - lat1) * D2R, latSpan * D2R);
-    if (!patch) { var pt = new T.CanvasTexture(pcv); pt.colorSpace = T.SRGBColorSpace; pt.anisotropy = tex.anisotropy; patch = new T.Mesh(geo, new T.MeshLambertMaterial({ map: pt, transparent: false })); scene.add(patch); }
-    else { patch.geometry.dispose(); patch.geometry = geo; patch.material.map.dispose(); var nt = new T.CanvasTexture(pcv); nt.colorSpace = T.SRGBColorSpace; nt.anisotropy = tex.anisotropy; patch.material.map = nt; patch.material.needsUpdate = true; }
-    patch.visible = true; patchInfo = { lon: lon, lat: lat, alt: alt, lonSpan: lonSpan, latSpan: latSpan };
+  /* ---------- day and night (real time) ---------- */
+  var NIGHT = { uSun: { value: new T.Vector3(1, 0, 0) }, uLights: { value: null } };
+  try { var lt = new T.TextureLoader().load('data/nightlights.jpg'); lt.colorSpace = T.SRGBColorSpace; NIGHT.uLights.value = lt; } catch (e) { }
+  // Darken the side of the Earth where it is night now; the map adds city lights there.
+  function nightify(m, lights) {
+    if (m.userData.night) return; m.userData.night = 1; lights = lights && NIGHT.uLights.value;
+    m.onBeforeCompile = function (sh) {
+      sh.uniforms.uSun = NIGHT.uSun; if (lights) sh.uniforms.uLights = NIGHT.uLights;
+      sh.vertexShader = 'varying vec3 vWP;\n' + sh.vertexShader.replace('#include <project_vertex>', '#include <project_vertex>\n  vWP = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+      sh.fragmentShader = 'varying vec3 vWP;\nuniform vec3 uSun;\n' + (lights ? 'uniform sampler2D uLights;\n' : '') + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n' +
+        '  { vec3 nn = normalize(vWP); float dd = dot(nn, uSun); float day = smoothstep(-0.08, 0.12, dd);\n' +
+        (lights ? '    vec3 nc = gl_FragColor.rgb * vec3(0.13, 0.16, 0.38);\n    vec2 luv = vec2(atan(-nn.z, nn.x) * 0.15915494 + 0.5, asin(clamp(nn.y, -1.0, 1.0)) * 0.31830989 + 0.5);\n    nc += texture2D(uLights, luv).rgb * 0.95;\n'
+                : '    vec3 nc = gl_FragColor.rgb * vec3(0.3, 0.33, 0.58);\n') +
+        '    gl_FragColor.rgb = mix(nc, gl_FragColor.rgb, day);\n    gl_FragColor.rgb += vec3(0.2, 0.08, 0.0) * (1.0 - smoothstep(0.0, 0.12, abs(dd))) * 0.45; }');
+    };
+    m.customProgramCacheKey = function () { return lights ? 'nightL' : 'night'; };
+    m.needsUpdate = true;
   }
-  function maybePatch() {
-    if (V.alt > 0.95) { if (patch) patch.visible = false; patchInfo = null; return; }
-    var p = patchInfo;
-    if (p && Math.abs(((V.lon - p.lon + 540) % 360) - 180) < p.lonSpan * 0.22 && Math.abs(V.lat - p.lat) < p.latSpan * 0.22 && V.alt / p.alt > 0.7 && V.alt / p.alt < 1.4) { patch.visible = true; return; }
-    buildPatch(V.lon, V.lat, V.alt);
+  G.nightify = nightify;
+  nightify(globe.material, true);
+  // Where the sun is overhead right now (good to a fraction of a degree)
+  function sunLL(date) {
+    var n = date / 86400000 - 10957.5, D = Math.PI / 180, L = (280.46 + 0.9856474 * n) % 360, g = (357.528 + 0.9856003 * n) % 360;
+    var lam = (L + 1.915 * Math.sin(g * D) + 0.02 * Math.sin(2 * g * D)) * D, eps = (23.439 - 4e-7 * n) * D;
+    var dec = Math.asin(Math.sin(eps) * Math.sin(lam)), ra = Math.atan2(Math.cos(eps) * Math.sin(lam), Math.cos(lam)) / D;
+    var gmst = (280.46061837 + 360.98564736629 * n) % 360, lon = ((ra - gmst) % 360 + 540) % 360 - 180;
+    return [lon, dec / D];
+  }
+  function updSun() { var s = sunLL(Date.now()); G.sun = s; ll2v(s[0], s[1], 1, NIGHT.uSun.value); }
+  updSun(); setInterval(updSun, 30000);
+  G.isNight = function (ll) { return ll2v(ll[0], ll[1], 1).dot(NIGHT.uSun.value) < 0; };
+
+  /* ---------- sharper map tiles when zoomed in ----------
+     The world is cut into fixed squares (30° and 10°). Each square is painted once, only with the
+     countries inside it, at most one per frame, then kept. No more big repaints while moving. */
+  var FB = feat.map(function (f) { return d3.geoBounds(f); });
+  var TILES = {}, tileQueue = [], tileFrame = 0, LEV = { 1: { S: 30, N: 512, R: 1.0005, max: 30, sc: 0.75 }, 2: { S: 10, N: 768, R: 1.0008, max: 18, sc: 1.1 } };
+  var tcvTmp = null;
+  function featuresIn(lon0, lat0, lon1, lat1) {
+    var out = [];
+    for (var i = 0; i < feat.length; i++) {
+      var b = FB[i]; if (b[1][1] < lat0 - 1 || b[0][1] > lat1 + 1) continue;
+      if (b[0][0] <= b[1][0] && (b[1][0] < lon0 - 1 || b[0][0] > lon1 + 1)) continue;
+      out.push(feat[i]);
+    }
+    return out;
+  }
+  function paintTile(lev, i, j) {
+    var L = LEV[lev], S = L.S, N = L.N, lon0 = -180 + i * S, lat1 = 90 - j * S, lat0 = lat1 - S, lonC = lon0 + S / 2, latC = lat0 + S / 2;
+    var c = document.createElement('canvas'); c.width = c.height = N; var ctx = c.getContext('2d');
+    var k = N / (S * D2R), pr = d3.geoEquirectangular().rotate([-lonC, 0]).scale(k).translate([N / 2, N / 2 + latC * D2R * k]).precision(0.15);
+    var list = featuresIn(lon0, lat0, lon0 + S, lat1);
+    paint(ctx, pr, L.sc, list, true);
+    if (G.sel && list.indexOf(FEAT[G.sel]) > -1) highlight(ctx, pr, L.sc, G.sel);
+    var t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; t.anisotropy = tex.anisotropy;
+    t.onUpdate = function () { c.width = c.height = 1; t.onUpdate = null; }; // free the canvas once it is on the GPU
+    var m = new T.MeshLambertMaterial({ map: t }); nightify(m, true);
+    var seg = lev === 1 ? 16 : 10, mesh = new T.Mesh(new T.SphereGeometry(L.R, seg, seg, (lon0 + 180) * D2R, S * D2R, (90 - lat1) * D2R, S * D2R), m);
+    mesh.renderOrder = -0.5 + lev * 0.1; scene.add(mesh); return mesh;
+  }
+  function dropTile(key) { var t = TILES[key]; if (!t) return; scene.remove(t.mesh); t.mesh.geometry.dispose(); t.mesh.material.map.dispose(); t.mesh.material.dispose(); delete TILES[key]; }
+  function clearTiles() { Object.keys(TILES).forEach(dropTile); tileQueue = []; }
+  var need = {};
+  function updateTiles() {
+    tileFrame++;
+    if (tileFrame % 4 === 0) {
+      need = {};
+      var levels = V.alt < 1.0 ? (V.alt < 0.4 ? [1, 2] : [1]) : [];
+      if (levels.length) for (var gx = 0; gx <= 8; gx++) for (var gy = 0; gy <= 5; gy++) {
+        var ll = G.llAt(gx / 8 * W, gy / 5 * H); if (!ll) continue;
+        levels.forEach(function (lev) {
+          var S = LEV[lev].S, i = Math.floor((ll[0] + 180) / S), j = Math.floor((90 - ll[1]) / S); i = (i + 360 / S) % (360 / S); j = Math.max(0, Math.min(180 / S - 1, j));
+          var key = lev + ':' + i + ':' + j, cx = Math.abs(gx - 4) + Math.abs(gy - 2.5);
+          if (!need[key] || need[key].d > cx) need[key] = { lev: lev, i: i, j: j, d: cx };
+        });
+      }
+      Object.keys(TILES).forEach(function (k) { TILES[k].mesh.visible = !!need[k]; if (need[k]) TILES[k].used = tileFrame; });
+      tileQueue = Object.keys(need).filter(function (k) { return !TILES[k]; }).sort(function (a, b) { return need[a].lev - need[b].lev || need[a].d - need[b].d; });
+      [1, 2].forEach(function (lev) { var ks = Object.keys(TILES).filter(function (k) { return TILES[k].lev === lev; }); if (ks.length > LEV[lev].max) ks.sort(function (a, b) { return TILES[a].used - TILES[b].used; }).slice(0, ks.length - LEV[lev].max).forEach(function (k) { if (!need[k]) dropTile(k); }); });
+    }
+    if (tileQueue.length && !(drag && moved > 5 && tileFrame % 2)) { var key = tileQueue.shift(), n = need[key]; if (n && !TILES[key]) TILES[key] = { mesh: paintTile(n.lev, n.i, n.j), lev: n.lev, used: tileFrame }; }
   }
 
   /* ---------- landmarks ---------- */
   var shadowTex = (function () { var c = document.createElement('canvas'); c.width = c.height = 128; var x = c.getContext('2d'), g = x.createRadialGradient(64, 64, 8, 64, 64, 64); g.addColorStop(0, 'rgba(20,10,50,.55)'); g.addColorStop(0.55, 'rgba(20,10,50,.28)'); g.addColorStop(1, 'rgba(20,10,50,0)'); x.fillStyle = g; x.fillRect(0, 0, 128, 128); return new T.CanvasTexture(c); })();
-  var shadowMat = new T.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false });
+  var shadowMat = new T.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false }); shadowMat.userData.night = 1;
   // Wrap a model: the root gets the globe placement; a soft shadow sits under the model on the ground.
   function grounded(obj, kind, id, shadow) {
     var root = new T.Group(); root.add(obj); root.userData = { kind: kind, id: id }; root.matrixAutoUpdate = false;
+    obj.traverse(function (o) { if (o.isMesh) (Array.isArray(o.material) ? o.material : [o.material]).forEach(function (m) { nightify(m, false); }); });
     if (shadow) {
       var bb = new T.Box3().setFromObject(obj), sx = (bb.max.x - bb.min.x) * 1.35 + 0.15, sz = (bb.max.z - bb.min.z) * 1.35 + 0.15;
       var sh = new T.Mesh(new T.PlaneGeometry(1, 1), shadowMat); sh.rotation.x = -Math.PI / 2; sh.scale.set(sx, sz, 1); sh.position.set((bb.min.x + bb.max.x) / 2 + 0.04, 0.003, (bb.min.z + bb.max.z) / 2 - 0.03); sh.renderOrder = 1; root.add(sh);
@@ -248,7 +315,7 @@
       if (hit) { m.visible = false; return; }
       placed.push(r); lmRects.push({ r: r, id: o.d.id });
       m.visible = true;
-      fw2.copy(camUp).negate().addScaledVector(up2, camUp.dot(up2)); if (fw2.lengthSq() < 1e-6) fw2.copy(o.t).negate(); fw2.normalize(); x2.copy(up2).cross(fw2); mat.makeBasis(x2, up2, fw2); m.matrix.copy(mat).scale(tmp2.set(s, s, s)).setPosition(gp.copy(o.n).multiplyScalar(1.0007));
+      fw2.copy(camUp).negate().addScaledVector(up2, camUp.dot(up2)); if (fw2.lengthSq() < 1e-6) fw2.copy(o.t).negate(); fw2.normalize(); x2.copy(up2).cross(fw2); mat.makeBasis(x2, up2, fw2); m.matrix.copy(mat).scale(tmp2.set(s, s, s)).setPosition(gp.copy(o.n).multiplyScalar(1.001));
       m.matrixWorldNeedsUpdate = true;
     });
   }
@@ -262,7 +329,7 @@
         if (r.d >= r.len || r.d <= 0) { r.d = Math.max(0, Math.min(r.len, r.d)); r.wait = 2.5; if (riding === o) G.onArrive(r, r.dir > 0 ? r.b : r.a); }
       }
       var st = Math.max(0.002, r.len * 0.004), p = along(r, r.d), p1 = along(r, r.d - r.dir * st), p2 = along(r, r.d + r.dir * st);
-      var alt = r.type === 'plane' ? planeH(r, r.d) : 0.0009, n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + alt);
+      var alt = r.type === 'plane' ? planeH(r, r.d) : 0.0012, n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + alt);
       var fwd = ll2v(p2[0], p2[1], 1).sub(ll2v(p1[0], p1[1], 1)); fwd.addScaledVector(n, -fwd.dot(n)).normalize();
       if (!isFinite(fwd.x) || fwd.lengthSq() < 0.5) fwd.set(0, 1, 0).cross(n).normalize();
       o.pos = pos; o.n = n; o.ll = p;
@@ -284,6 +351,14 @@
   var ANI = ((window.TOY && TOY.animals) || []).map(function (a) { return { d: a, n: ll2v(a.ll[0], a.ll[1], 1) }; });
   var ANB = {}; ANI.forEach(function (o) { ANB[o.d.id] = o; });
   G.pins = []; // quiz markers: {ll, col, label}
+  var A2 = {}; App.all.forEach(function (c) { if (c.a2) A2[c.a2] = c.id; });
+  var CITY = (window.CITIES || []).map(function (c) { return { name: c[0], ja: c[6] || '', pop: c[3], cap: c[5], cc: c[4], n: ll2v(c[1], c[2], 1) }; });
+  function popText(k) {
+    if (G.lang === 'en') return 'pop. ' + (k >= 1000 ? (k >= 10000 ? Math.round(k / 1000) : Math.round(k / 100) / 10) + 'm' : k + 'k');
+    return '人口 ' + App.fmtPeople(k * 1000).replace('約', '');
+  }
+  var widthCache = {};
+  function tw(ctx, key, text) { var w = widthCache[key]; if (w == null) { w = widthCache[key] = ctx.measureText(text).width; } return w; }
   function drawStar(ctx, x, y, r) { ctx.beginPath(); for (var i = 0; i < 10; i++) { var a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.45 : r; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } ctx.closePath(); ctx.fillStyle = '#ffc531'; ctx.fill(); ctx.lineWidth = 1.8; ctx.strokeStyle = '#3b2a5c'; ctx.stroke(); }
   function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
   function drawLabels() {
@@ -327,8 +402,8 @@
       if (!(bw >= 14 || (V.alt < 0.5 && bw >= 3))) return;
       var showName = bw >= 28 || V.alt < 0.4, nm = G.lang === 'en' ? c.en.toUpperCase() : c.ja, fs = Math.round(Math.max(12, Math.min(22, 11 + bw / 28)));
       ctx.font = '900 ' + fs + 'px ' + FONT; ctx.letterSpacing = (G.lang === 'en' ? 2 : 1) + 'px';
-      var fw = showName ? Math.round(fs * 1.25) : (bw >= 40 ? 26 : 22), fh = Math.round(fw * 0.75), tw = showName ? ctx.measureText(nm).width : 0;
-      var w = fw + (showName ? tw + 6 : 0), h = Math.max(fh, showName ? fs + 4 : 0), r = { x: p[0] - w / 2, y: p[1] - h / 2, w: w, h: h };
+      var fw = showName ? Math.round(fs * 1.25) : (bw >= 40 ? 26 : 22), fh = Math.round(fw * 0.75), tw0 = showName ? tw(ctx, 'c' + fs + G.lang + id, nm) : 0;
+      var w = fw + (showName ? tw0 + 6 : 0), h = Math.max(fh, showName ? fs + 4 : 0), r = { x: p[0] - w / 2, y: p[1] - h / 2, w: w, h: h };
       if (!free(r) && id !== G.sel) { ctx.letterSpacing = '0px'; return; } placed.push(r);
       var fi = flag(c), fx = r.x, fy = p[1] - fh / 2;
       ctx.fillStyle = 'rgba(15,25,90,.35)'; ctx.fillRect(fx + 2, fy + 2, fw, fh);
@@ -340,6 +415,25 @@
       hits.push({ r: r, kind: 'country', id: id });
     }
     order.forEach(place); animals(); ctx.font = 'bold 13px ' + FONT; ctx.textBaseline = 'top'; rest.forEach(place);
+    // cities: more appear as you zoom in; capitals get a red star
+    var minPop = V.alt > 1.7 ? 1e9 : V.alt > 1.15 ? 6000 : V.alt > 0.75 ? 2500 : V.alt > 0.45 ? 1000 : 0, capOK = V.alt < 1.15;
+    if (minPop < 1e9 || capOK) {
+      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+      for (var ci = 0; ci < CITY.length; ci++) {
+        var cy = CITY[ci]; if (cy.pop < minPop && !(capOK && cy.cap)) continue;
+        if (!scr(cy.n, p)) continue;
+        var nm2 = G.lang === 'ja' && cy.ja ? cy.ja : cy.name, pt = cy['pt' + G.lang] || (cy['pt' + G.lang] = popText(cy.pop));
+        ctx.font = 'bold 13px ' + FONT; var w1 = tw(ctx, 'n' + G.lang + ci, nm2); ctx.font = 'bold 10px ' + FONT; var w2 = tw(ctx, 'p' + G.lang + ci, pt);
+        var r = { x: p[0] - 6, y: p[1] - 14, w: Math.max(w1, w2) + 16, h: 28 };
+        if (!free(r)) continue; placed.push(r);
+        if (cy.cap) { ctx.fillStyle = '#ff5a4d'; ctx.beginPath(); ctx.arc(p[0], p[1], 6, 0, 7); ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = '#fff'; ctx.stroke(); drawStar(ctx, p[0], p[1], 3.6); }
+        else { ctx.fillStyle = '#ffd54a'; ctx.beginPath(); ctx.arc(p[0], p[1], 4, 0, 7); ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = '#2a1f4a'; ctx.stroke(); }
+        ctx.font = 'bold 13px ' + FONT; ctx.lineWidth = 3.5; ctx.strokeStyle = '#2a1f4a'; ctx.strokeText(nm2, p[0] + 9, p[1] + 1); ctx.fillStyle = '#fff8e6'; ctx.fillText(nm2, p[0] + 9, p[1] + 1);
+        ctx.font = 'bold 10px ' + FONT; ctx.lineWidth = 3; ctx.strokeText(pt, p[0] + 9, p[1] + 12); ctx.fillStyle = '#c9d8ff'; ctx.fillText(pt, p[0] + 9, p[1] + 12);
+        if (A2[cy.cc]) hits.push({ r: r, kind: 'country', id: A2[cy.cc] });
+      }
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    }
     // ride marker
     if (riding && riding.pos && facing(riding.n, riding.pos)) {
       project(riding.pos, p); ctx.font = 'bold 14px ' + FONT; var t = G.lang === 'en' ? '▼ YOU' : '▼ のってるよ';
@@ -357,7 +451,9 @@
   };
   G.pick = function (px, py, hover) {
     for (var i = hits.length - 1; i >= 0; i--) { var h = hits[i], r = h.r; if (h.kind === 'animal' && px >= r.x && px <= r.x + r.w && py >= r.y && py <= r.y + r.h) return h; }
-    var objs = []; LMS.forEach(function (o) { if (o.mesh.visible) objs.push(o.mesh); }); VEH.forEach(function (o) { if (o.mesh.visible) objs.push(o.mesh); });
+    var objs = [], q = [0, 0, 0];
+    lmRects.forEach(function (l) { var r = l.r; if (px >= r.x - 10 && px <= r.x + r.w + 10 && py >= r.y - 10 && py <= r.y + r.h + 10) objs.push(LMB[l.id].mesh); });
+    VEH.forEach(function (o) { if (o.mesh.visible && o.pos) { project(o.pos, q); if (Math.abs(q[0] - px) < 60 && Math.abs(q[1] - py) < 60) objs.push(o.mesh); } });
     var is = rayAt(px, py).intersectObjects(objs, true).filter(function (h) { return h.object.material !== shadowMat; });
     if (is.length) { var gl = G.llAt(px, py), gd = gl ? tmp.copy(ll2v(gl[0], gl[1], 1)).distanceTo(camPos) : 99; if (is[0].distance < gd + 0.001) { var ob = is[0].object; while (ob && !ob.userData.kind) ob = ob.parent; if (ob) return { kind: ob.userData.kind, id: ob.userData.id }; } }
     for (var j = hits.length - 1; j >= 0; j--) { var k = hits[j], q = k.r; if (k.kind !== 'animal' && px >= q.x && px <= q.x + q.w && py >= q.y && py <= q.y + q.h) return k; }
@@ -374,7 +470,7 @@
       var b = d3.geoPath(tproj).bounds(FEAT[id]), x = Math.max(0, Math.floor(b[0][0]) - 8), y = Math.max(0, Math.floor(b[0][1]) - 8), w = Math.min(TW - x, Math.ceil(b[1][0] - b[0][0]) + 16), h = Math.min(TH - y, Math.ceil(b[1][1] - b[0][1]) + 16);
       saved = { img: tctx.getImageData(x, y, w, h), x: x, y: y }; highlight(tctx, tproj, 1, id);
     }
-    tex.needsUpdate = true; patchInfo = null;
+    tex.needsUpdate = true; clearTiles();
   };
 
   /* ---------- input ---------- */
@@ -421,19 +517,19 @@
     if (Math.round(W * q) !== ov.width) { Q = q; ov.width = Math.round(W * Q); ov.height = Math.round(H * Q); }
   }
   addEventListener('resize', fit); fit();
-  var t0 = performance.now(), restT = 0, PERF = location.search.indexOf('perf') > -1; G.__ms = [];
+  var t0 = performance.now(), restT = 0, lastHover = 0, PERF = location.search.indexOf('perf') > -1; G.__ms = [];
   function loop(now) {
     var dt = Math.min(0.1, (now - t0) / 1000); t0 = now;
     if (anim && anim(now)) anim = null;
     if (vel && !drag && !anim) { var k = V.alt / PPR / D2R * 16; V.lon -= vel.x * k / Math.max(0.25, Math.cos(V.lat * D2R)); V.lat += vel.y * k; vel.x *= 0.92; vel.y *= 0.92; clampV(); bump(); if (Math.abs(vel.x) + Math.abs(vel.y) < 0.01) vel = null; }
     off += (offTo - off) * Math.min(1, dt * 7);
     setCam();
-    if (!moving && !anim) { restT += dt; if (restT > 0.15) maybePatch(); } else restT = 0;
+    updateTiles();
     var a = performance.now();
     moveVehicles(dt); placeLandmarks();
     renderer.render(scene, camera);
     drawLabels();
-    if (hoverAt) { var h = G.pick(hoverAt[0], hoverAt[1], true); G.onHover(h, hoverAt); cv.style.cursor = h ? 'pointer' : 'grab'; hoverAt = null; }
+    if (hoverAt && now - lastHover > 90) { lastHover = now; var h = G.pick(hoverAt[0], hoverAt[1], true); G.onHover(h, hoverAt); cv.style.cursor = h ? 'pointer' : 'grab'; hoverAt = null; }
     if (PERF) G.__ms.push(+(performance.now() - a).toFixed(1));
     requestAnimationFrame(loop);
   }
