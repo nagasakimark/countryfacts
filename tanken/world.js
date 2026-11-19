@@ -206,9 +206,9 @@ window.makeWorld = function (env) {
   /* ---------- roads, rails, sea lanes ---------- */
   (function () {
     function stripTex(kind) {
-      var c = document.createElement('canvas'); c.width = 16; c.height = 64; var x = c.getContext('2d');
-      if (kind === 'road') { x.fillStyle = '#4c4f58'; x.fillRect(0, 0, 16, 64); x.fillStyle = '#e8e8e8'; x.fillRect(0, 0, 1.5, 64); x.fillRect(14.5, 0, 1.5, 64); x.fillStyle = '#ffd54a'; x.fillRect(7, 0, 2, 32); }
-      else { x.fillStyle = '#6b5a48'; x.fillRect(0, 0, 16, 64); for (var y = 0; y < 64; y += 8) { x.fillStyle = '#4a3b2e'; x.fillRect(1, y, 14, 3); } x.fillStyle = '#c9ccd2'; x.fillRect(4, 0, 1.5, 64); x.fillRect(10.5, 0, 1.5, 64); }
+      var c = document.createElement('canvas'); c.width = 64; c.height = 64; var x = c.getContext('2d');
+      if (kind === 'road') { x.fillStyle = '#45484f'; x.fillRect(0, 0, 64, 64); x.fillStyle = '#eceae2'; x.fillRect(4, 0, 2.5, 64); x.fillRect(57.5, 0, 2.5, 64); x.fillStyle = '#f2c230'; x.fillRect(30.5, 0, 3, 34); }
+      else { x.fillStyle = '#8a7e6e'; x.fillRect(0, 0, 64, 64); x.fillStyle = '#6e6152'; x.fillRect(8, 0, 48, 64); for (var y = 0; y < 64; y += 10) { x.fillStyle = '#5a4434'; x.fillRect(12, y, 40, 4); } x.fillStyle = '#d6d9de'; x.fillRect(20, 0, 3, 64); x.fillRect(41, 0, 3, 64); }
       var t = new T.CanvasTexture(c); t.wrapT = T.RepeatWrapping; t.colorSpace = T.SRGBColorSpace; t.anisotropy = 4; return t;
     }
     var roadM = new T.MeshLambertMaterial({ map: stripTex('road') }), railM = new T.MeshLambertMaterial({ map: stripTex('rail') }), lanes = [];
@@ -220,15 +220,15 @@ window.makeWorld = function (env) {
     });
     W.rebuildRibbons = function () { env.routes.forEach(function (r) { if (r._rib) { scene.remove(r._rib); r._rib.geometry.dispose(); r._rib = null; ribbon(r); } }); };
     function ribbon(r) {
-      var pts = [], P = [], Uv = [], ix = [], dist = 0, wd = r.type === 'car' ? 0.0011 : 0.0009;
+      var pts = [], P = [], Uv = [], ix = [], dist = 0, wd = r.type === 'car' ? 0.00085 : 0.00042;
       for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.12)); for (var k = 0; k < n; k++) pts.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]); }
       pts.push(r.pts[r.pts.length - 1]);
       var prev = null;
       pts.forEach(function (p, i) {
         var q = pts[Math.min(pts.length - 1, i + 1)], o = pts[Math.max(0, i - 1)], n = ll2v(p[0], p[1], 1), t = ll2v(q[0], q[1], 1).sub(ll2v(o[0], o[1], 1)).normalize(), s = new T.Vector3().crossVectors(n, t).normalize();
-        var c = n.clone().multiplyScalar(1 + W.groundH(p[0], p[1]) + 0.00035);
+        var c = n.clone().multiplyScalar(1 + W.groundH(p[0], p[1]) + 0.00012);
         if (prev) dist += c.distanceTo(prev); prev = c;
-        P.push(c.x + s.x * wd, c.y + s.y * wd, c.z + s.z * wd, c.x - s.x * wd, c.y - s.y * wd, c.z - s.z * wd); Uv.push(0, dist / 0.006, 1, dist / 0.006);
+        P.push(c.x + s.x * wd, c.y + s.y * wd, c.z + s.z * wd, c.x - s.x * wd, c.y - s.y * wd, c.z - s.z * wd); Uv.push(0, dist / 0.0032, 1, dist / 0.0032);
         if (i) { var b0 = (i - 1) * 2; ix.push(b0, b0 + 1, b0 + 2, b0 + 1, b0 + 3, b0 + 2); }
       });
       var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(P, 3)); g.setAttribute('uv', new T.Float32BufferAttribute(Uv, 2)); g.setIndex(ix); g.computeVertexNormals();
@@ -298,19 +298,31 @@ window.makeWorld = function (env) {
   }
   W.rideH = rideH;
   var TS = 4, TN = 32, RW = 7.5, tiles = {}, tileMat = new T.MeshLambertMaterial({ color: 0xffffff });
-  tileMat.color.setScalar(1.3); env.nightify(tileMat, true);
+  tileMat.vertexColors = true; env.nightify(tileMat, true);
   tileMat.userData.preKey = 'tile'; tileMat.userData.pre = function (sh) { // sea floor: sandy in the shallows, blue-green in the deep
     sh.vertexShader = 'attribute vec2 aSea; varying vec2 vSea;\n' + sh.vertexShader.replace('#include <color_vertex>', '#include <color_vertex>\n  vSea = aSea;');
-    sh.fragmentShader = 'varying vec2 vSea;\n' + sh.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\n  diffuseColor.rgb = mix(diffuseColor.rgb, mix(vec3(0.72, 0.68, 0.48), vec3(0.08, 0.32, 0.42), vSea.y), vSea.x);');
+    sh.fragmentShader = 'varying vec2 vSea;\n' + sh.fragmentShader.replace('#include <map_fragment>', '#ifdef USE_MAP\n  { vec4 sat = texture2D(map, vMapUv); diffuseColor.rgb *= mix(1.0, 0.75 + 0.5 * dot(sat.rgb, vec3(0.333)) / 0.35, 0.35); }\n#endif').replace('#include <color_fragment>', '#include <color_fragment>\n  diffuseColor.rgb = mix(diffuseColor.rgb, mix(vec3(0.72, 0.68, 0.48), vec3(0.08, 0.32, 0.42), vSea.y), vSea.x);');
   };
+  // the ground's own colours while riding: a bright toy palette per biome (blended across biome edges), bare rock and snow up high, a little
+  // mottling so big plains are not one flat colour; the satellite picture only shades it slightly
+  var RCOL = [0, 1, 2, 3, 4, 5, 6, 7].map(function (k) { return new T.Color(['#eef3f6', '#b4c08e', '#e9cb8a', '#d4c470', '#5aa04a', '#7cb455', '#6c9c58', '#9ccc62'][k]); }), gcol = new T.Color(), gtmp = new T.Color(), ROCKC = new T.Color('#a39a8c'), SNOWC = new T.Color('#f2f6f8'), SANDC = new T.Color('#eadcb0');
+  function groundCol(lon, lat, hh, out) {
+    out.setRGB(0, 0, 0); var o = 0.22;
+    [[0, 0], [o, 0], [-o, 0], [0, o], [0, -o]].forEach(function (d) { out.add(RCOL[Math.max(0, bFast(lon + d[0] / Math.max(0.2, Math.cos(lat * D2R)), lat + d[1]))]); }); out.multiplyScalar(0.2);
+    var m = ELEV ? elevM(lon, lat) : 0, al = Math.abs(lat), snowLine = al > 60 ? 600 : al > 45 ? 2600 : 4300;
+    if (m > snowLine - 1200) out.lerp(ROCKC, Math.min(1, (m - snowLine + 1200) / 900) * 0.8);
+    if (m > snowLine) out.lerp(SNOWC, Math.min(1, (m - snowLine) / 500));
+    var f = landF(lon, lat); if (f < 0.9 && hh > -0.0003) out.lerp(SANDC, (0.9 - f) / 0.9); // (a pale beach along the coast)
+    var nz = 0.92 + 0.16 * noise(lon * 9.1, lat * 9.1); out.multiplyScalar(nz); return out;
+  }
   function buildTile(i, j) {
-    var lon0 = i * TS, lat0 = j * TS, n = TN + 1, P = new Float32Array(n * n * 3), UV = new Float32Array(n * n * 2), SE = new Float32Array(n * n * 2), ix = [];
+    var lon0 = i * TS, lat0 = j * TS, n = TN + 1, CO = new Float32Array(n * n * 3), P = new Float32Array(n * n * 3), UV = new Float32Array(n * n * 2), SE = new Float32Array(n * n * 2), ix = [];
     for (var b = 0; b < n; b++) for (var a = 0; a < n; a++) {
       var lon = lon0 + a * TS / TN, lat = Math.max(-89.9, Math.min(89.9, lat0 + b * TS / TN)), k = b * n + a;
-      var hh = rideH(lon, lat); SE[k * 2] = Math.max(0, Math.min(1, (0.0002 - hh) / 0.0006)); SE[k * 2 + 1] = Math.max(0, Math.min(1, -hh / 0.004)); ll2v(lon, lat, 1 + hh, v); P[k * 3] = v.x; P[k * 3 + 1] = v.y; P[k * 3 + 2] = v.z; UV[k * 2] = (lon + 180) / 360; UV[k * 2 + 1] = (lat + 90) / 180;
+      var hh = rideH(lon, lat); groundCol(lon, lat, hh, gcol); CO[k * 3] = gcol.r; CO[k * 3 + 1] = gcol.g; CO[k * 3 + 2] = gcol.b; SE[k * 2] = Math.max(0, Math.min(1, (0.0002 - hh) / 0.0006)); SE[k * 2 + 1] = Math.max(0, Math.min(1, -hh / 0.004)); ll2v(lon, lat, 1 + hh, v); P[k * 3] = v.x; P[k * 3 + 1] = v.y; P[k * 3 + 2] = v.z; UV[k * 2] = (lon + 180) / 360; UV[k * 2 + 1] = (lat + 90) / 180;
     }
     for (var bb = 0; bb < TN; bb++) for (var aa = 0; aa < TN; aa++) { var k0 = bb * n + aa; ix.push(k0, k0 + 1, k0 + n, k0 + 1, k0 + n + 1, k0 + n); }
-    var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(P, 3)); g.setAttribute('uv', new T.BufferAttribute(UV, 2)); g.setAttribute('aSea', new T.BufferAttribute(SE, 2)); g.setIndex(ix); g.computeVertexNormals(); g.computeBoundingSphere();
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(P, 3)); g.setAttribute('uv', new T.BufferAttribute(UV, 2)); g.setAttribute('aSea', new T.BufferAttribute(SE, 2)); g.setAttribute('color', new T.BufferAttribute(CO, 3)); g.setIndex(ix); g.computeVertexNormals(); g.computeBoundingSphere();
     var m = new T.Mesh(g, tileMat); scene.add(m); return m;
   }
   function tileDist(i, j, lon, lat) { // degrees from the point to the nearest edge of the tile
@@ -368,7 +380,37 @@ window.makeWorld = function (env) {
   var rock = new T.IcosahedronGeometry(0.4, 0).scale(1, 0.55, 0.8).translate(0, 0.12, 0); rock = merged([[rock, '#ffffff']]);
   var puff = new T.IcosahedronGeometry(1, 1);
   var cloudMat = new T.MeshLambertMaterial({ color: 0xf6f1f8, flatShading: true, emissive: 0x3a3450 }); env.nightify(cloudMat, false);
+  // Ride-along vegetation: many shapes of each kind (tier counts, crown sizes, lean and lumpiness vary), so a forest never looks stamped out
+  function jit(g, amt, seed) { var p = g.attributes.position; for (var i = 0; i < p.count; i++) { var k = 1 + amt * (hash(seed + Math.round((p.getX(i) * 7 + p.getY(i) * 13 + p.getZ(i) * 17) * 10), seed * 0.37) - 0.5); p.setXYZ(i, p.getX(i) * k, p.getY(i) * k, p.getZ(i) * k); } return g; }
+  function rr(k, seed) { return hash(seed * 13.1 + k * 7.7, k * 3.3 + seed); }
+  var TRUNK = '#6b4a32';
+  function trunk(h, r) { return new T.CylinderGeometry((r || 0.06) * 0.75, r || 0.06, h, 5).translate(0, h / 2, 0); }
+  function conV(v, snow) { var n = 2 + Math.floor(rr(1, v) * 3), th = 0.18 + 0.12 * rr(2, v), w0 = 0.32 + 0.14 * rr(3, v), lean = (rr(4, v) - 0.5) * 0.08, parts = [[trunk(th + 0.1), TRUNK]];
+    for (var t = 0; t < n; t++) { var f = t / n, w = w0 * (1 - f * 0.62), h = (0.95 - th) / n * 1.45; parts.push([jit(new T.ConeGeometry(w, h, 6 + (v % 2)), 0.14, v * 7 + t).translate(lean * t, th + f * (0.92 - th) + h * 0.35, 0), snow ? (t % 2 ? '#e9eef2' : '#cfdcd8') : '#ffffff']); }
+    return merged(parts); }
+  function broadV(v) { var th = 0.36 + 0.18 * rr(1, v), n = 2 + Math.floor(rr(2, v) * 3), parts = [[trunk(th + 0.08, 0.055), TRUNK], [jit(new T.IcosahedronGeometry(0.34 + 0.12 * rr(3, v), 0), 0.18, v * 11).scale(1, 0.62 + 0.25 * rr(4, v), 1).translate(0, th + 0.12, 0), '#ffffff']];
+    for (var t = 1; t < n; t++) parts.push([jit(new T.IcosahedronGeometry(0.17 + 0.11 * rr(6 + t, v), 0), 0.2, v * 13 + t).translate((rr(9 + t, v) - 0.5) * 0.5, th + 0.12 + 0.2 * rr(12 + t, v), (rr(15 + t, v) - 0.5) * 0.4), '#e6ecdc']);
+    return merged(parts); }
+  function roundV(v) { var th = 0.3 + 0.2 * rr(1, v), r0 = 0.3 + 0.12 * rr(3, v), parts = [[trunk(th + 0.1), TRUNK], [jit(new T.IcosahedronGeometry(r0, v % 2), 0.22, v * 17).scale(0.95 + 0.25 * rr(5, v), 0.85 + 0.3 * rr(6, v), 0.95).translate(0, th + r0 * 0.6, 0), '#ffffff']];
+    if (rr(7, v) > 0.4) parts.push([jit(new T.IcosahedronGeometry(r0 * 0.55, 0), 0.2, v * 19).translate(r0 * 0.6, th + r0 * 0.4, 0.1), '#dfe8d0']);
+    return merged(parts); }
+  function palmV(v) { var h = 0.85 + 0.25 * rr(1, v), bend = 0.12 + 0.1 * rr(2, v), parts = [], seg = 5;
+    for (var i = 0; i < seg; i++) { var y0 = h * i / seg, x0 = bend * Math.pow(i / seg, 2), x1 = bend * Math.pow((i + 1) / seg, 2); parts.push([new T.CylinderGeometry(0.035, 0.045, h / seg + 0.01, 5).translate(0, h / seg / 2, 0).rotateZ(-Math.atan2(x1 - x0, h / seg)).translate(x0, y0, 0), '#8a6a44']); }
+    for (var k = 0; k < 7; k++) { var a = k / 7 * 6.28 + rr(3, v), lf = new T.BoxGeometry(0.42, 0.012, 0.11).translate(0.21, 0, 0).rotateZ(-0.45 - 0.2 * rr(4 + k, v)).rotateY(a); parts.push([lf.translate(bend, h, 0), '#ffffff']); }
+    return merged(parts); }
+  function acaciaV(v) { var th = 0.5 + 0.15 * rr(1, v); return merged([[trunk(th, 0.045).rotateZ((rr(2, v) - 0.5) * 0.3), TRUNK], [jit(new T.CylinderGeometry(0.55 + 0.1 * rr(3, v), 0.4, 0.14, 8), 0.25, v * 23).translate(0, th + 0.05, 0), '#ffffff'], [jit(new T.CylinderGeometry(0.3, 0.22, 0.1, 7), 0.25, v * 29).translate(0.25, th - 0.05, 0.1), '#e2e8c8']]); }
+  function cactusV(v) { var G = '#ffffff', parts = [[new T.CylinderGeometry(0.09, 0.1, 0.85, 7).translate(0, 0.425, 0), G], [new T.SphereGeometry(0.09, 7, 3, 0, 6.3, 0, 1.6).translate(0, 0.85, 0), G]];
+    var arms = v % 4; for (var a = 0; a < arms; a++) { var sd = a % 2 ? -1 : 1, y = 0.35 + 0.12 * a, hh = 0.2 + 0.1 * rr(a, v); parts.push([new T.CylinderGeometry(0.06, 0.06, 0.18, 6).rotateZ(Math.PI / 2).translate(sd * 0.12, y, 0), G], [new T.CylinderGeometry(0.06, 0.06, hh, 6).translate(sd * 0.21, y + hh / 2, 0), G], [new T.SphereGeometry(0.06, 6, 3, 0, 6.3, 0, 1.6).translate(sd * 0.21, y + hh, 0), G]); }
+    if (v === 3) parts = [[new T.SphereGeometry(0.28, 8, 5).scale(1, 1.15, 1).translate(0, 0.28, 0), G], [new T.SphereGeometry(0.06, 5, 3).translate(0, 0.62, 0), '#ffd24a']];
+    return merged(parts); }
+  function rockV(v) { var shape = v % 4, g = shape === 1 ? new T.DodecahedronGeometry(1, 0) : new T.IcosahedronGeometry(1, shape === 2 ? 1 : 0); jit(g, 0.45, v * 31);
+    var sx = [1, 1.4, 0.9, 0.6][shape], sy = [0.6, 0.35, 0.7, 1.3][shape], p = g.attributes.position; for (var i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i) * sx, Math.max(-0.1, p.getY(i)) * sy + 0.08, p.getZ(i) * (0.8 + 0.3 * rr(1, v)));
+    return merged([[g, '#ffffff']]); }
+  function shrubV(v) { var parts = []; for (var i = 0; i < 3; i++) parts.push([jit(new T.IcosahedronGeometry(0.18 + 0.08 * rr(i, v), 0), 0.3, v * 5 + i).scale(1, 0.7, 1).translate((rr(i + 3, v) - 0.5) * 0.35, 0.12, (rr(i + 6, v) - 0.5) * 0.35), '#ffffff']); return merged(parts); }
+  var VEG = { con: [0, 1, 2, 3].map(function (v) { return conV(v); }), snow: [4, 5].map(function (v) { return conV(v, true); }), br: [0, 1, 2].map(broadV), rd: [0, 1].map(roundV), palm: [0, 1].map(palmV), ac: [0, 1].map(acaciaV), ca: [0, 1, 2, 3].map(cactusV), rk: [0, 1, 2, 3].map(rockV), sh: [0, 1].map(shrubV) };
+  var V2 = {}; Object.keys(VEG).forEach(function (k) { VEG[k].forEach(function (g, i) { V2[k + i] = { geo: g, max: k === 'con' || k === 'br' || k === 'rd' ? 2600 : k === 'rk' ? 1400 : 900 }; }); });
   var S = { con: kind(conifer, 5000), br: kind(broad, 5000), ac: kind(acacia, 1200), ca: kind(cactus, 1500), rk: kind(rock, 2000), ho: kind(house, 3500), tw: kind(tower, 300), cl: kind(puff, 1400, cloudMat) };
+  Object.keys(V2).forEach(function (k) { S['v_' + k] = kind(V2[k].geo, V2[k].max); });
   var mtx = new T.Matrix4(), q = new T.Quaternion(), q2 = new T.Quaternion(), sc = new T.Vector3(), up = new T.Vector3(0, 1, 0), pv = new T.Vector3(), col2 = new T.Color();
   function put(m, lon, lat, size, yaw, colHex, lift, sx) {
     if (m.count >= m.instanceMatrix.count) return;
@@ -389,6 +431,7 @@ window.makeWorld = function (env) {
     function blocked(x, y) { if (!avoid) return false; for (var a = 0; a < avoid.length; a++) { var q0 = avoid[a]; if (Math.abs(q0[0] - x) * kc < clear && Math.abs(q0[1] - y) < clear) return true; } return false; }
     var size = opt.size || Math.max(0.0011, Math.min(0.0075, alt * 0.0105)), cell = R / 40;
     var i0 = Math.floor((lon - R / kc) / cell), i1 = Math.ceil((lon + R / kc) / cell), j0 = Math.floor((lat - R) / cell), j1 = Math.ceil((lat + R) / cell);
+    if (opt.ride) { rideVeg(lon, lat, R, opt, blocked); i1 = i0 - 1; } // (riding: the dense forests below instead of the light globe scatter)
     for (var i = i0; i <= i1; i++) for (var j = j0; j <= j1; j++) {
       for (var s = 0; s < 2; s++) {
         var h1 = hash(i * 3 + s, j), h2 = hash(j * 7 + s, i + 13), x = (i + h1) * cell, y = (j + h2) * cell;
@@ -411,7 +454,7 @@ window.makeWorld = function (env) {
     for (var t = 0; t < TOWNS.length; t++) {
       var tn = TOWNS[t], ddx = (((tn[0] - lon + 540) % 360) - 180) * kc, ddy = tn[1] - lat; if (ddx * ddx + ddy * ddy > R2) continue;
       var nh = Math.min(30, 3 + tn[2] * 3), rad = size * (0.5 + tn[2] * 0.22) / 0.0175;
-      for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy) || blocked(hx, hy)) continue; put(S.ho, hx, hy, size * 0.5, a, HC[hI % 4]); }
+      for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy) || blocked(hx, hy)) continue; put(S.ho, hx, hy, size * (opt.ride ? 0.38 : 0.5), a, HC[hI % 4]); }
       if (tn[2] >= 9) for (var k3 = 0; k3 < 7; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; if (blocked(tx, ty)) continue; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.75, size * (1.0 + hash(k3, t) * 1.4), size * 0.75))); }
     }
     // clouds: puffy groups, mostly away from the middle of the view so they sit at the horizon
@@ -431,6 +474,36 @@ window.makeWorld = function (env) {
     for (var k4 in S) { S[k4].instanceMatrix.needsUpdate = true; if (S[k4].instanceColor) S[k4].instanceColor.needsUpdate = true; }
     return true;
   };
+  // Riding: one tree (or rock, or cactus) per 0.1° cell where the land allows, fixed per cell (moving on never reshuffles them), thinned by a
+  // patchy noise so forests come in clumps and clearings; nothing on the roads or on a landmark's flat ground; shrinking away at the edge.
+  var GC = new T.Color(), GREENS = { con: ['#2c5f3c', '#24563a', '#336a45', '#2a5e3a'], br: ['#3b8c32', '#2f7a2c', '#46982f', '#357f3a'], rd: ['#5a9440', '#4f8a3a', '#6d9e3e', '#62994a'], palm: ['#3f9a4a', '#4aa84f'], ac: ['#7f9a3a', '#8aa548'], sh: ['#7a8a48', '#8a9a52', '#6f7f44'] };
+  function clump(lon, lat, salt) { var a = noise(lon * 1.3 + salt, lat * 1.3 - salt), b = noise(lon * 4.1 - salt, lat * 4.1 + salt); var t = Math.max(0, Math.min(1, (a - 0.35) / 0.45)); return t * t * (3 - 2 * t) * (0.4 + 0.6 * b); }
+  function rideVeg(lon, lat, R, opt, blocked) {
+    var cell = opt.cell || 0.1, kc = Math.max(0.05, Math.cos(lat * D2R)), size = opt.size || 0.0022, pads = (W.pads || []).filter(function (p) { return Math.abs(p[1] - lat) < R + 1 && Math.abs(((p[0] - lon + 540) % 360) - 180) * kc < R + 1; });
+    var i0 = Math.floor((lon - R / kc) / cell), i1 = Math.ceil((lon + R / kc) / cell), j0 = Math.floor((lat - R) / cell), j1 = Math.ceil((lat + R) / cell);
+    function vput(key, x, y, sz, yaw, hex, sxz, tilt) { var m = S['v_' + key]; if (!m) return; put(m, x, y, sz, yaw, hex, -sz * 0.04, sxz); if (tilt) { /* (a slight lean) */ } }
+    for (var i = i0; i <= i1; i++) for (var j = j0; j <= j1; j++) {
+      var h1 = hash(i * 1.37, j * 0.91), h2 = hash(j * 2.11 + 3, i * 0.53), x = (i + 0.15 + 0.7 * h1) * cell, y = (j + 0.15 + 0.7 * h2) * cell;
+      if (y > 84 || y < -84) continue;
+      var dx = (((x - lon + 540) % 360) - 180) * kc, dy = y - lat, d = Math.sqrt(dx * dx + dy * dy); if (d > R) continue;
+      var lx = ((x + 540) % 360) - 180; if (!isLand(lx, y) || landF(lx, y) < 0.7) continue;
+      if (blocked(lx, y)) continue;
+      var onPad = false; for (var pI = 0; pI < pads.length; pI++) { var pp = pads[pI], pdx = (((pp[0] - lx + 540) % 360) - 180) * Math.cos(y * D2R), pdy = pp[1] - y, pr = 0.5 * (1 + 0.25 * Math.sin(Math.atan2(pdy, pdx) * 3 + pI)); if (pdx * pdx + pdy * pdy < pr * pr) { onPad = true; break; } }
+      if (onPad) continue;
+      var b = bFast(lx, y), p = hash(i * 0.71 + 11, j * 1.29 + 5), c = clump(lx, y, 3.1), r3 = hash(i + 0.5, j * 3.1 + 7), yaw = h1 * 6.28, edge = Math.min(1, (R - d) / (R * 0.18)), sz = size * (0.75 + 0.55 * h2) * edge * edge * (3 - 2 * edge), al = Math.abs(y);
+      var gi = Math.floor(r3 * 4);
+      if (b === B.rain) { if (p > 0.55 + 0.4 * c) continue; if (r3 < 0.14) vput('palm' + (gi % 2), lx, y, sz * 1.15, yaw, GREENS.palm[gi % 2]); else vput(r3 < 0.6 ? 'br' + (gi % 3) : 'rd' + (gi % 2), lx, y, sz * 1.15, yaw, GREENS.br[gi]); }
+      else if (b === B.forest) { if (p > 0.3 + 0.6 * c) continue; var s3 = hash(i * 0.13, j * 0.07); if (s3 < 0.4) vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi], 0.85 + 0.3 * h1); else if (s3 < 0.7) vput('br' + (gi % 3), lx, y, sz, yaw, GREENS.br[gi]); else vput('rd' + (gi % 2), lx, y, sz, yaw, GREENS.rd[gi]); }
+      else if (b === B.taiga) { if (p > 0.35 + 0.55 * c) continue; if (al > 56 && r3 < 0.5) vput('snow' + (gi % 2), lx, y, sz, yaw, '#ffffff', 0.85 + 0.3 * h1); else vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi], 0.85 + 0.3 * h1); }
+      else if (b === B.grass) { if (p > 0.05 + 0.32 * c * c) continue; if (r3 < 0.25 && al > 35) vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi]); else vput('rd' + (gi % 2), lx, y, sz * 0.95, yaw, GREENS.rd[gi]); }
+      else if (b === B.savanna) { if (p > 0.07 + 0.16 * c) continue; if (r3 < 0.55) vput('ac' + (gi % 2), lx, y, sz * 1.1, yaw, GREENS.ac[gi % 2], 1.15); else vput('sh' + (gi % 2), lx, y, sz * 0.6, yaw, GREENS.sh[gi % 3]); }
+      else if (b === B.desert) { if (p > 0.05 + 0.2 * c) continue; var amer = lx < -30, sand = '#c9a46a'; GC.set(BCOL[B.desert]).multiplyScalar(0.78 + 0.2 * h1);
+        if (amer && r3 < 0.35) vput('ca' + gi, lx, y, sz * 0.75, yaw, '#5a8a46');
+        else if (r3 < 0.2) vput('sh' + (gi % 2), lx, y, sz * 0.45, yaw, '#8a8a52');
+        else for (var k = 0, nk = 1 + Math.floor(hash(i, j + 0.3) * 3); k < nk; k++) vput('rk' + ((gi + k) % 4), lx + (k ? (hash(i + k, j) - 0.5) * cell * 0.6 / kc : 0), y + (k ? (hash(j + k, i) - 0.5) * cell * 0.6 : 0), sz * (0.35 + 0.4 * hash(k, i + j)) * (k ? 0.6 : 1), yaw + k, '#' + GC.getHexString()); }
+      else if (b === B.tundra) { if (p > 0.04 + 0.12 * c) continue; if (r3 < 0.4) vput('snow' + (gi % 2), lx, y, sz * 0.8, yaw, '#ffffff'); else vput('rk' + gi, lx, y, sz * 0.4, yaw, '#9a9a8e'); }
+    }
+  }
   W.counts = function () { var o = {}; for (var k in S) o[k] = S[k].count; return o; };
   W.setScenery = function (on) { for (var k in S) S[k].visible = on; };
   return W;
