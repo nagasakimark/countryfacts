@@ -591,7 +591,7 @@
     setCam();
     // natural ground, trees, towns and clouds only while riding along; the normal globe keeps country colours
     WORLD.uniforms.uNear.value = riding && rideCam ? 1 : 0;
-    sceneryDirty = (riding && rideCam ? WORLD.scatter(riding.ll ? riding.ll[0] : V.lon, riding.ll ? riding.ll[1] : V.lat, 0.3, { R: riding.r.type === 'plane' ? 6 : 3.6, size: riding.r.type === 'plane' ? 0.003 : 0.0022, cell: riding.r.type === 'plane' ? 0.2 : 0.1, ride: true, cloud: 0.006, avoid: riding.r.type === 'plane' ? null : riding.r.dense || (riding.r.dense = densify(riding.r.pts)) }) : WORLD.scatter(0, 0, 9)) || sceneryDirty;
+    sceneryDirty = (riding && rideCam ? WORLD.scatter(riding.ll ? riding.ll[0] : V.lon, riding.ll ? riding.ll[1] : V.lat, 0.3, { R: (riding.r.type === 'plane' ? 6 : 3.6) * (qLow ? 0.8 : 1), size: riding.r.type === 'plane' ? 0.003 : 0.0022, cell: riding.r.type === 'plane' ? 0.2 : 0.1, ride: true, cloud: 0.006, avoid: riding.r.type === 'plane' ? null : riding.r.dense || (riding.r.dense = densify(riding.r.pts)) }) : WORLD.scatter(0, 0, 9)) || sceneryDirty;
     if (riding && rideCam && riding.ll) { if (WORLD.rideUpdate(riding.ll[0], riding.ll[1], rideFirst ? 120 : 5)) sceneryDirty = true; rideFirst = false; }
     sky(); if (G._lights) G._lights.visible = !(riding && rideCam);
     var a = performance.now();
