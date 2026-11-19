@@ -176,7 +176,7 @@ Landmark,Japan,Tokyo Tower,yes,tokyotower,Tokyo Tower
 Landmark,Japan,Umeda Sky Building,no,,
 Landmark,Japan,University of Tokyo,no,,
 Landmark,Japan,Ushiku Daibutsu,no,,
-Landmark,Jordan,Jerash,no,,
+Landmark,Jordan,Jerash,yes,jerash,Jerash
 Landmark,Jordan,Petra – Al-Khazneh,yes,petra,Petra (Al-Khazneh)
 Landmark,Kuwait,Kuwait Towers,yes,kuwaittowers,Kuwait Towers
 Landmark,Kyrgyzstan,Burana Tower,yes,burana,Burana Tower
@@ -282,7 +282,7 @@ Landmark,United Arab Emirates,Burj Al Arab,no,,
 Landmark,United Arab Emirates,Burj Khalifa,yes,burj,Burj Khalifa
 Landmark,United Arab Emirates,Sheikh Zayed Grand Mosque,yes,sheikhzayed,Sheikh Zayed Grand Mosque
 Landmark,Uzbekistan,Ark of Bukhara,no,,
-Landmark,Uzbekistan,Gur-e-Amir,no,,
+Landmark,Uzbekistan,Gur-e-Amir,yes,gureamir,Gur-e-Amir
 Landmark,Uzbekistan,Itchan Kala,no,,
 Landmark,Uzbekistan,"Registan, Samarkand",yes,registan,"Registan, Samarkand"
 Landmark,Vietnam,Bitexco Financial Tower,no,,
@@ -362,10 +362,10 @@ Landmark,Norway,Holmenkollen Ski Jump,no,,
 Landmark,Norway,Oslo Opera House,no,,
 Landmark,Norway,Preikestolen (Pulpit Rock),yes,preikestolen,Preikestolen (Pulpit Rock)
 Landmark,Poland,Malbork Castle,yes,malbork,Malbork Castle
-Landmark,Poland,Wawel Castle,no,,
+Landmark,Poland,Wawel Castle,yes,wawel,Wawel Castle
 Landmark,Portugal,Belém Tower,yes,belem,Belém Tower
 Landmark,Portugal,Cristo Rei,no,,
-Landmark,Portugal,"Pena Palace, Sintra",no,,
+Landmark,Portugal,"Pena Palace, Sintra",yes,pena,Pena Palace
 Landmark,Romania,Bran Castle,yes,bran,Bran Castle
 Landmark,Romania,Palace of the Parliament,no,,
 Landmark,Russia,Cathedral of Christ the Saviour,no,,
@@ -517,7 +517,7 @@ Landmark,Tanzania,"Stone Town, Zanzibar",yes,stonetown,"Stone Town, Zanzibar"
 Landmark,Togo,"Independence Monument, Lomé",yes,togoind,"Independence Monument, Lomé"
 Landmark,Tunisia,Amphitheatre of El Jem,yes,eljem,Amphitheatre of El Jem
 Landmark,Tunisia,Carthage – Antonine Baths,no,,
-Landmark,Tunisia,Great Mosque of Kairouan,no,,
+Landmark,Tunisia,Great Mosque of Kairouan,yes,kairouan,Great Mosque of Kairouan
 Landmark,Uganda,Murchison Falls,yes,murchison,Murchison Falls
 Landmark,Zambia,Victoria Falls,yes,victoria,Victoria Falls
 Landmark,Zimbabwe,Great Zimbabwe,yes,greatzim,Great Zimbabwe
@@ -550,13 +550,13 @@ Landmark,Costa Rica,Arenal Volcano,yes,arenal,Arenal Volcano
 Landmark,Costa Rica,National Theatre of Costa Rica,no,,
 Landmark,Cuba,Castillo de la Real Fuerza,no,,
 Landmark,Cuba,El Capitolio,yes,havana,Havana
-Landmark,Cuba,Morro Castle (Havana),no,,
+Landmark,Cuba,Morro Castle (Havana),yes,morrohavana,Morro Castle (Havana)
 Landmark,Dominican Republic,Cathedral of Santa María la Menor,no,,
 Landmark,Dominican Republic,Fortaleza Ozama,yes,ozama,Fortaleza Ozama
 Landmark,El Salvador,Joya de Cerén,yes,joyaceren,Joya de Cerén
 Landmark,Greenland,Ilulissat Icefjord,yes,ilulissat,Ilulissat Icefjord
 Landmark,Greenland,Nuuk,no,,
-Landmark,Guatemala,Antigua Guatemala,no,,
+Landmark,Guatemala,Antigua Guatemala,yes,antigua,Santa Catalina Arch (Antigua Guatemala)
 Landmark,Guatemala,Tikal,yes,tikal,Tikal
 Landmark,Haiti,Citadelle Laferrière,yes,citadelle,Citadelle Laferrière
 Landmark,Haiti,Sans-Souci Palace,no,,
@@ -827,7 +827,7 @@ Landmark,Armenia,Mount Ararat & Khor Virap,yes,khorvirap,Mount Ararat & Khor Vir
 Landmark,Azerbaijan,Flame Towers,yes,flametowers,Flame Towers
 Landmark,Cyprus,Kolossi Castle,yes,kolossi,Kolossi Castle
 Landmark,Georgia,Gergeti Trinity Church,yes,gergeti,Gergeti Trinity Church
-Landmark,Georgia,Svetitskhoveli Cathedral,no,,
+Landmark,Georgia,Svetitskhoveli Cathedral,yes,svetitskhoveli,Svetitskhoveli Cathedral
 Landmark,Kazakhstan,Baikonur Cosmodrome,no,,
 Landmark,Kazakhstan,Baiterek Tower,yes,bayterek,Bayterek Tower
 Landmark,Russia,Manpupuner Rock Formations,no,,
@@ -878,7 +878,7 @@ Animal,Mammal,Bryde's whale,no,,
 Animal,Mammal,California sea lion,no,,
 Animal,Mammal,Canada lynx,no,,
 Animal,Mammal,Cape fur seal,no,,
-Animal,Mammal,Capybara,no,,
+Animal,Mammal,Capybara,yes,capybara,Capybara
 Animal,Mammal,Caracal,no,,
 Animal,Mammal,Caspian seal,no,,
 Animal,Mammal,Chamois,no,,
@@ -971,7 +971,7 @@ Animal,Mammal,Mantled howler,no,,
 Animal,Mammal,Marco Polo sheep,no,,
 Animal,Mammal,Markhor,no,,
 Animal,Mammal,Mediterranean monk seal,no,,
-Animal,Mammal,Meerkat,no,,
+Animal,Mammal,Meerkat,yes,meerkat,Meerkat
 Animal,Mammal,Mongolian gazelle,no,,
 Animal,Mammal,Moose,no,,
 Animal,Mammal,Mountain goat,no,,
@@ -1020,7 +1020,7 @@ Animal,Mammal,Siberian (Amur) tiger,no,,
 Animal,Mammal,Sika deer,yes,deer,Nara deer
 Animal,Mammal,Sloth bear,no,,
 Animal,Mammal,Slow loris,no,,
-Animal,Mammal,Snow leopard,no,,
+Animal,Mammal,Snow leopard,yes,snowleopard,Snow leopard
 Animal,Mammal,Somali wild ass,no,,
 Animal,Mammal,South American fur seal,no,,
 Animal,Mammal,South American sea lion,no,,
@@ -1106,7 +1106,7 @@ Animal,Bird,Philippine eagle,no,,
 Animal,Bird,Raggiana bird-of-paradise,no,,
 Animal,Bird,Rainbow lorikeet,no,,
 Animal,Bird,Red-crowned crane,no,,
-Animal,Bird,Resplendent quetzal,no,,
+Animal,Bird,Resplendent quetzal,yes,quetzal,Resplendent quetzal
 Animal,Bird,Rhinoceros hornbill,no,,
 Animal,Bird,Rock ptarmigan,no,,
 Animal,Bird,Saker falcon,no,,

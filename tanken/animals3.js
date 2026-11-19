@@ -99,4 +99,79 @@
     for (var k = 0; k < 6; k++) { var lx = -0.3 + k * 0.12; var lf = new T.Mesh(new T.BoxGeometry(0.1, 0.003, 0.04), solid('#4f9a3f')); lf.position.set(lx, 0.03, 0.18 + (k % 2) * 0.05); lf.rotation.y = k; lf.rotation.z = 0.3; g.add(lf); }
     return wrap(g);
   };
+  /* ---------- snow leopard (Kyrgyzstan, Tian Shan) ---------- */
+  M.custom.a_snowleopard = function () {
+    var g = new T.Group();
+    var rk = new T.Mesh(new T.IcosahedronGeometry(0.2, 0), solid('#9a9aa2', { flatShading: true })); rk.scale.set(1.7, 0.5, 1.1); rk.position.set(-0.02, 0.05, 0); g.add(rk);
+    var snow = new T.Mesh(new T.IcosahedronGeometry(0.2, 0), solid('#f4f7fa', { flatShading: true })); snow.scale.set(1.5, 0.12, 1.0); snow.position.set(-0.04, 0.13, 0); g.add(snow);
+    var spot = function (x, y, z, p) {
+      if (y < 0.012) return '#5a5a5a';
+      if ((p === 'body' && y < 0.205) || (p === 'head' && x > 0.36 && y < 0.31)) return vary('#f4f2ec', x, y, z, 0.03);
+      var w = A.worley(x, y, z, p === 'leg' ? 60 : 32); if (w.e < 0.07 && w.f1 > 0.22) return '#55555c';     // grey rosettes (rings round lighter middles)
+      return vary('#d8d4c8', x, y, z, 0.04);
+    };
+    var l = quad({ sides: 11, L: 0.46, legH: 0.15, bR: 0.075, bW: 0.072, legR: 0.026, kneeR: -0.025, neck: { len: 0.04, ang: 0.3, r: 0.045 }, head: { len: 0.1, r: 0.05, snout: 0.032, ang: -0.1, eye: 0.008 }, earL: 0.016, earR: 0.014, tail: false, col: spot });
+    l.position.y = 0.13; g.add(l);
+    // the very long, thick tail — it wraps it round its face like a scarf when it sleeps
+    var u = l.userData; tube(l, [[-0.22, u.by + 0.02, 0, 0.032, 0.032], [-0.32, u.by - 0.04, 0.03, 0.034, 0.034], [-0.4, u.by - 0.1, 0.1, 0.034, 0.034], [-0.38, u.by - 0.12, 0.2, 0.032, 0.032], [-0.3, u.by - 0.12, 0.24, 0.028, 0.028]], function (x, y, z) { return A.worley(x, y, z, 30).e < 0.08 ? '#55555c' : '#e2ded2'; }, 'tail', 9, 0.1, 4);
+    var ep = u.hp(0.38); [-1, 1].forEach(function (s) { ball(l, ep[0] + 0.003, ep[1] + 0.018, s * 0.042, 0.009, '#a8c8a8'); ball(l, ep[0] + 0.006, ep[1] + 0.018, s * 0.046, 0.004, '#1d1a1a'); }); // pale green-grey eyes
+    return wrap(g, 0.55);
+  };
+
+  /* ---------- resplendent quetzal (Guatemala) ---------- */
+  M.custom.a_quetzal = function () {
+    var g = new T.Group();
+    branch(g, [-0.3, 0.3, 0], [0.3, 0.32, 0], 0.016, '#6a4a32');
+    tube(g, [[0.1, 0.0, -0.05, 0.03, 0.03], [0.09, 0.31, -0.01, 0.022, 0.022]], function (x, y, z) { return vary('#6a4a32', x, y, z, 0.06); }, 'trunk', 6, 0.2);
+    leaves(g, -0.25, 0.38, -0.05, 6, 0.04, '#4f9a3f');
+    var b = bird({ len: 0.16, r: 0.05, tilt: 0.15, hr: 0.035, beak: 0.012, beakR: 0.008, beakCol: '#f2c14e', eye: 0.006, legH: 0.0, col: function (x, y, z, p) { if (p === 'body' && x > 0.0 && y < 0.11) return vary('#d8283a', x, y, z, 0.04); return vary('#1f9a5a', x, y, z, 0.06); } });
+    b.position.set(0, 0.315, 0); g.add(b);
+    var hc = b.userData.hc; ball(b, hc[0] - 0.005, hc[1] + 0.02, 0, 0.03, '#2aa860', 1.1, 0.6, 0.5); // a fluffy green crest
+    // the famous tail: two shining green streamers almost a metre long, waving below the branch
+    [-1, 1].forEach(function (s) { tube(g, [[-0.03, 0.31, s * 0.01, 0.012, 0.004], [-0.07, 0.2, s * 0.02, 0.014, 0.004], [-0.05, 0.08, s * 0.04, 0.014, 0.004], [-0.1, -0.0, s * 0.05, 0.01, 0.003]], function (x, y, z) { return vary('#2ab86a', x, y, z, 0.08); }, 'tail', 4, 0.05, 2); });
+    return wrap(g, 0.6);
+  };
+
+  /* ---------- capybara (Venezuela, Los Llanos) ---------- */
+  M.custom.a_capybara = function () {
+    var g = new T.Group(), br = '#a8724a';
+    var pond = new T.Mesh(new T.CylinderGeometry(0.22, 0.22, 0.01, 18), solid('#5aa0c8', { flatShading: true })); pond.position.set(-0.18, 0.004, -0.15); g.add(pond);
+    var c = function (x, y, z, p) { if (y < 0.012) return '#3a2a20'; return vary(br, x, y, z, 0.07); };
+    var l = quad({ sides: 10, L: 0.4, legH: 0.07, bR: 0.1, bW: 0.09, legR: 0.024, prof: [0.75, 0.98, 1, 1, 0.95, 0.8], neck: { len: 0.03, ang: 0.2, r: 0.07 }, head: { len: 0.16, r: 0.062, snout: 0.055, ang: -0.15, eye: 0.008 }, earL: 0.014, earR: 0.013, tail: false, col: c });
+    g.add(l);
+    var tip = l.userData.hp(1.0); ball(l, tip[0] - 0.005, tip[1] - 0.005, 0, 0.022, '#5a3a28', 0.6, 0.8, 1.2);
+    // the calmest animal around: a little bird rides on its back
+    var bb = bird({ len: 0.06, r: 0.02, hr: 0.014, beak: 0.01, beakR: 0.004, beakCol: '#2a2a2a', eye: 0.003, legH: 0.01, legCol: '#2a2a2a', col: function (x, y, z, p) { return p === 'head' ? '#1d1d22' : p === 'wing' ? '#3a3a40' : '#f2c14e'; } });
+    bb.position.set(-0.02, l.userData.by + 0.075, 0); g.add(bb);
+    // a baby next to mum, and tall grass of the wetlands
+    var baby = quad({ sides: 9, L: 0.18, legH: 0.035, bR: 0.045, bW: 0.04, legR: 0.012, neck: { len: 0.015, ang: 0.2, r: 0.03 }, head: { len: 0.075, r: 0.03, snout: 0.026, ang: -0.15, eye: 0.005 }, earL: 0.008, earR: 0.007, tail: false, col: c });
+    baby.position.set(0.05, 0, 0.17); baby.rotation.y = -0.3; g.add(baby);
+    for (var k = 0; k < 14; k++) { var gx = 0.25 + (hash(k, 1) - 0.5) * 0.12, gz = -0.2 + k * 0.03; cone(g, [gx, 0, gz], [gx + 0.01, 0.1 + 0.05 * hash(k, 2), gz], 0.006, '#7aa04a', 3); }
+    return wrap(g, 0.5);
+  };
+
+  /* ---------- meerkat (Botswana, Kalahari) ---------- */
+  M.custom.a_meerkat = function () {
+    var g = new T.Group();
+    var mound = new T.Mesh(new T.SphereGeometry(0.2, 12, 6, 0, D2, 0, Math.PI / 2), solid('#d8a868', { flatShading: true })); mound.scale.y = 0.3; g.add(mound);
+    var hole = new T.Mesh(new T.CircleGeometry(0.035, 10), solid('#3a2a1a')); hole.rotation.x = -Math.PI / 2 + 0.5; hole.position.set(0.12, 0.035, 0.08); g.add(hole);
+    var tan = function (x, y, z) { return vary(y > 0.15 && Math.abs(z) < 0.02 && x > 0.0 ? '#e8d4b0' : '#c8a678', x, y, z, 0.05); };
+    // standing up straight on guard, as one of the family always does
+    function kat(x, z, s, turn, up) {
+      var m = new T.Group(); m.position.set(x, 0.055, z); m.rotation.y = turn || 0; m.scale.setScalar(s); g.add(m);
+      if (up !== false) {
+        tube(m, [[0, 0.0, 0, 0.03, 0.03], [0.0, 0.06, 0, 0.035, 0.032], [0.005, 0.12, 0, 0.025, 0.024], [0.008, 0.15, 0, 0.02, 0.02]], tan, 'body', 8, 0.1);
+        ball(m, 0.012, 0.18, 0, 0.022, '#c8a678', 1.1, 1, 0.9); cone(m, [0.03, 0.178, 0], [0.055, 0.172, 0], 0.01, '#c8a678', 5); ball(m, 0.056, 0.172, 0, 0.004, '#1d1a1a');
+        [-1, 1].forEach(function (k) { ball(m, 0.025, 0.188, k * 0.013, 0.008, '#2a2420', 1, 0.8, 0.6); eye(m, 0.03, 0.188, k * 0.014, 0.004); ball(m, 0.0, 0.198, k * 0.018, 0.006, '#3a2a20', 0.5, 1, 1);
+          tube(m, [[0.02, 0.12, k * 0.02, 0.008, 0.008], [0.03, 0.09, k * 0.018, 0.006, 0.006]], '#c8a678', 'arm', 4, 0.05); });
+        tube(m, [[-0.02, 0.01, 0, 0.012, 0.012], [-0.07, 0.0, 0, 0.008, 0.008], [-0.1, 0.0, 0.01, 0.004, 0.004]], function (x) { return x < -0.08 ? '#2a2420' : '#c8a678'; }, 'tail', 4, 0.05);
+      } else {
+        tube(m, [[-0.06, 0.03, 0, 0.025, 0.022], [0.0, 0.04, 0, 0.03, 0.026], [0.05, 0.04, 0, 0.02, 0.02], [0.08, 0.035, 0, 0.012, 0.012]], tan, 'body', 8, 0.1); [-1, 1].forEach(function (k) { eye(m, 0.07, 0.045, k * 0.012, 0.004); });
+      }
+    }
+    kat(0.0, 0.0, 1.0, 0); kat(-0.08, -0.06, 0.85, 0.5); kat(0.06, -0.09, 0.7, -0.4); kat(-0.06, 0.1, 0.9, 0.2, false);
+    // dry Kalahari grass and a little thorn bush
+    for (var k2 = 0; k2 < 10; k2++) { var a = k2 / 10 * D2; cone(g, [Math.cos(a) * 0.24, 0, Math.sin(a) * 0.2], [Math.cos(a) * 0.25, 0.06, Math.sin(a) * 0.21], 0.008, '#d8c070', 3); }
+    return wrap(g, 0.6);
+  };
 })();

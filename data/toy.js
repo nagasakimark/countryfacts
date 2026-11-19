@@ -663,7 +663,23 @@ TOY.landmarks = [
 {id:'toothtemple',c:'LKA',ll:[80.6413,7.2936],m:'toothtemple',ja:'{仏歯寺|ぶっしじ}',en:'Temple of the Tooth',k:'ぶっしじ すりらんか きゃんでぃ',
   t:'スリランカの キャンディに ある お寺。 お{釈迦|しゃか}さまの 歯が 大切に まつられて いる。 毎年 夏には、 かざった ゾウが 町を 歩く お祭りが ある。',te:'A temple in Kandy, Sri Lanka, that keeps a tooth of the Buddha. Every summer, decorated elephants parade through the town in a great festival.'},
 {id:'larabanga',c:'GHA',ll:[-1.8586,9.2201],m:'larabanga',ja:'ララバンガ・モスク',en:'Larabanga Mosque',k:'ららばんが もすく がーな',
-  t:'ガーナで いちばん 古い モスク。 600年ほど 前に どろで つくられた と 言われる。 かべから 出た 木の ぼうは、 かべを ぬりなおす ときの 足場。',te:'The oldest mosque in Ghana, said to have been built of mud about 600 years ago. The wooden sticks poking out are footholds for re-plastering the walls.'}
+  t:'ガーナで いちばん 古い モスク。 600年ほど 前に どろで つくられた と 言われる。 かべから 出た 木の ぼうは、 かべを ぬりなおす ときの 足場。',te:'The oldest mosque in Ghana, said to have been built of mud about 600 years ago. The wooden sticks poking out are footholds for re-plastering the walls.'},
+{id:'pena',c:'PRT',ll:[-9.3904,38.7876],m:'pena',ja:'ペーナ{宮殿|きゅうでん}',en:'Pena Palace',k:'ぺーなきゅうでん ぽるとがる しんとら',
+  t:'ポルトガルの シントラの 山の 上に 立つ、 赤や 黄色の カラフルな {宮殿|きゅうでん}。 1800年代に 王さまが たてた。',te:'A colourful red-and-yellow palace on a hilltop in Sintra, Portugal, built for a king in the 1800s.'},
+{id:'wawel',c:'POL',ll:[19.9354,50.0540],m:'wawel',ja:'ヴァヴェル{城|じょう}',en:'Wawel Castle',k:'ゔぁゔぇるじょう ぽーらんど くらくふ',
+  t:'ポーランドの クラクフの おかの 上の お{城|しろ}。 昔の 王さまが すんでいた。 下の 川べには、 火を ふく りゅうの 像が 立つ。',te:'A castle on a hill in Kraków, Poland, where Polish kings once lived. By the river below stands a fire-breathing dragon statue.'},
+{id:'gureamir',c:'UZB',ll:[66.9688,39.6485],m:'gureamir',ja:'グーリ・アミール{廟|びょう}',en:'Gur-e-Amir',k:'ぐーりあみーる うずべきすたん さまるかんど',
+  t:'ウズベキスタンの サマルカンドに ある、 ティムールという 王さまの お{墓|はか}。 青い タイルと、 メロンのような すじの ある ドームが 美しい。',te:'The tomb of the great ruler Timur in Samarkand, Uzbekistan, famous for its blue tiles and ribbed, melon-shaped dome.'},
+{id:'morrohavana',c:'CUB',ll:[-82.3566,23.1505],m:'morrohavana',ja:'モロ{要塞|ようさい}',en:'Morro Castle (Havana)',k:'もろようさい きゅーば はばな',
+  t:'キューバの ハバナの 港の 入り口を 守る 石の とりで。 400年ほど 前に できた。 白い とうだいが 目じるし。',te:'A stone fortress guarding the entrance to Havana harbour in Cuba, finished about 400 years ago. Its white lighthouse is a famous landmark.'},
+{id:'jerash',c:'JOR',ll:[35.8917,32.2808],m:'jerash',ja:'ジェラシュ',en:'Jerash',k:'じぇらしゅ よるだん ろーま',
+  t:'ヨルダンに ある、 古代ローマの 町の いせき。 まるい 広場を 柱が ぐるりと かこみ、 げきじょうや 門も のこって いる。',te:'The ruins of an ancient Roman city in Jordan. Columns ring an oval plaza, and its theatres and gates still stand.'},
+{id:'kairouan',c:'TUN',ll:[10.1036,35.6812],m:'kairouan',ja:'カイルアンの 大モスク',en:'Great Mosque of Kairouan',k:'かいるあん もすく ちゅにじあ',
+  t:'チュニジアに ある、 アフリカで いちばん 古い モスクの 1つ。 四角い 3だんの ミナレットは 1100年いじょう 前に たてられた。',te:'One of the oldest mosques in Africa, in Kairouan, Tunisia. Its square three-tiered minaret was built more than 1,100 years ago.'},
+{id:'antigua',c:'GTM',ll:[-90.7344,14.5605],m:'antigua',ja:'サンタ・カタリーナの アーチ',en:'Santa Catalina Arch (Antigua Guatemala)',k:'さんたかたりーな あーち あんてぃぐあ ぐあてまら',
+  t:'グアテマラの 古い 町 アンティグアの 黄色い アーチ。 おいのりを する 女の人たちが、 人に 見られずに 道を わたれるように つくられた。 うしろには 火山が 見える。',te:'A yellow arch in the old town of Antigua, Guatemala. It was built so nuns could cross the street without being seen. A volcano rises behind.'},
+{id:'svetitskhoveli',c:'GEO',ll:[44.7208,41.8421],m:'svetitskhoveli',ja:'スヴェティツホヴェリ{大聖堂|だいせいどう}',en:'Svetitskhoveli Cathedral',k:'すゔぇてぃつほゔぇり だいせいどう じょーじあ むつへた',
+  t:'ジョージアの 古い 都 ムツヘタに ある 教会。 1000年ほど 前に たてられ、 石の かべに かこまれて いる。',te:'A cathedral in Mtskheta, the old capital of Georgia, built about 1,000 years ago and surrounded by a stone fortress wall.'}
 ];
 
 TOY.animals = [
@@ -709,7 +725,11 @@ TOY.animals = [
  {id:'redpanda',e:'🦊',ll:[87.8,27.4],ja:'レッサーパンダ',en:'Red panda',t:'ネパールの 山の 森に すむ。 太い しっぽを 体に まいて、 さむさから 身を 守る。',te:'It lives in mountain forests in Nepal. It wraps its thick tail around itself to keep warm.'},
  {id:'lemur',e:'🐒',ll:[45.2,-23.5],ja:'ワオキツネザル',en:'Ring-tailed lemur',t:'マダガスカルだけに すむ。 朝は 太陽の 方を むいて、 手を 広げて ひなたぼっこ する。',te:'It lives only in Madagascar. In the morning it sits facing the sun with its arms spread to warm up.'},
  {id:'kiwi',e:'🐦',ll:[175.6,-38.6],ja:'キーウィ',en:'Kiwi',t:'ニュージーランドの 飛べない 鳥。 くちばしの 先に 鼻の あなが あり、 においで 虫を さがす。 たまごは とても 大きい。',te:'A bird from New Zealand that cannot fly. Its nostrils are at the tip of its beak, and it finds worms by smell. Its eggs are huge.'},
- {id:'okapi',e:'🦓',ll:[28.6,1.6],ja:'オカピ',en:'Okapi',t:'コンゴ民主共和国の 森に すむ、 キリンの なかま。 足は シマウマのような しまもよう。 長い {舌|した}で 自分の 耳まで なめられる。',te:'A relative of the giraffe from the forests of DR Congo. Its legs are striped like a zebra, and its long tongue can lick its own ears.'}
+ {id:'okapi',e:'🦓',ll:[28.6,1.6],ja:'オカピ',en:'Okapi',t:'コンゴ民主共和国の 森に すむ、 キリンの なかま。 足は シマウマのような しまもよう。 長い {舌|した}で 自分の 耳まで なめられる。',te:'A relative of the giraffe from the forests of DR Congo. Its legs are striped like a zebra, and its long tongue can lick its own ears.'},
+ {id:'snowleopard',e:'🐆',ll:[77.5,41.6],ja:'ユキヒョウ',en:'Snow leopard',t:'キルギスなどの 高い 山に すむ。 長くて 太い しっぽを マフラーのように 顔に まいて ねる。',te:'It lives in high mountains such as those of Kyrgyzstan. It sleeps with its long, thick tail wrapped round its face like a scarf.'},
+ {id:'quetzal',e:'🐦',ll:[-90.3,15.4],ja:'ケツァール',en:'Resplendent quetzal',t:'グアテマラの 国の 鳥で、 お金の 名前にも なっている。 オスは しっぽまで 入れると 1mほど ある。',te:'Guatemala\'s national bird — even its money is called the quetzal. With its tail streamers, the male is about 1 m long.'},
+ {id:'capybara',e:'🐹',ll:[-67.5,7.5],ja:'カピバラ',en:'Capybara',t:'ベネズエラの 草原の 水べに すむ、 世界で いちばん 大きな ネズミの なかま。 とても おだやかで、 鳥が せなかに のっても へいき。',te:'The world\'s largest rodent, living by the water on the grasslands of Venezuela. It is so calm that birds sit on its back.'},
+ {id:'meerkat',e:'🐿️',ll:[22.5,-23.5],ja:'ミーアキャット',en:'Meerkat',t:'ボツワナの カラハリ{砂漠|さばく}に すむ。 なかまが 食べている 間、 1ぴきが 立って 見はりを する。',te:'It lives in the Kalahari Desert in Botswana. While the family eats, one stands up tall on guard.'}
 ];
 
 /* Vehicles travel there and back forever. p = route points [lon,lat] (great-circle between points).
