@@ -4,7 +4,7 @@ Landmark,Bangladesh,Ahsan Manzil,no,,
 Landmark,Bangladesh,Jatiya Sangsad Bhaban,no,,
 Landmark,Bangladesh,Lalbagh Fort (Tomb of Pari Bibi),no,,
 Landmark,Bhutan,Paro Taktsang (Tiger's Nest),yes,tigersnest,Tiger's Nest (Paro Taktsang)
-Landmark,Brunei,Omar Ali Saifuddien Mosque,no,,
+Landmark,Brunei,Omar Ali Saifuddien Mosque,yes,omarali,Omar Ali Saifuddien Mosque
 Landmark,Cambodia,Angkor Wat,yes,angkor,Angkor Wat
 Landmark,Cambodia,Bayon,no,,
 Landmark,China,Beijing National Stadium (Bird's Nest),no,,
@@ -181,7 +181,7 @@ Landmark,Jordan,Petra – Al-Khazneh,yes,petra,Petra (Al-Khazneh)
 Landmark,Kuwait,Kuwait Towers,yes,kuwaittowers,Kuwait Towers
 Landmark,Kyrgyzstan,Burana Tower,no,,
 Landmark,Laos,Pha That Luang,yes,thatluang,Pha That Luang
-Landmark,Lebanon,Baalbek,no,,
+Landmark,Lebanon,Baalbek,yes,baalbek,Baalbek
 Landmark,Macao,Grand Lisboa,no,,
 Landmark,Macao,Macau Tower,no,,
 Landmark,Macao,Ruins of St. Paul's,no,,
@@ -515,10 +515,10 @@ Landmark,Tanzania,Mount Kilimanjaro,yes,kilimanjaro,Mount Kilimanjaro
 Landmark,Tanzania,Ngorongoro Crater,yes,ngorongoro,Ngorongoro Crater
 Landmark,Tanzania,"Stone Town, Zanzibar",no,,
 Landmark,Togo,"Independence Monument, Lomé",no,,
-Landmark,Tunisia,Amphitheatre of El Jem,no,,
+Landmark,Tunisia,Amphitheatre of El Jem,yes,eljem,Amphitheatre of El Jem
 Landmark,Tunisia,Carthage – Antonine Baths,no,,
 Landmark,Tunisia,Great Mosque of Kairouan,no,,
-Landmark,Uganda,Murchison Falls,no,,
+Landmark,Uganda,Murchison Falls,yes,murchison,Murchison Falls
 Landmark,Zambia,Victoria Falls,yes,victoria,Victoria Falls
 Landmark,Zimbabwe,Great Zimbabwe,yes,greatzim,Great Zimbabwe
 Landmark,Zimbabwe,Khami Ruins,no,,
@@ -809,12 +809,12 @@ Landmark,New Zealand,"The Beehive, Wellington",no,,
 Landmark,New Zealand,Waitangi Treaty Grounds,no,,
 Landmark,New Zealand,"Weta Cave, Wellington",no,,
 Landmark,Palau,Airai Bai (Palauan meeting house),no,,
-Landmark,Papua New Guinea,"National Parliament House, Port Moresby",no,,
+Landmark,Papua New Guinea,"National Parliament House, Port Moresby",yes,pngparl,"National Parliament House, Port Moresby"
 Landmark,Solomon Islands,National Parliament of Solomon Islands,no,,
 Landmark,Tonga,Ha'amonga 'a Maui Trilithon,no,,
 Landmark,Tonga,Royal Palace of Tonga,no,,
 Landmark,Vanuatu,Chief Roi Mata's Domain,no,,
-Landmark,Antarctica,Amundsen–Scott South Pole Station,no,,
+Landmark,Antarctica,Amundsen–Scott South Pole Station,yes,southpole,Amundsen–Scott South Pole Station
 Landmark,Antarctica,Concordia Station,no,,
 Landmark,Antarctica,Halley VI Research Station,no,,
 Landmark,Antarctica,Jang Bogo Station,no,,
@@ -823,8 +823,8 @@ Landmark,Antarctica,McMurdo Station,no,,
 Landmark,Antarctica,Vostok Station,no,,
 Landmark,Armenia,Geghard Monastery,no,,
 Landmark,Armenia,Mother Armenia,no,,
-Landmark,Armenia,Mount Ararat & Khor Virap,no,,
-Landmark,Azerbaijan,Flame Towers,no,,
+Landmark,Armenia,Mount Ararat & Khor Virap,yes,khorvirap,Mount Ararat & Khor Virap
+Landmark,Azerbaijan,Flame Towers,yes,flametowers,Flame Towers
 Landmark,Cyprus,Kolossi Castle,no,,
 Landmark,Georgia,Gergeti Trinity Church,yes,gergeti,Gergeti Trinity Church
 Landmark,Georgia,Svetitskhoveli Cathedral,no,,

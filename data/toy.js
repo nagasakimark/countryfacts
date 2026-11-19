@@ -311,7 +311,23 @@ TOY.landmarks = [
  {id:'sheikhzayed',c:'ARE',ll:[54.48,24.41],m:'sheikhzayed',ja:'シェイク・ザイード・グランド・モスク',en:'Sheikh Zayed Grand Mosque',k:'しぇいくざいーど もすく あぶだび',
   t:'アラブ{首長国連邦|しゅちょうこくれんぽう}の アブダビに ある 白い 大きな モスク。 82の ドームと、 世界で いちばん 大きい 手おりの じゅうたんが ある。',te:'A huge white mosque in Abu Dhabi with 82 domes and the world\'s largest hand-knotted carpet.'},
  {id:'hassan2',c:'MAR',ll:[-7.63,33.61],m:'hassan2',ja:'ハッサン2世モスク',en:'Hassan II Mosque',k:'はっさん2せいもすく かさぶらんか もろっこ',
-  t:'モロッコの カサブランカの 海の 上に たつ モスク。 ミナレットの 高さは 210mで、 世界でも とくに 高い。',te:'A mosque built out over the sea in Casablanca, Morocco. Its 210 m minaret is one of the tallest in the world.'}
+  t:'モロッコの カサブランカの 海の 上に たつ モスク。 ミナレットの 高さは 210mで、 世界でも とくに 高い。',te:'A mosque built out over the sea in Casablanca, Morocco. Its 210 m minaret is one of the tallest in the world.'},
+{id:'baalbek',c:'LBN',ll:[36.20,34.01],m:'baalbek',ja:'バールベック',en:'Baalbek',k:'ばーるべっく ればのん',
+  t:'レバノンに ある 古代ローマの 神殿の あと。 高さ 約20mの 柱が 6本 のこり、 とても 大きな 石が 使われている。',te:'Ruins of Roman temples in Lebanon. Six 20 m columns still stand, and some of its stones are among the largest ever cut.'},
+ {id:'eljem',c:'TUN',ll:[10.71,35.30],m:'eljem',ja:'エル・ジェムの {円形劇場|えんけいげきじょう}',en:'Amphitheatre of El Jem',k:'えるじぇむ ちゅにじあ',
+  t:'チュニジアに ある、 約1800年 前の ローマ時代の 大きな {円形劇場|えんけいげきじょう}。 3万5000人が 入れた。',te:'A huge Roman amphitheatre in Tunisia, about 1,800 years old, that held 35,000 people.'},
+ {id:'murchison',c:'UGA',ll:[31.69,2.28],m:'murchison',ja:'マーチソン・フォールズ',en:'Murchison Falls',k:'まーちそんふぉーるず うがんだ',
+  t:'ウガンダで、 ナイル川が はば 約7mの せまい すき間を いきおいよく 流れ落ちる たき。 下の 川には ワニや カバが いる。',te:'Where the Nile in Uganda squeezes through a gap about 7 m wide and thunders down. Crocodiles and hippos live in the river below.'},
+ {id:'khorvirap',c:'ARM',ll:[44.58,39.88],m:'khorvirap',ja:'ホル・ヴィラップと アララト山',en:'Khor Virap & Mount Ararat',k:'ほるう゛ぃらっぷ あららとさん あるめにあ',
+  t:'アルメニアの 古い {修道院|しゅうどういん}。 うしろに、 国境の むこうの 雪を かぶった アララト山が 見える。 アルメニアの 人に とって 大切な 山。',te:'An Armenian monastery with snowy Mount Ararat rising behind it, just across the border — a mountain very dear to Armenians.'},
+ {id:'flametowers',c:'AZE',ll:[49.83,40.36],m:'flametowers',ja:'フレイム・タワーズ',en:'Flame Towers',k:'ふれいむたわーず ばくー あぜるばいじゃん',
+  t:'アゼルバイジャンの バクーに ある 3本の ビル。 ほのおの 形を していて、 夜は 光で もえているように 見える。',te:'Three flame-shaped towers in Baku, Azerbaijan. At night their lights make them look like burning fire.'},
+ {id:'omarali',c:'BRN',ll:[114.94,4.89],m:'omarali',ja:'オマール・アリ・サイフディン・モスク',en:'Omar Ali Saifuddien Mosque',k:'おまーるあり もすく ぶるねい',
+  t:'ブルネイの 首都に ある モスク。 金色の ドームと、 池に うかぶ 石の 船が ある。',te:'A mosque in the capital of Brunei with a golden dome and a stone boat in its lagoon.'},
+ {id:'pngparl',c:'PNG',ll:[147.18,-9.43],m:'pngparl',ja:'パプアニューギニア国会議事堂',en:'National Parliament House, Port Moresby',k:'ぱぷあにゅーぎにあ こっかい',
+  t:'パプアニューギニアの 国会。 伝統的な 家「ハウス・タンバラン」の 形を まねていて、 とがった 三角の 正面が とくちょう。',te:'Papua New Guinea\'s parliament, shaped like a traditional haus tambaran spirit house with a tall pointed front.'},
+ {id:'southpole',c:'ATA',ll:[0.00,-89.90],m:'southpole',ja:'南極点の 基地',en:'Amundsen–Scott South Pole Station',k:'なんきょくてん きち なんきょく',
+  t:'南極点に ある アメリカの 研究基地。 気温は マイナス60℃に なることも。 半年 ずっと 昼、 半年 ずっと 夜が つづく。',te:'An American research station right at the South Pole. It can drop to −60 °C, and there are six months of day and six months of night.'}
 ];
 
 TOY.animals = [
