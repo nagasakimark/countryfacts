@@ -26,7 +26,7 @@
   // Merge all parts into one geometry with vertex colours.
   function build(parts, opt) {
     opt = opt || {};
-    if (opt.base) parts = [['c', BASE[opt.base] || opt.base, 0.6, 0.64, 0.08, 0, -0.04, 0, 14]].concat(parts.map(function (p) { return lift(p); }));
+    // no plinths: models stand straight on the land (opt.base is ignored)
     var pos = [], col = [], c = new T.Color();
     parts.forEach(function (p) {
       var g = geom(p).toNonIndexed(), a = g.attributes.position.array;
@@ -110,5 +110,11 @@
     return (cache[k] = build(d[0], d[1]));
   };
   M.keys = Object.keys(D);
+  M.custom = M.custom || {};
+  // A fresh object for the scene: detailed builders (tanken/detailed.js) win over simple part lists.
+  M.object = function (key, colour) {
+    if (M.custom[key]) { var g = M.custom[key](); g.userData.detailed = true; return g; }
+    return new T.Mesh(M.geometry(key, colour), M.material);
+  };
   M.material = new T.MeshLambertMaterial({ vertexColors: true, flatShading: true });
 })();

@@ -32,6 +32,20 @@
     if (id !== 'ATA') PRI.push({ id: id, a: AW[id] });
   });
   PRI.sort(function (a, b) { return b.a - a.a; });
+  (function colour() {
+    var PAL = ['#f6dc45', '#bfe34f', '#f57ed8', '#ff6b5f', '#ffa04a', '#b58cf5', '#3fcca6', '#f2a0ff'];
+    var geoms = WORLD_TOPO.objects.countries.geometries, nb = topojson.neighbors(geoms), idx = {};
+    geoms.forEach(function (g, i) { idx[g.properties.id] = i; });
+    var order = PRI.map(function (p) { return p.id; }), got = {};
+    order.forEach(function (id) {
+      var i = idx[id], used = {}; if (i == null) return;
+      nb[i].forEach(function (j) { var o = geoms[j].properties.id; if (got[o]) used[got[o]] = 1; });
+      var h = 0; for (var k = 0; k < id.length; k++) h = (h * 31 + id.charCodeAt(k)) % 997;
+      for (var t = 0; t < PAL.length; t++) { var c = PAL[(h + t) % PAL.length]; if (!used[c]) { got[id] = c; break; } }
+      FILL[id] = got[id] || PAL[h % PAL.length];
+    });
+    FILL.JPN = '#ff6b5f';
+  })();
   G.CEN = CEN; G.FEAT = FEAT;
   CEN.USA = [-98.5, 39.5]; CEN.CAN = [-100, 57]; CEN.RUS = [95, 61]; CEN.FRA = [2.4, 46.6]; CEN.NOR = [9, 61.5]; CEN.CHL = [-71, -33];
   function countryAt(ll) { for (var j = 0; j < feat.length; j++) { var id = feat[j].properties.id; if (d3.geoDistance(CEN[id], ll) > RAD[id] + 0.6) continue; if (d3.geoContains(feat[j], ll)) return id; } return null; }
@@ -63,14 +77,18 @@
   var tctx = tcv.getContext('2d', { willReadFrequently: true });
   function paint(ctx, proj, scale) {
     var gp = d3.geoPath(proj, ctx), w = ctx.canvas.width, h = ctx.canvas.height;
-    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = '#4fb4f3'; ctx.fillRect(0, 0, w, h); ctx.restore();
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = '#2b6cb8'; ctx.fillRect(0, 0, w, h); ctx.restore();
     ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-    ctx.beginPath(); gp(d3.geoGraticule().step([30, 30])()); ctx.strokeStyle = 'rgba(255,255,255,.22)'; ctx.lineWidth = 1.5 * scale; ctx.stroke();
-    // soft coastal glow
-    ctx.strokeStyle = 'rgba(190,235,255,.55)'; ctx.lineWidth = 7 * scale;
-    feat.forEach(function (f) { ctx.beginPath(); gp(f); ctx.stroke(); });
+    ctx.beginPath(); gp(d3.geoGraticule().step([30, 30])()); ctx.strokeStyle = 'rgba(255,255,255,.12)'; ctx.lineWidth = 1.2 * scale; ctx.stroke();
+    function allLand() { ctx.beginPath(); feat.forEach(function (f) { gp(f); }); }
+    // shallow water around the coasts (one blurred stroke for the whole world)
+    ctx.save(); ctx.filter = 'blur(' + Math.round(6 * scale) + 'px)'; ctx.strokeStyle = 'rgba(110,190,240,.75)'; ctx.lineWidth = 18 * scale; allLand(); ctx.stroke(); ctx.restore();
+    // land lifted off the sea: one soft shadow, then the country colours on top
+    ctx.save(); ctx.shadowColor = 'rgba(8,20,70,.6)'; ctx.shadowBlur = 9 * scale; ctx.shadowOffsetX = 2.5 * scale; ctx.shadowOffsetY = 4.5 * scale; ctx.fillStyle = '#2a2050'; allLand(); ctx.fill(); ctx.restore();
     feat.forEach(function (f) { ctx.beginPath(); gp(f); ctx.fillStyle = FILL[f.properties.id]; ctx.fill(); });
-    ctx.strokeStyle = '#3b2a5c'; ctx.lineWidth = 1.6 * scale;
+    // soft light rim just inside the coast
+    ctx.save(); allLand(); ctx.clip(); ctx.filter = 'blur(' + Math.round(3 * scale) + 'px)'; ctx.strokeStyle = 'rgba(255,255,255,.3)'; ctx.lineWidth = 4 * scale; allLand(); ctx.stroke(); ctx.restore();
+    ctx.strokeStyle = 'rgba(55,30,90,.38)'; ctx.lineWidth = 1.1 * scale;
     feat.forEach(function (f) { ctx.beginPath(); gp(f); ctx.stroke(); });
     // routes on the ground: rails, roads, sea lanes
     ROUTES.forEach(function (r) {
@@ -135,15 +153,26 @@
   }
 
   /* ---------- landmarks ---------- */
+  var shadowTex = (function () { var c = document.createElement('canvas'); c.width = c.height = 128; var x = c.getContext('2d'), g = x.createRadialGradient(64, 64, 8, 64, 64, 64); g.addColorStop(0, 'rgba(20,10,50,.55)'); g.addColorStop(0.55, 'rgba(20,10,50,.28)'); g.addColorStop(1, 'rgba(20,10,50,0)'); x.fillStyle = g; x.fillRect(0, 0, 128, 128); return new T.CanvasTexture(c); })();
+  var shadowMat = new T.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false });
+  // Wrap a model: the root gets the globe placement; a soft shadow sits under the model on the ground.
+  function grounded(obj, kind, id, shadow) {
+    var root = new T.Group(); root.add(obj); root.userData = { kind: kind, id: id }; root.matrixAutoUpdate = false;
+    if (shadow) {
+      var bb = new T.Box3().setFromObject(obj), sx = (bb.max.x - bb.min.x) * 1.35 + 0.15, sz = (bb.max.z - bb.min.z) * 1.35 + 0.15;
+      var sh = new T.Mesh(new T.PlaneGeometry(1, 1), shadowMat); sh.rotation.x = -Math.PI / 2; sh.scale.set(sx, sz, 1); sh.position.set((bb.min.x + bb.max.x) / 2 + 0.04, 0.003, (bb.min.z + bb.max.z) / 2 - 0.03); sh.renderOrder = 1; root.add(sh);
+    }
+    scene.add(root); return root;
+  }
   var LMS = ((window.TOY && TOY.landmarks) || []).map(function (l, i) {
-    var m = new T.Mesh(MODELS.geometry(l.m), MODELS.material); m.userData = { kind: 'landmark', id: l.id }; m.matrixAutoUpdate = false; scene.add(m);
+    var m = grounded(MODELS.object(l.m), 'landmark', l.id, true);
     var n = ll2v(l.ll[0], l.ll[1], 1), e = new T.Vector3(0, 1, 0).cross(n).normalize(), t = n.clone().cross(e);
     return { d: l, mesh: m, n: n, e: e, t: t, pri: i };
   });
   var LMB = {}; LMS.forEach(function (o) { LMB[o.d.id] = o; });
   var VEH = ROUTES.map(function (r) {
-    var key = r.type === 'ship' ? (r.ship || 'ship') : r.type, m = new T.Mesh(MODELS.geometry(key, r.type === 'ship' ? null : r.col), MODELS.material);
-    m.userData = { kind: 'vehicle', id: r.id }; m.matrixAutoUpdate = false; scene.add(m); return { r: r, mesh: m };
+    var key = r.type === 'ship' ? (r.ship || 'ship') : r.type, m = grounded(MODELS.object(key, r.type === 'ship' ? null : r.col), 'vehicle', r.id, r.type !== 'plane');
+    return { r: r, mesh: m };
   });
   var VB = {}; VEH.forEach(function (o) { VB[o.r.id] = o; });
   var rideLine = null;
@@ -152,7 +181,7 @@
   var V = G.view = { lon: 135, lat: 30, alt: 2.35 }, AMIN = 0.12, AMAX = 3.2, off = 0, offTo = 0;
   var camPos = new T.Vector3(), tmp = new T.Vector3(), tmp2 = new T.Vector3(), mat = new T.Matrix4();
   function clampV() { V.alt = Math.max(AMIN, Math.min(AMAX, V.alt)); V.lat = Math.max(-80, Math.min(80, V.lat)); V.lon = ((V.lon + 540) % 360) - 180; }
-  function tilt() { var t = (0.75 - V.alt) / (0.75 - 0.18); t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t) * 48 * D2R; }
+  var TMAX = 52 * D2R; function tilt() { var t = (2.3 - V.alt) / (2.3 - 0.2); t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t) * TMAX; }
   function setCam() {
     var n = ll2v(V.lon, V.lat, 1), e = new T.Vector3(0, 1, 0).cross(n).normalize(), t = n.clone().cross(e), a = tilt();
     var dir = n.clone().multiplyScalar(Math.cos(a)).addScaledVector(t, -Math.sin(a));
@@ -205,13 +234,13 @@
   var lmRects = [], q0 = [0, 0, 0], q1 = [0, 0, 0];
   var camUp = new T.Vector3(), camBack = new T.Vector3(), up2 = new T.Vector3(), fw2 = new T.Vector3(), x2 = new T.Vector3();
   function placeLandmarks() {
-    var s = scaleNow() * 1.25, placed = [], lean = 0.75 * (1 - tilt() / (48 * D2R));
+    var far = Math.max(0, Math.min(1, (V.alt - 0.25) / 1.3)), s = scaleNow() * (2.1 - 1.15 * far), placed = [], lean = far * 0.8, gp = new T.Vector3();
     camUp.setFromMatrixColumn(camera.matrixWorld, 1); camBack.setFromMatrixColumn(camera.matrixWorld, 2);
     lmRects = [];
     LMS.forEach(function (o) {
       var m = o.mesh;
       if (G.quiz) { m.visible = false; return; }
-      if (!facing(o.n, o.n)) { m.visible = false; return; }
+      if (o.n.dot(tmp.copy(camPos).sub(o.n).normalize()) < 0.12) { m.visible = false; return; } // right at the horizon
       up2.copy(o.n).multiplyScalar(1 - lean).addScaledVector(camUp, lean).normalize(); project(o.n, q0); tmp.copy(o.n).addScaledVector(up2, s * 1.1); project(tmp, q1);
       var h = Math.max(8, Math.abs(q0[1] - q1[1]) + Math.abs(q0[0] - q1[0])), w = h * 0.9, r = { x: q0[0] - w / 2, y: q0[1] - h, w: w, h: h };
       if (r.x > W + 60 || r.x + r.w < -60 || r.y > H + 60 || r.y + r.h < -80) { m.visible = false; return; }
@@ -219,7 +248,7 @@
       if (hit) { m.visible = false; return; }
       placed.push(r); lmRects.push({ r: r, id: o.d.id });
       m.visible = true;
-      fw2.copy(camBack).addScaledVector(up2, -camBack.dot(up2)).normalize(); x2.copy(up2).cross(fw2); mat.makeBasis(x2, up2, fw2); m.matrix.copy(mat).scale(tmp2.set(s, s, s)).setPosition(o.n);
+      fw2.copy(camUp).negate().addScaledVector(up2, camUp.dot(up2)); if (fw2.lengthSq() < 1e-6) fw2.copy(o.t).negate(); fw2.normalize(); x2.copy(up2).cross(fw2); mat.makeBasis(x2, up2, fw2); m.matrix.copy(mat).scale(tmp2.set(s, s, s)).setPosition(gp.copy(o.n).multiplyScalar(1.0007));
       m.matrixWorldNeedsUpdate = true;
     });
   }
@@ -233,7 +262,7 @@
         if (r.d >= r.len || r.d <= 0) { r.d = Math.max(0, Math.min(r.len, r.d)); r.wait = 2.5; if (riding === o) G.onArrive(r, r.dir > 0 ? r.b : r.a); }
       }
       var st = Math.max(0.002, r.len * 0.004), p = along(r, r.d), p1 = along(r, r.d - r.dir * st), p2 = along(r, r.d + r.dir * st);
-      var alt = r.type === 'plane' ? planeH(r, r.d) : 0.0005, n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + alt);
+      var alt = r.type === 'plane' ? planeH(r, r.d) : 0.0009, n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + alt);
       var fwd = ll2v(p2[0], p2[1], 1).sub(ll2v(p1[0], p1[1], 1)); fwd.addScaledVector(n, -fwd.dot(n)).normalize();
       if (!isFinite(fwd.x) || fwd.lengthSq() < 0.5) fwd.set(0, 1, 0).cross(n).normalize();
       o.pos = pos; o.n = n; o.ll = p;
@@ -296,15 +325,18 @@
       var c = byId[id], ll = CEN[id]; ll2v(ll[0], ll[1], 1, vpos); if (!scr(vpos, p)) return;
       var dist = tmp.copy(camPos).sub(vpos).length(), cosv = vpos.dot(tmp.normalize()), bw = AW[id] * PPR / dist * Math.max(0.3, cosv);
       if (!(bw >= 14 || (V.alt < 0.5 && bw >= 3))) return;
-      var fw = bw >= 110 ? 34 : (bw >= 40 ? 28 : 22), fh = Math.round(fw * 0.75), showName = bw >= 28 || V.alt < 0.4, nm = G.lang === 'en' ? c.en : c.ja, tw = showName ? ctx.measureText(nm).width + 8 : 0;
-      var w = Math.max(fw, tw), h = fh + (showName ? 17 : 0), r = { x: p[0] - w / 2, y: p[1] - h / 2, w: w, h: h };
-      if (!free(r) && id !== G.sel) return; placed.push(r);
-      var fi = flag(c), fx = p[0] - fw / 2, fy = r.y;
+      var showName = bw >= 28 || V.alt < 0.4, nm = G.lang === 'en' ? c.en.toUpperCase() : c.ja, fs = Math.round(Math.max(12, Math.min(22, 11 + bw / 28)));
+      ctx.font = '900 ' + fs + 'px ' + FONT; ctx.letterSpacing = (G.lang === 'en' ? 2 : 1) + 'px';
+      var fw = showName ? Math.round(fs * 1.25) : (bw >= 40 ? 26 : 22), fh = Math.round(fw * 0.75), tw = showName ? ctx.measureText(nm).width : 0;
+      var w = fw + (showName ? tw + 6 : 0), h = Math.max(fh, showName ? fs + 4 : 0), r = { x: p[0] - w / 2, y: p[1] - h / 2, w: w, h: h };
+      if (!free(r) && id !== G.sel) { ctx.letterSpacing = '0px'; return; } placed.push(r);
+      var fi = flag(c), fx = r.x, fy = p[1] - fh / 2;
       ctx.fillStyle = 'rgba(15,25,90,.35)'; ctx.fillRect(fx + 2, fy + 2, fw, fh);
       if (fi) ctx.drawImage(fi, fx, fy, fw, fh); else { ctx.fillStyle = '#ddd'; ctx.fillRect(fx, fy, fw, fh); }
       ctx.lineWidth = 2; ctx.strokeStyle = '#3b2a5c'; ctx.strokeRect(fx, fy, fw, fh);
       if (stamps[id]) { ctx.fillStyle = '#ff5a4d'; ctx.beginPath(); ctx.arc(fx + fw, fy, 6, 0, 7); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = '#fff'; ctx.stroke(); } else if (INFO(id)) drawStar(ctx, fx + fw, fy, 7);
-      if (showName) { ctx.lineWidth = 4; ctx.strokeStyle = '#fff'; ctx.strokeText(nm, p[0], fy + fh + 2); ctx.fillStyle = '#3b2a5c'; ctx.fillText(nm, p[0], fy + fh + 2); }
+      if (showName) { ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; var tx = fx + fw + 6, ty = p[1] + 1; ctx.lineWidth = Math.max(4, fs * 0.32); ctx.strokeStyle = '#2a1f4a'; ctx.strokeText(nm, tx, ty); ctx.fillStyle = '#fff8e6'; ctx.fillText(nm, tx, ty); ctx.textAlign = 'center'; ctx.textBaseline = 'top'; }
+      ctx.letterSpacing = '0px';
       hits.push({ r: r, kind: 'country', id: id });
     }
     order.forEach(place); animals(); ctx.font = 'bold 13px ' + FONT; ctx.textBaseline = 'top'; rest.forEach(place);
@@ -326,8 +358,8 @@
   G.pick = function (px, py, hover) {
     for (var i = hits.length - 1; i >= 0; i--) { var h = hits[i], r = h.r; if (h.kind === 'animal' && px >= r.x && px <= r.x + r.w && py >= r.y && py <= r.y + r.h) return h; }
     var objs = []; LMS.forEach(function (o) { if (o.mesh.visible) objs.push(o.mesh); }); VEH.forEach(function (o) { if (o.mesh.visible) objs.push(o.mesh); });
-    var is = rayAt(px, py).intersectObjects(objs, false);
-    if (is.length) { var gl = G.llAt(px, py), gd = gl ? tmp.copy(ll2v(gl[0], gl[1], 1)).distanceTo(camPos) : 99; if (is[0].distance < gd + 0.001) return { kind: is[0].object.userData.kind, id: is[0].object.userData.id }; }
+    var is = rayAt(px, py).intersectObjects(objs, true).filter(function (h) { return h.object.material !== shadowMat; });
+    if (is.length) { var gl = G.llAt(px, py), gd = gl ? tmp.copy(ll2v(gl[0], gl[1], 1)).distanceTo(camPos) : 99; if (is[0].distance < gd + 0.001) { var ob = is[0].object; while (ob && !ob.userData.kind) ob = ob.parent; if (ob) return { kind: ob.userData.kind, id: ob.userData.id }; } }
     for (var j = hits.length - 1; j >= 0; j--) { var k = hits[j], q = k.r; if (k.kind !== 'animal' && px >= q.x && px <= q.x + q.w && py >= q.y && py <= q.y + q.h) return k; }
     if (hover) return null;
     var ll = G.llAt(px, py); if (!ll) return null; var id = countryAt(ll);
@@ -418,7 +450,7 @@
         thumbS = new T.Scene(); thumbS.add(new T.HemisphereLight(0xffffff, 0x9a90c8, 2.2)); var d = new T.DirectionalLight(0xffffff, 1.6); d.position.set(-1, 2, 2.5); thumbS.add(d);
         thumbC = new T.PerspectiveCamera(30, 1, 0.1, 20);
       }
-      var g = MODELS.geometry(key, colour), m = new T.Mesh(g, MODELS.material); g.computeBoundingSphere(); var bs = g.boundingSphere;
+      var m = MODELS.object(key, colour), bs = new T.Box3().setFromObject(m).getBoundingSphere(new T.Sphere());
       thumbS.add(m); var dist = bs.radius / Math.sin(15 * D2R) * 1.02;
       thumbC.position.set(bs.center.x + dist * 0.55, bs.center.y + dist * 0.42, bs.center.z + dist * 0.72); thumbC.lookAt(bs.center);
       thumbR.render(thumbS, thumbC); thumbS.remove(m);
