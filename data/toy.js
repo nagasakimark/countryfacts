@@ -391,7 +391,23 @@ TOY.landmarks = [
 {id:'basotho',c:'LSO',ll:[27.48,-29.31],m:'basotho',ja:'バソト・ハット',en:'Basotho Hat Building',k:'ばそとはっと れそと ぼうし',
   t:'レソトの {伝統|でんとう}的な ぼうし 「モコロトロ」の 形の たてもの。 ぼうしは 国旗にも かかれて いる。 山の 国なので、 馬に のる 人も 多い。',te:'A building shaped like the mokorotlo, Lesotho\'s traditional straw hat, which also appears on the flag. In this mountain kingdom, many people ride horses.'},
 {id:'lemorne',c:'MUS',ll:[57.32,-20.45],m:'lemorne',ja:'ル・モーン・ブラバン',en:'Le Morne Brabant',k:'るもーんぶらばん もーりしゃす',
-  t:'モーリシャスの 海に つき出た 山。 近くの 海は、 すなの もようで 「海の 中の たき」に 見える。 {世界遺産|せかいいさん}。',te:'A mountain on a peninsula in Mauritius. Nearby, sand patterns under the sea look like an underwater waterfall. A World Heritage Site.'}
+  t:'モーリシャスの 海に つき出た 山。 近くの 海は、 すなの もようで 「海の 中の たき」に 見える。 {世界遺産|せかいいさん}。',te:'A mountain on a peninsula in Mauritius. Nearby, sand patterns under the sea look like an underwater waterfall. A World Heritage Site.'},
+{id:'genghis',c:'MNG',ll:[107.53,47.81],m:'genghis',ja:'チンギス・ハーン{騎馬像|きばぞう}',en:'Genghis Khan Equestrian Statue',k:'ちんぎすはーん きばぞう もんごる',
+  t:'モンゴルの 草原に 立つ、 高さ 40mの 銀色の 馬と 王の 像。 馬の 頭まで のぼって 草原を 見わたせる。 近くには ゲル(テント)も ある。',te:'A 40 m silver statue of Genghis Khan on horseback, standing on the Mongolian grassland. You can climb up to the horse\'s head for the view. Ger tents stand nearby.'},
+{id:'qaboos',c:'OMN',ll:[58.39,23.58],m:'qaboos',ja:'スルタン・カブース・グランドモスク',en:'Sultan Qaboos Grand Mosque',k:'するたんかぶーす もすく おまーん',
+  t:'オマーンの {首都|しゅと} マスカットに ある 大きな モスク。 中には 世界で 2番目に 大きい 手おりの じゅうたんが ある。',te:'A grand mosque in Muscat, the capital of Oman. Inside is one of the largest hand-woven carpets in the world.'},
+{id:'burana',c:'KGZ',ll:[75.25,42.75],m:'burana',ja:'ブラナの塔',en:'Burana Tower',k:'ぶらなのとう きるぎす',
+  t:'キルギスの シルクロードの 町に のこる、 1000年前の レンガの 塔。 上の 方は 地しんで くずれた。 まわりに 古い 石の 人形 「バルバル」が ならぶ。',te:'A 1,000-year-old brick tower from a Silk Road town in Kyrgyzstan. Its top fell in an earthquake. Old stone figures called balbals stand around it.'},
+{id:'seongsan',c:'KOR',ll:[126.94,33.46],m:'seongsan',ja:'{城山日出峰|ソンサンイルチュルボン}',en:'Seongsan Ilchulbong',k:'そんさんいるちゅるぼん ちぇじゅとう かんこく',
+  t:'{韓国|かんこく}の {済州島|チェジュとう}に ある、 海から 出てきた 火山。 てっぺんは 大きな おわんの 形。 日の出の 名所。 海女(ヘニョ)さんも 有名。',te:'A volcanic cone that rose from the sea on Jeju Island, South Korea. Its top is a giant bowl-shaped crater. Famous for sunrises and for the haenyeo women divers.'},
+{id:'citadelle',c:'HTI',ll:[-72.24,19.57],m:'citadelle',ja:'シタデル・ラフェリエール',en:'Citadelle Laferrière',k:'しただる らふぇりえーる はいち',
+  t:'ハイチの 山の 上に ある 大きな とりで。 1804年に どくりつした あと、 国を まもるために つくった。 たくさんの 大ほうが ある。',te:'A huge mountain-top fortress in Haiti, built after the country won its independence in 1804 to protect it. It holds many cannons.'},
+{id:'dunnsriver',c:'JAM',ll:[-77.14,18.41],m:'dunnsriver',ja:'ダンズリバーの たき',en:'Dunn\'s River Falls',k:'だんずりばー たき じゃまいか',
+  t:'ジャマイカの たき。 かいだんのような 岩を 水が 流れて、 そのまま 海へ。 みんなで 手を つないで たきを のぼれる。',te:'A waterfall in Jamaica that flows down rock steps straight into the sea. Visitors hold hands and climb up it together.'},
+{id:'apostles',c:'AUS',ll:[143.1,-38.66],m:'apostles',ja:'トゥエルブ・アポストルズ',en:'The Twelve Apostles',k:'とぅえるぶあぽすとるず おーすとらりあ',
+  t:'オーストラリアの 海に 立つ 石の 柱たち。 波が がけを けずって できた。 今も 少しずつ くずれて、 数が へって いる。',te:'Limestone pillars standing in the sea off Australia, carved out of the cliffs by waves. They slowly crumble, so there are fewer each year.'},
+{id:'templesea',c:'TTO',ll:[-61.44,10.47],m:'templesea',ja:'海の 中の {寺院|じいん}',en:'Temple in the Sea',k:'うみのなかのじいん とりにだーどとばご',
+  t:'トリニダード・トバゴの 海に たつ ヒンドゥー教の 白い お寺。 インドから 来た 人の 子そんが 多い 国。 色とりどりの はたが ゆれる。',te:'A white Hindu temple standing in the sea in Trinidad and Tobago, a country where many people have Indian roots. Colourful prayer flags flutter nearby.'}
 ];
 
 TOY.animals = [

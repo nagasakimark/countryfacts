@@ -179,7 +179,7 @@ Landmark,Japan,Ushiku Daibutsu,no,,
 Landmark,Jordan,Jerash,no,,
 Landmark,Jordan,Petra – Al-Khazneh,yes,petra,Petra (Al-Khazneh)
 Landmark,Kuwait,Kuwait Towers,yes,kuwaittowers,Kuwait Towers
-Landmark,Kyrgyzstan,Burana Tower,no,,
+Landmark,Kyrgyzstan,Burana Tower,yes,burana,Burana Tower
 Landmark,Laos,Pha That Luang,yes,thatluang,Pha That Luang
 Landmark,Lebanon,Baalbek,yes,baalbek,Baalbek
 Landmark,Macao,Grand Lisboa,no,,
@@ -189,7 +189,7 @@ Landmark,Malaysia,"Murugan Statue, Batu Caves",no,,
 Landmark,Malaysia,Petronas Twin Towers,yes,petronas,Petronas Twin Towers
 Landmark,Malaysia,Sultan Abdul Samad Building,no,,
 Landmark,Maldives,Maldives Overwater Villas,yes,maldives,Maldives Water Villas
-Landmark,Mongolia,Genghis Khan Equestrian Statue,no,,
+Landmark,Mongolia,Genghis Khan Equestrian Statue,yes,genghis,Genghis Khan Equestrian Statue
 Landmark,Myanmar,Bagan,yes,bagan,Bagan
 Landmark,Myanmar,Laykyun Sekkya,no,,
 Landmark,Myanmar,Shwedagon Pagoda,yes,shwedagon,Shwedagon Pagoda
@@ -197,7 +197,7 @@ Landmark,Nepal,Boudhanath Stupa,yes,boudha,Boudhanath Stupa
 Landmark,Nepal,Mount Everest,yes,everest,Mount Everest
 Landmark,North Korea,Mt. Paektu (Baekdu) & Heaven Lake,no,,
 Landmark,North Korea,Ryugyong Hotel,no,,
-Landmark,Oman,Sultan Qaboos Grand Mosque,no,,
+Landmark,Oman,Sultan Qaboos Grand Mosque,yes,qaboos,Sultan Qaboos Grand Mosque
 Landmark,Pakistan,Badshahi Mosque,yes,badshahi,Badshahi Mosque
 Landmark,Pakistan,Bahria Icon Tower,no,,
 Landmark,Pakistan,Faisal Mosque,no,,
@@ -254,7 +254,7 @@ Landmark,South Korea,N Seoul Tower,yes,nseoultower,N Seoul Tower
 Landmark,South Korea,National Assembly Proceeding Hall,no,,
 Landmark,South Korea,Parc.1,no,,
 Landmark,South Korea,Seokguram Grotto,no,,
-Landmark,South Korea,Seongsan Ilchulbong,no,,
+Landmark,South Korea,Seongsan Ilchulbong,yes,seongsan,Seongsan Ilchulbong
 Landmark,South Korea,Sungnyemun (Namdaemun) Gate,no,,
 Landmark,South Korea,Trade Tower,no,,
 Landmark,Sri Lanka,Sigiriya (Lion Rock),yes,sigiriya,Sigiriya (Lion Rock)
@@ -558,10 +558,10 @@ Landmark,Greenland,Ilulissat Icefjord,yes,ilulissat,Ilulissat Icefjord
 Landmark,Greenland,Nuuk,no,,
 Landmark,Guatemala,Antigua Guatemala,no,,
 Landmark,Guatemala,Tikal,yes,tikal,Tikal
-Landmark,Haiti,Citadelle Laferrière,no,,
+Landmark,Haiti,Citadelle Laferrière,yes,citadelle,Citadelle Laferrière
 Landmark,Haiti,Sans-Souci Palace,no,,
 Landmark,Honduras,Copán,no,,
-Landmark,Jamaica,Dunn's River Falls,no,,
+Landmark,Jamaica,Dunn's River Falls,yes,dunnsriver,Dunn's River Falls
 Landmark,Jamaica,Rose Hall Great House,no,,
 Landmark,Mexico,Chichén Itzá,yes,chichen,Chichén Itzá
 Landmark,Mexico,Mexico City Metropolitan Cathedral,no,,
@@ -791,7 +791,7 @@ Landmark,Australia,Sydney Harbour Bridge,yes,harbourbridge,Sydney Harbour Bridge
 Landmark,Australia,Sydney Opera House,yes,opera,Sydney Opera House
 Landmark,Australia,Sydney Tower Eye,no,,
 Landmark,Australia,Telstra House (30 Pirie Street),no,,
-Landmark,Australia,The Twelve Apostles,no,,
+Landmark,Australia,The Twelve Apostles,yes,apostles,The Twelve Apostles
 Landmark,Australia,Uluru,yes,uluru,Uluru
 Landmark,Australia,Wheel of Brisbane,no,,
 Landmark,Australia,WRC Rally Australia (Coffs Harbour),no,,
@@ -831,7 +831,7 @@ Landmark,Georgia,Svetitskhoveli Cathedral,no,,
 Landmark,Kazakhstan,Baikonur Cosmodrome,no,,
 Landmark,Kazakhstan,Baiterek Tower,yes,bayterek,Bayterek Tower
 Landmark,Russia,Manpupuner Rock Formations,no,,
-Landmark,Trinidad & Tobago,Temple in the Sea,no,,
+Landmark,Trinidad & Tobago,Temple in the Sea,yes,templesea,Temple in the Sea
 Landmark,Türkiye,Library of Celsus,no,,
 Landmark,Türkiye,Pamukkale,yes,pamukkale,Pamukkale
 Animal,Mammal,Aardvark,no,,
