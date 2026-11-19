@@ -102,10 +102,10 @@ Landmark,India,"Kailasa Temple, Ellora",no,,
 Landmark,India,"Kandariya Mahadeva Temple, Khajuraho",no,,
 Landmark,India,Kapaleeshwarar Temple,no,,
 Landmark,India,Konark Sun Temple,no,,
-Landmark,India,Lotus Temple,no,,
+Landmark,India,Lotus Temple,yes,lotustemple,Lotus Temple
 Landmark,India,Meenakshi Amman Temple,no,,
 Landmark,India,Mysore Palace,no,,
-Landmark,India,Qutub Minar,no,,
+Landmark,India,Qutub Minar,yes,qutub,Qutub Minar
 Landmark,India,Rashtrapati Bhavan,no,,
 Landmark,India,Red Fort,no,,
 Landmark,India,Statue of Unity,no,,
@@ -123,7 +123,7 @@ Landmark,Indonesia,Jam Gadang,no,,
 Landmark,Indonesia,Kelimutu,no,,
 Landmark,Indonesia,Komodo Island,no,,
 Landmark,Indonesia,Lake Toba,no,,
-Landmark,Indonesia,Mount Bromo,no,,
+Landmark,Indonesia,Mount Bromo,yes,mtbromo,Mount Bromo
 Landmark,Indonesia,National Monument (Monas),no,,
 Landmark,Indonesia,Prambanan,no,,
 Landmark,Indonesia,Pura Besakih,no,,
@@ -149,7 +149,7 @@ Landmark,Japan,Abeno Harukas,no,,
 Landmark,Japan,Azabudai Hills Mori JP Tower,no,,
 Landmark,Japan,Fuji Television Headquarters Building,no,,
 Landmark,Japan,Fushimi Inari Taisha,yes,fushimi,Fushimi Inari Taisha
-Landmark,Japan,Goryokaku,no,,
+Landmark,Japan,Goryokaku,yes,goryokaku,Goryokaku
 Landmark,Japan,Great Buddha of Kamakura,yes,kamakura,Great Buddha of Kamakura
 Landmark,Japan,Himeji Castle,yes,himeji,Himeji Castle
 Landmark,Japan,Hiroshima Peace Memorial (Atomic Bomb Dome),yes,genbaku,Atomic Bomb Dome
@@ -161,7 +161,7 @@ Landmark,Japan,Meiji Shrine,no,,
 Landmark,Japan,Mode Gakuen Cocoon Tower,no,,
 Landmark,Japan,Mount Fuji,yes,fuji,Mount Fuji
 Landmark,Japan,Nagoya Castle,no,,
-Landmark,Japan,Nikkō Tōshō-gū,no,,
+Landmark,Japan,Nikkō Tōshō-gū,yes,nikko,Nikkō Tōshō-gū
 Landmark,Japan,Osaka Castle,yes,osakajo,Osaka Castle
 Landmark,Japan,Osaka City Central Public Hall,no,,
 Landmark,Japan,Roppongi Hills Mori Tower,no,,
@@ -190,7 +190,7 @@ Landmark,Malaysia,Petronas Twin Towers,yes,petronas,Petronas Twin Towers
 Landmark,Malaysia,Sultan Abdul Samad Building,no,,
 Landmark,Maldives,Maldives Overwater Villas,yes,maldives,Maldives Water Villas
 Landmark,Mongolia,Genghis Khan Equestrian Statue,no,,
-Landmark,Myanmar,Bagan,no,,
+Landmark,Myanmar,Bagan,yes,bagan,Bagan
 Landmark,Myanmar,Laykyun Sekkya,no,,
 Landmark,Myanmar,Shwedagon Pagoda,yes,shwedagon,Shwedagon Pagoda
 Landmark,Nepal,Boudhanath Stupa,yes,boudha,Boudhanath Stupa
@@ -213,7 +213,7 @@ Landmark,Philippines,"El Nido, Palawan",no,,
 Landmark,Philippines,"Fort Santiago, Intramuros",no,,
 Landmark,Philippines,Manila Cathedral,no,,
 Landmark,Philippines,Manila City Hall,no,,
-Landmark,Philippines,Mayon Volcano,no,,
+Landmark,Philippines,Mayon Volcano,yes,mayon,Mayon Volcano
 Landmark,Qatar,"Museum of Islamic Art, Doha",no,,
 Landmark,Russia,"Golden Bridge & Russky Bridge, Vladivostok",no,,
 Landmark,Russia,Klyuchevskaya Sopka,no,,
@@ -286,7 +286,7 @@ Landmark,Uzbekistan,Gur-e-Amir,no,,
 Landmark,Uzbekistan,Itchan Kala,no,,
 Landmark,Uzbekistan,"Registan, Samarkand",yes,registan,"Registan, Samarkand"
 Landmark,Vietnam,Bitexco Financial Tower,no,,
-Landmark,Vietnam,"Golden Bridge, Ba Na Hills",no,,
+Landmark,Vietnam,"Golden Bridge, Ba Na Hills",yes,goldenbridge,"Golden Bridge, Ba Na Hills"
 Landmark,Vietnam,Ha Long Bay,yes,halong,Ha Long Bay
 Landmark,Vietnam,Imperial City of Huế (Meridian Gate),no,,
 Landmark,Vietnam,"Japanese Covered Bridge, Hội An",yes,hoian,"Japanese Covered Bridge, Hội An"

@@ -359,7 +359,23 @@ TOY.landmarks = [
  {id:'cartagena',c:'COL',ll:[-75.55,10.42],m:'cartagena',ja:'カルタヘナの {城壁|じょうへき}の 町',en:'Walled City of Cartagena',k:'かるたへな ころんびあ',
   t:'コロンビアの カリブ海ぞいの 町。 カラフルな 家と、 海ぞくから 町を まもった 石の {城壁|じょうへき}が ある。',te:'A Colombian city on the Caribbean with colourful houses and stone walls that once protected it from pirates.'},
  {id:'kaieteur',c:'GUY',ll:[-59.48,5.18],m:'kaieteur',ja:'カイエチュール・フォールズ',en:'Kaieteur Falls',k:'かいえちゅーる がいあな',
-  t:'ガイアナの ジャングルの 中の たき。 1回で 226m 落ちる、 世界でも とくに 力強い たき。',te:'A waterfall in the jungle of Guyana with a single 226 m drop — one of the most powerful in the world.'}
+  t:'ガイアナの ジャングルの 中の たき。 1回で 226m 落ちる、 世界でも とくに 力強い たき。',te:'A waterfall in the jungle of Guyana with a single 226 m drop — one of the most powerful in the world.'},
+{id:'bagan',c:'MMR',ll:[94.86,21.17],m:'bagan',ja:'バガン',en:'Bagan',k:'ばがん みゃんまー',
+  t:'ミャンマーの 平原に、 2000 いじょうの お寺や {仏塔|ぶっとう}が ならぶ。 朝には 気球が うかぶ。',te:'Over 2,000 temples and pagodas spread across a plain in Myanmar, with hot-air balloons at sunrise.'},
+ {id:'mtbromo',c:'IDN',ll:[112.95,-7.94],m:'mtbromo',ja:'ブロモ山',en:'Mount Bromo',k:'ぶろもさん じゃわ いんどねしあ',
+  t:'インドネシアの ジャワ島に ある 火山。「{砂|すな}の 海」と よばれる 灰色の 平原の 中で、 けむりを はいている。',te:'A smoking volcano on Java, Indonesia, rising from a grey plain called the Sea of Sand.'},
+ {id:'mayon',c:'PHL',ll:[123.69,13.26],m:'mayon',ja:'マヨン火山',en:'Mayon Volcano',k:'まよんかざん ふぃりぴん',
+  t:'フィリピンの、 とても きれいな 円すいの 形を した 火山。 今も ときどき ふん火する。',te:'A volcano in the Philippines with an almost perfect cone shape. It still erupts from time to time.'},
+ {id:'goldenbridge',c:'VNM',ll:[108.00,16.00],m:'goldenbridge',ja:'ゴールデン・ブリッジ',en:'Golden Bridge, Ba Na Hills',k:'ごーるでんぶりっじ ばーなーひるず べとなむ',
+  t:'ベトナムの 山の 上に ある 金色の 橋。 2つの 大きな 石の 手が 橋を ささえている。',te:'A golden footbridge high in the mountains of Vietnam, held up by two giant stone hands.'},
+ {id:'lotustemple',c:'IND',ll:[77.26,28.55],m:'lotustemple',ja:'ロータス寺院',en:'Lotus Temple',k:'ろーたすじいん でりー いんど',
+  t:'インドの デリーに ある、 ハスの 花の 形を した 白い たてもの。 どんな {宗教|しゅうきょう}の 人でも 入れる。',te:'A white building shaped like a lotus flower in Delhi, India. People of every religion are welcome.'},
+ {id:'qutub',c:'IND',ll:[77.19,28.52],m:'qutub',ja:'クトゥブ・ミナール',en:'Qutub Minar',k:'くとぅぶみなーる でりー いんど',
+  t:'インドの デリーに ある、 高さ 約73mの れんがの {塔|とう}。 約800年 前に たてられはじめた。',te:'A 73 m brick tower in Delhi, India, begun about 800 years ago.'},
+ {id:'goryokaku',c:'JPN',ll:[140.76,41.80],m:'goryokaku',ja:'{五稜郭|ごりょうかく}',en:'Goryōkaku',k:'ごりょうかく はこだて ほっかいどう',
+  t:'北海道の {函館|はこだて}に ある、 星の 形を した とりで。 春は さくらで いっぱいに なる。',te:'A star-shaped fort in Hakodate, Hokkaido. In spring it fills with cherry blossoms.'},
+ {id:'nikko',c:'JPN',ll:[139.60,36.76],m:'nikko',ja:'日光{東照宮|とうしょうぐう}',en:'Nikkō Tōshō-gū',k:'にっこうとうしょうぐう とちぎ',
+  t:'{栃木|とちぎ}県に ある、 {徳川家康|とくがわいえやす}を まつる 神社。 金や あざやかな 色の ほりものが 美しい。「見ざる・言わざる・聞かざる」の サルが 有名。',te:'A shrine in Tochigi honouring Tokugawa Ieyasu, covered in gold and colourful carvings — including the famous "see no evil, hear no evil, speak no evil" monkeys.'}
 ];
 
 TOY.animals = [
