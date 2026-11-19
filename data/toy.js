@@ -327,7 +327,23 @@ TOY.landmarks = [
  {id:'pngparl',c:'PNG',ll:[147.18,-9.43],m:'pngparl',ja:'パプアニューギニア国会議事堂',en:'National Parliament House, Port Moresby',k:'ぱぷあにゅーぎにあ こっかい',
   t:'パプアニューギニアの 国会。 伝統的な 家「ハウス・タンバラン」の 形を まねていて、 とがった 三角の 正面が とくちょう。',te:'Papua New Guinea\'s parliament, shaped like a traditional haus tambaran spirit house with a tall pointed front.'},
  {id:'southpole',c:'ATA',ll:[0.00,-89.90],m:'southpole',ja:'南極点の 基地',en:'Amundsen–Scott South Pole Station',k:'なんきょくてん きち なんきょく',
-  t:'南極点に ある アメリカの 研究基地。 気温は マイナス60℃に なることも。 半年 ずっと 昼、 半年 ずっと 夜が つづく。',te:'An American research station right at the South Pole. It can drop to −60 °C, and there are six months of day and six months of night.'}
+  t:'南極点に ある アメリカの 研究基地。 気温は マイナス60℃に なることも。 半年 ずっと 昼、 半年 ずっと 夜が つづく。',te:'An American research station right at the South Pole. It can drop to −60 °C, and there are six months of day and six months of night.'},
+{id:'londoneye',c:'GBR',ll:[-0.12,51.50],m:'londoneye',ja:'ロンドン・アイ',en:'London Eye',k:'ろんどんあい いぎりす かんらんしゃ',
+  t:'ロンドンの テムズ川ぞいに ある 大きな かんらん車。 高さ 135mで、 1周 約30分 かかる。',te:'A giant observation wheel on the Thames in London, 135 m tall. One turn takes about 30 minutes.'},
+ {id:'edinburgh',c:'GBR',ll:[-3.20,55.95],m:'edinburgh',ja:'エディンバラ{城|じょう}',en:'Edinburgh Castle',k:'えでぃんばらじょう すこっとらんど いぎりす',
+  t:'スコットランドの、 大むかしの 火山の 岩の 上に たつ お{城|しろ}。 日曜日 いがいの 毎日、 午後1時に 大ほうを うつ。',te:'A castle in Scotland built on the rock of an ancient volcano. A cannon is fired at 1 p.m. every day except Sunday.'},
+ {id:'atomium',c:'BEL',ll:[4.34,50.89],m:'atomium',ja:'アトミウム',en:'Atomium',k:'あとみうむ べるぎー ぶりゅっせる',
+  t:'ベルギーの ブリュッセルに ある たてもの。 鉄の つぶ（原子）の ならび方を 1650億倍に 大きくした 形で、 9この 玉が つながっている。',te:'A building in Brussels shaped like a crystal of iron magnified 165 billion times, made of nine connected spheres.'},
+ {id:'bled',c:'SVN',ll:[14.09,46.36],m:'bled',ja:'ブレッド湖',en:'Lake Bled',k:'ぶれっどこ すろべにあ',
+  t:'スロベニアの 山の 湖。 まん中の 小さな 島に 教会が たっていて、 手こぎの 船で わたる。',te:'A mountain lake in Slovenia with a little church on an island in the middle. Visitors row across in wooden boats.'},
+ {id:'alberobello',c:'ITA',ll:[17.24,40.78],m:'alberobello',ja:'アルベロベッロの トゥルッリ',en:'Trulli of Alberobello',k:'あるべろべっろ とぅるっり いたりあ',
+  t:'イタリアの 村に ならぶ、 とんがり{帽子|ぼうし}のような 石の やねの 白い 家。 セメントを 使わずに 石を つんで つくる。',te:'White houses with pointed stone roofs like gnome hats, in an Italian village. The roofs are stacked stones with no mortar.'},
+ {id:'plitvice',c:'HRV',ll:[15.60,44.88],m:'plitvice',ja:'プリトヴィツェ湖群',en:'Plitvice Lakes',k:'ぷりとう゛ぃつぇ くろあちあ',
+  t:'クロアチアの 森に、 16の 湖が だんだんに つながり、 たくさんの たきで 流れ落ちる。 水は エメラルド色。',te:'Sixteen lakes in a Croatian forest, joined by many waterfalls and coloured emerald green.'},
+ {id:'rila',c:'BGR',ll:[23.34,42.13],m:'rila',ja:'リラの {修道院|しゅうどういん}',en:'Rila Monastery',k:'りらのしゅうどういん ぶるがりあ',
+  t:'ブルガリアの 山おくの {修道院|しゅうどういん}。 しまもようの アーチと、 カラフルな かべの 絵が 美しい。',te:'A monastery deep in the mountains of Bulgaria, with striped arches and colourful wall paintings.'},
+ {id:'tallinn',c:'EST',ll:[24.75,59.44],m:'tallinn',ja:'タリンの 旧市街',en:'Tallinn Old Town',k:'たりん えすとにあ',
+  t:'エストニアの 首都の 古い 町。 赤い とんがり やねの {塔|とう}と {城壁|じょうへき}が、 中世の まま のこっている。',te:'The old town of Estonia\'s capital, with red-roofed towers and city walls still as they were in the Middle Ages.'}
 ];
 
 TOY.animals = [

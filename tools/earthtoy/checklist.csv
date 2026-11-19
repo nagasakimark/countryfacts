@@ -298,15 +298,15 @@ Landmark,Austria,Hallstatt,yes,hallstatt,Hallstatt
 Landmark,Austria,Schönbrunn Palace,no,,
 Landmark,Austria,St. Stephen's Cathedral,no,,
 Landmark,Belarus,National Library of Belarus,no,,
-Landmark,Belgium,Atomium,no,,
+Landmark,Belgium,Atomium,yes,atomium,Atomium
 Landmark,Bosnia & Herzegovina,"Stari Most, Mostar",no,,
-Landmark,Bulgaria,Rila Monastery,no,,
+Landmark,Bulgaria,Rila Monastery,yes,rila,Rila Monastery
 Landmark,Croatia,Dubrovnik Old Town,yes,dubrovnik,Dubrovnik
-Landmark,Croatia,Plitvice Lakes,no,,
+Landmark,Croatia,Plitvice Lakes,yes,plitvice,Plitvice Lakes
 Landmark,Czechia,Charles Bridge & Prague Castle,yes,prague,Charles Bridge & Prague Castle
 Landmark,Czechia,Prague Astronomical Clock,no,,
 Landmark,Denmark,Nyhavn,yes,nyhavn,Nyhavn
-Landmark,Estonia,Tallinn Old Town,no,,
+Landmark,Estonia,Tallinn Old Town,yes,tallinn,Tallinn Old Town
 Landmark,Finland,Helsinki Cathedral,no,,
 Landmark,Finland,Temppeliaukio Church (Rock Church),no,,
 Landmark,Finland,Uspenski Cathedral,no,,
@@ -348,7 +348,7 @@ Landmark,Italy,Pompeii,no,,
 Landmark,Italy,Roman Forum,no,,
 Landmark,Italy,Royal Palace of Caserta,no,,
 Landmark,Italy,St Mark's Square,yes,venice,"Rialto Bridge, Venice"
-Landmark,Italy,Trulli of Alberobello,no,,
+Landmark,Italy,Trulli of Alberobello,yes,alberobello,Trulli of Alberobello
 Landmark,Kosovo,Newborn monument,no,,
 Landmark,Latvia,Freedom Monument,no,,
 Landmark,Lithuania,Gediminas' Tower,no,,
@@ -381,7 +381,7 @@ Landmark,Russia,The Motherland Calls,no,,
 Landmark,Russia,Winter Palace (Hermitage),no,,
 Landmark,Serbia,Church of Saint Sava,no,,
 Landmark,Slovakia,Bratislava Castle,no,,
-Landmark,Slovenia,Lake Bled,no,,
+Landmark,Slovenia,Lake Bled,yes,bled,Lake Bled
 Landmark,Spain,Alhambra,yes,alhambra,Alhambra
 Landmark,Spain,Aqueduct of Segovia,no,,
 Landmark,Spain,Cibeles Palace & Fountain,no,,
@@ -414,9 +414,9 @@ Landmark,United Kingdom,20 Fenchurch Street (Walkie-Talkie),no,,
 Landmark,United Kingdom,30 St Mary Axe (The Gherkin),no,,
 Landmark,United Kingdom,Angel of the North,no,,
 Landmark,United Kingdom,Big Ben,yes,bigben,Big Ben
-Landmark,United Kingdom,Edinburgh Castle,no,,
+Landmark,United Kingdom,Edinburgh Castle,yes,edinburgh,Edinburgh Castle
 Landmark,United Kingdom,Hadrian's Wall,no,,
-Landmark,United Kingdom,London Eye,no,,
+Landmark,United Kingdom,London Eye,yes,londoneye,London Eye
 Landmark,United Kingdom,"Roman Baths, Bath",no,,
 Landmark,United Kingdom,St Paul's Cathedral,no,,
 Landmark,United Kingdom,Stonehenge,yes,stonehenge,Stonehenge
