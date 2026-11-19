@@ -74,7 +74,7 @@ Landmark,Hong Kong,HSBC Main Building,no,,
 Landmark,Hong Kong,International Commerce Centre,no,,
 Landmark,Hong Kong,Jardine House,no,,
 Landmark,Hong Kong,Lippo Centre,no,,
-Landmark,Hong Kong,Star Ferry,no,,
+Landmark,Hong Kong,Star Ferry,yes,starferry,Star Ferry
 Landmark,Hong Kong,Tian Tan Buddha,yes,tiantan,Tian Tan Buddha
 Landmark,Hong Kong,Two International Finance Centre,no,,
 Landmark,India,Agra Fort,no,,
@@ -140,7 +140,7 @@ Landmark,Iran,Nasir al-Mulk Mosque,no,,
 Landmark,Iran,Persepolis,yes,persepolis,Persepolis
 Landmark,Iran,Tehran International Tower,no,,
 Landmark,Iraq,Al-Shaheed Monument,no,,
-Landmark,Iraq,Erbil Citadel,no,,
+Landmark,Iraq,Erbil Citadel,yes,erbil,Erbil Citadel
 Landmark,Iraq,Great Ziggurat of Ur,yes,ur,Ziggurat of Ur
 Landmark,Iraq,"Ishtar Gate, Babylon",no,,
 Landmark,Iraq,"Malwiya Minaret, Samarra",no,,
@@ -183,7 +183,7 @@ Landmark,Kyrgyzstan,Burana Tower,yes,burana,Burana Tower
 Landmark,Laos,Pha That Luang,yes,thatluang,Pha That Luang
 Landmark,Lebanon,Baalbek,yes,baalbek,Baalbek
 Landmark,Macao,Grand Lisboa,no,,
-Landmark,Macao,Macau Tower,no,,
+Landmark,Macao,Macau Tower,yes,macautower,Macau Tower
 Landmark,Macao,Ruins of St. Paul's,yes,stpaulmacao,Ruins of St. Paul's
 Landmark,Malaysia,"Murugan Statue, Batu Caves",no,,
 Landmark,Malaysia,Petronas Twin Towers,yes,petronas,Petronas Twin Towers
@@ -195,7 +195,7 @@ Landmark,Myanmar,Laykyun Sekkya,no,,
 Landmark,Myanmar,Shwedagon Pagoda,yes,shwedagon,Shwedagon Pagoda
 Landmark,Nepal,Boudhanath Stupa,yes,boudha,Boudhanath Stupa
 Landmark,Nepal,Mount Everest,yes,everest,Mount Everest
-Landmark,North Korea,Mt. Paektu (Baekdu) & Heaven Lake,no,,
+Landmark,North Korea,Mt. Paektu (Baekdu) & Heaven Lake,yes,paektu,Mt. Paektu (Baekdu) & Heaven Lake
 Landmark,North Korea,Ryugyong Hotel,no,,
 Landmark,Oman,Sultan Qaboos Grand Mosque,yes,qaboos,Sultan Qaboos Grand Mosque
 Landmark,Pakistan,Badshahi Mosque,yes,badshahi,Badshahi Mosque
@@ -223,7 +223,7 @@ Landmark,Russia,Valley of Geysers,no,,
 Landmark,Russia,Vostochny Cosmodrome,no,,
 Landmark,Saudi Arabia,Abraj Al-Bait Clock Tower,no,,
 Landmark,Saudi Arabia,"Al-Balad, Historic Jeddah",no,,
-Landmark,Saudi Arabia,Edge of the World,no,,
+Landmark,Saudi Arabia,Edge of the World,yes,edgeworld,Edge of the World
 Landmark,Saudi Arabia,Hegra (AlUla),yes,hegra,Hegra (AlUla)
 Landmark,Saudi Arabia,Jeddah Corniche Circuit,no,,
 Landmark,Saudi Arabia,King Fahd's Fountain,no,,
@@ -261,7 +261,7 @@ Landmark,Sri Lanka,Sigiriya (Lion Rock),yes,sigiriya,Sigiriya (Lion Rock)
 Landmark,Sri Lanka,Temple of the Sacred Tooth Relic,no,,
 Landmark,Syria,Citadel of Aleppo,no,,
 Landmark,Syria,Krak des Chevaliers,yes,krak,Krak des Chevaliers
-Landmark,Syria,Umayyad Mosque,no,,
+Landmark,Syria,Umayyad Mosque,yes,umayyad,Umayyad Mosque
 Landmark,Taiwan,Chiang Kai-shek Memorial Hall,no,,
 Landmark,Taiwan,Lungshan Temple of Manka,no,,
 Landmark,Taiwan,Taipei 101,yes,taipei101,Taipei 101
@@ -466,7 +466,7 @@ Landmark,Gabon,"St. Michael's Church, Nkembo",yes,nkembo,"St. Michael's Church, 
 Landmark,Gambia,Arch 22,yes,arch22,Arch 22
 Landmark,Ghana,Cape Coast Castle,yes,capecoast,Cape Coast Castle
 Landmark,Ghana,Larabanga Mosque,no,,
-Landmark,Guinea,Grand Mosque of Conakry,no,,
+Landmark,Guinea,Grand Mosque of Conakry,yes,conakry,Grand Mosque of Conakry
 Landmark,Guinea-Bissau,Pidjiguiti Memorial,no,,
 Landmark,Kenya,Fort Jesus,no,,
 Landmark,Kenya,Maasai Mara,yes,maasai,Maasai Mara
@@ -514,7 +514,7 @@ Landmark,Sudan,Pyramids of Meroë,yes,meroe,Pyramids of Meroë
 Landmark,Tanzania,Mount Kilimanjaro,yes,kilimanjaro,Mount Kilimanjaro
 Landmark,Tanzania,Ngorongoro Crater,yes,ngorongoro,Ngorongoro Crater
 Landmark,Tanzania,"Stone Town, Zanzibar",yes,stonetown,"Stone Town, Zanzibar"
-Landmark,Togo,"Independence Monument, Lomé",no,,
+Landmark,Togo,"Independence Monument, Lomé",yes,togoind,"Independence Monument, Lomé"
 Landmark,Tunisia,Amphitheatre of El Jem,yes,eljem,Amphitheatre of El Jem
 Landmark,Tunisia,Carthage – Antonine Baths,no,,
 Landmark,Tunisia,Great Mosque of Kairouan,no,,

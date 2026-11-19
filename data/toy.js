@@ -535,7 +535,23 @@ TOY.landmarks = [
 {id:'bunce',c:'SLE',ll:[-13.0397,8.5694],m:'bunce',ja:'バンス島',en:'Bunce Island',k:'ばんすとう しえられおね',
   t:'シエラレオネの 川に うかぶ 小さな 島。 むかし、 ここから 多くの アフリカの 人が むりやり アメリカへ つれて いかれた。 今は とりでの あとが のこる。',te:'A small island in a river in Sierra Leone. Long ago, many Africans were forced onto ships to the Americas from here. The ruins of the fort remain.'},
 {id:'chisinau',c:'MDA',ll:[28.8317,47.0256],m:'chisinau',ja:'キシナウの {凱旋門|がいせんもん}',en:'Triumphal Arch, Chișinău',k:'きしなう がいせんもん もるどば',
-  t:'モルドバの {首都|しゅと} キシナウの 公園に 立つ 門。 上には 大きな 時計が あり、 うしろには {大聖堂|だいせいどう}が ある。',te:'An arch in a park in Chișinău, the capital of Moldova. It has a big clock on top, with the cathedral behind it.'}
+  t:'モルドバの {首都|しゅと} キシナウの 公園に 立つ 門。 上には 大きな 時計が あり、 うしろには {大聖堂|だいせいどう}が ある。',te:'An arch in a park in Chișinău, the capital of Moldova. It has a big clock on top, with the cathedral behind it.'},
+{id:'edgeworld',c:'SAU',ll:[45.98,24.95],m:'edgeworld',ja:'エッジ・オブ・ザ・ワールド',en:'Edge of the World',k:'えっじおぶざわーるど さうじあらびあ せかいのはて',
+  t:'サウジアラビアの さばくに ある、 「世界の はて」と よばれる がけ。 高い 台地が とつぜん 切れて、 下には どこまでも 平原が 広がる。',te:'A cliff in the Saudi Arabian desert called the "Edge of the World". A high plateau suddenly ends, and a plain stretches out forever below.'},
+{id:'paektu',c:'PRK',ll:[128.0773,41.9936],m:'paektu',ja:'{白頭山|ペクトゥさん}と 天池',en:'Mt. Paektu & Heaven Lake',k:'ぺくとぅさん はくとうさん てんち きたちょうせん ちゅうごく',
+  t:'{北朝鮮|きたちょうせん}と 中国の さかいに ある 火山。 てっぺんの 火口に 「天池」という 深い 青い みずうみが ある。 {朝鮮半島|ちょうせんはんとう}で 一番 高い 山。',te:'A volcano on the border of North Korea and China. Its crater holds a deep blue lake called Heaven Lake. It is the highest mountain on the Korean Peninsula.'},
+{id:'starferry',c:'HKG',ll:[114.1689,22.2939],m:'starferry',ja:'スター・フェリー',en:'Star Ferry',k:'すたーふぇりー ほんこん',
+  t:'香港の ビクトリア{湾|わん}を わたる 緑と 白の 船。 1888年から 走って いる。 船から 高い ビルが ならぶ 夜景が 見える。',te:'Green-and-white ferries crossing Victoria Harbour in Hong Kong since 1888. From the boat you can see the skyline of tall buildings.'},
+{id:'macautower',c:'MAC',ll:[113.5361,22.18],m:'macautower',ja:'マカオタワー',en:'Macau Tower',k:'まかおたわー',
+  t:'マカオの 338mの タワー。 233mの ところから とびおりる バンジージャンプは、 世界で 一番 高い ものの 一つ。',te:'A 338 m tower in Macao. Its bungee jump from 233 m up is one of the highest in the world.'},
+{id:'umayyad',c:'SYR',ll:[36.3069,33.5117],m:'umayyad',ja:'ウマイヤド・モスク',en:'Umayyad Mosque',k:'うまいやどもすく しりあ だますかす',
+  t:'シリアの {首都|しゅと} ダマスカスに ある、 世界で 一番 古い モスクの 一つ。 1300年前に たてられ、 金色の モザイクが ある。',te:'One of the oldest mosques in the world, in Damascus, the capital of Syria. It was built 1,300 years ago and has golden mosaics.'},
+{id:'erbil',c:'IRQ',ll:[44.0092,36.1912],m:'erbil',ja:'エルビル{城塞|じょうさい}',en:'Erbil Citadel',k:'えるびるじょうさい いらく',
+  t:'イラクの {丘|おか}の 上の 古い 町。 6000年いじょう 人が すみつづけて いると 言われ、 世界で 一番 古い 町の 一つ。',te:'An old town on a mound in Iraq. People are said to have lived here for over 6,000 years, making it one of the oldest towns in the world.'},
+{id:'togoind',c:'TGO',ll:[1.2194,6.1311],m:'togoind',ja:'ロメの どくりつ記念{碑|ひ}',en:'Independence Monument, Lomé',k:'どくりつきねんひ とーご ろめ',
+  t:'トーゴの {首都|しゅと} ロメに 立つ 白い 記念{碑|ひ}。 うでを 上げた 人が ほられて いて、 1960年の どくりつを 記念して いる。',te:'A white monument in Lomé, the capital of Togo, carved with a figure raising its arms. It celebrates independence in 1960.'},
+{id:'conakry',c:'GIN',ll:[-13.6833,9.5378],m:'conakry',ja:'コナクリの グランドモスク',en:'Grand Mosque of Conakry',k:'こなくり ぐらんどもすく ぎにあ',
+  t:'ギニアの {首都|しゅと} コナクリの 大きな モスク。 緑の ドームと 高い ミナレットが ある。 西アフリカで 一番 大きい モスクの 一つ。',te:'A big mosque in Conakry, the capital of Guinea, with a green dome and a tall minaret. One of the largest mosques in West Africa.'}
 ];
 
 TOY.animals = [
