@@ -338,7 +338,10 @@
   G.pins = []; // quiz markers: {ll, col, label}
   var OCEANS = [[-160, 15, 'PACIFIC OCEAN', 'たいへいよう'], [-130, -25, 'PACIFIC OCEAN', 'たいへいよう'], [165, 25, 'PACIFIC OCEAN', 'たいへいよう'], [-40, 28, 'ATLANTIC OCEAN', 'たいせいよう'], [-18, -22, 'ATLANTIC OCEAN', 'たいせいよう'], [78, -18, 'INDIAN OCEAN', 'インドよう'], [0, 80, 'ARCTIC OCEAN', 'ほっきょくかい'], [60, -62, 'SOUTHERN OCEAN', 'なんきょくかい']];
   var A2 = {}; App.all.forEach(function (c) { if (c.a2) A2[c.a2] = c.id; });
-  var CITY = (window.CITIES || []).map(function (c) { return { name: c[0], ja: c[6] || '', pop: c[3], cap: c[5], cc: c[4], n: ll2v(c[1], c[2], 1) }; });
+  var CI = window.CITYINFO || {}, CITY = (window.CITIES || []).map(function (c) { var inf = CI[c[0] + '|' + c[4]]; return { name: c[0], ja: c[6] || (inf && inf.ja) || '', pop: c[3], cap: c[5], cc: c[4], ll: [c[1], c[2]], info: inf || null, n: ll2v(c[1], c[2], 1) }; });
+  G.city = function (i) { return CITY[i]; };
+  G.citiesOf = function (a2, n) { var out = []; for (var i = 0; i < CITY.length && out.length < (n || 6); i++) if (CITY[i].cc === a2 && CITY[i].pop > 0) out.push(i); return out; };
+  G.findCity = function (name, cc) { for (var i = 0; i < CITY.length; i++) if (CITY[i].name === name && (!cc || CITY[i].cc === cc)) return i; return -1; };
   function popText(k) {
     if (G.lang === 'en') return 'pop. ' + (k >= 1000 ? (k >= 10000 ? Math.round(k / 1000) : Math.round(k / 100) / 10) + 'm' : k + 'k');
     return '人口 ' + App.fmtPeople(k * 1000).replace('約', '');
@@ -426,7 +429,7 @@
         else { ctx.fillStyle = '#ffd54a'; ctx.beginPath(); ctx.arc(p[0], p[1], 4, 0, 7); ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = '#2a1f4a'; ctx.stroke(); }
         ctx.font = 'bold 13px ' + FONT; ctx.lineWidth = 3.5; ctx.strokeStyle = '#2a1f4a'; ctx.strokeText(nm2, p[0] + 9, p[1] + 1); ctx.fillStyle = '#fff8e6'; ctx.fillText(nm2, p[0] + 9, p[1] + 1);
         ctx.font = 'bold 10px ' + FONT; ctx.lineWidth = 3; ctx.strokeText(pt, p[0] + 9, p[1] + 12); ctx.fillStyle = '#c9d8ff'; ctx.fillText(pt, p[0] + 9, p[1] + 12);
-        if (A2[cy.cc]) hits.push({ r: r, kind: 'country', id: A2[cy.cc] });
+        hits.push({ r: r, kind: 'city', id: ci });
       }
       ctx.textAlign = 'center'; ctx.textBaseline = 'top';
     }

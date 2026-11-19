@@ -71,6 +71,7 @@
     Array.prototype.forEach.call(pg.querySelectorAll('[data-lm]'), function (e) { e.onclick = function () { showLandmark(e.dataset.lm); }; });
     Array.prototype.forEach.call(pg.querySelectorAll('[data-an]'), function (e) { e.onclick = function () { showAnimal(e.dataset.an); }; });
     Array.prototype.forEach.call(pg.querySelectorAll('[data-ve]'), function (e) { e.onclick = function () { ride(e.dataset.ve); }; });
+    Array.prototype.forEach.call(pg.querySelectorAll('[data-city]'), function (e) { e.onclick = function () { showCity(+e.dataset.city); }; });
     Array.prototype.forEach.call(pg.querySelectorAll('[data-go]'), function (e) { e.onclick = function () { boing(); var g = e.dataset.go.split(':'); open(g[0], g[1]); }; });
   }
   var R = {}, B = {};
@@ -91,22 +92,38 @@
   function head(c, f) { return '<div class="head">' + flagImg(c, 'fl') + '<div><h1>' + esc(cn(c)) + '</h1><small>' + esc(lang === 'en' ? c.ja : c.en) + '</small></div>' + (f && f.hello ? '<div class="say" data-say="hello">' + esc(f.hello.text) + '<small>' + L('きいてみよう ▶', 'Listen ▶') + '</small></div>' : '') + '</div>'; }
   function mini(c) { return '<div class="ph">' + flagImg(c, 'fl') + '<div><h2>' + esc(cn(c)) + '</h2><small>' + esc(lang === 'en' ? c.ja : c.en) + '</small></div></div>'; }
   function chips(c) { return '<div class="chips"><div class="chip">' + L('首都', 'Capital') + '<b>' + esc(lang === 'en' ? (c.capEn || '—') : (c.capJa || c.capEn || '—')) + '</b></div><div class="chip">' + L('人口', 'People') + '<b>' + App.fmtPeople(c.pop).replace('約', '') + '</b></div><div class="chip">' + L('面積', 'Area') + '<b>' + App.fmtArea(c.area).replace('約', '') + '</b></div></div>'; }
+  function citiesIn(c, skip) {
+    var list = c.a2 ? Globe.citiesOf(c.a2, 7).filter(function (i) { return i !== skip; }).slice(0, 6) : []; if (!list.length) return '';
+    return '<span class="lab">' + L('おもな 町', 'Main cities') + '</span><div class="btns" style="justify-content:flex-start">' + list.map(function (i) { var cy = Globe.city(i); return '<span class="cchip" data-city="' + i + '">' + (cy.cap ? '⭐' : '📍') + esc(lang === 'en' ? cy.name : (cy.ja || cy.name)) + '</span>'; }).join('') + '</div>';
+  }
+  function quick(c) { // the basics for every country (from the first app): size, time now, distance, season
+    var J = App.JP, out = '<div class="big">' + esc(c.ja) + 'は 日本の <b>' + App.ratioText(c.area, J.area) + '</b>の 広さ。' + (c.pop ? ' 人口は 日本の <b>' + App.ratioText(c.pop, J.pop) + '</b>。' : '') + '</div>';
+    if (c.tz) {
+      var p = App.localParts(c.tz), off = App.offsetFromJapan(c.tz), km = App.distanceKm(c), se = App.seasonText(c);
+      out += '<div class="box">🕐 いま ' + esc(App.capitalName(c)) + 'は <b>' + App.clockText(p.h, p.m) + '</b>' + (off == null ? '' : off === 0 ? '（日本と おなじ）' : '（日本より ' + Math.abs(off) + '時間 ' + (off < 0 ? 'おそい' : 'はやい') + '）') + '。<br>' + esc(App.kidActivity(p, c.id)) + '</div>';
+      if (km) out += '<div class="box">✈️ 東京から 首都まで 約 <b>' + km.toLocaleString() + ' km</b>。 ひこうきで 約' + flyH(km) + '時間。</div>';
+      out += '<div class="box">' + se.icon + ' ' + esc(se.text) + '</div>';
+    }
+    return out;
+  }
+  function flyH(km) { return Math.max(1, Math.round((km / 850 + 0.5) * 2) / 2); }
   function placesIn(c) {
     var lm = LMS.filter(function (l) { return l.c === c.id; }), an = ANS.filter(function (a) { return Globe.countryAt(a.ll) === c.id; });
-    if (!lm.length && !an.length) return '';
+    if (!lm.length && !an.length) return citiesIn(c);
     return '<span class="lab">' + L('この 国で 見つけよう', 'Find them here') + '</span><div class="btns" style="justify-content:flex-start">' +
       lm.map(function (l) { return '<span class="cchip" data-lm="' + l.id + '"><img src="' + Globe.thumb(l.m) + '" style="border:0;width:26px;height:26px">' + rb(nm(l)) + '</span>'; }).join('') +
-      an.map(function (a) { return '<span class="cchip" data-an="' + a.id + '"><span style="font-family:Noto Color Emoji,sans-serif">' + a.e + '</span>' + esc(nm(a)) + '</span>'; }).join('') + '</div>';
+      an.map(function (a) { return '<span class="cchip" data-an="' + a.id + '"><span style="font-family:Noto Color Emoji,sans-serif">' + a.e + '</span>' + esc(nm(a)) + '</span>'; }).join('') + '</div>' + citiesIn(c);
   }
   var PG = {};
   PG.p1 = function (c) {
     var f = INFO(c.id);
-    if (!f) return '<div class="tape" style="left:40px;top:-8px;transform:rotate(-6deg)"></div>' + head(c) + chips(c) + placesIn(c) + '<div class="notes" style="margin-top:20px"><div class="note">' + L('この 国の くわしい ページは これから！ 「くらべる」で 日本と くらべよう。 ★の 国を さがして みよう。', 'More pages for this country are coming! Try "Compare", or look for countries with a ★.') + '</div></div>';
+    if (!f) return '<div class="tape" style="left:40px;top:-8px;transform:rotate(-6deg)"></div>' + head(c) + chips(c) + quick(c) + placesIn(c) + '<div class="notes" style="margin-top:14px"><div class="note">' + L('「くらべる」で 日本と もっと くらべよう。 ★の 国には もっと くわしい ページが あるよ。', 'Try "Compare" to see more, or look for countries with a ★ for full pages.') + '</div></div>';
     var im = function (k) { var u = MEDIA.img[c.id + '_' + k]; return u ? u : ''; };
     return '<div class="tape" style="left:40px;top:-8px;transform:rotate(-6deg)"></div><div class="tape" style="right:50px;top:-8px;transform:rotate(5deg)"></div>' + head(c, f) + chips(c) +
-      '<div class="row">' + ['dish:' + L('たべもの', 'Food'), 'animal:' + L('どうぶつ', 'Animal'), 'sport:' + L('スポーツ', 'Sport')].map(function (k) { var kk = k.split(':'); var n = kk[0] === 'sport' ? f.sport.replace(/[^　-鿿゠-ヿー・ ]/g, '').trim() : (f[kk[0]] || {}).name; return '<div class="pol" data-n="' + esc(n) + '"><img src="' + im(kk[0]) + '" alt=""><div><i>' + kk[1] + '</i>' + esc(n.replace(/（.*）/, '')) + '</div></div>'; }).join('') + '</div>' +
+      '<div class="row">' + ['dish:' + L('たべもの', 'Food'), 'animal:' + L('どうぶつ', 'Animal'), 'sport:' + L('スポーツ', 'Sport')].map(function (k) { var kk = k.split(':'); var n = kk[0] === 'sport' ? f.sport.replace(/[^　-鿿゠-ヿー・ ]/g, '').trim() : (f[kk[0]] || {}).name; return '<div class="pol" data-n="' + esc(n) + '"><img src="' + im(kk[0]) + '" alt=""><div><i>' + kk[1] + '</i>' + esc(n.replace(/（.*）/, '')) + '</div></div>'; }).join('') + '</div>' + jpLine() + quick(c) +
       '<div class="notes">' + f.facts.slice(0, 2).map(function (x) { return '<div class="note">' + esc(x) + '</div>'; }).join('') + '</div>' + placesIn(c) + tunnels(c);
   };
+  function jpLine() { var j = window.JAPAN_FUN; if (!j) return ''; return '<div class="mut ctr" style="margin:2px 0 6px">🇯🇵 日本は … ' + esc(j.dish.name.replace(/（.*）/, '')) + '・' + esc(j.animal.name.replace(/（.*）/, '')) + '・' + esc(j.sport.replace(/[^　-鿿゠-ヿー・ ]/g, '').trim()) + '</div>'; }
   function tunnels(c) {
     var near = featured.filter(function (x) { return x.id !== c.id && x.region === c.region; }); if (near.length < 1) near = featured.filter(function (x) { return x.id !== c.id; });
     var l1 = App.pick(near), far = featured.filter(function (x) { return x.region !== c.region; }), l2 = App.pick(far);
@@ -138,7 +155,7 @@
     out += '<div class="tiles"><div class="tile">広さ<b>' + App.fmtArea(c.area) + '</b>' + (App.rankArea.r[c.id] ? '世界で ' + App.rankArea.r[c.id] + '番目' : '') + '</div><div class="tile">人口<b>' + App.fmtPeople(c.pop) + '</b>' + (App.rankPop.r[c.id] ? '世界で ' + App.rankPop.r[c.id] + '番目' : '') + '</div></div>';
     if (c.pop) { var dens = Math.round(c.pop / c.area), jd = Math.round(J.pop / J.area); out += '<div class="box" style="margin-top:8px">1 km² に すむ 人：' + esc(c.ja) + ' ' + dens.toLocaleString() + '人 ／ 日本 ' + jd.toLocaleString() + '人' + (dens < jd / 3 ? '（日本より ずっと ゆったり！）' : dens > jd * 1.5 ? '（日本より ぎゅうぎゅう！）' : '') + '</div>'; }
     out += '<span class="lab">くらべてみよう</span>' + barRow('平均じゅみょう', c.life && App.round1(c.life), App.round1(J.life), '歳', c) + barRow('学校で 学ぶ 年数', c.school && App.round1(c.school), App.round1(J.school), '年', c) + barRow('しあわせ度（10点まで）', c.happy && App.round1(c.happy), App.round1(J.happy), '点', c, 10) + barRow('マクドナルドの セットの ねだん', c.mac, J.mac, '円', c);
-    if (c.tz) { var se = App.seasonText(c), km = App.distanceKm(c), p = App.localParts(c.tz); out += '<span class="lab">時間・きょり・きせつ</span><div class="box">いま ' + esc(c.ja) + 'は <b>' + App.clockText(p.h, p.m) + '</b>。<br>' + esc(App.kidActivity(p, c.id).replace(/^\S+\s/, '')) + '</div><div class="box">' + esc(se.text) + '</div><div class="box">東京から 首都 ' + esc(App.capitalName(c)) + 'まで 約 <b>' + km.toLocaleString() + ' km</b>。</div>'; }
+    if (c.tz) { var se = App.seasonText(c), km = App.distanceKm(c), p = App.localParts(c.tz); out += '<span class="lab">時間・きょり・きせつ</span><div class="box">いま ' + esc(c.ja) + 'は <b>' + App.clockText(p.h, p.m) + '</b>。<br>' + esc(App.kidActivity(p, c.id).replace(/^\S+\s/, '')) + '</div><div class="box">' + esc(se.text) + '</div><div class="box">東京から 首都 ' + esc(App.capitalName(c)) + 'まで 約 <b>' + km.toLocaleString() + ' km</b>。 ひこうきで 約' + flyH(km) + '時間。</div>'; }
     if (c.links) { var Lk = c.links; var tl = function (l, v, n) { return v == null ? '' : '<div class="tile">' + l + '<b>' + App.fmtMan(v) + '</b>' + (n || '') + '</div>'; }; out += '<span class="lab">日本との つながり</span><div class="tiles">' + tl(esc(c.ja) + 'から 日本へ 来た 人（2024年）', Lk.in) + tl('日本から ' + esc(c.ja) + 'へ 行った 人（2024年）', Lk.out, Lk.outApprox ? 'めやす' : '') + tl('日本に すんでいる ' + esc(c.ja) + 'の 人', Lk.res) + tl(esc(c.ja) + 'に すんでいる 日本人', Lk.abroad) + '</div>'; }
     out += '<div class="ctr"><a class="btn" href="index.html#/size/' + c.id + '">ほんとうの 大きさで かさねる</a></div><div style="height:6px"></div>'; return out;
   };
@@ -171,7 +188,7 @@
   }
 
   /* ---------- landmark & animal cards ---------- */
-  function where(ll) { var id = Globe.countryAt(ll), c = id && byId[id]; return c ? '<span class="cchip" data-c="' + c.id + '">' + flagImg(c) + esc(cn(c)) + ' ▶</span>' : '<span class="cchip">🌊 ' + L('海・こおりの 上', 'Sea or ice') + '</span>'; }
+  function where(ll, cid) { var id = Globe.countryAt(ll) || cid, c = id && byId[id]; return c ? '<span class="cchip" data-c="' + c.id + '">' + flagImg(c) + esc(cn(c)) + ' ▶</span>' : '<span class="cchip">🌊 ' + L('海・こおりの 上', 'Sea or ice') + '</span>'; }
   function showLandmark(id) {
     var l = Globe.landmark(id); if (!l) return; if (Globe.riding()) Globe.unride(); endGame(); boing(); Globe.select(null);
     Globe.flyTo(l.ll[0], l.ll[1] - 0.35, 0.3, 1200); var fresh = newSticker('lm', id, nm(l)); open('landmark', { id: id, fresh: fresh });
@@ -181,7 +198,7 @@
     return '<img class="thumb" src="' + Globe.thumb(l.m) + '" alt=""><div class="cname"><h1>' + rb(nm(l)) + '</h1><small>' + rb(lang === 'en' ? l.ja : l.en) + '</small>' +
       '<div class="stk' + (a.fresh ? ' new' : '') + '">🏅 ' + (a.fresh ? L('シール ゲット！', 'New sticker!') : L('シール ずみ ', 'Collected ') + S.lm[l.id]) + '</div></div>' +
       '<div class="box big" style="font-size:18px;margin-top:6px">' + rb(lang === 'en' ? l.te : l.t) + '</div>' +
-      '<div class="btns">' + where(l.ll) + '</div>' +
+      '<div class="btns">' + where(l.ll, l.c) + '</div>' +
       '<div class="btns"><button class="btn bl" data-lm="' + next.id + '">' + L('つぎの たてもの へ ▶', 'Next landmark ▶') + '</button><button class="btn pu" data-go="book:lm">' + L('📒 ずかん', '📒 Sticker book') + '</button></div>';
   };
   function showAnimal(id) {
@@ -195,6 +212,56 @@
       '<div class="box big" style="font-size:18px;margin-top:6px">' + rb(lang === 'en' ? a.te : a.t) + '</div>' +
       '<div class="btns"><span class="mut" style="align-self:center">' + L('すんでいる ところ：', 'Lives here: ') + '</span>' + where(a.ll) + '</div>' +
       '<div class="btns"><button class="btn bl" data-an="' + next.id + '">' + L('つぎの どうぶつ へ ▶', 'Next animal ▶') + '</button><button class="btn pu" data-go="book:an">' + L('📒 ずかん', '📒 Sticker book') + '</button></div>';
+  };
+
+  /* ---------- city window ---------- */
+  var A2C = {}; COUNTRIES.forEach(function (c) { if (c.a2) A2C[c.a2] = c; });
+  var HOME_LL = [129.87, 32.75]; // Nagasaki
+  function cityTZ(cc, lon, lat) {
+    if (cc === 'US') return lat < 23 && lon < -150 ? 'Pacific/Honolulu' : lon < -130 && lat > 50 ? 'America/Anchorage' : lon > -87.5 ? 'America/New_York' : lon > -101 ? 'America/Chicago' : (lon > -114.8 && lat < 37 && lon < -109) ? 'America/Phoenix' : lon > -114.5 ? 'America/Denver' : 'America/Los_Angeles';
+    if (cc === 'CA') return lon > -60 && lat > 46.5 ? 'America/St_Johns' : lon > -67 ? 'America/Halifax' : lon > -90 ? 'America/Toronto' : lon > -102 ? 'America/Winnipeg' : lon > -120 ? 'America/Edmonton' : 'America/Vancouver';
+    if (cc === 'RU') return lon < 23 ? 'Europe/Kaliningrad' : lon < 48 ? 'Europe/Moscow' : lon < 55 ? 'Europe/Samara' : lon < 66 ? 'Asia/Yekaterinburg' : lon < 78 ? 'Asia/Omsk' : lon < 88 ? 'Asia/Novosibirsk' : lon < 105 ? 'Asia/Krasnoyarsk' : lon < 120 ? 'Asia/Irkutsk' : lon < 135 ? 'Asia/Yakutsk' : lon < 150 ? 'Asia/Vladivostok' : lon < 160 ? 'Asia/Magadan' : 'Asia/Kamchatka';
+    if (cc === 'AU') return lon < 129 ? 'Australia/Perth' : lon < 141 ? (lat > -26 ? 'Australia/Darwin' : 'Australia/Adelaide') : (lat > -28.2 ? 'Australia/Brisbane' : 'Australia/Sydney');
+    if (cc === 'BR') return lon < -67 ? 'America/Rio_Branco' : lon < -55 && lat > -16 ? 'America/Manaus' : 'America/Sao_Paulo';
+    if (cc === 'MX') return lon < -114.5 ? 'America/Tijuana' : lon < -106 ? 'America/Hermosillo' : 'America/Mexico_City';
+    if (cc === 'ID') return lon < 115 ? 'Asia/Jakarta' : lon < 127 ? 'Asia/Makassar' : 'Asia/Jayapura';
+    if (cc === 'KZ') return lon < 60 ? 'Asia/Aqtobe' : 'Asia/Almaty';
+    if (cc === 'MN') return lon < 100 ? 'Asia/Hovd' : 'Asia/Ulaanbaatar';
+    if (cc === 'CL' && lon < -100) return 'Pacific/Easter';
+    var c = A2C[cc]; return (c && c.tz) || null;
+  }
+  function popText(k) {
+    if (lang === 'en') return k >= 1000 ? 'about ' + (Math.round(k / 100) / 10) + ' million' : 'about ' + (k >= 100 ? Math.round(k / 10) * 10 : k) + ',000';
+    return App.fmtPeople(k * 1000);
+  }
+  function enClock(h, m) { return (h % 12 || 12) + ':' + (m < 10 ? '0' : '') + m + (h < 12 ? ' a.m.' : ' p.m.'); }
+  function enActivity(p) { var h = p.h, we = p.wd === 'Sat' || p.wd === 'Sun'; return h < 6 ? '😴 Children are fast asleep.' : h < 8 ? '🍞 Breakfast time!' : h < 15 ? (we ? '⚽ No school today — playtime?' : '🏫 Kids are probably at school.') : h < 18 ? '🛝 School is out — playtime!' : h < 21 ? '🍽️ Dinner time!' : '🛏️ Almost bedtime.'; }
+  function showCity(i) {
+    var cy = Globe.city(i); if (!cy) return; if (Globe.riding()) Globe.unride(); endGame(); boing(); Globe.select(null);
+    Globe.flyTo(cy.ll[0], cy.ll[1] - 0.3, 0.32, 1200); open('city', i);
+  }
+  R.city = function (i) {
+    var cy = Globe.city(i), c = A2C[cy.cc], nmx = lang === 'en' ? cy.name : (cy.ja || cy.name), other = lang === 'en' ? (cy.ja || '') : (cy.ja ? cy.name : ''), out = '';
+    out += '<div class="cname"><h1>' + (cy.cap ? '⭐ ' : '📍 ') + esc(nmx) + '</h1><small>' + esc(other) + '</small></div>';
+    out += '<div class="chips"><div class="chip">' + L('人口', 'People') + '<b>' + (cy.pop ? popText(cy.pop).replace('約', '').replace('about ', '') : '—') + '</b></div><div class="chip">' + L('国', 'Country') + '<b>' + (c ? esc(cn(c)) : '—') + '</b></div>' + (cy.cap ? '<div class="chip">⭐<b>' + L('首都', 'Capital') + '</b></div>' : '') + '</div>';
+    if (cy.info) out += '<div class="box big" style="font-size:17px;margin-top:8px">' + rb(lang === 'en' ? cy.info.te : cy.info.t) + '</div>';
+    var hi = Globe.findCity('Nagasaki', 'JP'), home = hi >= 0 ? Globe.city(hi).pop : 410;
+    if (cy.pop && cy.name !== 'Nagasaki') { var r = App.ratioText(cy.pop, home); out += '<div class="box">👥 ' + (lang === 'en' ? (cy.pop >= home ? 'About ' + (Math.round(cy.pop / home * 10) / 10) + ' times as many people as Nagasaki City.' : 'Fewer people than Nagasaki City (about ' + Math.round(cy.pop / home * 100) + '%).') : (r === 'ほぼ おなじ' ? '長崎市と ほぼ おなじ 人数が すんでいる。' : '長崎市の <b>' + r + '</b>の 人が すんでいる。')) + '</div>'; }
+    var tz = cityTZ(cy.cc, cy.ll[0], cy.ll[1]), p = tz && App.localParts(tz);
+    if (p) {
+      var s = Globe.sun || [0, 0], D = Math.PI / 180, alt = Math.asin(Math.sin(cy.ll[1] * D) * Math.sin(s[1] * D) + Math.cos(cy.ll[1] * D) * Math.cos(s[1] * D) * Math.cos((cy.ll[0] - s[0]) * D)) / D;
+      var sky = alt > 6 ? '☀️' : alt > -6 ? '🌇' : '🌙', off = App.offsetFromJapan(tz);
+      out += '<div class="box">' + sky + ' ' + (lang === 'en' ? 'It is <b>' + enClock(p.h, p.m) + '</b> here now' + (off ? ' (' + Math.abs(off) + ' h ' + (off < 0 ? 'behind' : 'ahead of') + ' Japan)' : ' (same as Japan)') + '.<br>' + enActivity(p)
+        : 'いま ここは <b>' + App.clockText(p.h, p.m) + '</b>' + (off ? '（日本より ' + Math.abs(off) + '時間 ' + (off < 0 ? 'おそい' : 'はやい') + '）' : '（日本と おなじ）') + '。<br>' + esc(App.kidActivity(p, c ? c.id : ''))) + '</div>';
+      var mo = p.month, lat = cy.ll[1], north = ['冬', '冬', '春', '春', '春', '夏', '夏', '夏', '秋', '秋', '秋', '冬'], nEn = ['winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter'], k = lat < -23.5 ? (mo + 5) % 12 : mo - 1;
+      out += '<div class="box">' + (Math.abs(lat) < 23.5 ? '🌴 ' + L('赤道に 近いので、 1年中 あたたかい。', 'Close to the equator, so it is warm all year.') : (lat < 0 ? '🔄 ' : '🍂 ') + L('いまの きせつは <b>' + north[k] + '</b>' + (lat < 0 ? '（日本と 反対！）' : '') + '。', 'It is <b>' + nEn[k] + '</b> here now' + (lat < 0 ? ' — the opposite of Japan!' : '.'))) + '</div>';
+    }
+    var km = Math.round(d3.geoDistance(HOME_LL, cy.ll) * 6371);
+    if (km > 30) out += '<div class="box">✈️ ' + L('長崎から 約 <b>' + km.toLocaleString() + ' km</b>。' + (km > 600 ? ' ひこうきで 約' + flyH(km) + '時間。' : ''), 'About <b>' + km.toLocaleString() + ' km</b> from Nagasaki.' + (km > 600 ? ' About ' + flyH(km) + ' hours by plane.' : '')) + '</div>';
+    var near = LMS.filter(function (l) { return d3.geoDistance(l.ll, cy.ll) * 6371 < 450; });
+    if (near.length) out += '<span class="lab">' + L('近くの たてもの', 'Nearby landmarks') + '</span><div class="btns" style="justify-content:flex-start">' + near.map(function (l) { return '<span class="cchip" data-lm="' + l.id + '"><img src="' + Globe.thumb(l.m) + '" style="border:0;width:26px;height:26px">' + rb(nm(l)) + '</span>'; }).join('') + '</div>';
+    if (c) out += citiesIn(c, i) + '<div class="btns">' + where(cy.ll, c.id) + '</div>';
+    return out + '<div style="height:8px"></div>';
   };
 
   /* ---------- vehicles ---------- */
@@ -372,11 +439,11 @@
   /* ---------- picking on the globe ---------- */
   Globe.onPick = function (h) {
     if (game) return;
-    if (h.kind === 'country') choose(h.id); else if (h.kind === 'landmark') showLandmark(h.id); else if (h.kind === 'animal') showAnimal(h.id); else if (h.kind === 'vehicle') ride(h.id);
+    if (h.kind === 'country') choose(h.id); else if (h.kind === 'city') showCity(h.id); else if (h.kind === 'landmark') showLandmark(h.id); else if (h.kind === 'animal') showAnimal(h.id); else if (h.kind === 'vehicle') ride(h.id);
   };
   Globe.onHover = function (h, p) {
     var tp = $('#tip'); if (!h || game) { tp.style.opacity = 0; return; }
-    var t = h.kind === 'country' ? cn(byId[h.id]) : h.kind === 'landmark' ? plain(nm(Globe.landmark(h.id))) : h.kind === 'animal' ? nm(Globe.animal(h.id)) : plain(nm(Globe.route(h.id))) + L(' に のる', ' – ride it!');
+    var cyh = h.kind === 'city' && Globe.city(h.id), t = cyh ? (lang === 'en' ? cyh.name : (cyh.ja || cyh.name)) : h.kind === 'country' ? cn(byId[h.id]) : h.kind === 'landmark' ? plain(nm(Globe.landmark(h.id))) : h.kind === 'animal' ? nm(Globe.animal(h.id)) : plain(nm(Globe.route(h.id))) + L(' に のる', ' – ride it!');
     if (p[0] > W - 560 && mode) { tp.style.opacity = 0; return; }
     tp.textContent = t; tp.style.left = p[0] + 'px'; tp.style.top = p[1] + 'px'; tp.style.opacity = 1;
   };
@@ -388,19 +455,20 @@
   LMS.forEach(function (l) { SI.push({ k: 'lm', o: l, ks: [norm(l.ja), norm(l.en)].concat(l.k.split(' ').map(norm)), k2: [] }); });
   ANS.forEach(function (a) { SI.push({ k: 'an', o: a, ks: [norm(a.ja), norm(a.en)], k2: [] }); });
   RTS.forEach(function (r) { SI.push({ k: 've', o: r, ks: [norm(r.ja), norm(r.en)], k2: [] }); });
+  (window.CITIES || []).forEach(function (c, i) { var cy = Globe.city(i); if (!cy || (cy.pop < 300 && !cy.info && !cy.cap)) return; SI.push({ k: 'city', i: i, o: { ja: cy.ja || cy.name, en: cy.name, cc: cy.cc }, ks: [norm(cy.ja), norm(cy.name)], k2: [] }); });
   function search(q) {
     q = norm(q); if (!q) return []; var out = [];
-    SI.forEach(function (s) { var sc = 99; s.ks.forEach(function (k) { if (!k) return; if (k === q) sc = Math.min(sc, 0); else if (k.indexOf(q) === 0) sc = Math.min(sc, 1); else if (k.indexOf(q) > -1) sc = Math.min(sc, 3); }); s.k2.forEach(function (k) { if (k && k.indexOf(q) === 0) sc = Math.min(sc, 4); }); if (sc < 99) out.push({ s: s, sc: sc - (s.k === 'c' && INFO(s.o.id) ? 0.5 : 0) }); });
+    SI.forEach(function (s) { var sc = 99; s.ks.forEach(function (k) { if (!k) return; if (k === q) sc = Math.min(sc, 0); else if (k.indexOf(q) === 0) sc = Math.min(sc, 1); else if (k.indexOf(q) > -1) sc = Math.min(sc, 3); }); s.k2.forEach(function (k) { if (k && k.indexOf(q) === 0) sc = Math.min(sc, 4); }); if (sc < 99) out.push({ s: s, sc: sc - (s.k === 'c' && INFO(s.o.id) ? 0.5 : 0) + (s.k === 'city' ? 0.3 : 0) }); });
     out.sort(function (a, b) { return a.sc - b.sc; }); return out.slice(0, 7).map(function (o) { return o.s; });
   }
   var sq = $('#q'), sg = $('#sug'), sres = [], si = 0;
-  function sgIcon(s) { if (s.k === 'c') return s.o.a2 ? '<img src="flags/' + s.o.a2.toLowerCase() + '.svg" alt="">' : '<span style="width:32px"></span>'; if (s.k === 'an') return '<span class="em">' + s.o.e + '</span>'; if (s.k === 'lm') return '<img class="th" src="' + Globe.thumb(s.o.m) + '">'; return '<img class="th" src="' + vthumb(s.o) + '">'; }
+  function sgIcon(s) { if (s.k === 'c') return s.o.a2 ? '<img src="flags/' + s.o.a2.toLowerCase() + '.svg" alt="">' : '<span style="width:32px"></span>'; if (s.k === 'an') return '<span class="em">' + s.o.e + '</span>'; if (s.k === 'lm') return '<img class="th" src="' + Globe.thumb(s.o.m) + '">'; if (s.k === 'city') return '<span class="em">📍</span>'; return '<img class="th" src="' + vthumb(s.o) + '">'; }
   function renderSug() {
     if (!sres.length) { sg.style.display = 'none'; return; } sg.style.display = 'block';
     sg.innerHTML = sres.map(function (s, i) { var o = s.o; return '<div class="sg' + (i === si ? ' on' : '') + '" data-i="' + i + '">' + sgIcon(s) + esc(plain(lang === 'en' ? o.en : o.ja)) + '<small>' + esc(plain(lang === 'en' ? o.ja : o.en)) + '</small></div>'; }).join('');
     Array.prototype.forEach.call(sg.children, function (e) { e.onmousedown = function (ev) { ev.preventDefault(); go(sres[e.dataset.i]); }; });
   }
-  function go(s) { sq.value = ''; sres = []; renderSug(); sq.blur(); if (s.k === 'c') choose(s.o.id); else if (s.k === 'lm') showLandmark(s.o.id); else if (s.k === 'an') showAnimal(s.o.id); else ride(s.o.id); }
+  function go(s) { sq.value = ''; sres = []; renderSug(); sq.blur(); if (s.k === 'c') choose(s.o.id); else if (s.k === 'lm') showLandmark(s.o.id); else if (s.k === 'an') showAnimal(s.o.id); else if (s.k === 'city') showCity(s.i); else ride(s.o.id); }
   sq.addEventListener('input', function () { sres = search(sq.value); si = 0; renderSug(); });
   sq.addEventListener('keydown', function (e) { e.stopPropagation(); if (e.key === 'ArrowDown') { si = Math.min(sres.length - 1, si + 1); renderSug(); e.preventDefault(); } else if (e.key === 'ArrowUp') { si = Math.max(0, si - 1); renderSug(); e.preventDefault(); } else if (e.key === 'Enter' && sres[si]) go(sres[si]); else if (e.key === 'Escape') { sq.value = ''; sres = []; renderSug(); sq.blur(); } });
   sq.addEventListener('blur', function () { setTimeout(function () { sg.style.display = 'none'; }, 120); }); sq.addEventListener('focus', function () { if (sres.length) sg.style.display = 'block'; });
