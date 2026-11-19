@@ -119,7 +119,23 @@ TOY.landmarks = [
  {id:'santa',c:'FIN',ll:[25.85,66.54],m:'santa',ja:'サンタクロース村',en:'Santa Claus Village',k:'さんたくろーすむら ろばにえみ',
   t:'フィンランドの ロバニエミ。 {北極圏|ほっきょくけん}の 線の 上に あり、 サンタクロースに 会える。 世界中の 子どもから 手紙が とどく。',te:'In Rovaniemi, Finland, right on the Arctic Circle. You can meet Santa, and letters arrive from children all over the world.'},
  {id:'milford',c:'NZL',ll:[167.93,-44.64],m:'milford',ja:'ミルフォード・サウンド',en:'Milford Sound',k:'みるふぉーどさうんど',
-  t:'ニュージーランドの 高い 山の 間に、 海が ふかく 入りこんだ 場所。 がけから たきが 流れ落ちる。',te:'In New Zealand, the sea reaches deep between tall mountains. Waterfalls pour down the cliffs.'}
+  t:'ニュージーランドの 高い 山の 間に、 海が ふかく 入りこんだ 場所。 がけから たきが 流れ落ちる。',te:'In New Zealand, the sea reaches deep between tall mountains. Waterfalls pour down the cliffs.'},
+{id:'petra',c:'JOR',ll:[35.45,30.32],m:'petra',ja:'ペトラ（エル・ハズネ）',en:'Petra (Al-Khazneh)',k:'ぺとら よるだん',
+  t:'岩山を ほって つくられた 古代の 町。 エル・ハズネは 高さ 約40mの 岩を けずって つくった。',te:'An ancient city carved into rock cliffs. Al-Khazneh (the Treasury) is a 40 m façade cut straight out of the rock.'},
+ {id:'forbidden',c:'CHN',ll:[116.40,39.92],m:'forbidden',ja:'{紫禁城|しきんじょう}（{故宮|こきゅう}）',en:'Forbidden City',k:'しきんじょう こきゅう ぺきん',
+  t:'中国の {皇帝|こうてい}が 約500年 くらした {宮殿|きゅうでん}。 へやが 8000 いじょう あると いわれる。',te:'The palace of Chinese emperors for about 500 years. It is said to have over 8,000 rooms.'},
+ {id:'potala',c:'CHN',ll:[91.12,29.66],m:'potala',ja:'ポタラ宮',en:'Potala Palace',k:'ぽたらきゅう ちべっと らさ',
+  t:'チベットの ラサの おかの 上に たつ {宮殿|きゅうでん}。 高さ 約3700mの 土地に あり、 白と 赤の かべが 目じるし。',te:'A palace on a hill in Lhasa, Tibet, about 3,700 m above sea level, famous for its white and red walls.'},
+ {id:'terracotta',c:'CHN',ll:[109.28,34.38],m:'terracotta',ja:'{兵馬俑|へいばよう}',en:'Terracotta Army',k:'へいばよう せいあん',
+  t:'約2200年 前の 中国の {皇帝|こうてい}の おはかを まもる、 土で できた 兵士の ぞう。 8000体 くらい あると いわれる。',te:'About 8,000 clay soldiers that have guarded a Chinese emperor\'s tomb for some 2,200 years.'},
+ {id:'matterhorn',c:'CHE',ll:[7.66,45.98],m:'matterhorn',ja:'マッターホルン',en:'Matterhorn',k:'まったーほるん すいす',
+  t:'スイスと イタリアの 国境に ある、 とがった 形の 山。 高さ 4478m。',te:'A sharp, pointed mountain on the border of Switzerland and Italy, 4,478 m tall.'},
+ {id:'victoria',c:'ZMB',ll:[25.86,-17.93],m:'victoria',ja:'ビクトリアの たき',en:'Victoria Falls',k:'びくとりあのたき ざんびあ じんばぶえ',
+  t:'ザンビアと ジンバブエの 国境に ある 大きな たき。 はばは 約1700m。 地元では「とどろく けむり」と よばれる。',te:'A huge waterfall on the border of Zambia and Zimbabwe, about 1.7 km wide. Locally it is called "the smoke that thunders".'},
+ {id:'baobab',c:'MDG',ll:[44.42,-20.25],m:'baobab',ja:'バオバブの {並木道|なみきみち}',en:'Avenue of the Baobabs',k:'ばおばぶ まだがすかる',
+  t:'マダガスカルの、 大きな バオバブの 木が ならぶ 道。 バオバブは 何百年も 生きる。',te:'A road in Madagascar lined with giant baobab trees, which can live for hundreds of years.'},
+ {id:'djenne',c:'MLI',ll:[-4.56,13.91],m:'djenne',ja:'ジェンネの 大モスク',en:'Great Mosque of Djenné',k:'じぇんね もすく まり',
+  t:'土と わらの レンガで できた、 世界で いちばん 大きな 土の たてもの。 毎年 町の 人みんなで 土を ぬりなおす。',te:'The largest mud-brick building in the world. Every year the whole town helps re-plaster it with fresh mud.'}
 ];
 
 TOY.animals = [
