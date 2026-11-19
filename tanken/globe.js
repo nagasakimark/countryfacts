@@ -160,7 +160,7 @@
   // while riding, the sea round the vehicle turns see-through so the sea floor shows
   globe.material.userData.preKey = 'sea'; globe.material.userData.pre = function (sh) {
     sh.uniforms.uRideC = WORLD.uniforms.uRideC; sh.uniforms.uRideA = WORLD.uniforms.uRideA;
-    sh.fragmentShader = 'uniform vec3 uRideC; uniform float uRideA;\n' + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n  if (uRideA > 0.0) { float an = acos(clamp(dot(normalize(vWP), uRideC), -1.0, 1.0)); float dy = smoothstep(-0.08, 0.12, dot(normalize(vWP), uSun)); gl_FragColor.a = mix(mix(0.93, 0.62, dy), 1.0, smoothstep(uRideA * 0.55, uRideA, an)); }');
+    sh.fragmentShader = 'uniform vec3 uRideC; uniform float uRideA;\n' + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n  if (uRideA > 0.0) { float an = acos(clamp(dot(normalize(vWP), uRideC), -1.0, 1.0)); if (an < uRideA * 0.95) discard; float dy = smoothstep(-0.08, 0.12, dot(normalize(vWP), uSun)); float k = 1.0 - smoothstep(uRideA * 0.55, uRideA, an); gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * vec3(0.7, 1.2, 1.6) + vec3(0.04, 0.2, 0.42), dy); gl_FragColor.a = mix(1.0, mix(0.93, 0.72, dy), k); }');
   };
   function seeThrough(on) { if (globe.material.transparent !== on) { globe.material.transparent = on; globe.material.needsUpdate = true; } }
   var FIDX = {}; feat.forEach(function (f, i) { FIDX[f.properties.id] = i; });
@@ -176,7 +176,7 @@
         '  gl_Position = vA < 0.01 ? vec4(2.0, 2.0, 2.0, 1.0) : projectionMatrix * mv; float px = (0.8 + aSize * 0.45) * uK / -mv.z; vS = clamp(px, 2.4, 8.0); gl_PointSize = vS; }',
       fragmentShader: 'varying float vA; varying float vS;\nvoid main(){ vec2 c = gl_PointCoord - 0.5; float r = length(c) * 2.0; float core = smoothstep(1.0, 0.25, r);\n' +
         '  gl_FragColor = vec4(vec3(1.0, 0.8, 0.38) * (0.8 + 0.35 * (1.0 - r)), core * core * vA * (0.6 + 0.4 * min(1.0, vS / 4.0))); }' });
-    var pts = new T.Points(g, m); pts.frustumCulled = false; pts.renderOrder = 3; scene.add(pts); G._lights = pts;
+    var pts = new T.Points(g, m); pts.frustumCulled = false; pts.renderOrder = 3; scene.add(pts); G._lights = pts; G._scene = scene; G._cam = camera;
   })();
   G.isNight = function (ll) { return ll2v(ll[0], ll[1], 1).dot(NIGHT.uSun.value) < 0; };
 
@@ -283,7 +283,7 @@
   var riding = null;
   G.ride = function (id) {
     var o = VB[id]; if (!o) return; riding = o; var r = o.r; if (r.wait > 0) { r.dir *= -1; r.wait = 0; } r.d = r.dir > 0 ? 0 : r.len;
-    rideCam = true; anim = null; vel = null; RC.yaw = 0; RC.pitch = r.type === 'plane' ? 0.2 : r.type === 'ship' ? 0.34 : r.type === 'car' ? 0.27 : 0.4; RC.dist = r.type === 'plane' ? 2.3 : r.type === 'ship' ? 1.9 : r.type === 'car' ? 2.6 : 1.6; RC.fp = false; RC.fwd.set(0, 0, 0); RC.boom = null; RC.len = o.len; // (third person: behind and a little above, in vehicle lengths — as low as a toy you push along the floor)
+    rideCam = true; anim = null; vel = null; RC.yaw = r.type === 'train' || r.type === 'bullet' ? 0.42 : r.type === 'plane' ? 0.28 : 0; RC.pitch = r.type === 'plane' ? 0.22 : r.type === 'ship' ? 0.34 : r.type === 'car' ? 0.27 : 0.36; RC.dist = r.type === 'plane' ? 1.9 : r.type === 'ship' ? 1.9 : r.type === 'car' ? 2.6 : 1.6; RC.fp = false; RC.fwd.set(0, 0, 0); RC.boom = null; RC.len = o.len; // (third person: behind and a little above, in vehicle lengths — as low as a toy you push along the floor)
     RC.size = r.type === 'plane' ? 0.0019 : r.type === 'ship' ? (r.ship === 'ferry' ? 0.0017 : 0.0024) : r.type === 'car' ? 0.0011 : 0.0021; // (the vehicle is a small toy in a big world: trees about twice its size, landmarks fifteen times)
     if (rideLine) { scene.remove(rideLine); rideLine.geometry.dispose(); rideLine = null; }
     if (false && r.type === 'plane') { // (no dashed flight line while riding: it hung in the air like a crack in the view)
@@ -291,7 +291,7 @@
       rideLine = new T.Line(new T.BufferGeometry().setFromPoints(pts), new T.LineDashedMaterial({ color: 0xffffff, dashSize: 0.002, gapSize: 0.002, transparent: true, opacity: 0.7 }));
       rideLine.computeLineDistances(); scene.add(rideLine);
     }
-    rideLayout(r); WORLD.setRide(true); seeThrough(true); rideFirst = true; r.prof = null;
+    rideLayout(r); WORLD.setRide(true, r); seeThrough(true); rideFirst = true; r.prof = null;
     if (r.type === 'plane') { // keep planes well above the (taller) ride-along mountains
       r.prof = flightProfile(r);
       if (rideLine) { var lp = rideLine.geometry.attributes.position; for (var li = 0; li <= 160; li++) { var dd = r.len * li / 160, q2 = along(r, dd), pv = ll2v(q2[0], q2[1], 1 + planeH(r, dd)); lp.setXYZ(li, pv.x, pv.y, pv.z); } lp.needsUpdate = true; rideLine.computeLineDistances(); }
@@ -623,13 +623,13 @@
   G.info = function () { return { frames: renderer.info.render.frame, calls: renderer.info.render.calls, tris: renderer.info.render.triangles, tex: renderer.info.memory.textures, geo: renderer.info.memory.geometries }; };
   G.quality = function () { return { low: qLow, scale: QSCALE }; };
   function fit() {
-    var s = Math.min(innerWidth / W, innerHeight / H); stage.style.transform = 'scale(' + s + ')';
+    var s = Math.min(innerWidth / W, innerHeight / H); stage.style.transform = 'translate(-50%,-50%) scale(' + s + ')';
     var q = Math.min(1, s * (window.devicePixelRatio || 1)) * QSCALE;
     renderer.setPixelRatio(q); renderer.setSize(W, H, false); if (G.lightU) G.lightU.uK.value = q;
     var oq = Math.min(1, s * (window.devicePixelRatio || 1)); // labels stay sharp even in low quality
     if (Math.round(W * oq) !== ov.width) { Q = oq; ov.width = Math.round(W * Q); ov.height = Math.round(H * Q); lastSig = ''; }
   }
-  addEventListener('resize', fit); fit();
+  addEventListener('resize', fit); addEventListener('orientationchange', function () { setTimeout(fit, 250); }); if (window.visualViewport) visualViewport.addEventListener('resize', fit); fit();
   var rideCam = false, t0 = performance.now(), restT = 0, lastHover = 0, lastSig = '', frameN = 0, sceneryDirty = false, PERF = location.search.indexOf('perf') > -1; G.__ms = [];
   function loop(now) {
     var dt = Math.min(0.1, (now - t0) / 1000); t0 = now;
@@ -639,7 +639,7 @@
     setCam();
     // natural ground, trees, towns and clouds only while riding along; the normal globe keeps country colours
     WORLD.uniforms.uNear.value = riding && rideCam ? 1 : 0;
-    sceneryDirty = (riding && rideCam ? WORLD.scatter(riding.ll ? riding.ll[0] : V.lon, riding.ll ? riding.ll[1] : V.lat, 0.3, { R: (riding.r.type === 'plane' ? 6 : 3.6) * (qLow ? 0.8 : 1), size: riding.r.type === 'plane' ? 0.003 : 0.0022, cell: riding.r.type === 'plane' ? 0.2 : 0.1, ride: true, cloud: 0.011, avoid: riding.r.type === 'plane' ? null : riding.r.dense || (riding.r.dense = densify(riding.r.pts)) }) : WORLD.scatter(0, 0, 9)) || sceneryDirty;
+    sceneryDirty = (riding && rideCam ? WORLD.scatter(riding.ll ? riding.ll[0] : V.lon, riding.ll ? riding.ll[1] : V.lat, 0.3, { R: (riding.r.type === 'plane' ? 6 : 3.6) * (qLow ? 0.8 : 1), size: riding.r.type === 'plane' ? 0.003 : 0.0022, cell: riding.r.type === 'plane' ? 0.2 : 0.1, ride: true, cloud: 0.011, clear: riding.r.type === 'ship' ? 0.17 : 0.085, avoid: riding.r.type === 'plane' ? null : riding.r.dense || (riding.r.dense = densify(riding.r.pts)) }) : WORLD.scatter(0, 0, 9)) || sceneryDirty;
     if (riding && rideCam && riding.ll) { if (WORLD.rideUpdate(riding.ll[0], riding.ll[1], rideFirst ? 120 : 5)) sceneryDirty = true; rideFirst = false; }
     sky(); if (G._lights) G._lights.visible = !(riding && rideCam);
     var a = performance.now();

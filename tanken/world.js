@@ -239,7 +239,7 @@ window.makeWorld = function (env) {
       var m = new T.Mesh(g, r.type === 'car' ? (r.p[0][0] < -30 ? roadM : roadMW) : railM); m.material.side = T.DoubleSide; scene.add(m); r._rib = m; // (yellow centre lines in the Americas, white elsewhere)
     }
     var lg2 = new T.BufferGeometry(); lg2.setAttribute('position', new T.Float32BufferAttribute(lanes, 3));
-    var lm = new T.LineDashedMaterial({ color: 0xcfefff, dashSize: 0.006, gapSize: 0.006, transparent: true, opacity: 0.6 }), ls = new T.LineSegments(lg2, lm); ls.computeLineDistances(); scene.add(ls);
+    var lm = new T.LineDashedMaterial({ color: 0xcfefff, dashSize: 0.006, gapSize: 0.006, transparent: true, opacity: 0.6 }), ls = new T.LineSegments(lg2, lm); ls.computeLineDistances(); scene.add(ls); W.lanes = ls;
   })();
 
   /* ---------- ride-along terrain: real relief in 4° tiles round the vehicle, built nearest first ----------
@@ -270,9 +270,9 @@ window.makeWorld = function (env) {
     if (!REL && W._relImg) { REL = grab(W._relImg, 2048, 1024); ANCH = null; RIDE.ver++; }
     if (ANCH) return; ANCH = {};
     function add(lon, lat, h, r0, r1, pad) { var k = Math.floor(lon) + ',' + Math.floor(lat); (ANCH[k] || (ANCH[k] = [])).push([lon, lat, h, r0, r1, pad || 0]); }
-    env.routes.forEach(function (r) { // keep sea lanes in water all the way into port
+    env.routes.forEach(function (r) { // keep sea lanes in water all the way into port (only at the shore: a lane drawn straight across a headland cut a dotted trench over the hills)
       if (r.type !== 'ship') return;
-      for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.05)); for (var k = 0; k <= n; k++) { var x = a[0] + (b[0] - a[0]) * k / n, y = a[1] + (b[1] - a[1]) * k / n; if (landF(x, y) > 0.05) add(x, y, -0.0012, 0.05, 0.16); } }
+      for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.05)); for (var k = 0; k <= n; k++) { var x = a[0] + (b[0] - a[0]) * k / n, y = a[1] + (b[1] - a[1]) * k / n; var lf = landF(x, y); if (lf > 0.05 && lf < 0.55) add(x, y, -0.0012, 0.05, 0.16); } }
     });
     env.routes.forEach(function (r) { // level beds for railways and roads
       if (r.type === 'plane' || r.type === 'ship') return;
@@ -305,7 +305,7 @@ window.makeWorld = function (env) {
   tileMat.vertexColors = true; env.nightify(tileMat, true);
   tileMat.userData.preKey = 'tile'; tileMat.userData.pre = function (sh) { // sea floor: sandy in the shallows, blue-green in the deep
     sh.vertexShader = 'attribute vec2 aSea; varying vec2 vSea;\n' + sh.vertexShader.replace('#include <color_vertex>', '#include <color_vertex>\n  vSea = aSea;');
-    sh.fragmentShader = 'varying vec2 vSea;\n' + sh.fragmentShader.replace('#include <map_fragment>', '#ifdef USE_MAP\n  { vec4 sat = texture2D(map, vMapUv); diffuseColor.rgb *= mix(1.0, 0.75 + 0.5 * dot(sat.rgb, vec3(0.333)) / 0.35, 0.35); }\n#endif').replace('#include <color_fragment>', '#include <color_fragment>\n  diffuseColor.rgb = mix(diffuseColor.rgb, mix(vec3(0.72, 0.68, 0.48), vec3(0.08, 0.32, 0.42), vSea.y), vSea.x);');
+    sh.fragmentShader = 'varying vec2 vSea;\n' + sh.fragmentShader.replace('#include <map_fragment>', '#ifdef USE_MAP\n  { vec4 sat = texture2D(map, vMapUv); diffuseColor.rgb *= mix(1.0, 0.75 + 0.5 * dot(sat.rgb, vec3(0.333)) / 0.35, 0.35); }\n#endif').replace('#include <color_fragment>', '#include <color_fragment>\n  diffuseColor.rgb = mix(diffuseColor.rgb, mix(vec3(0.42, 0.86, 0.84), vec3(0.04, 0.2, 0.45), sqrt(clamp(vSea.y, 0.0, 1.0))), clamp(vSea.x, 0.0, 1.0));');
   };
   // the ground's own colours while riding: a bright toy palette per biome (blended across biome edges), bare rock and snow up high, a little
   // mottling so big plains are not one flat colour; the satellite picture only shades it slightly
@@ -314,11 +314,12 @@ window.makeWorld = function (env) {
   W.snowAt = snowAt;
   function groundCol(lon, lat, hh, out) {
     out.setRGB(0, 0, 0); var o = 0.22;
-    [[0, 0], [o, 0], [-o, 0], [0, o], [0, -o]].forEach(function (d) { out.add(RCOL[Math.max(0, bFast(lon + d[0] / Math.max(0.2, Math.cos(lat * D2R)), lat + d[1]))]); }); out.multiplyScalar(0.2);
+    var nb = 0; [[0, 0], [o, 0], [-o, 0], [0, o], [0, -o]].forEach(function (d) { var x = lon + d[0] / Math.max(0.2, Math.cos(lat * D2R)), y = lat + d[1]; if (landF(x, y) < 0.4) return; out.add(RCOL[Math.max(0, bFast(x, y))]); nb++; }); // (sea cells don't count: they read as ice and paled every coast)
+    if (nb) out.multiplyScalar(1 / nb); else out.copy(RCOL[5]);
     var m = ELEV ? elevM(lon, lat) : 0, snowLine = snowAt(lat);
     if (m > snowLine - 800) out.lerp(ROCKC, Math.min(1, (m - snowLine + 800) / 700) * 0.75);
     if (m > snowLine) out.lerp(SNOWC, Math.min(1, (m - snowLine) / 500));
-    var f = landF(lon, lat); if (f < 0.6 && hh > -0.0003) out.lerp(SANDC, Math.min(1, (0.6 - f) / 0.35)); // (a narrow pale beach right at the coast) // (a pale beach along the coast)
+    var f = landF(lon, lat); if (f < 0.42 && hh < 0.0006) out.lerp(SANDC, Math.min(1, (0.42 - f) / 0.15) * (hh > 0 ? 0.8 : 0.4)); // (a narrow pale beach right at the water's edge)
     var nz = 0.92 + 0.16 * noise(lon * 9.1, lat * 9.1); out.multiplyScalar(nz); return out;
   }
   function buildTile(i, j) {
@@ -336,12 +337,13 @@ window.makeWorld = function (env) {
     var cl = Math.cos(Math.min(89, Math.min(Math.abs(lat), Math.abs(lat) + dy)) * D2R); return Math.hypot(dx * Math.max(0.05, cl), dy);
   }
   W.setPads = function (list) { W.pads = list; ANCH = null; RIDE.ver++; if (RIDE.on) { for (var k in tiles) { scene.remove(tiles[k]); tiles[k].geometry.dispose(); } tiles = {}; } };
-  W.setRide = function (on) {
+  W.setRide = function (on, rr) {
     RIDE.on = on; RIDE.ver++;
-    if (!on) { for (var k in tiles) { scene.remove(tiles[k]); tiles[k].geometry.dispose(); } tiles = {}; U.uRideA.value = 0; }
+    if (!on) { for (var k in tiles) { scene.remove(tiles[k]); tiles[k].geometry.dispose(); } tiles = {}; U.uRideA.value = 0; if (SEAC) SEAC.visible = false; }
     else ensure();
-    if (W.borders) W.borders.visible = !on;
+    if (W.borders) W.borders.visible = !on; if (W.lanes) W.lanes.visible = !on; W.land.visible = !on || (rr && rr.type === 'plane'); // (on the ground the ride tiles reach past the horizon; the globe's land mesh leaked through them as dotted lines) // (globe-view dashed routes would lie across the ground)
     W.rebuildRibbons();
+    env.routes.forEach(function (r) { if (r._rib) r._rib.visible = !on || !rr || r.id === rr.id; }); // (riding: only your own road or line — the others are drawn straight between towns and showed up as dotted lines across the hills)
   };
   // Build the tiles nearest the vehicle first, spending at most `budget` ms; returns true if anything changed.
   W.rideUpdate = function (lon, lat, budget) {
@@ -365,8 +367,28 @@ window.makeWorld = function (env) {
     for (var k in tiles) if (!keep[k] && tileDist(+k.split(',')[0], +k.split(',')[1], lon, lat) > RW + 3) { scene.remove(tiles[k]); tiles[k].geometry.dispose(); delete tiles[k]; changed = true; }
     ll2v(lon, lat, 1, U.uRideC.value); var A = Math.max(0, cover - 0.15) * D2R;
     if (Math.abs(A - U.uRideA.value) > 1e-4) { U.uRideA.value = A; changed = true; }
-    return changed;
+    seaUpdate(); return changed;
   };
+  // The globe's sea is a 96×64 sphere: its flat faces dip up to 0.0005 below sea level, which let shallow sea floor poke out as "sand"
+  // right where you ride. While riding, a finely curved cap of water (dense near the middle) replaces it over the built tiles.
+  var SEAC = null, seaA = -1, seaMat = new T.MeshPhongMaterial({ color: 0x2b8fe6, specular: 0x9fc8ff, shininess: 60, transparent: true, opacity: 0.8, depthWrite: false, vertexColors: true });
+  seaMat.userData.preKey = 'seacap'; seaMat.userData.pre = function (sh) { sh.fragmentShader = sh.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\n  diffuseColor.a *= vColor.r; diffuseColor.rgb /= max(vColor.r, 0.001);'); };
+  function seaCap(A) {
+    var NR = 44, NS = 160, P = [], C = [], ix = [], q = new T.Vector3();
+    P.push(0, 0, 1); C.push(1, 1, 1);
+    for (var r = 1; r <= NR; r++) { var t = r / NR, an = A * (0.04 * t + 0.96 * t * t), fade = 1 - Math.max(0, (t - 0.93) / 0.07); for (var k = 0; k < NS; k++) { var ph = k / NS * Math.PI * 2; P.push(Math.sin(an) * Math.cos(ph), Math.sin(an) * Math.sin(ph), Math.cos(an)); C.push(fade, fade, fade); } }
+    for (var k2 = 0; k2 < NS; k2++) ix.push(0, 1 + k2, 1 + (k2 + 1) % NS);
+    for (var r2 = 1; r2 < NR; r2++) for (var k3 = 0; k3 < NS; k3++) { var a0 = 1 + (r2 - 1) * NS + k3, a1 = 1 + (r2 - 1) * NS + (k3 + 1) % NS, b0 = a0 + NS, b1 = a1 + NS; ix.push(a0, b0, a1, a1, b0, b1); }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(P, 3)); g.setAttribute('normal', new T.Float32BufferAttribute(P, 3)); g.setAttribute('color', new T.Float32BufferAttribute(C, 3)); g.setIndex(ix); return g;
+  }
+  var ZUP = new T.Vector3(0, 0, 1);
+  function seaUpdate() {
+    var A = U.uRideA.value;
+    if (!RIDE.on || A <= 0) { if (SEAC) SEAC.visible = false; return; }
+    if (!SEAC) { SEAC = new T.Mesh(seaCap(A), seaMat); SEAC.renderOrder = 2; SEAC.frustumCulled = false; scene.add(SEAC); seaA = A; }
+    else if (Math.abs(A - seaA) > 0.002) { SEAC.geometry.dispose(); SEAC.geometry = seaCap(A); seaA = A; }
+    SEAC.visible = true; SEAC.quaternion.setFromUnitVectors(ZUP, U.uRideC.value);
+  }
   W.rideTiles = function () { return Object.keys(tiles).length; };
 
   /* ---------- scenery around the view (instanced) ---------- */
@@ -382,7 +404,19 @@ window.makeWorld = function (env) {
   var broad = merged([[new T.IcosahedronGeometry(0.42, 0).scale(1, 0.95, 1).translate(0, 0.72, 0), '#ffffff'], [new T.CylinderGeometry(0.06, 0.09, 0.4, 4, 1, true).translate(0, 0.2, 0), '#7a5a3a']]);
   var acacia = merged([[new T.CylinderGeometry(0.5, 0.42, 0.18, 7).translate(0, 0.72, 0), '#ffffff'], [new T.CylinderGeometry(0.05, 0.07, 0.65, 5).translate(0, 0.32, 0), '#7a5a3a']]);
   var cactus = merged([[new T.CylinderGeometry(0.1, 0.11, 0.8, 6).translate(0, 0.4, 0), '#ffffff'], [new T.CylinderGeometry(0.07, 0.07, 0.3, 6).translate(0.18, 0.5, 0), '#ffffff'], [new T.CylinderGeometry(0.07, 0.07, 0.18, 6).rotateZ(Math.PI / 2).translate(0.1, 0.35, 0), '#ffffff']]);
-  var house = merged([[new T.BoxGeometry(0.7, 0.5, 0.55).translate(0, 0.25, 0), '#ffffff'], [new T.ConeGeometry(0.55, 0.32, 4, 1, true).rotateY(Math.PI / 4).scale(1, 1, 0.8).translate(0, 0.66, 0), '#c0533a'], [new T.PlaneGeometry(0.14, 0.2).translate(0, 0.1, 0.2755), '#5a4636']]);
+  function win(parts, w, h, x, y, z, ry) { var g = new T.PlaneGeometry(w, h); if (ry) g.rotateY(ry); g.translate(x, y, z); parts.push([g, '#3c4a63']); }
+  var house = (function () { // cottage: walls, a hipped roof with eaves, door, windows, chimney
+    var P = [[new T.BoxGeometry(0.7, 0.5, 0.55).translate(0, 0.25, 0), '#ffffff'], [new T.ConeGeometry(0.6, 0.34, 4, 1).rotateY(Math.PI / 4).scale(1, 1, 0.82).translate(0, 0.67, 0), '#c0533a'], [new T.PlaneGeometry(0.14, 0.22).translate(0.12, 0.11, 0.2755), '#6a4a34'], [new T.BoxGeometry(0.09, 0.22, 0.09).translate(-0.2, 0.78, -0.08), '#a8573f']];
+    win(P, 0.13, 0.12, -0.17, 0.3, 0.2755); win(P, 0.12, 0.12, 0, 0.3, -0.2755, Math.PI); win(P, 0.12, 0.12, 0.351, 0.3, 0, Math.PI / 2); win(P, 0.12, 0.12, -0.351, 0.3, 0, -Math.PI / 2);
+    return merged(P); })();
+  var house2 = (function () { // two storeys, a pitched slate roof along its length
+    var P = [[new T.BoxGeometry(0.62, 0.78, 0.48).translate(0, 0.39, 0), '#ffffff'], [new T.CylinderGeometry(0.39, 0.39, 0.7, 3, 1).rotateZ(Math.PI / 2).rotateX(Math.PI / 2).scale(1, 0.55, 0.85).rotateY(Math.PI / 2).translate(0, 0.86, 0), '#54647c'], [new T.PlaneGeometry(0.13, 0.22).translate(0, 0.11, 0.2405), '#4a3a2c']];
+    [-0.18, 0.18].forEach(function (x) { win(P, 0.12, 0.13, x, 0.56, 0.2405); win(P, 0.12, 0.13, x, 0.56, -0.2405, Math.PI); win(P, 0.12, 0.13, x, 0.22, -0.2405, Math.PI); }); win(P, 0.12, 0.13, -0.18, 0.22, 0.2405);
+    return merged(P); })();
+  var houseF = (function () { // flat roof with a low wall round it and a little room on top (hot, dry places)
+    var P = [[new T.BoxGeometry(0.8, 0.46, 0.68).translate(0, 0.23, 0), '#ffffff'], [new T.BoxGeometry(0.84, 0.06, 0.72).translate(0, 0.49, 0), '#ffffff'], [new T.BoxGeometry(0.32, 0.24, 0.3).translate(0.18, 0.6, -0.12), '#ffffff'], [new T.PlaneGeometry(0.14, 0.24).translate(-0.15, 0.12, 0.3405), '#2f6f8a']];
+    win(P, 0.11, 0.11, 0.17, 0.3, 0.3405); win(P, 0.11, 0.11, -0.2, 0.3, -0.3405, Math.PI); win(P, 0.11, 0.11, 0.2, 0.3, -0.3405, Math.PI); win(P, 0.11, 0.11, 0.401, 0.28, 0, Math.PI / 2);
+    return merged(P); })();
   var tower = merged([[new T.BoxGeometry(0.5, 1, 0.5).translate(0, 0.5, 0), '#ffffff'], [new T.BoxGeometry(0.52, 0.04, 0.52).translate(0, 1.0, 0), '#d9dde3']]);
   var rock = new T.IcosahedronGeometry(0.4, 0).scale(1, 0.55, 0.8).translate(0, 0.12, 0); rock = merged([[rock, '#ffffff']]);
   var puff = new T.IcosahedronGeometry(1, 1);
@@ -414,11 +448,19 @@ window.makeWorld = function (env) {
     var sx = [1, 1.4, 0.9, 0.6][shape], sy = [0.6, 0.35, 0.7, 1.3][shape], p = g.attributes.position; for (var i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i) * sx, Math.max(-0.1, p.getY(i)) * sy + 0.08, p.getZ(i) * (0.8 + 0.3 * rr(1, v)));
     return merged([[g, '#ffffff']]); }
   function shrubV(v) { var parts = []; for (var i = 0; i < 3; i++) parts.push([jit(new T.IcosahedronGeometry(0.18 + 0.08 * rr(i, v), 0), 0.3, v * 5 + i).scale(1, 0.7, 1).translate((rr(i + 3, v) - 0.5) * 0.35, 0.12, (rr(i + 6, v) - 0.5) * 0.35), '#ffffff']); return merged(parts); }
+  function karstV(v) { // a limestone tower: steep jagged sides, jungle on top and clinging in patches
+    var h = 1, g = jit(new T.CylinderGeometry(0.22 + 0.08 * rr(1, v), 0.36 + 0.06 * rr(2, v), h, 7, 4), 0.32, v * 41).translate(0, h / 2, 0), p = g.attributes.position;
+    for (var i = 0; i < p.count; i++) { var y = p.getY(i); p.setX(i, p.getX(i) + (y * y) * 0.12 * (rr(3, v) - 0.5)); }
+    var parts = [[g, '#a8a296'], [jit(new T.IcosahedronGeometry(0.3 + 0.06 * rr(4, v), 0), 0.3, v * 43).scale(1, 0.55, 1).translate(0.02, h + 0.02, 0), '#3d9447']];
+    for (var k = 0; k < 3; k++) { var an = rr(5 + k, v) * 6.28, yy = 0.3 + 0.5 * rr(8 + k, v); parts.push([jit(new T.IcosahedronGeometry(0.12, 0), 0.4, v * 7 + k).scale(1, 0.8, 0.6).translate(Math.cos(an) * 0.3, yy, Math.sin(an) * 0.3), k ? '#4fa64e' : '#2f7d3c']); }
+    return merged(parts); }
+  var KARST = [[106.85, 20.55, 107.85, 21.2], [98.3, 7.85, 98.75, 8.45], [119.15, 10.85, 119.65, 11.45], [110.05, 24.55, 110.65, 25.45], [105.85, 20.15, 106.05, 20.35]]; // (Ha Long Bay, Phang Nga Bay, El Nido, Guilin, Tràng An)
+  function inKarst(x, y) { for (var i = 0; i < KARST.length; i++) { var k = KARST[i]; if (x > k[0] && x < k[2] && y > k[1] && y < k[3]) return true; } return false; }
   function farCon() { return merged([[trunk(0.25), TRUNK], [new T.ConeGeometry(0.34, 0.8, 5).translate(0, 0.62, 0), '#ffffff']]); }
   function farBall() { return merged([[trunk(0.35), TRUNK], [new T.IcosahedronGeometry(0.36, 0).scale(1, 0.85, 1).translate(0, 0.62, 0), '#ffffff']]); }
-  var VEG = { fc: [farCon()], fb: [farBall()], con: [0, 1, 2, 3].map(function (v) { return conV(v); }), snow: [4, 5].map(function (v) { return conV(v, true); }), br: [0, 1, 2].map(broadV), rd: [0, 1].map(roundV), palm: [0, 1].map(palmV), ac: [0, 1].map(acaciaV), ca: [0, 1, 2, 3].map(cactusV), rk: [0, 1, 2, 3].map(rockV), sh: [0, 1].map(shrubV) };
-  var V2 = {}; Object.keys(VEG).forEach(function (k) { VEG[k].forEach(function (g, i) { V2[k + i] = { geo: g, max: k === 'fc' || k === 'fb' ? 9000 : k === 'con' || k === 'br' || k === 'rd' ? 3200 : k === 'rk' ? 1400 : 900 }; }); });
-  var S = { con: kind(conifer, 5000), br: kind(broad, 5000), ac: kind(acacia, 1200), ca: kind(cactus, 1500), rk: kind(rock, 2000), ho: kind(house, 3500), tw: kind(tower, 300), cl: kind(puff, 1400, cloudMat) };
+  var VEG = { fc: [farCon()], fb: [farBall()], con: [0, 1, 2, 3].map(function (v) { return conV(v); }), snow: [4, 5].map(function (v) { return conV(v, true); }), br: [0, 1, 2].map(broadV), rd: [0, 1].map(roundV), palm: [0, 1].map(palmV), ac: [0, 1].map(acaciaV), ca: [0, 1, 2, 3].map(cactusV), rk: [0, 1, 2, 3].map(rockV), sh: [0, 1].map(shrubV), ka: [0, 1, 2].map(karstV) };
+  var V2 = {}; Object.keys(VEG).forEach(function (k) { VEG[k].forEach(function (g, i) { V2[k + i] = { geo: g, max: k === 'fc' || k === 'fb' ? 9000 : k === 'con' || k === 'br' || k === 'rd' ? 3200 : k === 'rk' ? 1400 : k === 'ka' ? 500 : 900 }; }); });
+  var S = { con: kind(conifer, 5000), br: kind(broad, 5000), ac: kind(acacia, 1200), ca: kind(cactus, 1500), rk: kind(rock, 2000), ho: kind(house, 3500), ho2: kind(house2, 1500), hoF: kind(houseF, 1500), tw: kind(tower, 300), cl: kind(puff, 1400, cloudMat) };
   Object.keys(V2).forEach(function (k) { S['v_' + k] = kind(V2[k].geo, V2[k].max); });
   var mtx = new T.Matrix4(), q = new T.Quaternion(), q2 = new T.Quaternion(), sc = new T.Vector3(), up = new T.Vector3(0, 1, 0), pv = new T.Vector3(), col2 = new T.Color();
   function put(m, lon, lat, size, yaw, colHex, lift, sx) {
@@ -436,8 +478,8 @@ window.makeWorld = function (env) {
     if (last && last.R === R && Math.abs(((lon - last.lon + 540) % 360) - 180) * Math.cos(lat * D2R) < last.R * 0.25 && Math.abs(lat - last.lat) < last.R * 0.25 && alt / last.alt < 1.35 && alt / last.alt > 0.74) return false;
     last = { lon: lon, lat: lat, alt: alt, R: R };
     for (var k2 in S) S[k2].count = 0;
-    var kc = Math.cos(lat * D2R) || 0.1, clear = (opt.size || 0.002) * 1.8 / D2R, avoid = opt.avoid ? opt.avoid.filter(function (q0) { return Math.abs(q0[1] - lat) < R + 1 && Math.abs(((q0[0] - lon + 540) % 360) - 180) * kc < R + 1; }) : null;
-    function blocked(x, y) { if (!avoid) return false; for (var a = 0; a < avoid.length; a++) { var q0 = avoid[a]; if (Math.abs(q0[0] - x) * kc < clear && Math.abs(q0[1] - y) < clear) return true; } return false; }
+    var kc = Math.cos(lat * D2R) || 0.1, clear = opt.clear || (opt.size || 0.002) * 1.8 / D2R, avoid = opt.avoid ? opt.avoid.filter(function (q0) { return Math.abs(q0[1] - lat) < R + 1 && Math.abs(((q0[0] - lon + 540) % 360) - 180) * kc < R + 1; }) : null;
+    function blocked(x, y, sc) { if (!avoid) return false; var cl = clear * (sc || 1); for (var a = 0; a < avoid.length; a++) { var q0 = avoid[a]; if (Math.abs(q0[0] - x) * kc < cl && Math.abs(q0[1] - y) < cl) return true; } return false; }
     var size = opt.size || Math.max(0.0011, Math.min(0.0075, alt * 0.0105)), cell = R / 40;
     var i0 = Math.floor((lon - R / kc) / cell), i1 = Math.ceil((lon + R / kc) / cell), j0 = Math.floor((lat - R) / cell), j1 = Math.ceil((lat + R) / cell);
     if (opt.ride) { rideVeg(lon, lat, R, opt, blocked); i1 = i0 - 1; } // (riding: the dense forests below instead of the light globe scatter)
@@ -463,7 +505,10 @@ window.makeWorld = function (env) {
     for (var t = 0; t < TOWNS.length; t++) {
       var tn = TOWNS[t], ddx = (((tn[0] - lon + 540) % 360) - 180) * kc, ddy = tn[1] - lat; if (ddx * ddx + ddy * ddy > R2) continue; if (opt.ride && tn[2] < 3) continue; // (riding: only real towns, not a house in every field)
       var nh = Math.min(30, 3 + tn[2] * 3), rad = size * (0.5 + tn[2] * 0.22) / 0.0175;
-      for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy) || blocked(hx, hy)) continue; put(S.ho, hx, hy, size * (opt.ride ? 0.38 : 0.5), a, HC[hI % 4]); }
+      var tb = bFast(tn[0], tn[1]), dry = tb === B.desert || tb === B.savanna, DC = ['#f6f1e6', '#efe0c2', '#f3e9d8', '#e6d3b0'];
+      for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy) || blocked(hx, hy)) continue;
+        var hv = hash(hI * 1.3, t * 0.7), hm = !opt.ride ? S.ho : dry ? (hv < 0.8 ? S.hoF : S.ho) : (hv < 0.62 ? S.ho : S.ho2); // (riding: cottages and two-storey houses; flat roofs where it is hot and dry)
+        put(hm, hx, hy, size * (opt.ride ? 0.38 : 0.5) * (0.85 + 0.3 * hash(hI, t * 1.9)), a, dry ? DC[hI % 4] : HC[hI % 4]); }
       if (tn[2] >= 9 && !opt.ride) for (var k3 = 0; k3 < 7; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; if (blocked(tx, ty)) continue; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.75, size * (1.0 + hash(k3, t) * 1.4), size * 0.75))); }
     }
     // clouds: puffy groups, mostly away from the middle of the view so they sit at the horizon
@@ -495,7 +540,12 @@ window.makeWorld = function (env) {
       var h1 = hash(i * 1.37, j * 0.91), h2 = hash(j * 2.11 + 3, i * 0.53), x = (i + 0.15 + 0.7 * h1) * cell, y = (j + 0.15 + 0.7 * h2) * cell;
       if (y > 84 || y < -84) continue;
       var dx = (((x - lon + 540) % 360) - 180) * kc, dy = y - lat, d = Math.sqrt(dx * dx + dy * dy); if (d > R) continue;
-      var lx = ((x + 540) % 360) - 180; if (!isLand(lx, y) || landF(lx, y) < 0.7) continue;
+      var lx = ((x + 540) % 360) - 180;
+      if (inKarst(lx, y)) { // limestone towers standing out of the sea (or the rice fields round Guilin)
+        if (!blocked(lx, y, 2) && hash(i * 0.37, j * 0.59) < 0.6) { var kz = size * (1.1 + 1.3 * hash(i * 1.9, j * 2.3)); vput('ka' + (i % 3 + 3) % 3, lx, y, kz, h1 * 6.28, '#ffffff', 0.55 + 0.35 * h2); if (hash(i, j * 1.3) < 0.5) vput('ka' + ((i + 1) % 3 + 3) % 3, lx + (h2 - 0.5) * cell * 0.7 / kc, y + (h1 - 0.5) * cell * 0.7, kz * 0.65, h2 * 6.28, '#ffffff', 0.6); }
+        if (!isLand(lx, y) || landF(lx, y) < 0.7) continue;
+      }
+      if (!isLand(lx, y) || landF(lx, y) < 0.7) continue;
       if (blocked(lx, y)) continue;
       var onPad = false; for (var pI = 0; pI < pads.length; pI++) { var pp = pads[pI], pdx = (((pp[0] - lx + 540) % 360) - 180) * Math.cos(y * D2R), pdy = pp[1] - y, pr = 0.5 * (1 + 0.25 * Math.sin(Math.atan2(pdy, pdx) * 3 + pI)); if (pdx * pdx + pdy * pdy < pr * pr) { onPad = true; break; } }
       if (onPad) continue;

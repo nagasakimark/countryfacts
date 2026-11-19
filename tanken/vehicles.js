@@ -80,10 +80,10 @@
   M.custom.v_bullet = function (stripe) {
     var g = new T.Group(), c = stripe || '#1f5fbf';
     function car(z0, len, nose) {
-      var sp = nose ? [[z0, 0, 0.05, 0.055, 0.05], [z0 + len * 0.5, 0, 0.05, 0.055, 0.05], [z0 + len * 0.78, 0, 0.044, 0.05, 0.042], [z0 + len * 0.93, 0, 0.03, 0.03, 0.022], [z0 + len, 0, 0.022, 0.008, 0.006]] : [[z0, 0, 0.05, 0.055, 0.05], [z0 + len, 0, 0.05, 0.055, 0.05]];
-      tube(g, Z(sp), function (x, y) { return Math.abs(y - 0.035) < 0.008 ? c : (y < 0.012 ? '#8a8f98' : '#f7f8fa'); }, 'car', 10, 0.01);
-      windows(g, Math.round(len * 40), z0 + 0.03, z0 + len * (nose ? 0.6 : 0.97), 0.065, 0.054, '#2a3346');
-      [z0 + 0.05, z0 + len - 0.05].forEach(function (z) { box(g, '#33363c', 0.08, 0.02, 0.06, 0, 0.0, z); });
+      var sp = nose ? [[z0, 0, 0.058, 0.066, 0.058], [z0 + len * 0.5, 0, 0.058, 0.066, 0.058], [z0 + len * 0.78, 0, 0.05, 0.06, 0.048], [z0 + len * 0.93, 0, 0.034, 0.036, 0.026], [z0 + len, 0, 0.025, 0.01, 0.007]] : [[z0, 0, 0.058, 0.066, 0.058], [z0 + len, 0, 0.058, 0.066, 0.058]];
+      tube(g, Z(sp), function (x, y) { return Math.abs(y - 0.04) < 0.011 ? c : (y < 0.012 ? '#8a8f98' : '#f7f8fa'); }, 'car', 10, 0.01);
+      windows(g, Math.round(len * 40), z0 + 0.03, z0 + len * (nose ? 0.6 : 0.97), 0.075, 0.065, '#2a3346');
+      [z0 + 0.05, z0 + len - 0.05].forEach(function (z) { box(g, '#33363c', 0.1, 0.022, 0.07, 0, 0.0, z); });
     }
     car(0.08, 0.42, true); car(-0.3, 0.37, false); g.add(new T.Group());
     var back = new T.Group(); g.add(back); back.rotation.y = Math.PI; back.position.z = -0.33;
