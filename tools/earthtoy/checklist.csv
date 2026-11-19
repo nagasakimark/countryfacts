@@ -272,7 +272,7 @@ Landmark,Thailand,Grand Palace & Wat Phra Kaew,yes,grandpalace,Grand Palace & Wa
 Landmark,Thailand,ICONSIAM,no,,
 Landmark,Thailand,King Power MahaNakhon,no,,
 Landmark,Thailand,Wat Arun,yes,watarun,Wat Arun
-Landmark,Timor-Leste,Cristo Rei of Dili,no,,
+Landmark,Timor-Leste,Cristo Rei of Dili,yes,cristorei,Cristo Rei of Dili
 Landmark,Türkiye,Aizanoi Ancient City,no,,
 Landmark,Türkiye,Cappadocia,yes,cappadocia,Cappadocia
 Landmark,Türkiye,Derinkuyu Underground City,no,,
@@ -429,11 +429,11 @@ Landmark,United Kingdom,University of Oxford,no,,
 Landmark,United Kingdom,Westminster Abbey,no,,
 Landmark,United Kingdom,Windsor Castle,no,,
 Landmark,Vatican City,St. Peter's Basilica,yes,stpeters,St. Peter's Basilica
-Landmark,Algeria,Maqam Echahid (Martyrs' Memorial),no,,
+Landmark,Algeria,Maqam Echahid (Martyrs' Memorial),yes,maqam,Maqam Echahid (Martyrs' Memorial)
 Landmark,Angola,Mausoleum of Agostinho Neto,no,,
 Landmark,Benin,Door of No Return,yes,doornoreturn,Door of No Return
 Landmark,Botswana,Okavango Delta,yes,okavango,Okavango Delta
-Landmark,Burkina Faso,Grand Mosque of Bobo-Dioulasso,no,,
+Landmark,Burkina Faso,Grand Mosque of Bobo-Dioulasso,yes,bobo,Grand Mosque of Bobo-Dioulasso
 Landmark,Burundi,Source of the Nile Pyramid (Rutovu),no,,
 Landmark,Cameroon,Reunification Monument,no,,
 Landmark,Central African Republic,Boali Falls,no,,
@@ -457,7 +457,7 @@ Landmark,Egypt,Suez Canal,no,,
 Landmark,Egypt,Temple of Hatshepsut,no,,
 Landmark,Egypt,Valley of the Kings,no,,
 Landmark,Equatorial Guinea,"St. Elizabeth's Cathedral, Malabo",no,,
-Landmark,Eritrea,Fiat Tagliero Building,no,,
+Landmark,Eritrea,Fiat Tagliero Building,yes,fiattagliero,Fiat Tagliero Building
 Landmark,Eswatini,Sibebe Rock,no,,
 Landmark,Ethiopia,"Church of St. George, Lalibela",yes,lalibela,"Church of St George, Lalibela"
 Landmark,Ethiopia,Fasil Ghebbi,no,,
@@ -573,7 +573,7 @@ Landmark,Mexico,Teotihuacan,yes,teotihuacan,Teotihuacan
 Landmark,Mexico,Torre Latinoamericana,no,,
 Landmark,Mexico,Torre Reforma,no,,
 Landmark,Mexico,Tulum,no,,
-Landmark,Nicaragua,León Cathedral,no,,
+Landmark,Nicaragua,León Cathedral,yes,leoncath,León Cathedral
 Landmark,Panama,Panama Canal,yes,panama,Panama Canal
 Landmark,Panama,Panamá Viejo,no,,
 Landmark,Puerto Rico,Castillo San Felipe del Morro,yes,elmorro,Castillo San Felipe del Morro
@@ -764,7 +764,7 @@ Landmark,Peru,Qorikancha,no,,
 Landmark,Peru,Sacsayhuamán,no,,
 Landmark,Peru,Vinicunca (Rainbow Mountain),yes,rainbowmtn,Vinicunca (Rainbow Mountain)
 Landmark,Suriname,"Cathedral Basilica of St. Peter and Paul, Paramaribo",no,,
-Landmark,Uruguay,La Mano (Punta del Este),no,,
+Landmark,Uruguay,La Mano (Punta del Este),yes,lamano,La Mano (Punta del Este)
 Landmark,Venezuela,Angel Falls,yes,angelfalls,Angel Falls
 Landmark,Australia,Adelaide Oval,no,,
 Landmark,Australia,Aurora Place,no,,
@@ -808,7 +808,7 @@ Landmark,New Zealand,Sky Tower,no,,
 Landmark,New Zealand,"The Beehive, Wellington",no,,
 Landmark,New Zealand,Waitangi Treaty Grounds,no,,
 Landmark,New Zealand,"Weta Cave, Wellington",no,,
-Landmark,Palau,Airai Bai (Palauan meeting house),no,,
+Landmark,Palau,Airai Bai (Palauan meeting house),yes,palaubai,Airai Bai (Palauan meeting house)
 Landmark,Papua New Guinea,"National Parliament House, Port Moresby",yes,pngparl,"National Parliament House, Port Moresby"
 Landmark,Solomon Islands,National Parliament of Solomon Islands,no,,
 Landmark,Tonga,Ha'amonga 'a Maui Trilithon,yes,haamonga,Ha'amonga 'a Maui Trilithon
@@ -825,7 +825,7 @@ Landmark,Armenia,Geghard Monastery,no,,
 Landmark,Armenia,Mother Armenia,no,,
 Landmark,Armenia,Mount Ararat & Khor Virap,yes,khorvirap,Mount Ararat & Khor Virap
 Landmark,Azerbaijan,Flame Towers,yes,flametowers,Flame Towers
-Landmark,Cyprus,Kolossi Castle,no,,
+Landmark,Cyprus,Kolossi Castle,yes,kolossi,Kolossi Castle
 Landmark,Georgia,Gergeti Trinity Church,yes,gergeti,Gergeti Trinity Church
 Landmark,Georgia,Svetitskhoveli Cathedral,no,,
 Landmark,Kazakhstan,Baikonur Cosmodrome,no,,

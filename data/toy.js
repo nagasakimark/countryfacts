@@ -471,7 +471,23 @@ TOY.landmarks = [
 {id:'lakeabbe',c:'DJI',ll:[41.85,11.15],m:'lakeabbe',ja:'アッベ湖',en:'Lake Abbe',k:'あっべこ じぶち えんとつ',
   t:'ジブチの しおからい 湖。 まわりに 石の えんとつが 森のように 立ち、 湯気が 出て いる。 フラミンゴも くる。',te:'A salty lake in Djibouti. Stone chimneys stand around it like a forest, some puffing steam. Flamingos visit too.'},
 {id:'rwandavolc',c:'RWA',ll:[29.5,-1.45],m:'rwandavolc',ja:'火山国立公園',en:'Volcanoes National Park',k:'かざんこくりつこうえん るわんだ ごりら',
-  t:'ルワンダの 火山が ならぶ 国立公園。 竹の 森に、 めずらしい マウンテンゴリラの 家族が くらして いる。',te:'A national park of volcanoes in Rwanda. Rare mountain gorilla families live in its bamboo forests.'}
+  t:'ルワンダの 火山が ならぶ 国立公園。 竹の 森に、 めずらしい マウンテンゴリラの 家族が くらして いる。',te:'A national park of volcanoes in Rwanda. Rare mountain gorilla families live in its bamboo forests.'},
+{id:'maqam',c:'DZA',ll:[3.0711,36.7456],m:'maqam',ja:'マカーム・エシャヒード',en:'Maqam Echahid (Martyrs\' Memorial)',k:'まかーむえしゃひーど あるじぇりあ',
+  t:'アルジェリアの {首都|しゅと}を 見下ろす 92mの 記念の {塔|とう}。 3まいの ヤシの 葉が よりそう 形。 国の どくりつを 記念して いる。',te:'A 92 m memorial overlooking Algeria\'s capital, shaped like three palm leaves leaning together. It honours the country\'s fight for independence.'},
+{id:'bobo',c:'BFA',ll:[-4.2922,11.1817],m:'bobo',ja:'ボボ・ディウラッソの モスク',en:'Grand Mosque of Bobo-Dioulasso',k:'ぼぼでぃうらっそ もすく ぶるきなふぁそ',
+  t:'ブルキナファソの 土で つくった 白い モスク。 とんがった {塔|とう}から 木の ぼうが たくさん つき出て いる。',te:'A white mosque built of mud in Burkina Faso. Lots of wooden sticks poke out of its pointed towers.'},
+{id:'fiattagliero',c:'ERI',ll:[38.9283,15.3297],m:'fiattagliero',ja:'フィアット・タリエロ',en:'Fiat Tagliero Building',k:'ふぃあっとたりえろ えりとりあ あすまら',
+  t:'エリトリアの {首都|しゅと} アスマラの ガソリンスタンド。 1938年に 飛行機の 形で つくられた。 15mの つばさを 柱なしで ささえて いる。',te:'A petrol station in Asmara, Eritrea\'s capital, built in 1938 in the shape of an aeroplane. Its 15 m wings have no pillars holding them up.'},
+{id:'lamano',c:'URY',ll:[-54.9389,-34.9572],m:'lamano',ja:'ラ・マノ(手の {彫刻|ちょうこく})',en:'La Mano, Punta del Este',k:'らまの て うるぐあい ぷんたでるえすて',
+  t:'ウルグアイの ビーチに ある、 すなから 5本の 指が 出ている 大きな 手の {彫刻|ちょうこく}。 海で おぼれないよう 気をつけて、 という 意味も ある。',te:'A giant hand sculpture on a beach in Uruguay, with five fingers rising out of the sand. It is also a reminder to be careful in the sea.'},
+{id:'palaubai',c:'PLW',ll:[134.5683,7.3683],m:'palaubai',ja:'アイライの バイ',en:'Airai Bai',k:'あいらい ばい ぱらお しゅうかいじょ',
+  t:'パラオの むかしからの 集会所 「バイ」。 高い やねと、 絵で 物語を えがいた 赤い かべが とくちょう。 日本とも 関係の 深い 国。',te:'A traditional Palauan meeting house, or bai, with a tall steep roof and red gables painted with stories. Palau has close ties with Japan.'},
+{id:'leoncath',c:'NIC',ll:[-86.8781,12.4347],m:'leoncath',ja:'レオン{大聖堂|だいせいどう}',en:'León Cathedral',k:'れおんだいせいどう にからぐあ',
+  t:'ニカラグアの 白い {大聖堂|だいせいどう}。 地しんに 強い つくり。 白い 屋上には 小さな ドームが ならび、 上を 歩ける。',te:'A white cathedral in Nicaragua, built strong against earthquakes. Its white roof is covered in little domes that you can walk on.'},
+{id:'kolossi',c:'CYP',ll:[32.9667,34.665],m:'kolossi',ja:'コロッシ{城|じょう}',en:'Kolossi Castle',k:'ころっしじょう きぷろす',
+  t:'キプロスの 四角い 石の お{城|しろ}。 むかし、 {騎士|きし}たちが ここで さとうや ワインを つくって いた。',te:'A square stone castle in Cyprus. Long ago, knights made sugar and wine here.'},
+{id:'cristorei',c:'TLS',ll:[125.6111,-8.5122],m:'cristorei',ja:'クリスト・レイ{像|ぞう}',en:'Cristo Rei of Dili',k:'くりすとれいぞう ひがしてぃもーる でぃり',
+  t:'東ティモールの {首都|しゅと} ディリの みさきに 立つ、 地球の 上の キリスト{像|ぞう}。 500だんいじょうの かいだんを のぼる。',te:'A statue of Christ standing on a globe at the tip of a cape near Dili, the capital of Timor-Leste. You climb over 500 steps to reach it.'}
 ];
 
 TOY.animals = [
