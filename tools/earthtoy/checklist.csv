@@ -544,7 +544,7 @@ Landmark,Canada,Place Ville Marie,no,,
 Landmark,Canada,Saint Joseph's Oratory,no,,
 Landmark,Canada,Science World,no,,
 Landmark,Canada,Scotia Plaza,no,,
-Landmark,Canada,Stanley Park Totem Poles,no,,
+Landmark,Canada,Stanley Park Totem Poles,yes,totems,Stanley Park Totem Poles
 Landmark,Canada,Vancouver House,no,,
 Landmark,Costa Rica,Arenal Volcano,yes,arenal,Arenal Volcano
 Landmark,Costa Rica,National Theatre of Costa Rica,no,,
@@ -615,7 +615,7 @@ Landmark,United States,Fort McHenry,no,,
 Landmark,United States,Foshay Tower,no,,
 Landmark,United States,Fountain Place,no,,
 Landmark,United States,Frost Bank Tower,no,,
-Landmark,United States,Gateway Arch,no,,
+Landmark,United States,Gateway Arch,yes,gatewayarch,Gateway Arch
 Landmark,United States,Golden Gate Bridge,yes,goldengate,Golden Gate Bridge
 Landmark,United States,Grand Canyon,yes,grandcanyon,Grand Canyon
 Landmark,United States,Grand Central Terminal,no,,
@@ -709,7 +709,7 @@ Landmark,Argentina,Kavanagh Building,no,,
 Landmark,Argentina,Obelisco de Buenos Aires,yes,obelisco,Obelisco of Buenos Aires
 Landmark,Argentina,Palace of the Argentine National Congress,no,,
 Landmark,Argentina,Palacio Barolo,no,,
-Landmark,Argentina,Perito Moreno Glacier,no,,
+Landmark,Argentina,Perito Moreno Glacier,yes,peritomoreno,Perito Moreno Glacier
 Landmark,Argentina,Teatro Colón,no,,
 Landmark,Bolivia,"Basilica of San Francisco, La Paz",no,,
 Landmark,Bolivia,Cristo de la Concordia,no,,
@@ -732,7 +732,7 @@ Landmark,Brazil,Pelourinho,no,,
 Landmark,Brazil,Rio de Janeiro Cathedral,no,,
 Landmark,Brazil,São Paulo Cathedral,no,,
 Landmark,Brazil,São Paulo Museum of Art (MASP),no,,
-Landmark,Brazil,Sugarloaf Mountain,no,,
+Landmark,Brazil,Sugarloaf Mountain,yes,sugarloaf,Sugarloaf Mountain
 Landmark,Brazil,Tower Club Residence,no,,
 Landmark,Chile,"Flower Clock, Viña del Mar",no,,
 Landmark,Chile,Gran Torre Costanera,no,,
@@ -749,20 +749,20 @@ Landmark,Colombia,Ciudad Perdida,no,,
 Landmark,Colombia,Colpatria Tower,no,,
 Landmark,Colombia,El Peñón de Guatapé,no,,
 Landmark,Colombia,Las Lajas Sanctuary,no,,
-Landmark,Colombia,Walled City of Cartagena,no,,
+Landmark,Colombia,Walled City of Cartagena,yes,cartagena,Walled City of Cartagena
 Landmark,Ecuador,Cotopaxi,no,,
 Landmark,Ecuador,Galápagos Islands,yes,galapagos,Galápagos Islands
 Landmark,Falkland Islands,"Christ Church Cathedral, Stanley",no,,
-Landmark,Guyana,Kaieteur Falls,no,,
+Landmark,Guyana,Kaieteur Falls,yes,kaieteur,Kaieteur Falls
 Landmark,Paraguay,Itaipu Dam,no,,
 Landmark,Peru,Cathedral of Lima,no,,
 Landmark,Peru,Chan Chan,no,,
 Landmark,Peru,Government Palace of Peru,no,,
 Landmark,Peru,Machu Picchu,yes,machu,Machu Picchu
-Landmark,Peru,Nazca Lines,no,,
+Landmark,Peru,Nazca Lines,yes,nazca,Nazca Lines
 Landmark,Peru,Qorikancha,no,,
 Landmark,Peru,Sacsayhuamán,no,,
-Landmark,Peru,Vinicunca (Rainbow Mountain),no,,
+Landmark,Peru,Vinicunca (Rainbow Mountain),yes,rainbowmtn,Vinicunca (Rainbow Mountain)
 Landmark,Suriname,"Cathedral Basilica of St. Peter and Paul, Paramaribo",no,,
 Landmark,Uruguay,La Mano (Punta del Este),no,,
 Landmark,Venezuela,Angel Falls,yes,angelfalls,Angel Falls

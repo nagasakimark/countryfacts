@@ -343,7 +343,23 @@ TOY.landmarks = [
  {id:'rila',c:'BGR',ll:[23.34,42.13],m:'rila',ja:'リラの {修道院|しゅうどういん}',en:'Rila Monastery',k:'りらのしゅうどういん ぶるがりあ',
   t:'ブルガリアの 山おくの {修道院|しゅうどういん}。 しまもようの アーチと、 カラフルな かべの 絵が 美しい。',te:'A monastery deep in the mountains of Bulgaria, with striped arches and colourful wall paintings.'},
  {id:'tallinn',c:'EST',ll:[24.75,59.44],m:'tallinn',ja:'タリンの 旧市街',en:'Tallinn Old Town',k:'たりん えすとにあ',
-  t:'エストニアの 首都の 古い 町。 赤い とんがり やねの {塔|とう}と {城壁|じょうへき}が、 中世の まま のこっている。',te:'The old town of Estonia\'s capital, with red-roofed towers and city walls still as they were in the Middle Ages.'}
+  t:'エストニアの 首都の 古い 町。 赤い とんがり やねの {塔|とう}と {城壁|じょうへき}が、 中世の まま のこっている。',te:'The old town of Estonia\'s capital, with red-roofed towers and city walls still as they were in the Middle Ages.'},
+{id:'gatewayarch',c:'USA',ll:[-90.18,38.62],m:'gatewayarch',ja:'ゲートウェイ・アーチ',en:'Gateway Arch',k:'げーとうぇいあーち せんとるいす あめりか',
+  t:'アメリカの セントルイスに ある、 高さ 192mの ステンレスの アーチ。 西部への 入り口を あらわす。 中の 小さな 乗り物で てっぺんまで 行ける。',te:'A 192 m stainless-steel arch in St. Louis, USA, marking the gateway to the West. A tiny tram takes you to the top.'},
+ {id:'totems',c:'CAN',ll:[-123.12,49.30],m:'totems',ja:'スタンレー公園の トーテムポール',en:'Stanley Park Totem Poles',k:'とーてむぽーる ばんくーばー かなだ',
+  t:'カナダの バンクーバーに ある、 先住民の 人たちが 木を ほって つくった 柱。 動物や 家族の お話が きざまれている。',te:'Carved wooden totem poles made by Indigenous peoples, in Vancouver, Canada. They tell stories of animals and families.'},
+ {id:'sugarloaf',c:'BRA',ll:[-43.16,-22.95],m:'sugarloaf',ja:'ポン・ジ・アスーカル',en:'Sugarloaf Mountain',k:'ぽんじあすーかる しゅがーろーふ ぶらじる',
+  t:'ブラジルの リオデジャネイロの {湾|わん}に つき出た、 高さ 396mの まるい 岩山。 ロープウェーで 上まで 行ける。',te:'A 396 m rounded peak rising from the bay in Rio de Janeiro, Brazil. A cable car runs to the top.'},
+ {id:'peritomoreno',c:'ARG',ll:[-73.05,-50.48],m:'peritomoreno',ja:'ペリト・モレノ氷河',en:'Perito Moreno Glacier',k:'ぺりともれの ひょうが あるぜんちん',
+  t:'アルゼンチンの 大きな 氷河。 高さ 約60mの 氷の かべから、 ときどき 大きな 氷が 湖に くずれ落ちる。',te:'A huge glacier in Argentina. Big chunks of ice sometimes crash from its 60 m wall into the lake.'},
+ {id:'nazca',c:'PER',ll:[-75.13,-14.74],m:'nazca',ja:'ナスカの 地上絵',en:'Nazca Lines',k:'なすかのちじょうえ ぺるー',
+  t:'ペルーの さばくの 地面に かかれた、 大きな 動物や もようの 絵。 約2000年 前に つくられ、 空から 見ないと よく わからない。',te:'Giant animal shapes and lines drawn on the desert ground in Peru about 2,000 years ago. You can only really see them from the air.'},
+ {id:'rainbowmtn',c:'PER',ll:[-71.30,-13.87],m:'rainbowmtn',ja:'ビニクンカ（にじ色の 山）',en:'Vinicunca (Rainbow Mountain)',k:'びにくんか れいんぼーまうんてん ぺるー',
+  t:'ペルーの 高さ 約5000mの 山。 いろいろな {鉱物|こうぶつ}の せいで、 しまもようの にじ色に 見える。',te:'A mountain in Peru about 5,000 m high, striped in rainbow colours by different minerals.'},
+ {id:'cartagena',c:'COL',ll:[-75.55,10.42],m:'cartagena',ja:'カルタヘナの {城壁|じょうへき}の 町',en:'Walled City of Cartagena',k:'かるたへな ころんびあ',
+  t:'コロンビアの カリブ海ぞいの 町。 カラフルな 家と、 海ぞくから 町を まもった 石の {城壁|じょうへき}が ある。',te:'A Colombian city on the Caribbean with colourful houses and stone walls that once protected it from pirates.'},
+ {id:'kaieteur',c:'GUY',ll:[-59.48,5.18],m:'kaieteur',ja:'カイエチュール・フォールズ',en:'Kaieteur Falls',k:'かいえちゅーる がいあな',
+  t:'ガイアナの ジャングルの 中の たき。 1回で 226m 落ちる、 世界でも とくに 力強い たき。',te:'A waterfall in the jungle of Guyana with a single 226 m drop — one of the most powerful in the world.'}
 ];
 
 TOY.animals = [
