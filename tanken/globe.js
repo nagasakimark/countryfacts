@@ -160,7 +160,7 @@
   // while riding, the sea round the vehicle turns see-through so the sea floor shows
   globe.material.userData.preKey = 'sea'; globe.material.userData.pre = function (sh) {
     sh.uniforms.uRideC = WORLD.uniforms.uRideC; sh.uniforms.uRideA = WORLD.uniforms.uRideA;
-    sh.fragmentShader = 'uniform vec3 uRideC; uniform float uRideA;\n' + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n  if (uRideA > 0.0) { float an = acos(clamp(dot(normalize(vWP), uRideC), -1.0, 1.0)); if (an < uRideA * 0.95) discard; float dy = smoothstep(-0.08, 0.12, dot(normalize(vWP), uSun)); float k = 1.0 - smoothstep(uRideA * 0.55, uRideA, an); gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * vec3(0.7, 1.2, 1.6) + vec3(0.04, 0.2, 0.42), dy); gl_FragColor.a = mix(1.0, mix(0.93, 0.72, dy), k); }');
+    sh.fragmentShader = 'uniform vec3 uRideC; uniform float uRideA;\n' + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n  if (uRideA > 0.0) { float an = acos(clamp(dot(normalize(vWP), uRideC), -1.0, 1.0)); if (an < uRideA * 0.985) discard; float dy = smoothstep(-0.08, 0.12, dot(normalize(vWP), uSun)); float k = 1.0 - smoothstep(uRideA * 0.55, uRideA, an); gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(0.041, 0.279, 0.604), dy * 0.9); gl_FragColor.a = mix(1.0, mix(0.93, 0.72, dy), k); }');
   };
   function seeThrough(on) { if (globe.material.transparent !== on) { globe.material.transparent = on; globe.material.needsUpdate = true; } }
   var FIDX = {}; feat.forEach(function (f, i) { FIDX[f.properties.id] = i; });

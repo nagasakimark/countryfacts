@@ -383,11 +383,12 @@ window.makeWorld = function (env) {
   // The globe's sea is a 96×64 sphere: its flat faces dip up to 0.0005 below sea level, which let shallow sea floor poke out as "sand"
   // right where you ride. While riding, a finely curved cap of water (dense near the middle) replaces it over the built tiles.
   var SEAC = null, seaA = -1, seaMat = new T.MeshPhongMaterial({ color: 0x2b8fe6, specular: 0x9fc8ff, shininess: 60, transparent: true, opacity: 0.8, depthWrite: false, vertexColors: true });
-  seaMat.userData.preKey = 'seacap'; seaMat.userData.pre = function (sh) { sh.fragmentShader = sh.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\n  diffuseColor.a *= vColor.r; diffuseColor.rgb /= max(vColor.r, 0.001);'); };
+  seaMat.userData.preKey = 'seacap'; seaMat.userData.pre = function (sh) { sh.fragmentShader = sh.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\n  diffuseColor.a = min(1.0, diffuseColor.a * vColor.r); diffuseColor.rgb /= max(vColor.r, 0.001);'); };
   function seaCap(A) {
     var NR = 44, NS = 160, P = [], C = [], ix = [], q = new T.Vector3();
+  // (the cap is fully opaque at its rim, so no dark sea floor shows through where it meets the globe sea; riding, the far globe sea takes the same blue)
     P.push(0, 0, 1); C.push(1, 1, 1);
-    for (var r = 1; r <= NR; r++) { var t = r / NR, an = A * (0.04 * t + 0.96 * t * t), fade = 1 - Math.max(0, (t - 0.93) / 0.07); for (var k = 0; k < NS; k++) { var ph = k / NS * Math.PI * 2; P.push(Math.sin(an) * Math.cos(ph), Math.sin(an) * Math.sin(ph), Math.cos(an)); C.push(fade, fade, fade); } }
+    for (var r = 1; r <= NR; r++) { var t = r / NR, an = A * (0.04 * t + 0.96 * t * t), fade = 1 + 0.25 * Math.max(0, (t - 0.9) / 0.1); for (var k = 0; k < NS; k++) { var ph = k / NS * Math.PI * 2; P.push(Math.sin(an) * Math.cos(ph), Math.sin(an) * Math.sin(ph), Math.cos(an)); C.push(fade, fade, fade); } }
     for (var k2 = 0; k2 < NS; k2++) ix.push(0, 1 + k2, 1 + (k2 + 1) % NS);
     for (var r2 = 1; r2 < NR; r2++) for (var k3 = 0; k3 < NS; k3++) { var a0 = 1 + (r2 - 1) * NS + k3, a1 = 1 + (r2 - 1) * NS + (k3 + 1) % NS, b0 = a0 + NS, b1 = a1 + NS; ix.push(a0, b0, a1, a1, b0, b1); }
     var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(P, 3)); g.setAttribute('normal', new T.Float32BufferAttribute(P, 3)); g.setAttribute('color', new T.Float32BufferAttribute(C, 3)); g.setIndex(ix); return g;
