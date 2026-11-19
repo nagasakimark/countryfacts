@@ -330,7 +330,7 @@
     var want = rideCam && riding && riding.r.type === 'car' ? riding.r : null;
     if (want !== trafFor) { TRAF.forEach(function (t) { scene.remove(t.mesh); }); TRAF = []; trafFor = want;
       if (want) ['v_pickup', 'v_car', 'v_camper', 'v_jeep', 'v_car', 'v_pickup'].forEach(function (k, i) { var cols = ['#2b7de0', '#f2c230', '#3fa86a', '#f2f2f2', '#8a4bd8', '#e8473a'], o = MODELS.object(k, cols[i]), m = grounded(o, 'vehicle', 'traffic' + i, false); m.matrixAutoUpdate = false; scene.add(m);
-        TRAF.push({ mesh: m, d: Math.max(0, Math.min(want.len, want.d + want.dir * (0.014 + 0.022 * i))), dir: i % 2 ? want.dir : -want.dir, k: i % 2 ? 1 : 0.8 + 0.1 * i }); // (going your way: ahead of you at your speed, so never in your lane; the others come towards you) }); }
+        TRAF.push({ mesh: m, d: Math.max(0, Math.min(want.len, want.d + want.dir * (0.014 + 0.022 * i))), dir: i % 2 ? want.dir : -want.dir, k: i % 2 ? 1 : 0.8 + 0.1 * i }); }); } // (going your way: ahead of you at your speed, so never in your lane; the others come towards you)
     if (!trafFor) return;
     var r = trafFor;
     TRAF.forEach(function (t) {
