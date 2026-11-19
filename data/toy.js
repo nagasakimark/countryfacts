@@ -183,7 +183,23 @@ TOY.landmarks = [
  {id:'santorini',c:'GRC',ll:[25.38,36.46],m:'santorini',ja:'サントリーニ島',en:'Santorini',k:'さんとりーにとう ぎりしゃ',
   t:'ギリシャの 火山の 島。 がけの 上に 白い 家と 青い やねの 教会が ならぶ。',te:'A volcanic Greek island with white houses and blue-domed churches along the cliff tops.'},
  {id:'venice',c:'ITA',ll:[12.34,45.44],m:'venice',ja:'ベネチアの リアルト橋',en:'Rialto Bridge, Venice',k:'べねちあ りあるとばし いたりあ',
-  t:'水の 町 ベネチアの 大運河に かかる 石の 橋。 橋の 上には お店が ならび、 下を ゴンドラが 通る。',te:'A stone bridge with shops on top, crossing the Grand Canal in Venice, where gondolas glide below.'}
+  t:'水の 町 ベネチアの 大運河に かかる 石の 橋。 橋の 上には お店が ならび、 下を ゴンドラが 通る。',te:'A stone bridge with shops on top, crossing the Grand Canal in Venice, where gondolas glide below.'},
+{id:'galapagos',c:'ECU',ll:[-90.50,-0.60],m:'galapagos',ja:'ガラパゴス{諸島|しょとう}',en:'Galápagos Islands',k:'がらぱごす えくあどる ぞうがめ',
+  t:'エクアドルの 太平洋に うかぶ 火山の 島々。 ゾウガメや ウミイグアナなど、 ここにしか いない 生き物が たくさん いる。',te:'Volcanic islands of Ecuador in the Pacific, home to giant tortoises, marine iguanas and other animals found nowhere else.'},
+ {id:'angelfalls',c:'VEN',ll:[-62.54,5.97],m:'angelfalls',ja:'エンジェル・フォール',en:'Angel Falls',k:'えんじぇるふぉーる べねずえら',
+  t:'ベネズエラに ある、 世界で いちばん 高い たき。 高さ 979m。 テーブルのような 形の 山から 落ちる。',te:'The world\'s highest waterfall, 979 m tall, falling from a table-top mountain in Venezuela.'},
+ {id:'havana',c:'CUB',ll:[-82.36,23.14],m:'havana',ja:'ハバナ',en:'Havana',k:'はばな きゅーば かぴとりお',
+  t:'キューバの 首都。 古い カラフルな アメリカの 車が 今も たくさん 走っている。 大きな 白い ドームは カピトリオ。',te:'Cuba\'s capital, where colourful old American cars still fill the streets. The big white dome is El Capitolio.'},
+ {id:'dubrovnik',c:'HRV',ll:[18.11,42.64],m:'dubrovnik',ja:'ドゥブロヴニク',en:'Dubrovnik',k:'どぅぶろう゛にく くろあちあ',
+  t:'クロアチアの 海ぞいの 町。 オレンジ色の やねの 町を、 長さ 約2kmの {城壁|じょうへき}が ぐるりと かこむ。',te:'A seaside town in Croatia: orange roofs inside nearly 2 km of old stone walls.'},
+ {id:'hunparl',c:'HUN',ll:[19.05,47.51],m:'hunparl',ja:'ハンガリー国会議事堂',en:'Hungarian Parliament Building',k:'はんがりーこっかいぎじどう ぶだぺすと',
+  t:'ブダペストの ドナウ川ぞいに たつ 大きな たてもの。 へやの 数は 約700。',te:'A grand building on the Danube in Budapest with about 700 rooms.'},
+ {id:'nyhavn',c:'DNK',ll:[12.59,55.68],m:'nyhavn',ja:'ニューハウン',en:'Nyhavn',k:'にゅーはうん でんまーく こぺんはーげん',
+  t:'デンマークの コペンハーゲンの 運河の 港。 カラフルな 家が ならぶ。 童話作家の アンデルセンも ここに すんでいた。',te:'A canal harbour in Copenhagen lined with colourful houses. The writer Hans Christian Andersen lived here.'},
+ {id:'banaue',c:'PHL',ll:[121.06,16.92],m:'banaue',ja:'バナウェの {棚田|たなだ}',en:'Banaue Rice Terraces',k:'ばなうぇ たなだ ふぃりぴん',
+  t:'フィリピンの 山に、 約2000年 前から つくられてきた 田んぼの だんだん。「世界の 8番目の ふしぎ」と よばれる。',te:'Rice terraces carved into the mountains of the Philippines about 2,000 years ago, sometimes called the "Eighth Wonder of the World".'},
+ {id:'sossusvlei',c:'NAM',ll:[15.29,-24.76],m:'sossusvlei',ja:'ソーサスフレイ',en:'Sossusvlei',k:'そーさすふれい なみびあ',
+  t:'ナミビアの さばくに ある、 世界でも とくに 高い 赤い {砂丘|さきゅう}。 近くの デッドフレイには かれた 木が 立っている。',te:'Some of the world\'s tallest red sand dunes, in Namibia. At nearby Deadvlei, dead trees stand on white clay.'}
 ];
 
 TOY.animals = [
