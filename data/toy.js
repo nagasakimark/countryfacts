@@ -313,7 +313,7 @@ TOY.landmarks = [
  {id:'hassan2',c:'MAR',ll:[-7.63,33.61],m:'hassan2',ja:'ハッサン2世モスク',en:'Hassan II Mosque',k:'はっさん2せいもすく かさぶらんか もろっこ',
   t:'モロッコの カサブランカの 海の 上に たつ モスク。 ミナレットの 高さは 210mで、 世界でも とくに 高い。',te:'A mosque built out over the sea in Casablanca, Morocco. Its 210 m minaret is one of the tallest in the world.'},
 {id:'baalbek',c:'LBN',ll:[36.20,34.01],m:'baalbek',ja:'バールベック',en:'Baalbek',k:'ばーるべっく ればのん',
-  t:'レバノンに ある 古代ローマの 神殿の あと。 高さ 約20mの 柱が 6本 のこり、 とても 大きな 石が 使われている。',te:'Ruins of Roman temples in Lebanon. Six 20 m columns still stand, and some of its stones are among the largest ever cut.'},
+  t:'レバノンに ある 古代ローマの {神殿|しんでん}の あと。 高さ 約20mの 柱が 6本 のこり、 とても 大きな 石が 使われている。',te:'Ruins of Roman temples in Lebanon. Six 20 m columns still stand, and some of its stones are among the largest ever cut.'},
  {id:'eljem',c:'TUN',ll:[10.71,35.30],m:'eljem',ja:'エル・ジェムの {円形劇場|えんけいげきじょう}',en:'Amphitheatre of El Jem',k:'えるじぇむ ちゅにじあ',
   t:'チュニジアに ある、 約1800年 前の ローマ時代の 大きな {円形劇場|えんけいげきじょう}。 3万5000人が 入れた。',te:'A huge Roman amphitheatre in Tunisia, about 1,800 years old, that held 35,000 people.'},
  {id:'murchison',c:'UGA',ll:[31.69,2.28],m:'murchison',ja:'マーチソン・フォールズ',en:'Murchison Falls',k:'まーちそんふぉーるず うがんだ',

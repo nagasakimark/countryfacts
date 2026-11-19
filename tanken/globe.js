@@ -186,7 +186,7 @@
   /* ---------- camera ---------- */
   var V = G.view = { lon: 135, lat: 30, alt: 2.35 }, AMIN = 0.12, AMAX = 3.2, off = 0, offTo = 0;
   var camPos = new T.Vector3(), tmp = new T.Vector3(), tmp2 = new T.Vector3(), mat = new T.Matrix4();
-  function clampV() { V.alt = Math.max(AMIN, Math.min(AMAX, V.alt)); V.lat = Math.max(-80, Math.min(80, V.lat)); V.lon = ((V.lon + 540) % 360) - 180; }
+  function clampV() { V.alt = Math.max(AMIN, Math.min(AMAX, V.alt)); V.lat = Math.max(-88, Math.min(88, V.lat)); V.lon = ((V.lon + 540) % 360) - 180; }
   var TMAX = 52 * D2R; function tilt() { var t = (2.3 - V.alt) / (2.3 - 0.2); t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t) * TMAX; }
   // ride-along camera: behind the vehicle (drag to look around, wheel for distance) or first person
   var RC = G.rideView = { yaw: 0, pitch: 0.3, dist: 4.5, fp: false, fwd: new T.Vector3(), size: 0.004 };
