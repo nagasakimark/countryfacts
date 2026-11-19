@@ -231,7 +231,23 @@ TOY.landmarks = [
  {id:'badshahi',c:'PAK',ll:[74.31,31.59],m:'badshahi',ja:'バードシャーヒー・モスク',en:'Badshahi Mosque',k:'ばーどしゃーひーもすく ぱきすたん らほーる',
   t:'パキスタンの ラホールに ある 大きな モスク。 赤い 石と 白い ドームが 美しい。 約350年 前に できた。',te:'A huge mosque in Lahore, Pakistan, built about 350 years ago of red stone with white marble domes.'},
  {id:'thatluang',c:'LAO',ll:[102.64,17.98],m:'thatluang',ja:'タートルアン',en:'Pha That Luang',k:'たーとるあん らおす びえんちゃん',
-  t:'ラオスの 首都 ビエンチャンに ある 金色の {仏塔|ぶっとう}。 国の シンボルで、 お札にも かかれている。',te:'A golden stupa in Vientiane, the symbol of Laos. It appears on the national emblem and on banknotes.'}
+  t:'ラオスの 首都 ビエンチャンに ある 金色の {仏塔|ぶっとう}。 国の シンボルで、 お札にも かかれている。',te:'A golden stupa in Vientiane, the symbol of Laos. It appears on the national emblem and on banknotes.'},
+{id:'bluehole',c:'BLZ',ll:[-87.54,17.32],m:'bluehole',ja:'グレート・ブルーホール',en:'Great Blue Hole',k:'ぐれーとぶるーほーる べりーず',
+  t:'ベリーズの 海に ある、 まるくて ふかい 青い あな。 はばは 約300m、 ふかさは 約125m。',te:'A round, deep blue hole in the sea off Belize, about 300 m wide and 125 m deep.'},
+ {id:'panama',c:'PAN',ll:[-79.92,9.08],m:'panama',ja:'パナマ運河',en:'Panama Canal',k:'ぱなまうんが',
+  t:'太平洋と 大西洋を つなぐ 運河。「こう門」で 水の 高さを かえて、 船を 高い ところに ある 湖まで 持ち上げる。',te:'A canal linking the Pacific and Atlantic Oceans. Locks lift ships up to a lake and lower them down again.'},
+ {id:'richat',c:'MRT',ll:[-11.40,21.12],m:'richat',ja:'リシャット構造',en:'Richat Structure (Eye of the Sahara)',k:'りしゃっとこうぞう さはらのめ もーりたにあ',
+  t:'モーリタニアの さばくに ある、 はば 約40kmの 大きな わの もよう。 {宇宙|うちゅう}から 見ると 目のように 見え、「サハラの 目」と よばれる。',te:'Giant rings about 40 km wide in the Mauritanian desert. From space they look like an eye — the "Eye of the Sahara".'},
+ {id:'ngorongoro',c:'TZA',ll:[35.59,-3.19],m:'ngorongoro',ja:'ンゴロンゴロ・クレーター',en:'Ngorongoro Crater',k:'んごろんごろ たんざにあ',
+  t:'タンザニアに ある、 大むかしの 火山の あとの 大きな くぼ地。 中には ゾウや ライオン、 シマウマなど たくさんの 動物が くらす。',te:'A huge crater left by an ancient volcano in Tanzania, home to elephants, lions, zebras and many more animals.'},
+ {id:'bran',c:'ROU',ll:[25.37,45.52],m:'bran',ja:'ブラン{城|じょう}',en:'Bran Castle',k:'ぶらんじょう るーまにあ どらきゅら',
+  t:'ルーマニアの 岩山の 上の お{城|しろ}。 ドラキュラの お話に 出てくる お{城|しろ}の モデルと いわれる。',te:'A castle on a rocky hill in Romania, often linked with the story of Dracula.'},
+ {id:'ilulissat',c:'GRL',ll:[-51.10,69.22],m:'ilulissat',ja:'イルリサット・アイスフィヨルド',en:'Ilulissat Icefjord',k:'いるりさっと ぐりーんらんど ひょうざん',
+  t:'グリーンランドの、 大きな 氷山が ぎっしり うかぶ フィヨルド。 近くの 氷河から 毎日 たくさんの 氷が 流れ出る。',te:'A fjord in Greenland packed with huge icebergs that break off a nearby glacier every day.'},
+ {id:'darvaza',c:'TKM',ll:[58.44,40.25],m:'darvaza',ja:'ダルヴァザの ガスクレーター',en:'Darvaza Gas Crater',k:'だるう゛ぁざ じごくのもん とるくめにすたん',
+  t:'トルクメニスタンの さばくで、 50年 いじょう もえつづけている あな。「{地獄|じごく}の 門」とも よばれる。',te:'A crater in the desert of Turkmenistan that has been burning for over 50 years — the "Door to Hell".'},
+ {id:'bayterek',c:'KAZ',ll:[71.43,51.13],m:'bayterek',ja:'バイテレク・タワー',en:'Bayterek Tower',k:'ばいてれく あすたな かざふすたん',
+  t:'カザフスタンの 首都 アスタナの タワー。 ポプラの 木の 上の 金の たまごを あらわしている。 高さ 97m。',te:'A 97 m tower in Astana, Kazakhstan, shaped like a poplar tree holding a golden egg.'}
 ];
 
 TOY.animals = [
