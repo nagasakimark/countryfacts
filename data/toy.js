@@ -279,7 +279,23 @@ TOY.landmarks = [
  {id:'shirakawa',c:'JPN',ll:[136.91,36.26],m:'shirakawa',ja:'{白川郷|しらかわごう}',en:'Shirakawa-gō',k:'しらかわごう ぎふ がっしょうづくり',
   t:'{岐阜|ぎふ}県の 山の 村。 雪が すべり落ちるように、 急な かやぶき屋根の 家「{合掌造|がっしょうづく}り」が ならぶ。',te:'A mountain village in Gifu with steep thatched-roof houses (gasshō-zukuri) built so the snow slides off.'},
  {id:'oura',c:'JPN',ll:[129.87,32.73],m:'oura',ja:'{大浦天主堂|おおうらてんしゅどう}',en:'Ōura Church',k:'おおうらてんしゅどう ながさき',
-  t:'長崎に ある、 日本に 今 のこる いちばん 古い 教会。 1864年に できた。 {世界遺産|せかいいさん}。',te:'A church in Nagasaki built in 1864 — the oldest church still standing in Japan. A World Heritage Site.'}
+  t:'長崎に ある、 日本に 今 のこる いちばん 古い 教会。 1864年に できた。 {世界遺産|せかいいさん}。',te:'A church in Nagasaki built in 1864 — the oldest church still standing in Japan. A World Heritage Site.'},
+{id:'harbourbridge',c:'AUS',ll:[151.21,-33.85],m:'harbourbridge',ja:'シドニー・ハーバーブリッジ',en:'Sydney Harbour Bridge',k:'しどにーはーばーぶりっじ おーすとらりあ',
+  t:'シドニーの 湾に かかる 大きな アーチの 橋。 1932年に できた。 形から「コートハンガー」と よばれる。',te:'A huge steel arch bridge across Sydney Harbour, opened in 1932 and nicknamed "the Coathanger".'},
+ {id:'hagiasophia',c:'TUR',ll:[28.98,41.01],m:'hagiasophia',ja:'アヤソフィア',en:'Hagia Sophia',k:'あやそふぃあ いすたんぶーる とるこ',
+  t:'イスタンブールに ある、 約1500年 前に できた 大きな ドームの たてもの。 教会から モスクに かわった れきしが ある。',te:'A great domed building in Istanbul, about 1,500 years old. It was first a church and later became a mosque.'},
+ {id:'arc',c:'FRA',ll:[2.30,48.87],m:'arc',ja:'{凱旋門|がいせんもん}',en:'Arc de Triomphe',k:'がいせんもん ぱり ふらんす',
+  t:'パリの 大きな 門。 まわりの 広場から 12本の 大通りが 星のように 広がっている。',te:'A huge arch in Paris. Twelve avenues spread out from the square around it like a star.'},
+ {id:'louvre',c:'FRA',ll:[2.34,48.86],m:'louvre',ja:'ルーブル美術館',en:'The Louvre',k:'るーぶるびじゅつかん ぱり ふらんす',
+  t:'パリに ある、 世界で いちばん 大きい 美術館の 1つ。 入り口は ガラスの ピラミッド。 モナ・リザが ある。',te:'One of the world\'s largest art museums, in Paris, with a glass pyramid entrance. The Mona Lisa is here.'},
+ {id:'kremlin',c:'RUS',ll:[37.62,55.75],m:'kremlin',ja:'モスクワの クレムリン',en:'Moscow Kremlin',k:'くれむりん もすくわ ろしあ',
+  t:'モスクワの まん中、 赤い {城壁|じょうへき}に かこまれた {宮殿|きゅうでん}や 教会。 となりに 赤の広場が ある。',te:'Palaces and churches inside red walls in the middle of Moscow, next to Red Square.'},
+ {id:'empirestate',c:'USA',ll:[-73.99,40.75],m:'empirestate',ja:'エンパイア・ステート・ビル',en:'Empire State Building',k:'えんぱいあすてーとびる にゅーよーく あめりか',
+  t:'ニューヨークの 102かいだての ビル。 1931年に できて、 約40年の 間 世界一 高い ビルだった。',te:'A 102-storey skyscraper in New York, finished in 1931. It was the world\'s tallest building for about 40 years.'},
+ {id:'templeofheaven',c:'CHN',ll:[116.41,39.88],m:'templeofheaven',ja:'{天壇|てんだん}',en:'Temple of Heaven',k:'てんだん ぺきん ちゅうごく',
+  t:'ペキンに ある、 むかしの {皇帝|こうてい}が 作物の ほうさくを いのった ところ。 まるい たてものに 青い やねが 3だん ある。',te:'Where Chinese emperors prayed for good harvests, in Beijing. Its round hall has three blue roofs.'},
+ {id:'marinabay',c:'SGP',ll:[103.86,1.28],m:'marinabay',ja:'マリーナベイ・サンズ',en:'Marina Bay Sands',k:'まりーなべいさんず しんがぽーる',
+  t:'シンガポールの、 3本の ビルの 上に 船のような 大きな 屋上が のっている ホテル。 屋上には プールが ある。',te:'A hotel in Singapore where a ship-shaped garden with a pool sits on top of three towers.'}
 ];
 
 TOY.animals = [

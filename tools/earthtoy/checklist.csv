@@ -53,7 +53,7 @@ Landmark,China,"Shenzhen Bay Sports Center (""Spring Cocoon"")",no,,
 Landmark,China,Shun Hing Square (Diwang Building),no,,
 Landmark,China,Spring Temple Buddha,no,,
 Landmark,China,Summer Palace,no,,
-Landmark,China,Temple of Heaven,no,,
+Landmark,China,Temple of Heaven,yes,templeofheaven,Temple of Heaven
 Landmark,China,Terracotta Army,yes,terracotta,Terracotta Army
 Landmark,China,The Bund,no,,
 Landmark,China,Tianjin CTF Finance Centre,no,,
@@ -232,7 +232,7 @@ Landmark,Saudi Arabia,Maraya Concert Hall,no,,
 Landmark,Saudi Arabia,Masjid al-Haram,no,,
 Landmark,Saudi Arabia,Masmak Fortress,no,,
 Landmark,Saudi Arabia,Prophet's Mosque (Al-Masjid an-Nabawi),no,,
-Landmark,Singapore,Marina Bay Sands,no,,
+Landmark,Singapore,Marina Bay Sands,yes,marinabay,Marina Bay Sands
 Landmark,Singapore,Merlion,yes,merlion,Merlion
 Landmark,Singapore,"Supertree Grove, Gardens by the Bay",no,,
 Landmark,South Korea,63 Building,no,,
@@ -310,12 +310,12 @@ Landmark,Estonia,Tallinn Old Town,no,,
 Landmark,Finland,Helsinki Cathedral,no,,
 Landmark,Finland,Temppeliaukio Church (Rock Church),no,,
 Landmark,Finland,Uspenski Cathedral,no,,
-Landmark,France,Arc de Triomphe,no,,
+Landmark,France,Arc de Triomphe,yes,arc,Arc de Triomphe
 Landmark,France,Chartres Cathedral,no,,
 Landmark,France,Cité de Carcassonne,no,,
 Landmark,France,Eiffel Tower,yes,eiffel,Eiffel Tower
 Landmark,France,Grande Arche de la Défense,no,,
-Landmark,France,Louvre Pyramid,no,,
+Landmark,France,Louvre Pyramid,yes,louvre,Louvre Pyramid
 Landmark,France,Mont-Saint-Michel,yes,stmichel,Mont-Saint-Michel
 Landmark,France,Notre-Dame de Paris,no,,
 Landmark,France,Palace of Versailles,no,,
@@ -375,7 +375,7 @@ Landmark,Russia,Federation Tower,no,,
 Landmark,Russia,Kazan Kremlin & Qolşärif Mosque,no,,
 Landmark,Russia,Main building of Moscow State University,no,,
 Landmark,Russia,Mercury City Tower,no,,
-Landmark,Russia,Moscow Kremlin,no,,
+Landmark,Russia,Moscow Kremlin,yes,kremlin,Moscow Kremlin
 Landmark,Russia,St. Basil's Cathedral,yes,stbasil,St. Basil's Cathedral
 Landmark,Russia,The Motherland Calls,no,,
 Landmark,Russia,Winter Palace (Hermitage),no,,
@@ -403,7 +403,7 @@ Landmark,Switzerland,Matterhorn,yes,matterhorn,Matterhorn
 Landmark,Türkiye,Basilica Cistern,no,,
 Landmark,Türkiye,Dolmabahçe Palace,no,,
 Landmark,Türkiye,Galata Tower,no,,
-Landmark,Türkiye,Hagia Sophia,no,,
+Landmark,Türkiye,Hagia Sophia,yes,hagiasophia,Hagia Sophia
 Landmark,Türkiye,Süleymaniye Mosque,no,,
 Landmark,Türkiye,Sultan Ahmed Mosque (Blue Mosque),yes,bluemosque,Blue Mosque
 Landmark,Türkiye,Topkapı Palace,no,,
@@ -608,7 +608,7 @@ Landmark,United States,Delicate Arch,no,,
 Landmark,United States,Denali,no,,
 Landmark,United States,Diamond Head,no,,
 Landmark,United States,Duquesne Incline,no,,
-Landmark,United States,Empire State Building,no,,
+Landmark,United States,Empire State Building,yes,empirestate,Empire State Building
 Landmark,United States,Fallingwater,no,,
 Landmark,United States,Flatiron Building,no,,
 Landmark,United States,Fort McHenry,no,,
@@ -787,7 +787,7 @@ Landmark,Australia,Shrine of Remembrance,no,,
 Landmark,Australia,"St Peter's Cathedral, Adelaide",no,,
 Landmark,Australia,"Story Bridge, Brisbane",no,,
 Landmark,Australia,Surfers Paradise (Q1),no,,
-Landmark,Australia,Sydney Harbour Bridge,no,,
+Landmark,Australia,Sydney Harbour Bridge,yes,harbourbridge,Sydney Harbour Bridge
 Landmark,Australia,Sydney Opera House,yes,opera,Sydney Opera House
 Landmark,Australia,Sydney Tower Eye,no,,
 Landmark,Australia,Telstra House (30 Pirie Street),no,,
