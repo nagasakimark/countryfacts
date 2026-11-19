@@ -200,7 +200,7 @@ Landmark,North Korea,Ryugyong Hotel,no,,
 Landmark,Oman,Sultan Qaboos Grand Mosque,yes,qaboos,Sultan Qaboos Grand Mosque
 Landmark,Pakistan,Badshahi Mosque,yes,badshahi,Badshahi Mosque
 Landmark,Pakistan,Bahria Icon Tower,no,,
-Landmark,Pakistan,Faisal Mosque,no,,
+Landmark,Pakistan,Faisal Mosque,yes,faisal,Faisal Mosque
 Landmark,Pakistan,Frere Hall,no,,
 Landmark,Pakistan,Mazar-e-Quaid,no,,
 Landmark,Pakistan,Minar-e-Pakistan,no,,
@@ -246,7 +246,7 @@ Landmark,South Korea,Gwangan Bridge,no,,
 Landmark,South Korea,Gyeongbokgung Palace,yes,gyeongbok,Gyeongbokgung Palace
 Landmark,South Korea,Haeundae Doosan We've the Zenith,no,,
 Landmark,South Korea,Haeundae LCT The Sharp,no,,
-Landmark,South Korea,Hwaseong Fortress,no,,
+Landmark,South Korea,Hwaseong Fortress,yes,hwaseong,Hwaseong Fortress
 Landmark,South Korea,Jongmyo Shrine,no,,
 Landmark,South Korea,Lotte World Tower,no,,
 Landmark,South Korea,Myeongdong Cathedral,no,,
@@ -288,7 +288,7 @@ Landmark,Uzbekistan,"Registan, Samarkand",yes,registan,"Registan, Samarkand"
 Landmark,Vietnam,Bitexco Financial Tower,no,,
 Landmark,Vietnam,"Golden Bridge, Ba Na Hills",yes,goldenbridge,"Golden Bridge, Ba Na Hills"
 Landmark,Vietnam,Ha Long Bay,yes,halong,Ha Long Bay
-Landmark,Vietnam,Imperial City of Huế (Meridian Gate),no,,
+Landmark,Vietnam,Imperial City of Huế (Meridian Gate),yes,hue,Imperial City of Huế (Meridian Gate)
 Landmark,Vietnam,"Japanese Covered Bridge, Hội An",yes,hoian,"Japanese Covered Bridge, Hội An"
 Landmark,Vietnam,Landmark 81,no,,
 Landmark,Vietnam,Notre-Dame Cathedral Basilica of Saigon,no,,
@@ -388,7 +388,7 @@ Landmark,Spain,Cibeles Palace & Fountain,no,,
 Landmark,Spain,Cuatro Torres Business Area,no,,
 Landmark,Spain,Guggenheim Museum Bilbao,no,,
 Landmark,Spain,Metrópolis Building,no,,
-Landmark,Spain,Mosque–Cathedral of Córdoba,no,,
+Landmark,Spain,Mosque–Cathedral of Córdoba,yes,cordoba,Mosque–Cathedral of Córdoba
 Landmark,Spain,"Plaza de España, Seville",no,,
 Landmark,Spain,Puerta de Alcalá,no,,
 Landmark,Spain,Real Casa de Correos,no,,
@@ -460,8 +460,8 @@ Landmark,Equatorial Guinea,"St. Elizabeth's Cathedral, Malabo",yes,malabo,"St. E
 Landmark,Eritrea,Fiat Tagliero Building,yes,fiattagliero,Fiat Tagliero Building
 Landmark,Eswatini,Sibebe Rock,yes,sibebe,Sibebe Rock
 Landmark,Ethiopia,"Church of St. George, Lalibela",yes,lalibela,"Church of St George, Lalibela"
-Landmark,Ethiopia,Fasil Ghebbi,no,,
-Landmark,Ethiopia,Obelisk of Aksum,no,,
+Landmark,Ethiopia,Fasil Ghebbi,yes,fasil,Fasil Ghebbi
+Landmark,Ethiopia,Obelisk of Aksum,yes,aksum,Obelisk of Aksum
 Landmark,Gabon,"St. Michael's Church, Nkembo",yes,nkembo,"St. Michael's Church, Nkembo"
 Landmark,Gambia,Arch 22,yes,arch22,Arch 22
 Landmark,Ghana,Cape Coast Castle,yes,capecoast,Cape Coast Castle
@@ -756,7 +756,7 @@ Landmark,Falkland Islands,"Christ Church Cathedral, Stanley",yes,stanley,"Christ
 Landmark,Guyana,Kaieteur Falls,yes,kaieteur,Kaieteur Falls
 Landmark,Paraguay,Itaipu Dam,yes,itaipu,Itaipu Dam
 Landmark,Peru,Cathedral of Lima,no,,
-Landmark,Peru,Chan Chan,no,,
+Landmark,Peru,Chan Chan,yes,chanchan,Chan Chan
 Landmark,Peru,Government Palace of Peru,no,,
 Landmark,Peru,Machu Picchu,yes,machu,Machu Picchu
 Landmark,Peru,Nazca Lines,yes,nazca,Nazca Lines
@@ -832,7 +832,7 @@ Landmark,Kazakhstan,Baikonur Cosmodrome,no,,
 Landmark,Kazakhstan,Baiterek Tower,yes,bayterek,Bayterek Tower
 Landmark,Russia,Manpupuner Rock Formations,no,,
 Landmark,Trinidad & Tobago,Temple in the Sea,yes,templesea,Temple in the Sea
-Landmark,Türkiye,Library of Celsus,no,,
+Landmark,Türkiye,Library of Celsus,yes,celsus,Library of Celsus
 Landmark,Türkiye,Pamukkale,yes,pamukkale,Pamukkale
 Animal,Mammal,Aardvark,no,,
 Animal,Mammal,Addax,no,,

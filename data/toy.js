@@ -583,7 +583,23 @@ TOY.landmarks = [
 {id:'pompeii',c:'ITA',ll:[14.4848,40.7489],m:'pompeii',ja:'ポンペイ',en:'Pompeii',k:'ぽんぺい いたりあ ゔぇすゔぃおさん',
   t:'イタリアの 古代ローマの 町。 2000年前、 ベスビオ火山の ふん火で {灰|はい}に うまった。 今は 発くつされて、 むかしの くらしが よく わかる。',te:'An ancient Roman town in Italy buried in ash when Mount Vesuvius erupted 2,000 years ago. Now dug out, it shows how people lived long ago.'},
 {id:'tulum',c:'MEX',ll:[-87.4291,20.2148],m:'tulum',ja:'トゥルム{遺跡|いせき}',en:'Tulum',k:'とぅるむ いせき めきしこ まや',
-  t:'メキシコの カリブ海の がけの 上に ある マヤの {遺跡|いせき}。 青い 海と 白い すなはまが きれい。 イグアナも いる。',te:'Maya ruins on a cliff above the Caribbean Sea in Mexico, with turquoise water and white sand below. Iguanas live here too.'}
+  t:'メキシコの カリブ海の がけの 上に ある マヤの {遺跡|いせき}。 青い 海と 白い すなはまが きれい。 イグアナも いる。',te:'Maya ruins on a cliff above the Caribbean Sea in Mexico, with turquoise water and white sand below. Iguanas live here too.'},
+{id:'celsus',c:'TUR',ll:[27.3402,37.9394],m:'celsus',ja:'ケルスス図書館',en:'Library of Celsus',k:'けるすすとしょかん とるこ えふぇそす',
+  t:'トルコの 古代都市 エフェソスに のこる、 ローマ時代の 図書館の 正面。 むかしは 1万2000本の まき物が あった。',te:'The front of a Roman library in the ancient city of Ephesus, Türkiye. Long ago it held 12,000 scrolls.'},
+{id:'aksum',c:'ETH',ll:[38.7197,14.1311],m:'aksum',ja:'アクスムの オベリスク',en:'Obelisk of Aksum',k:'あくすむ おべりすく えちおぴあ',
+  t:'エチオピアの 古い 王国 アクスムの、 石で できた 高い 柱。 ビルのように まどや ドアが ほられて いる。 1700年ほど前の もの。',te:'Tall stone pillars from the ancient kingdom of Aksum in Ethiopia, carved with windows and doors like tower blocks. They are about 1,700 years old.'},
+{id:'faisal',c:'PAK',ll:[73.0379,33.7299],m:'faisal',ja:'ファイサル・モスク',en:'Faisal Mosque',k:'ふぁいさるもすく ぱきすたん いすらまばーど',
+  t:'パキスタンの {首都|しゅと} イスラマバードの 大きな モスク。 さばくの テントのような 形で、 4本の えんぴつのような ミナレットが ある。',te:'A huge mosque in Islamabad, the capital of Pakistan. It is shaped like a desert tent, with four pencil-thin minarets.'},
+{id:'hue',c:'VNM',ll:[107.5778,16.4672],m:'hue',ja:'フエの 王宮',en:'Imperial City of Huế',k:'ふえ おうきゅう べとなむ',
+  t:'ベトナムの 最後の 王朝の お{城|しろ}。 黄色い かわらの 屋根の 午門(ごもん)から 入る。 ほりには ハスの 花が さく。',te:'The palace of Vietnam\'s last royal dynasty. You enter through the Meridian Gate with its yellow-tiled roofs. Lotus flowers bloom in the moat.'},
+{id:'chanchan',c:'PER',ll:[-79.0747,-8.1058],m:'chanchan',ja:'チャン・チャン{遺跡|いせき}',en:'Chan Chan',k:'ちゃんちゃん いせき ぺるー',
+  t:'ペルーに ある、 アメリカ大陸で 一番 大きい 土の 町の {遺跡|いせき}。 かべには 魚や あみの もようが ほられて いる。',te:'Ruins in Peru of the largest mud-brick city in the Americas. Its walls are carved with fish and fishing-net patterns.'},
+{id:'hwaseong',c:'KOR',ll:[127.0122,37.2878],m:'hwaseong',ja:'{水原華城|スウォンファソン}',en:'Hwaseong Fortress',k:'すうぉんふぁそん かんこく じょうへき',
+  t:'{韓国|かんこく}の スウォンに ある、 町を かこむ 石の {城|じょう}へき。 1796年に できた。 門や あずまやが ならび、 歩いて 一周 できる。',te:'Stone walls around the city of Suwon, South Korea, finished in 1796. Gates and pavilions line the wall, and you can walk all the way around.'},
+{id:'cordoba',c:'ESP',ll:[-4.7794,37.8789],m:'cordoba',ja:'コルドバの メスキータ',en:'Mosque–Cathedral of Córdoba',k:'こるどば めすきーた すぺいん',
+  t:'スペインの コルドバに ある、 モスクの 中に 教会が ある めずらしい たてもの。 赤と 白の しまもようの アーチが 森のように ならぶ。',te:'A rare building in Córdoba, Spain: a church inside a mosque. Red-and-white striped arches stand in rows like a forest.'},
+{id:'fasil',c:'ETH',ll:[37.4686,12.6078],m:'fasil',ja:'ファシル・ゲビ',en:'Fasil Ghebbi',k:'ふぁしるげび えちおぴあ ごんだーる',
+  t:'エチオピアの ゴンダールに ある 石の お{城|しろ}。 丸い {塔|とう}に ドームが のって いる。 「アフリカの キャメロット」とも よばれる。',te:'A stone castle in Gondar, Ethiopia, with domed round towers. It is sometimes called the "Camelot of Africa".'}
 ];
 
 TOY.animals = [
