@@ -247,7 +247,23 @@ TOY.landmarks = [
  {id:'darvaza',c:'TKM',ll:[58.44,40.25],m:'darvaza',ja:'ダルヴァザの ガスクレーター',en:'Darvaza Gas Crater',k:'だるう゛ぁざ じごくのもん とるくめにすたん',
   t:'トルクメニスタンの さばくで、 50年 いじょう もえつづけている あな。「{地獄|じごく}の 門」とも よばれる。',te:'A crater in the desert of Turkmenistan that has been burning for over 50 years — the "Door to Hell".'},
  {id:'bayterek',c:'KAZ',ll:[71.43,51.13],m:'bayterek',ja:'バイテレク・タワー',en:'Bayterek Tower',k:'ばいてれく あすたな かざふすたん',
-  t:'カザフスタンの 首都 アスタナの タワー。 ポプラの 木の 上の 金の たまごを あらわしている。 高さ 97m。',te:'A 97 m tower in Astana, Kazakhstan, shaped like a poplar tree holding a golden egg.'}
+  t:'カザフスタンの 首都 アスタナの タワー。 ポプラの 木の 上の 金の たまごを あらわしている。 高さ 97m。',te:'A 97 m tower in Astana, Kazakhstan, shaped like a poplar tree holding a golden egg.'},
+{id:'okavango',c:'BWA',ll:[22.90,-19.30],m:'okavango',ja:'オカバンゴ・デルタ',en:'Okavango Delta',k:'おかばんご ぼつわな',
+  t:'ボツワナの かわいた 土地に 川の 水が 広がって できた、 大きな しっ地。 ゾウや カバなど、 たくさんの 動物が あつまる。',te:'A huge wetland in Botswana where a river spreads out into dry land. Elephants, hippos and many other animals gather here.'},
+ {id:'canocristales',c:'COL',ll:[-73.79,2.26],m:'canocristales',ja:'カニョ・クリスタレス',en:'Caño Cristales',k:'かにょくりすたれす ころんびあ にじのかわ',
+  t:'コロンビアの「5色の 川」。 川の 中に 生える 植物の せいで、 赤や 黄色、 緑に 見える。',te:'Colombia\'s "River of Five Colours" — plants growing in the water make it look red, yellow and green.'},
+ {id:'kuwaittowers',c:'KWT',ll:[48.00,29.39],m:'kuwaittowers',ja:'クウェート・タワー',en:'Kuwait Towers',k:'くうぇーとたわー',
+  t:'クウェートの 海ぞいに たつ 3本の タワー。 青い もようの 玉が ついていて、 水を ためる タンクにも なっている。',te:'Three towers on the coast of Kuwait decorated with blue-patterned spheres. They also store water.'},
+ {id:'gergeti',c:'GEO',ll:[44.62,42.66],m:'gergeti',ja:'ゲルゲティ教会',en:'Gergeti Trinity Church',k:'げるげてぃきょうかい じょーじあ',
+  t:'ジョージアの 山の 上、 高さ 約2170mに たつ 石の 教会。 うしろには 雪を かぶった カズベキ山が そびえる。',te:'A stone church high on a hill in Georgia, about 2,170 m up, with snowy Mount Kazbek behind it.'},
+ {id:'stsophia',c:'UKR',ll:[30.51,50.45],m:'stsophia',ja:'キーウの {聖|せい}ソフィア{大聖堂|だいせいどう}',en:'St Sophia\'s Cathedral, Kyiv',k:'せいそふぃあだいせいどう きーう うくらいな',
+  t:'ウクライナの キーウに ある、 約1000年 前に できた 教会。 みどりと 金の ドームが 13こ ある。',te:'A cathedral in Kyiv, Ukraine, about 1,000 years old, with 13 green and gold domes.'},
+ {id:'maldives',c:'MDV',ll:[73.50,4.17],m:'maldives',ja:'モルディブの 水上ヴィラ',en:'Maldives Water Villas',k:'もるでぃぶ',
+  t:'インド洋に うかぶ 約1200の 島の 国。 海の 上に たつ 家が 有名。 土地の ほとんどが 海から 1mくらいの 高さしか ない。',te:'A country of about 1,200 islands in the Indian Ocean, famous for houses built over the sea. Most of its land is only about 1 m above sea level.'},
+ {id:'arenal',c:'CRI',ll:[-84.70,10.46],m:'arenal',ja:'アレナル火山',en:'Arenal Volcano',k:'あれなるかざん こすたりか',
+  t:'コスタリカの、 きれいな 円すいの 形を した 火山。 ふもとには {温泉|おんせん}や 熱帯雨林が ある。',te:'A perfectly cone-shaped volcano in Costa Rica, with hot springs and rainforest at its foot.'},
+ {id:'zuma',c:'NGA',ll:[7.23,9.13],m:'zuma',ja:'ズマ・ロック',en:'Zuma Rock',k:'ずまろっく ないじぇりあ',
+  t:'ナイジェリアの 首都 アブジャの 近くに ある、 高さ 約300mの 大きな 岩。 人の 顔のような もようが あり、 お札にも かかれている。',te:'A huge 300 m rock near Abuja, Nigeria, with a pattern like a face. It appears on a Nigerian banknote.'}
 ];
 
 TOY.animals = [
