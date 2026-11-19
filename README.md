@@ -32,9 +32,23 @@ Phrases with no open-licensed recording found (Thai "thank you", Vietnamese "xin
 
 Shapes, area base: Natural Earth; areas: official figures via `world-countries`. Life expectancy and schooling: UN (via Our World in Data). Happiness: World Happiness Report. McDonald's prices: Numbeo (Sept 2026, ¥155/$). Travel: JNTO 2024. Residents: Immigration Services Agency (end of 2024), MOFA (Oct 2023). Photos and audio: Wikimedia Commons (various CC licenses, full list with authors on the app's about page; many recordings from Lingua Libre). Libraries: d3 and topojson-client (in `vendor/`).
 
-## せかいたんけん (new game-style layout)
+## せかいたんけん (3D globe toy)
 
-The root `index.html` is the original app (true-size, games, passport). The new globe atlas (せかいたんけん, beta) lives at `tanken/` (https://nagasakimark.github.io/countryfacts/tanken/): a zoomable globe with flags, Japanese names, landmark icons, borders and search (English, kanji, katakana, hiragana). The 36 featured countries have six pages (もよう, れきし, ひと・ことば, くらし, くらべる, クイズ). Known issues: markers can jump and borders can disappear while dragging; the old app's size/games/passport are linked, not merged; the hover label can stay open over the card.
+The root `index.html` is the original app (true-size, games, passport). The 3D globe (せかいたんけん) lives at `tanken/` (https://nagasakimark.github.io/countryfacts/tanken/), inspired by My Earth Toy:
 
-- `data/atlas.js`: cultural content (draft, needs fact-check and co-teacher review). Check kanji with `python3 tools/kcheck.py data/atlas.js` (grade 5 limit).
+- **3D globe** (Three.js): drag to spin, wheel/pinch or ＋/－ to zoom. Zooming in tilts the camera and swaps in a sharper map for the area you're looking at. Borders are painted into the map, so they never disappear while dragging.
+- **44 low-poly landmarks** (Mount Fuji, Megane Bridge, Eiffel Tower, Machu Picchu…) and **39 animal pins** in their habitats. Tapping one opens a card and gives a sticker.
+- **15 vehicles on real routes** (planes, container ships, the Goto ferry, Shinkansen, Trans-Siberian, Route 66…). Tap one to ride along; riding to the end gives a sticker. Speed ×1–×8.
+- **Games**: どこかな？ (tap where a country, landmark or animal is, with north/south/east/west hints) and a flag quiz. Best scores are saved.
+- **ずかん (sticker book)**: landmarks, animals, rides and the country stamps. Tapping a ? gives a hint about where to look.
+- The 36 featured countries keep their six pages (もよう, れきし, ひと・ことば, くらし, くらべる, クイズ).
+- **EN button**: switches the interface, names and the new content to English. The country pages' long texts are still Japanese only.
+- Progress is saved in the browser on that Chromebook only (`tanken-toy-v1`, plus the stamps shared with the passport).
+
+Editing:
+- `data/toy.js`: landmarks, animals and vehicle routes (Japanese + English). Check kanji with `python3 tools/kcheck.py data/toy.js`.
+- `tanken/models.js`: the low-poly models, built from boxes, cylinders and spheres. A new landmark can reuse any existing model key.
+- `data/atlas.js`: cultural content for the country pages (draft, needs fact-check and co-teacher review).
 - Flags from flag-icons (MIT) in `flags/`. No network needed at runtime.
+
+Credits: Three.js r159 (MIT, `vendor/three.LICENSE.txt`). The idea comes from My Earth Toy (myearthtoy.com). All models and text here are original.
