@@ -263,7 +263,23 @@ TOY.landmarks = [
  {id:'arenal',c:'CRI',ll:[-84.70,10.46],m:'arenal',ja:'アレナル火山',en:'Arenal Volcano',k:'あれなるかざん こすたりか',
   t:'コスタリカの、 きれいな 円すいの 形を した 火山。 ふもとには {温泉|おんせん}や 熱帯雨林が ある。',te:'A perfectly cone-shaped volcano in Costa Rica, with hot springs and rainforest at its foot.'},
  {id:'zuma',c:'NGA',ll:[7.23,9.13],m:'zuma',ja:'ズマ・ロック',en:'Zuma Rock',k:'ずまろっく ないじぇりあ',
-  t:'ナイジェリアの 首都 アブジャの 近くに ある、 高さ 約300mの 大きな 岩。 人の 顔のような もようが あり、 お札にも かかれている。',te:'A huge 300 m rock near Abuja, Nigeria, with a pattern like a face. It appears on a Nigerian banknote.'}
+  t:'ナイジェリアの 首都 アブジャの 近くに ある、 高さ 約300mの 大きな 岩。 人の 顔のような もようが あり、 お札にも かかれている。',te:'A huge 300 m rock near Abuja, Nigeria, with a pattern like a face. It appears on a Nigerian banknote.'},
+{id:'tokyotower',c:'JPN',ll:[139.75,35.66],m:'tokyotower',ja:'東京タワー',en:'Tokyo Tower',k:'とうきょうたわー',
+  t:'1958年に できた、 高さ 333mの 赤と 白の タワー。 東京の シンボル。',te:'A red-and-white tower 333 m tall, built in 1958 — a symbol of Tokyo.'},
+ {id:'osakajo',c:'JPN',ll:[135.53,34.69],m:'osakajo',ja:'大阪{城|じょう}',en:'Osaka Castle',k:'おおさかじょう',
+  t:'{豊臣秀吉|とよとみひでよし}が つくった お{城|しろ}。 今の 天守は 1931年に たて直された もの。',te:'A castle first built by Toyotomi Hideyoshi. Today\'s main tower was rebuilt in 1931.'},
+ {id:'fushimi',c:'JPN',ll:[135.77,34.97],m:'fushimi',ja:'{伏見稲荷|ふしみいなり}大社',en:'Fushimi Inari Taisha',k:'ふしみいなり きょうと とりい',
+  t:'京都に ある 神社。 山の 道に、 約1万本の 赤い 鳥居が ならぶ。',te:'A shrine in Kyoto where about 10,000 red torii gates line the paths up the mountain.'},
+ {id:'kiyomizu',c:'JPN',ll:[135.79,35.00],m:'kiyomizu',ja:'{清水寺|きよみずでら}',en:'Kiyomizu-dera',k:'きよみずでら きょうと',
+  t:'京都の お寺。 がけに つき出た「清水の {舞台|ぶたい}」は 木を 組んで つくられ、 くぎを 1本も 使っていない。',te:'A temple in Kyoto whose wooden stage juts out from a cliff, built without a single nail.'},
+ {id:'shuri',c:'JPN',ll:[127.72,26.22],m:'shuri',ja:'{首里城|しゅりじょう}',en:'Shuri Castle',k:'しゅりじょう おきなわ',
+  t:'{沖縄|おきなわ}の {琉球|りゅうきゅう}王国の お{城|しろ}。 赤い 色が とくちょう。 2019年の 火事で もえたが、 たて直されている。',te:'The red castle of the old Ryukyu Kingdom in Okinawa. It burned in 2019 and is being rebuilt.'},
+ {id:'kamakura',c:'JPN',ll:[139.54,35.32],m:'kamakura',ja:'{鎌倉|かまくら}の 大仏',en:'Great Buddha of Kamakura',k:'かまくらのだいぶつ',
+  t:'{鎌倉|かまくら}の お寺の 外に すわる、 高さ 約11mの 大仏。 約770年 前に つくられた。',te:'A Great Buddha about 11 m tall that sits outdoors in Kamakura. It was made about 770 years ago.'},
+ {id:'shirakawa',c:'JPN',ll:[136.91,36.26],m:'shirakawa',ja:'{白川郷|しらかわごう}',en:'Shirakawa-gō',k:'しらかわごう ぎふ がっしょうづくり',
+  t:'{岐阜|ぎふ}県の 山の 村。 雪が すべり落ちるように、 急な かやぶき屋根の 家「{合掌造|がっしょうづく}り」が ならぶ。',te:'A mountain village in Gifu with steep thatched-roof houses (gasshō-zukuri) built so the snow slides off.'},
+ {id:'oura',c:'JPN',ll:[129.87,32.73],m:'oura',ja:'{大浦天主堂|おおうらてんしゅどう}',en:'Ōura Church',k:'おおうらてんしゅどう ながさき',
+  t:'長崎に ある、 日本に 今 のこる いちばん 古い 教会。 1864年に できた。 {世界遺産|せかいいさん}。',te:'A church in Nagasaki built in 1864 — the oldest church still standing in Japan. A World Heritage Site.'}
 ];
 
 TOY.animals = [
