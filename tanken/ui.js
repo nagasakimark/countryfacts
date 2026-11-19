@@ -31,7 +31,7 @@
     lang = l; S.lang = l; persist(); Globe.lang = l; document.documentElement.lang = l;
     $('#langp').textContent = l === 'en' ? 'にほんご' : 'EN';
     $('#q').placeholder = L('国・たてもの・どうぶつ', 'Country, place, animal');
-    dock(); if (mode) render();
+    dock(); if (mode) render(); var rr = Globe.riding && Globe.riding(); if (rr) rideBar(rr);
   }
 
   /* ---------- sounds / toast / confetti ---------- */
@@ -204,7 +204,24 @@
     return '<div class="cname"><h1>🚀 ' + L('のりもの', 'Ride something!') + '</h1><small>' + L('のって 世界を 旅しよう。 さいごまで のると シールが もらえるよ。', 'Ride all the way to the end to get a sticker.') + '</small></div><div class="vlist" style="margin-top:8px">' +
       RTS.map(function (r) { return '<div class="vt" data-ve="' + r.id + '"><img src="' + vthumb(r) + '" alt=""><div><b>' + rb(nm(r)) + '</b><small>' + Globe.route(r.id).km.toLocaleString() + ' km ・ ' + L('ほんとうは ', 'really ') + esc(lang === 'en' ? r.tm[1] : r.tm[0]) + '</small></div><span class="ok">' + (S.ve[r.id] ? '🏅' : '') + '</span></div>'; }).join('') + '</div><div style="height:8px"></div>';
   };
-  function ride(id) { var r = Globe.route(id); if (!r) return; endGame(); boing(); Globe.select(null); Globe.ride(id); open('ride', { id: id, arrived: false }); }
+  // ride along: the side board closes and a slim bar sits at the bottom, like a game camera
+  function ride(id) {
+    var r = Globe.route(id); if (!r) return; endGame(); boing(); Globe.select(null);
+    mode = null; $('#board').classList.remove('on'); Globe.setOffset(0); $('#tip').style.opacity = 0;
+    Globe.ride(id); rideBar(r);
+  }
+  function rideBar(r) {
+    document.body.classList.add('riding'); $('#ridebar').classList.add('on');
+    $('#rn').innerHTML = rb(nm(r)); $('#rx').textContent = '✕ ' + L('おりる', 'Exit');
+    $('#rfp').textContent = Globe.rideView.fp ? L('うしろから 見る', 'Third person') : L('うんてんせき', 'First person');
+    $('#rspd').textContent = '⏩ ×' + Globe.speed; $('#rhint').textContent = L('ドラッグで まわりを 見る・ホイールで きょり', 'Drag to look around · wheel for distance');
+    say(L('ほんとうは ', 'The real trip takes ') + esc(lang === 'en' ? r.tm[1] : r.tm[0]) + '（' + r.km.toLocaleString() + ' km）<br>' + rb(lang === 'en' ? r.f[1] : r.f[0]));
+  }
+  function hideRideBar() { document.body.classList.remove('riding'); $('#ridebar').classList.remove('on'); }
+  var _unride = Globe.unride; Globe.unride = function () { _unride(); hideRideBar(); };
+  $('#rx').onclick = function () { beep(); Globe.unride(); };
+  $('#rfp').onclick = function () { beep(); Globe.firstPerson(); var r = Globe.riding(); if (r) rideBar(r); };
+  $('#rspd').onclick = function () { beep(); var o = [1, 2, 4, 8], i = o.indexOf(Globe.speed); setSpeed(o[(i + 1) % o.length]); $('#rspd').textContent = '⏩ ×' + Globe.speed; };
   R.ride = function (o) {
     var r = Globe.route(o.id), f = r.dir > 0;
     var A = f ? r.a : r.b, Bn = f ? r.b : r.a;
@@ -222,8 +239,9 @@
   };
   var lastRideDir = 0;
   Globe.onRide = function (r, frac) {
-    if (mode !== 'ride' || !arg || arg.id !== r.id) return;
     var now = performance.now(); if (now - (Globe._rideUI || 0) < 200) return; Globe._rideUI = now;
+    var pi = $('#rpi'); if (pi) { pi.style.width = (frac * 100).toFixed(1) + '%'; $('#rkm').textContent = Math.round(frac * r.km).toLocaleString() + ' / ' + r.km.toLocaleString() + ' km'; }
+    if (mode !== 'ride' || !arg || arg.id !== r.id) return;
     var p = $('#rp'), k = $('#rk'); if (!p) return;
     if (r.dir !== lastRideDir && lastRideDir !== 0 && r.wait <= 0) { lastRideDir = r.dir; render(); return; }
     lastRideDir = r.dir;

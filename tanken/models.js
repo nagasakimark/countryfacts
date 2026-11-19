@@ -120,8 +120,11 @@
   M.bake = function (root) {
     root.updateMatrixWorld(true);
     var inv = new T.Matrix4().copy(root.matrixWorld).invert(), groups = {}, mats = {};
+    var spinners = [];
+    root.traverse(function (o) { if (o !== root && o.userData.spin && !(o.parent && o.parent !== root && inSpinner(o.parent))) spinners.push(o); });
+    function inSpinner(o) { for (var p = o; p && p !== root; p = p.parent) if (p.userData.spin) return true; return false; }
     root.traverse(function (o) {
-      if (!o.isMesh) return;
+      if (!o.isMesh || inSpinner(o)) return;
       var mm = Array.isArray(o.material) ? o.material : [o.material], geo = o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone();
       geo.applyMatrix4(new T.Matrix4().multiplyMatrices(inv, o.matrixWorld));
       var parts = (Array.isArray(o.material) && geo.groups.length) ? geo.groups : [{ start: 0, count: geo.attributes.position.count, materialIndex: 0 }];
@@ -151,12 +154,16 @@
       if (useUV) g.setAttribute('uv', new T.Float32BufferAttribute(U, 2)); if (useCol) g.setAttribute('color', new T.Float32BufferAttribute(C, 3));
       g.computeBoundingSphere(); var mesh = new T.Mesh(g, m); if (m.transparent) mesh.renderOrder = 2; out.add(mesh);
     });
+    spinners.forEach(function (sp) { // spinning parts stay separate so they can turn
+      var k = sp.clone(); k.position.set(0, 0, 0); k.rotation.set(0, 0, 0); k.scale.set(1, 1, 1); k.userData = {};
+      var c = M.bake(k); c.position.copy(sp.position); c.userData.spin = sp.userData.spin; out.add(c);
+    });
     return out;
   };
   var VCM = new T.MeshLambertMaterial({ vertexColors: true });
   var bakedCache = {};
   M.object = function (key, colour) {
-    if (M.custom[key]) { if (!bakedCache[key]) bakedCache[key] = M.bake(M.custom[key]()); var g = bakedCache[key].clone(); g.userData.detailed = true; return g; }
+    if (M.custom[key]) { var ck = key + (colour || ''); if (!bakedCache[ck]) bakedCache[ck] = M.bake(M.custom[key](colour)); var g = bakedCache[ck].clone(); g.userData.detailed = true; return g; }
     return new T.Mesh(M.geometry(key, colour), M.material);
   };
   M.material = new T.MeshLambertMaterial({ vertexColors: true, flatShading: true });

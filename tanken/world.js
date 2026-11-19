@@ -73,9 +73,9 @@ window.makeWorld = function (env) {
     for (var k = 0; k < SAVANNA.length; k++) if (inB(lon, lat, SAVANNA[k], m)) return B.savanna;
     if (lat > 52 || lat < -46) return B.taiga;
     var f = noise(lon * 0.5 + 9, lat * 0.5);
-    if (lat > 35 && f > 0.42) return B.forest;
-    if (lat < -35 && f > 0.55) return B.forest;
-    return f > 0.62 ? B.forest : B.grass;
+    if (lat > 35 && f > 0.6) return B.forest;
+    if (lat < -35 && f > 0.62) return B.forest;
+    return f > 0.68 ? B.forest : B.grass;
   }
   W.biome = function (lon, lat) { return isLand(lon, lat) ? biome(lon, lat, height(lon, lat)) : -1; };
 
@@ -213,16 +213,16 @@ window.makeWorld = function (env) {
   }
   var vcm = new T.MeshLambertMaterial({ vertexColors: true, flatShading: true }); env.nightify(vcm, false);
   function kind(geo, max, mat) { var m = new T.InstancedMesh(geo, mat || vcm, max); m.count = 0; m.frustumCulled = false; m.instanceMatrix.setUsage(T.DynamicDrawUsage); scene.add(m); return m; }
-  var conifer = merged([[new T.ConeGeometry(0.36, 0.75, 6).translate(0, 0.62, 0), '#ffffff'], [new T.ConeGeometry(0.28, 0.55, 6).translate(0, 0.95, 0), '#ffffff'], [new T.CylinderGeometry(0.06, 0.08, 0.3, 5).translate(0, 0.15, 0), '#7a5a3a']]);
-  var broad = merged([[new T.IcosahedronGeometry(0.42, 0).scale(1, 0.95, 1).translate(0, 0.72, 0), '#ffffff'], [new T.CylinderGeometry(0.06, 0.09, 0.4, 5).translate(0, 0.2, 0), '#7a5a3a']]);
+  var conifer = merged([[new T.ConeGeometry(0.36, 0.75, 5, 1, true).translate(0, 0.62, 0), '#ffffff'], [new T.ConeGeometry(0.27, 0.55, 5, 1, true).translate(0, 0.95, 0), '#ffffff'], [new T.CylinderGeometry(0.06, 0.08, 0.3, 4, 1, true).translate(0, 0.15, 0), '#7a5a3a']]);
+  var broad = merged([[new T.IcosahedronGeometry(0.42, 0).scale(1, 0.95, 1).translate(0, 0.72, 0), '#ffffff'], [new T.CylinderGeometry(0.06, 0.09, 0.4, 4, 1, true).translate(0, 0.2, 0), '#7a5a3a']]);
   var acacia = merged([[new T.CylinderGeometry(0.5, 0.42, 0.18, 7).translate(0, 0.72, 0), '#ffffff'], [new T.CylinderGeometry(0.05, 0.07, 0.65, 5).translate(0, 0.32, 0), '#7a5a3a']]);
   var cactus = merged([[new T.CylinderGeometry(0.1, 0.11, 0.8, 6).translate(0, 0.4, 0), '#ffffff'], [new T.CylinderGeometry(0.07, 0.07, 0.3, 6).translate(0.18, 0.5, 0), '#ffffff'], [new T.CylinderGeometry(0.07, 0.07, 0.18, 6).rotateZ(Math.PI / 2).translate(0.1, 0.35, 0), '#ffffff']]);
-  var house = merged([[new T.BoxGeometry(0.7, 0.5, 0.55).translate(0, 0.25, 0), '#ffffff'], [new T.ConeGeometry(0.55, 0.32, 4).rotateY(Math.PI / 4).scale(1, 1, 0.8).translate(0, 0.66, 0), '#c0533a'], [new T.BoxGeometry(0.12, 0.2, 0.01).translate(0, 0.1, 0.28), '#5a4636'], [new T.BoxGeometry(0.14, 0.12, 0.01).translate(-0.2, 0.3, 0.28), '#9fc8e6'], [new T.BoxGeometry(0.14, 0.12, 0.01).translate(0.2, 0.3, 0.28), '#9fc8e6']]);
+  var house = merged([[new T.BoxGeometry(0.7, 0.5, 0.55).translate(0, 0.25, 0), '#ffffff'], [new T.ConeGeometry(0.55, 0.32, 4, 1, true).rotateY(Math.PI / 4).scale(1, 1, 0.8).translate(0, 0.66, 0), '#c0533a'], [new T.PlaneGeometry(0.14, 0.2).translate(0, 0.1, 0.2755), '#5a4636']]);
   var tower = merged([[new T.BoxGeometry(0.5, 1, 0.5).translate(0, 0.5, 0), '#ffffff'], [new T.BoxGeometry(0.52, 0.04, 0.52).translate(0, 1.0, 0), '#d9dde3']]);
   var rock = new T.IcosahedronGeometry(0.4, 0).scale(1, 0.55, 0.8).translate(0, 0.12, 0); rock = merged([[rock, '#ffffff']]);
   var puff = new T.IcosahedronGeometry(1, 1);
   var cloudMat = new T.MeshLambertMaterial({ color: 0xf6f1f8, flatShading: true, emissive: 0x3a3450 }); env.nightify(cloudMat, false);
-  var S = { con: kind(conifer, 6000), br: kind(broad, 6000), ac: kind(acacia, 1200), ca: kind(cactus, 1500), rk: kind(rock, 2000), ho: kind(house, 5000), tw: kind(tower, 800), cl: kind(puff, 1400, cloudMat) };
+  var S = { con: kind(conifer, 5000), br: kind(broad, 5000), ac: kind(acacia, 1200), ca: kind(cactus, 1500), rk: kind(rock, 2000), ho: kind(house, 3500), tw: kind(tower, 300), cl: kind(puff, 1400, cloudMat) };
   var mtx = new T.Matrix4(), q = new T.Quaternion(), q2 = new T.Quaternion(), sc = new T.Vector3(), up = new T.Vector3(0, 1, 0), pv = new T.Vector3(), col2 = new T.Color();
   function put(m, lon, lat, size, yaw, colHex, lift, sx) {
     if (m.count >= m.instanceMatrix.count) return;
@@ -232,26 +232,29 @@ window.makeWorld = function (env) {
   }
   var last = null, TREECOL = { 4: ['#3f8f45', '#4f9a50', '#2f7a3f', '#5aa65a'], 5: ['#4f9a4a', '#6aa84f', '#3f8a48', '#7fb35a'], 6: ['#2f6b3a', '#3a7a44', '#4a8a50'], 7: ['#6aa84f', '#7fb35a', '#5f9f4b'] };
   var TOWNS = []; (function () { var L = window.LIGHTS || []; for (var i = 0; i < L.length; i += 3) TOWNS.push([L[i] / 10, L[i + 1] / 10, L[i + 2]]); })();
-  W.scatter = function (lon, lat, alt, force) {
+  W.scatter = function (lon, lat, alt, opt) { opt = opt || {};
     var on = alt < 0.95;
     if (!on) { if (last) { for (var k in S) S[k].count = 0; last = null; } return false; }
-    var R = Math.max(2.5, Math.min(26, alt * 48));
-    if (!force && last && Math.abs(((lon - last.lon + 540) % 360) - 180) * Math.cos(lat * D2R) < last.R * 0.25 && Math.abs(lat - last.lat) < last.R * 0.25 && alt / last.alt < 1.35 && alt / last.alt > 0.74) return false;
+    var R = opt.R || Math.max(2.5, Math.min(26, alt * 48));
+    if (last && last.R === R && Math.abs(((lon - last.lon + 540) % 360) - 180) * Math.cos(lat * D2R) < last.R * 0.25 && Math.abs(lat - last.lat) < last.R * 0.25 && alt / last.alt < 1.35 && alt / last.alt > 0.74) return false;
     last = { lon: lon, lat: lat, alt: alt, R: R };
     for (var k2 in S) S[k2].count = 0;
-    var size = Math.max(0.0011, Math.min(0.0075, alt * 0.0105)), cell = R / 36, kc = Math.cos(lat * D2R) || 0.1;
+    var kc = Math.cos(lat * D2R) || 0.1, clear = (opt.size || 0.002) * 1.8 / D2R, avoid = opt.avoid ? opt.avoid.filter(function (q0) { return Math.abs(q0[1] - lat) < R + 1 && Math.abs(((q0[0] - lon + 540) % 360) - 180) * kc < R + 1; }) : null;
+    function blocked(x, y) { if (!avoid) return false; for (var a = 0; a < avoid.length; a++) { var q0 = avoid[a]; if (Math.abs(q0[0] - x) * kc < clear && Math.abs(q0[1] - y) < clear) return true; } return false; }
+    var size = opt.size || Math.max(0.0011, Math.min(0.0075, alt * 0.0105)), cell = R / 40;
     var i0 = Math.floor((lon - R / kc) / cell), i1 = Math.ceil((lon + R / kc) / cell), j0 = Math.floor((lat - R) / cell), j1 = Math.ceil((lat + R) / cell);
     for (var i = i0; i <= i1; i++) for (var j = j0; j <= j1; j++) {
-      for (var s = 0; s < 3; s++) {
+      for (var s = 0; s < 2; s++) {
         var h1 = hash(i * 3 + s, j), h2 = hash(j * 7 + s, i + 13), x = (i + h1) * cell, y = (j + h2) * cell;
         if (y > 84 || y < -84) continue;
         var dx = (((x - lon + 540) % 360) - 180) * kc, dy = y - lat; if (dx * dx + dy * dy > R * R) continue;
         var lx = ((x + 540) % 360) - 180; if (!isLand(lx, y)) continue;
+        if (blocked(lx, y)) continue;
         var b = bFast(lx, y), p = hash(i + s * 31, j * 5 + 1), yaw = h1 * 6.28, sz = size * (0.75 + h2 * 0.6);
         if (b === B.rain && p < 0.95) put(S.br, lx, y, sz * 1.1, yaw, TREECOL[4][(s + i) % 4]);
         else if (b === B.taiga && p < 0.85) put(S.con, lx, y, sz, yaw, TREECOL[6][(s + j) % 3]);
         else if (b === B.forest && p < 0.75) put(p < 0.4 ? S.con : S.br, lx, y, sz, yaw, TREECOL[5][(s + i + j) % 4]);
-        else if (b === B.grass && p < 0.22) put(S.br, lx, y, sz * 0.9, yaw, TREECOL[7][(i + j) % 3]);
+        else if (b === B.grass && p < 0.06) put(S.br, lx, y, sz * 0.9, yaw, TREECOL[7][(i + j) % 3]);
         else if (b === B.savanna && p < 0.1) put(S.ac, lx, y, sz, yaw, '#7f9a3a');
         else if (b === B.desert && p < 0.07) { if (lx < -30 || (lx > -10 && lx < 0 && y > 27)) put(S.ca, lx, y, sz * 0.8, yaw, '#4f8a45'); else put(S.rk, lx, y, sz * 1.2, yaw, '#c9a46a'); }
         else if (b === B.tundra && p < 0.05) put(S.rk, lx, y, sz, yaw, '#9a9a8e');
@@ -262,20 +265,20 @@ window.makeWorld = function (env) {
     for (var t = 0; t < TOWNS.length; t++) {
       var tn = TOWNS[t], ddx = (((tn[0] - lon + 540) % 360) - 180) * kc, ddy = tn[1] - lat; if (ddx * ddx + ddy * ddy > R2) continue;
       var nh = Math.min(30, 3 + tn[2] * 3), rad = size * (0.5 + tn[2] * 0.22) / 0.0175;
-      for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy)) continue; put(S.ho, hx, hy, size * 0.5, a, HC[hI % 4]); }
-      if (tn[2] >= 8) for (var k3 = 0; k3 < (tn[2] - 7) * 5; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.45, size * (1.2 + hash(k3, t) * 2.2), size * 0.45))); }
+      for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy) || blocked(hx, hy)) continue; put(S.ho, hx, hy, size * 0.5, a, HC[hI % 4]); }
+      if (tn[2] >= 9) for (var k3 = 0; k3 < 7; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.75, size * (1.0 + hash(k3, t) * 1.4), size * 0.75))); }
     }
     // clouds: puffy groups, mostly away from the middle of the view so they sit at the horizon
-    var cR = R * 2.6, ccell = Math.max(0.8, R / 9);
+    var cR = opt.cloud ? R * 5 : R * 2.6, cIn = opt.cloud ? R * 1.6 : R * 0.8, ccell = Math.max(0.5, R / 6);
     for (var ci = Math.floor((lon - cR / kc) / ccell); ci <= Math.ceil((lon + cR / kc) / ccell); ci++) for (var cj = Math.floor((lat - cR) / ccell); cj <= Math.ceil((lat + cR) / ccell); cj++) {
-      if (hash(ci * 1.7, cj * 2.3) > 0.42) continue;
+      if (hash(ci * 1.7, cj * 2.3) > (opt.cloud ? 0.24 : 0.42)) continue;
       var cx = (ci + hash(ci, cj + 5)) * ccell, cy = (cj + hash(cj, ci + 9)) * ccell, cdx = (((cx - lon + 540) % 360) - 180) * kc, cdy = cy - lat, cd = Math.hypot(cdx, cdy);
-      if (cd > cR || cd < R * 0.8 || cy > 80 || cy < -80) continue;
-      var cl = ((cx + 540) % 360) - 180, cs = size * (1.4 + hash(ci, cj) * 1.4), np = 4 + Math.floor(hash(cj, ci) * 5);
+      if (cd > cR || cd < cIn || cy > 80 || cy < -80) continue;
+      var cl = ((cx + 540) % 360) - 180, cs = opt.cloud ? opt.cloud * (0.9 + hash(ci, cj) * 0.9) : size * (1.4 + hash(ci, cj) * 1.4), np = 3 + Math.floor(hash(cj, ci) * 4);
       for (var pI = 0; pI < np; pI++) {
-        var px = cl + (pI - np / 2) * cs * 45 * (0.7 + hash(pI, ci) * 0.5) / Math.max(0.3, Math.cos(cy * D2R)), py = cy + (hash(pI, cj) - 0.5) * cs * 40, pr = cs * (0.7 + hash(pI + 3, ci) * 0.8);
+        var px = cl + (pI - np / 2) * cs * 50 * (0.7 + hash(pI, ci) * 0.5) / Math.max(0.3, Math.cos(cy * D2R)), py = cy + (hash(pI, cj) - 0.5) * cs * 30, pr = cs * (0.7 + hash(pI + 3, ci) * 0.8) * (opt.cloud ? 0.6 : 1);
         if (S.cl.count >= 1400) break;
-        var n2 = ll2v(px, py, 1); pv.copy(n2).multiplyScalar(1 + 0.006 + cs * 1.5 + hash(pI, cj + 1) * cs); q.setFromUnitVectors(up, n2); sc.set(pr * 1.4, pr * (0.8 + hash(pI, 2) * 0.5), pr);
+        var n2 = ll2v(px, py, 1); pv.copy(n2).multiplyScalar(1 + (opt.cloud ? 0.012 + cs * 0.8 : 0.006 + cs * 1.5) + hash(pI, cj + 1) * cs * 0.5); q.setFromUnitVectors(up, n2); sc.set(pr * 1.4, pr * (0.8 + hash(pI, 2) * 0.5), pr);
         mtx.compose(pv, q, sc); S.cl.setMatrixAt(S.cl.count, mtx); S.cl.setColorAt(S.cl.count, col2.set('#ffffff')); S.cl.count++;
       }
     }

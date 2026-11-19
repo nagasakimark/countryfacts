@@ -72,6 +72,7 @@
     return f(t);
   }
   G.routes = ROUTES;
+  function densify(pts) { var out = []; for (var i = 0; i < pts.length - 1; i++) { var a = pts[i], b = pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.02)); for (var k = 0; k < n; k++) out.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]); } out.push(pts[pts.length - 1]); return out; }
 
   /* ---------- three.js scene ---------- */
   var cv = $('#cv'), renderer = new T.WebGLRenderer({ canvas: cv, antialias: true, alpha: true, powerPreference: 'high-performance' });
@@ -134,7 +135,7 @@
         '  gl_Position = vA < 0.01 ? vec4(2.0, 2.0, 2.0, 1.0) : projectionMatrix * mv; float px = (0.8 + aSize * 0.45) * uK / -mv.z; vS = clamp(px, 2.4, 8.0); gl_PointSize = vS; }',
       fragmentShader: 'varying float vA; varying float vS;\nvoid main(){ vec2 c = gl_PointCoord - 0.5; float r = length(c) * 2.0; float core = smoothstep(1.0, 0.25, r);\n' +
         '  gl_FragColor = vec4(vec3(1.0, 0.8, 0.38) * (0.8 + 0.35 * (1.0 - r)), core * core * vA * (0.6 + 0.4 * min(1.0, vS / 4.0))); }' });
-    var pts = new T.Points(g, m); pts.frustumCulled = false; pts.renderOrder = 3; scene.add(pts);
+    var pts = new T.Points(g, m); pts.frustumCulled = false; pts.renderOrder = 3; scene.add(pts); G._lights = pts;
   })();
   G.isNight = function (ll) { return ll2v(ll[0], ll[1], 1).dot(NIGHT.uSun.value) < 0; };
 
@@ -165,8 +166,11 @@
   });
   var LMB = {}; LMS.forEach(function (o) { LMB[(o.an ? 'a:' : '') + o.d.id] = o; });
   var VEH = ROUTES.map(function (r) {
-    var key = r.type === 'ship' ? (r.ship || 'ship') : r.type, m = grounded(MODELS.object(key, r.type === 'ship' ? null : r.col), 'vehicle', r.id, r.type !== 'plane');
-    return { r: r, mesh: m };
+    var key = r.type === 'plane' ? (r.km < 2500 ? 'v_prop' : 'v_jet') : r.type === 'ship' ? (r.ship === 'ferry' ? 'v_ferry' : 'v_ship') : r.type === 'bullet' ? 'v_bullet' : r.type === 'train' ? 'v_train' : 'v_car';
+    var colr = r.type === 'plane' ? r.col : r.type === 'bullet' ? (r.id === 'eurostar' ? '#f2c14e' : r.id === 'kamome' ? '#c0392b' : '#1f5fbf') : r.type === 'train' || r.type === 'car' ? r.col : null;
+    var obj = MODELS.object(MODELS.custom[key] ? key : (r.type === 'ship' ? (r.ship || 'ship') : r.type), colr), m = grounded(obj, 'vehicle', r.id, r.type !== 'plane'), spin = [];
+    obj.traverse(function (o) { if (o.userData.spin) spin.push(o); });
+    return { r: r, mesh: m, spin: spin };
   });
   var VB = {}; VEH.forEach(function (o) { VB[o.r.id] = o; });
   var rideLine = null;
@@ -176,7 +180,22 @@
   var camPos = new T.Vector3(), tmp = new T.Vector3(), tmp2 = new T.Vector3(), mat = new T.Matrix4();
   function clampV() { V.alt = Math.max(AMIN, Math.min(AMAX, V.alt)); V.lat = Math.max(-80, Math.min(80, V.lat)); V.lon = ((V.lon + 540) % 360) - 180; }
   var TMAX = 52 * D2R; function tilt() { var t = (2.3 - V.alt) / (2.3 - 0.2); t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t) * TMAX; }
+  // ride-along camera: behind the vehicle (drag to look around, wheel for distance) or first person
+  var RC = G.rideView = { yaw: 0, pitch: 0.3, dist: 4.5, fp: false, fwd: new T.Vector3(), size: 0.004 };
+  function rideCamera() {
+    var o = riding, n = o.n, f = RC.fwd, rs = RC.size, q = new T.Quaternion().setFromAxisAngle(n, RC.yaw), tgt = new T.Vector3();
+    var look = f.clone().applyQuaternion(q);
+    if (RC.fp) { camPos.copy(o.pos).addScaledVector(n, rs * 0.32).addScaledVector(f, rs * 0.5); tgt.copy(camPos).addScaledVector(look, 1).addScaledVector(n, -Math.sin(RC.pitch - 0.3) * 0.6); }
+    else { var back = look.clone().negate(); camPos.copy(o.pos).addScaledVector(back, Math.cos(RC.pitch) * RC.dist * rs).addScaledVector(n, Math.sin(RC.pitch) * RC.dist * rs + rs * 0.3); tgt.copy(o.pos).addScaledVector(n, rs * 0.35); }
+    var gl = v2ll(camPos), gh = 1 + WORLD.groundH(gl[0], gl[1]) + rs * 0.15; if (camPos.length() < gh) camPos.setLength(gh);
+    camera.position.copy(camPos); camera.up.copy(n); camera.lookAt(tgt);
+    camera.near = rs * 0.05; camera.far = 3; camera.clearViewOffset(); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
+    V.lon = gl[0]; V.lat = gl[1]; V.alt = Math.max(0.004, camPos.length() - 1);
+    var e = new T.Vector3(0, 1, 0).cross(n).normalize(); sun.position.copy(camPos).addScaledVector(n, 0.8).addScaledVector(e, -0.6); sun.target.position.set(0, 0, 0);
+    G._glow.visible = false;
+  }
   function setCam() {
+    if (rideCam && riding && riding.pos) return rideCamera();
     var n = ll2v(V.lon, V.lat, 1), e = new T.Vector3(0, 1, 0).cross(n).normalize(), t = n.clone().cross(e), a = tilt();
     var dir = n.clone().multiplyScalar(Math.cos(a)).addScaledVector(t, -Math.sin(a));
     camPos.copy(n).addScaledVector(dir, V.alt);
@@ -203,23 +222,29 @@
   G.flyToCountry = function (id) { var c = CEN[id], r = Math.max(0.03, Math.min(1.2, RAD[id] || 0.3)); G.flyTo(c[0], Math.max(-70, Math.min(70, c[1])), Math.max(0.3, Math.min(2.6, r * 2.3))); };
   G.home = function () { G.flyTo(135, 30, 2.35, 900); };
   G.setOffset = function (px) { offTo = px; };
-  G.zoom = function (f) { anim = null; V.alt *= f; clampV(); bump(); };
+  G.zoom = function (f) { anim = null; if (rideCam && riding) { RC.dist = Math.max(1.6, Math.min(14, RC.dist * f)); return; } V.alt *= f; clampV(); bump(); };
 
   /* ---------- riding ---------- */
   var riding = null;
   G.ride = function (id) {
-    var o = VB[id]; if (!o) return; riding = o; var r = o.r; if (r.wait > 0) { r.dir *= -1; r.wait = 0; } r.d = r.dir > 0 ? 0 : r.len; var p = along(r, r.d);
-    G.flyTo(p[0], p[1], r.type === 'plane' ? 0.55 : r.km < 300 ? 0.16 : 0.3, 1000);
+    var o = VB[id]; if (!o) return; riding = o; var r = o.r; if (r.wait > 0) { r.dir *= -1; r.wait = 0; } r.d = r.dir > 0 ? 0 : r.len;
+    rideCam = true; anim = null; vel = null; RC.yaw = 0; RC.pitch = r.type === 'plane' ? 0.22 : 0.3; RC.dist = r.type === 'plane' ? 4.2 : r.type === 'ship' ? 4 : 4.6; RC.fp = false; RC.fwd.set(0, 0, 0);
+    RC.size = r.type === 'plane' ? 0.0055 : r.type === 'ship' ? (r.ship === 'ferry' ? 0.004 : 0.006) : r.type === 'car' ? 0.003 : 0.0045;
     if (rideLine) { scene.remove(rideLine); rideLine.geometry.dispose(); rideLine = null; }
     if (r.type === 'plane') {
-      var pts = []; for (var i = 0; i <= 80; i++) { var d = r.len * i / 80, q = along(r, d); pts.push(ll2v(q[0], q[1], 1 + planeH(r, d))); }
-      rideLine = new T.Line(new T.BufferGeometry().setFromPoints(pts), new T.LineDashedMaterial({ color: 0xffffff, dashSize: 0.01, gapSize: 0.008 }));
+      var pts = []; for (var i = 0; i <= 160; i++) { var d = r.len * i / 160, q = along(r, d); pts.push(ll2v(q[0], q[1], 1 + planeH(r, d))); }
+      rideLine = new T.Line(new T.BufferGeometry().setFromPoints(pts), new T.LineDashedMaterial({ color: 0xffffff, dashSize: 0.002, gapSize: 0.002, transparent: true, opacity: 0.7 }));
       rideLine.computeLineDistances(); scene.add(rideLine);
     }
+    WORLD.scatter(0, 0, 9); lastSig = '';
   };
-  G.unride = function () { riding = null; if (rideLine) { scene.remove(rideLine); rideLine = null; } };
+  G.unride = function () {
+    if (riding && riding.ll) { V.lon = riding.ll[0]; V.lat = riding.ll[1]; V.alt = 0.35; clampV(); }
+    riding = null; rideCam = false; if (rideLine) { scene.remove(rideLine); rideLine = null; } WORLD.scatter(0, 0, 9); lastSig = '';
+  };
+  G.firstPerson = function (on) { RC.fp = on == null ? !RC.fp : on; RC.yaw = 0; RC.pitch = RC.fp ? 0.3 : 0.3; return RC.fp; };
   G.riding = function () { return riding && riding.r; };
-  function planeH(r, d) { var f = d / r.len, e = Math.min(1, Math.min(f, 1 - f) * r.len / 0.03); return 0.003 + e * (0.006 + Math.min(0.012, r.len * 0.006)); }
+  function planeH(r, d) { var f = d / r.len, e = Math.min(1, Math.min(f, 1 - f) * r.len / 0.03); e = e * e * (3 - 2 * e); return 0.0025 + e * (0.004 + Math.min(0.004, r.len * 0.002)); }
 
   /* ---------- per-frame object placement ---------- */
   function scaleNow() { return Math.max(0.0115, Math.min(0.11, 0.008 + 0.031 * V.alt)); }
@@ -229,7 +254,7 @@
   var camUp = new T.Vector3(), camBack = new T.Vector3(), up2 = new T.Vector3(), fw2 = new T.Vector3(), x2 = new T.Vector3();
   function placeLandmarks() {
     shadowMat.visible = V.alt < 1.3 && qLow === 0;
-    var far = Math.max(0, Math.min(1, (V.alt - 0.25) / 1.3)), s = scaleNow() * (1.35 - 0.6 * far), placed = [], lean = far * 0.8, gp = new T.Vector3();
+    var far = rideCam ? 0 : Math.max(0, Math.min(1, (V.alt - 0.25) / 1.3)), s = rideCam ? RC.size * 2.6 : scaleNow() * (1.35 - 0.6 * far), placed = [], lean = far * 0.8, gp = new T.Vector3();
     camUp.setFromMatrixColumn(camera.matrixWorld, 1); camBack.setFromMatrixColumn(camera.matrixWorld, 2);
     lmRects = [];
     LMS.forEach(function (o) {
@@ -249,7 +274,7 @@
     });
   }
   function moveVehicles(dt) {
-    var s = scaleNow() * 0.95, anyVis = false;
+    var s = rideCam ? RC.size : scaleNow() * 0.95, anyVis = false;
     VEH.forEach(function (o) {
       var r = o.r, m = o.mesh;
       if (r.wait > 0) { r.wait -= dt * G.speed; if (r.wait <= 0) { r.dir *= -1; } }
@@ -258,18 +283,20 @@
         if (r.d >= r.len || r.d <= 0) { r.d = Math.max(0, Math.min(r.len, r.d)); r.wait = 2.5; if (riding === o) G.onArrive(r, r.dir > 0 ? r.b : r.a); }
       }
       var st = Math.max(0.002, r.len * 0.004), p = along(r, r.d), p1 = along(r, r.d - r.dir * st), p2 = along(r, r.d + r.dir * st);
-      var alt = r.type === 'plane' ? planeH(r, r.d) : (r.type === 'ship' ? 0.0004 : WORLD.groundH(p[0], p[1]) + 0.0006), n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + alt);
+      var alt = r.type === 'plane' ? planeH(r, r.d) : (r.type === 'ship' ? 0.0003 : WORLD.groundH(p[0], p[1]) + 0.0004), n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + alt);
       var fwd = ll2v(p2[0], p2[1], 1).sub(ll2v(p1[0], p1[1], 1)); fwd.addScaledVector(n, -fwd.dot(n)).normalize();
       if (!isFinite(fwd.x) || fwd.lengthSq() < 0.5) fwd.set(0, 1, 0).cross(n).normalize();
       o.pos = pos; o.n = n; o.ll = p;
       var vis = !G.quiz && facing(n, pos); m.visible = vis;
       if (!vis) return; anyVis = true;
+      for (var si = 0; si < o.spin.length; si++) o.spin[si].rotation[o.spin[si].userData.spin] += dt * G.speed * (o.spin[si].userData.spin === 'z' ? 40 : 25) * (r.wait > 0 ? 0 : 1);
+      if (riding === o) { if (RC.fwd.lengthSq() < 0.5) RC.fwd.copy(fwd); else RC.fwd.lerp(fwd, Math.min(1, dt * 2.5)); RC.fwd.addScaledVector(n, -RC.fwd.dot(n)).normalize(); if (rideCam) fwd = RC.fwd.clone(); }
       var x = n.clone().cross(fwd);
-      mat.makeBasis(x, n, fwd); var ss = riding === o ? s * 1.25 : s; m.matrix.copy(mat).scale(tmp2.set(ss, ss, ss)).setPosition(pos); m.matrixWorldNeedsUpdate = true;
+      mat.makeBasis(x, n, fwd); var ss = riding === o ? (rideCam ? RC.size : s * 1.25) : s; m.matrix.copy(mat).scale(tmp2.set(ss, ss, ss)).setPosition(pos); m.matrixWorldNeedsUpdate = true;
     });
     if (riding) {
       anyVis = true; var rr = riding.r; G.onRide(rr, rr.dir > 0 ? rr.d / rr.len : 1 - rr.d / rr.len);
-      if (!anim && riding.ll) { var dl = ((riding.ll[0] - V.lon + 540) % 360) - 180; V.lon += dl * Math.min(1, dt * 4); V.lat += (riding.ll[1] - V.lat) * Math.min(1, dt * 4); clampV(); }
+      if (!rideCam && !anim && riding.ll) { var dl = ((riding.ll[0] - V.lon + 540) % 360) - 180; V.lon += dl * Math.min(1, dt * 4); V.lat += (riding.ll[1] - V.lat) * Math.min(1, dt * 4); clampV(); }
     }
     return anyVis;
   }
@@ -376,7 +403,7 @@
       ctx.textAlign = 'center'; ctx.textBaseline = 'top';
     }
     // ride marker
-    if (riding && riding.pos && facing(riding.n, riding.pos)) {
+    if (riding && !rideCam && riding.pos && facing(riding.n, riding.pos)) {
       project(riding.pos, p); ctx.font = 'bold 14px ' + FONT; var t = G.lang === 'en' ? '▼ YOU' : '▼ のってるよ';
       ctx.lineWidth = 4; ctx.strokeStyle = '#fff'; ctx.strokeText(t, p[0], p[1] - 52); ctx.fillStyle = '#ff5a4d'; ctx.fillText(t, p[0], p[1] - 52);
     }
@@ -411,11 +438,15 @@
   var ptrs = {}, drag = null, moved = 0, pinch = null, last = null;
   cv.addEventListener('pointerdown', function (e) {
     anim = null; vel = null; ptrs[e.pointerId] = pos(e); cv.setPointerCapture(e.pointerId); var n = Object.keys(ptrs).length;
-    if (n === 1) { drag = { p: pos(e), v: { lon: V.lon, lat: V.lat }, t: performance.now() }; moved = 0; last = { p: pos(e), t: performance.now() }; }
-    else if (n === 2) { var a = Object.keys(ptrs).map(function (k) { return ptrs[k]; }); pinch = { d: Math.hypot(a[0][0] - a[1][0], a[0][1] - a[1][1]), alt: V.alt }; drag = null; }
+    if (n === 1) { drag = { p: pos(e), v: { lon: V.lon, lat: V.lat }, t: performance.now(), yaw: RC.yaw, pitch: RC.pitch }; moved = 0; last = { p: pos(e), t: performance.now() }; }
+    else if (n === 2) { var a = Object.keys(ptrs).map(function (k) { return ptrs[k]; }); pinch = { d: Math.hypot(a[0][0] - a[1][0], a[0][1] - a[1][1]), alt: V.alt, rd: RC.dist }; drag = null; }
   });
   cv.addEventListener('pointermove', function (e) {
     var p = pos(e); if (ptrs[e.pointerId]) ptrs[e.pointerId] = p; var ks = Object.keys(ptrs);
+    if (rideCam && riding) {
+      if (pinch && ks.length >= 2) { var a2 = ptrs[ks[0]], b2 = ptrs[ks[1]]; RC.dist = Math.max(1.6, Math.min(14, pinch.rd * pinch.d / Math.max(10, Math.hypot(a2[0] - b2[0], a2[1] - b2[1])))); moved = 99; return; }
+      if (drag && ks.length === 1) { var ddx = p[0] - drag.p[0], ddy = p[1] - drag.p[1]; moved = Math.max(moved, Math.hypot(ddx, ddy)); if (moved > 5) { RC.yaw = drag.yaw - ddx * 0.008; RC.pitch = Math.max(RC.fp ? -0.6 : -0.05, Math.min(1.35, drag.pitch + ddy * 0.006)); } return; }
+    }
     if (pinch && ks.length >= 2) { var a = ptrs[ks[0]], b = ptrs[ks[1]], d = Math.hypot(a[0] - b[0], a[1] - b[1]); V.alt = pinch.alt * pinch.d / Math.max(10, d); clampV(); moved = 99; bump(); return; }
     if (drag && ks.length === 1) {
       var dx = p[0] - drag.p[0], dy = p[1] - drag.p[1]; moved = Math.max(moved, Math.hypot(dx, dy));
@@ -437,7 +468,7 @@
   }
   cv.addEventListener('pointerup', endp); cv.addEventListener('pointercancel', endp);
   cv.addEventListener('pointerleave', function () { hoverAt = null; G.onHover(null); });
-  cv.addEventListener('wheel', function (e) { e.preventDefault(); anim = null; var dy = e.deltaMode ? e.deltaY * 30 : e.deltaY; V.alt *= Math.exp(dy * 0.0016); clampV(); bump(); }, { passive: false });
+  cv.addEventListener('wheel', function (e) { e.preventDefault(); anim = null; var dy = e.deltaMode ? e.deltaY * 30 : e.deltaY; if (rideCam && riding) { RC.dist = Math.max(1.6, Math.min(14, RC.dist * Math.exp(dy * 0.0016))); return; } V.alt *= Math.exp(dy * 0.0016); clampV(); bump(); }, { passive: false });
   cv.addEventListener('dblclick', function () { G.zoom(0.55); });
 
   /* ---------- size / loop ---------- */
@@ -487,12 +518,12 @@
     setCam();
     // natural ground, trees, towns and clouds only while riding along; the normal globe keeps country colours
     WORLD.uniforms.uNear.value = riding && rideCam ? 1 : 0;
-    sceneryDirty = WORLD.scatter(V.lon, V.lat, riding && rideCam ? V.alt : 9) || sceneryDirty;
-    sky();
+    sceneryDirty = (riding && rideCam ? WORLD.scatter(riding.ll ? riding.ll[0] : V.lon, riding.ll ? riding.ll[1] : V.lat, 0.3, { R: riding.r.type === 'plane' ? 2.6 : 1.5, size: RC.size * (riding.r.type === 'plane' ? 0.2 : 0.3), cloud: RC.size, avoid: riding.r.type === 'plane' ? null : riding.r.dense || (riding.r.dense = densify(riding.r.pts)) }) : WORLD.scatter(0, 0, 9)) || sceneryDirty;
+    sky(); if (G._lights) G._lights.visible = !(riding && rideCam);
     var a = performance.now();
     var sig = V.lon.toFixed(4) + V.lat.toFixed(4) + V.alt.toFixed(5) + Math.round(off) + G.lang + G.quiz + G.ver + (G.sel || '') + G.pins.map(function (q) { return q.ll[0].toFixed(2) + q.col; }).join() + (riding ? 1 : 0) + G.stampN();
     var changed = sig !== lastSig; lastSig = sig;
-    var vis = moveVehicles(dt);
+    var vis = moveVehicles(dt); if (rideCam && riding) setCam();
     if (changed) placeLandmarks();
     // when the view is still, draw at most 30 times a second, and not at all if nothing on screen moves
     frameN++;

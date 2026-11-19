@@ -150,6 +150,16 @@ ruby rt{font-size:.5em;font-weight:normal}
 .tabs2 button.on{transform:translateY(2px);box-shadow:0 1px 0 var(--ink);outline:3px solid #fff;outline-offset:-6px}
 .sg .em{width:32px;text-align:center;font-size:22px;font-family:"Noto Color Emoji",sans-serif}
 .sg img.th{border:0;width:32px;height:32px}
+#ridebar{position:absolute;left:16px;right:16px;bottom:14px;display:none;gap:10px;align-items:center;z-index:6}
+#ridebar.on{display:flex}
+#ridebar .rn{font-size:27px;color:#ffd54a;text-shadow:0 2px 0 #1a1f45,2px 0 0 #1a1f45,-2px 0 0 #1a1f45,0 -2px 0 #1a1f45,2px 2px 0 #1a1f45;white-space:nowrap;max-width:430px;overflow:hidden;text-overflow:ellipsis}
+#ridebar button{font:inherit;font-size:16px;color:#fff;background:#1f2550;border:2px solid #3a4280;border-radius:999px;padding:7px 16px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.35);white-space:nowrap}
+#ridebar button:active{transform:translateY(2px)}
+#ridebar .hint{font-size:13px;color:#e6e9ff;background:rgba(20,26,70,.6);border-radius:999px;padding:7px 14px;white-space:nowrap}
+#ridebar .rp{width:150px;height:12px;background:rgba(20,26,70,.6);border-radius:8px;overflow:hidden;border:2px solid #3a4280}
+#ridebar .rp i{display:block;height:100%;width:0;background:linear-gradient(90deg,#33c9a0,#ffd54a)}
+#ridebar .km{font-size:13px;color:#fff;text-shadow:0 1px 2px #000;white-space:nowrap}
+body.riding #dock,body.riding #hud .pill.title{display:none}
 </style></head><body>
 <div id="wrap"><div id="stage">
  <canvas id="bg"></canvas><canvas id="cv"></canvas><canvas id="ov"></canvas>
@@ -161,11 +171,12 @@ ruby rt{font-size:.5em;font-weight:normal}
  <div id="zoom"><button class="zb" id="zi">＋</button><button class="zb" id="zo">－</button><button class="zb" id="zh"><svg width="26" height="26" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#3b2a5c" stroke-width="3"/><path d="M3 12h18M12 3c4 4 4 14 0 18M12 3c-4 4-4 14 0 18" fill="none" stroke="#3b2a5c" stroke-width="2"/></svg></button></div>
  <div id="tip"></div><div id="toast"></div>
  <div id="dock"></div>
+ <div id="ridebar"><span class="rn" id="rn"></span><div class="rp"><i id="rpi"></i></div><span class="km" id="rkm"></span><button id="rfp"></button><button id="rspd"></button><button id="rx"></button><span class="hint" id="rhint"></span></div>
  <div id="board"><div id="x">✕</div><div class="card"><div id="page"></div><div id="tabs"></div></div></div>
  <canvas id="conf" width="1366" height="598"></canvas>
 </div></div>
 <script src="vendor/d3.min.js"></script><script src="vendor/topojson-client.min.js"></script><script src="vendor/three.min.js"></script>
 <script src="data/world.js"></script><script src="data/countries.js"></script><script src="data/fun.js"></script><script src="data/media.js"></script><script src="data/atlas.js"></script><script src="data/toy.js"></script><script src="data/cities.js"></script><script src="data/lights.js"></script>
 <script src="js/util.js"></script>
-<script src="tanken/models.js"></script><script src="tanken/detailed.js"></script><script src="tanken/lm1.js"></script><script src="tanken/lm2.js"></script><script src="tanken/lm3.js"></script><script src="tanken/lm4.js"></script><script src="tanken/animals.js"></script><script src="tanken/animals2.js"></script><script src="tanken/world.js"></script><script src="tanken/globe.js"></script><script src="tanken/ui.js"></script>
+<script src="tanken/models.js"></script><script src="tanken/detailed.js"></script><script src="tanken/lm1.js"></script><script src="tanken/lm2.js"></script><script src="tanken/lm3.js"></script><script src="tanken/lm4.js"></script><script src="tanken/animals.js"></script><script src="tanken/animals2.js"></script><script src="tanken/vehicles.js"></script><script src="tanken/world.js"></script><script src="tanken/globe.js"></script><script src="tanken/ui.js"></script>
 </body></html>
