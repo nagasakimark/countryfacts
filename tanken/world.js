@@ -66,6 +66,9 @@ window.makeWorld = function (env) {
   }
   function bFast(lon, lat) { var i = ((Math.round((lon + 180) * 2) % GW) + GW) % GW, j = Math.max(0, Math.min(GH - 1, Math.round((90 - lat) * 2))); return BG[j * GW + i]; }
   function baseG(lon, lat) { return isLand(lon, lat) ? hFast(lon, lat) : 0; }
+  W.roadH = function (lon, lat) { // riding: the asphalt's height (the highest ground across the road's width, as the ribbon is drawn)
+    if (!RIDE.on) return baseG(lon, lat); var ex = 0.0014 / D2R, kx = Math.max(0.2, Math.cos(lat * D2R));
+    return Math.max(rideH(lon, lat), rideH(lon - ex / kx, lat), rideH(lon + ex / kx, lat), rideH(lon, lat - ex), rideH(lon, lat + ex)); };
   W.groundH = function (lon, lat) { return RIDE.on ? rideH(lon, lat) : baseG(lon, lat); };
 
   /* ---------- biomes ---------- */
@@ -226,7 +229,7 @@ window.makeWorld = function (env) {
       var prev = null;
       pts.forEach(function (p, i) {
         var q = pts[Math.min(pts.length - 1, i + 1)], o = pts[Math.max(0, i - 1)], n = ll2v(p[0], p[1], 1), t = ll2v(q[0], q[1], 1).sub(ll2v(o[0], o[1], 1)).normalize(), s = new T.Vector3().crossVectors(n, t).normalize();
-        var ex = wd * 1.6 / D2R, kx = Math.max(0.2, Math.cos(p[1] * D2R)), gh = Math.max(W.groundH(p[0], p[1]), W.groundH(p[0] - ex / kx, p[1]), W.groundH(p[0] + ex / kx, p[1]), W.groundH(p[0], p[1] - ex), W.groundH(p[0], p[1] + ex)); // (the highest ground across the road's width: no hump of relief pokes through the asphalt)
+        var gh = W.roadH(p[0], p[1]); // (the highest ground across the road's width: no hump of relief pokes through the asphalt)
         var c = n.clone().multiplyScalar(1 + gh + 0.00012);
         if (prev) dist += c.distanceTo(prev); prev = c;
         P.push(c.x + s.x * wd, c.y + s.y * wd, c.z + s.z * wd, c.x - s.x * wd, c.y - s.y * wd, c.z - s.z * wd); Uv.push(0, dist / 0.0032, 1, dist / 0.0032);

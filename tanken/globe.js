@@ -324,6 +324,23 @@
       m.matrixWorldNeedsUpdate = true;
     });
   }
+  // Riding a car: a few other cars share the road, both ways, each in its lane (made when you board, gone when you get off)
+  var TRAF = [], trafFor = null;
+  function traffic(dt) {
+    var want = rideCam && riding && riding.r.type === 'car' ? riding.r : null;
+    if (want !== trafFor) { TRAF.forEach(function (t) { scene.remove(t.mesh); }); TRAF = []; trafFor = want;
+      if (want) ['v_pickup', 'v_car', 'v_camper', 'v_jeep', 'v_car', 'v_pickup'].forEach(function (k, i) { var cols = ['#2b7de0', '#f2c230', '#3fa86a', '#f2f2f2', '#8a4bd8', '#e8473a'], o = MODELS.object(k, cols[i]), m = grounded(o, 'vehicle', 'traffic' + i, false); m.matrixAutoUpdate = false; scene.add(m);
+        TRAF.push({ mesh: m, d: Math.max(0, Math.min(want.len, want.d + want.dir * (0.014 + 0.022 * i))), dir: i % 2 ? want.dir : -want.dir, k: i % 2 ? 1 : 0.8 + 0.1 * i }); // (going your way: ahead of you at your speed, so never in your lane; the others come towards you) }); }
+    if (!trafFor) return;
+    var r = trafFor;
+    TRAF.forEach(function (t) {
+      t.d += t.dir * r.len / r.dur * dt * G.speed * t.k; if (t.d <= 0 || t.d >= r.len) { t.d = Math.max(0, Math.min(r.len, t.d)); t.dir *= -1; }
+      var st = 0.002, p = along(r, t.d), p1 = along(r, t.d - t.dir * st), p2 = along(r, t.d + t.dir * st), n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + WORLD.roadH(p[0], p[1]) + 0.00012);
+      var fwd = ll2v(p2[0], p2[1], 1).sub(ll2v(p1[0], p1[1], 1)); fwd.addScaledVector(n, -fwd.dot(n)).normalize(); if (!isFinite(fwd.x)) return;
+      var x = n.clone().cross(fwd); pos.addScaledVector(x, r.lh ? 0.00042 : -0.00042);
+      t.mesh.visible = pos.distanceTo(camPos) < 0.08; mat.makeBasis(x, n, fwd); t.mesh.matrix.copy(mat).scale(tmp2.set(RC.size, RC.size, RC.size)).setPosition(pos); t.mesh.matrixWorldNeedsUpdate = true;
+    });
+  }
   function moveVehicles(dt) {
     var s = rideCam ? RC.size : scaleNow() * 0.95, anyVis = false;
     VEH.forEach(function (o) {
@@ -334,9 +351,10 @@
         if (r.d >= r.len || r.d <= 0) { r.d = Math.max(0, Math.min(r.len, r.d)); r.wait = 2.5; if (riding === o) G.onArrive(r, r.dir > 0 ? r.b : r.a); }
       }
       var st = Math.max(0.002, r.len * 0.004), p = along(r, r.d), p1 = along(r, r.d - r.dir * st), p2 = along(r, r.d + r.dir * st);
-      var alt = r.type === 'plane' ? planeH(r, r.d) : (r.type === 'ship' ? 0.0003 : WORLD.groundH(p[0], p[1]) + (rideCam ? 0.00012 : 0.0004)), n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + alt);
+      var alt = r.type === 'plane' ? planeH(r, r.d) : (r.type === 'ship' ? 0.0003 : (rideCam && r.type !== 'plane' ? WORLD.roadH(p[0], p[1]) + 0.00012 : WORLD.groundH(p[0], p[1]) + 0.0004)), n = ll2v(p[0], p[1], 1), pos = n.clone().multiplyScalar(1 + alt);
       var fwd = ll2v(p2[0], p2[1], 1).sub(ll2v(p1[0], p1[1], 1)); fwd.addScaledVector(n, -fwd.dot(n)).normalize();
       if (!isFinite(fwd.x) || fwd.lengthSq() < 0.5) fwd.set(0, 1, 0).cross(n).normalize();
+      if (rideCam && r.type === 'car') pos.addScaledVector(tmp.copy(n).cross(fwd), r.lh ? 0.00042 : -0.00042); // (riding: cars keep to their own lane — left in Japan, Britain, India…)
       o.pos = pos; o.n = n; o.ll = p;
       var vis = !G.quiz && facing(n, pos) && (riding === o || rideCam || V.alt < 1.4 || r.type === 'plane' || r.type === 'ship'); m.visible = vis; // (from far out only ships and planes: cars and trains are too small to see and cost draw calls)
       if (!vis) return; anyVis = true;
@@ -345,6 +363,7 @@
       var x = n.clone().cross(fwd);
       mat.makeBasis(x, n, fwd); var ss = riding === o ? (rideCam ? RC.size : s * 1.25) : s; m.matrix.copy(mat).scale(tmp2.set(ss, ss, ss)).setPosition(pos); m.matrixWorldNeedsUpdate = true;
     });
+    traffic(dt);
     if (riding) {
       anyVis = true; var rr = riding.r; G.onRide(rr, rr.dir > 0 ? rr.d / rr.len : 1 - rr.d / rr.len);
       if (!rideCam && !anim && riding.ll) { var dl = ((riding.ll[0] - V.lon + 540) % 360) - 180; V.lon += dl * Math.min(1, dt * 4); V.lat += (riding.ll[1] - V.lat) * Math.min(1, dt * 4); clampV(); }
