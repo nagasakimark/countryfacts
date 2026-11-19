@@ -199,7 +199,23 @@ TOY.landmarks = [
  {id:'banaue',c:'PHL',ll:[121.06,16.92],m:'banaue',ja:'バナウェの {棚田|たなだ}',en:'Banaue Rice Terraces',k:'ばなうぇ たなだ ふぃりぴん',
   t:'フィリピンの 山に、 約2000年 前から つくられてきた 田んぼの だんだん。「世界の 8番目の ふしぎ」と よばれる。',te:'Rice terraces carved into the mountains of the Philippines about 2,000 years ago, sometimes called the "Eighth Wonder of the World".'},
  {id:'sossusvlei',c:'NAM',ll:[15.29,-24.76],m:'sossusvlei',ja:'ソーサスフレイ',en:'Sossusvlei',k:'そーさすふれい なみびあ',
-  t:'ナミビアの さばくに ある、 世界でも とくに 高い 赤い {砂丘|さきゅう}。 近くの デッドフレイには かれた 木が 立っている。',te:'Some of the world\'s tallest red sand dunes, in Namibia. At nearby Deadvlei, dead trees stand on white clay.'}
+  t:'ナミビアの さばくに ある、 世界でも とくに 高い 赤い {砂丘|さきゅう}。 近くの デッドフレイには かれた 木が 立っている。',te:'Some of the world\'s tallest red sand dunes, in Namibia. At nearby Deadvlei, dead trees stand on white clay.'},
+{id:'hoian',c:'VNM',ll:[108.33,15.88],m:'hoian',ja:'ホイアンの {来遠橋|らいえんきょう}（日本橋）',en:'Japanese Covered Bridge, Hội An',k:'ほいあん にほんばし らいえんきょう べとなむ',
+  t:'ベトナムの ホイアンに ある 屋根つきの 橋。 約400年 前、 この 町に すんでいた 日本人が つくったと いわれる。',te:'A covered bridge in Hội An, Vietnam, said to have been built about 400 years ago by Japanese people living in the town.'},
+ {id:'grandpalace',c:'THA',ll:[100.49,13.75],m:'grandpalace',ja:'王宮と ワット・プラケオ',en:'Grand Palace & Wat Phra Kaew',k:'おうきゅう わっとぷらけお ばんこく たい',
+  t:'タイの バンコクに ある 王さまの {宮殿|きゅうでん}と お寺。 金色の {塔|とう}や、 みどり色の 仏像「エメラルド仏」が ある。',te:'The royal palace and temple in Bangkok, Thailand, with golden spires and the famous Emerald Buddha.'},
+ {id:'tanahlot',c:'IDN',ll:[115.09,-8.62],m:'tanahlot',ja:'タナロット寺院',en:'Tanah Lot',k:'たなろっと ばりとう いんどねしあ',
+  t:'インドネシアの バリ島の、 海の 中の 岩の 上に たつ お寺。 しおが みちると 島に なる。',te:'A temple on a rock in the sea off Bali, Indonesia. At high tide it becomes an island.'},
+ {id:'boudha',c:'NPL',ll:[85.36,27.72],m:'boudha',ja:'ボダナート',en:'Boudhanath Stupa',k:'ぼだなーと ねぱーる かとまんず',
+  t:'ネパールの カトマンズに ある、 アジアで いちばん 大きい ストゥーパの 1つ。 4つの 面に 大きな 目が かかれている。',te:'One of the largest stupas in Asia, in Kathmandu, Nepal, with big painted eyes looking out on all four sides.'},
+ {id:'monumentvalley',c:'USA',ll:[-110.11,36.98],m:'monumentvalley',ja:'モニュメント・バレー',en:'Monument Valley',k:'もにゅめんとばれー あめりか なばほ',
+  t:'アメリカの さばくに 赤い 岩山が 立ちならぶ ところ。 ナバホの 人たちの 土地で、 {西部劇|せいぶげき}の {映画|えいが}に よく 出てくる。',te:'Red rock towers rising from the desert on Navajo land in the USA, seen in many western films.'},
+ {id:'frontenac',c:'CAN',ll:[-71.21,46.81],m:'frontenac',ja:'シャトー・フロンテナック',en:'Château Frontenac',k:'しゃとーふろんてなっく けべっく かなだ',
+  t:'カナダの ケベック・シティーに ある、 お{城|しろ}のような ホテル。 世界で いちばん 写真に とられる ホテルと いわれる。',te:'A castle-like hotel in Quebec City, Canada, said to be the most photographed hotel in the world.'},
+ {id:'torres',c:'CHL',ll:[-72.99,-50.94],m:'torres',ja:'トレス・デル・パイネ',en:'Torres del Paine',k:'とれすでるぱいね ちり ぱたごにあ',
+  t:'チリの パタゴニアに ある、 3本の とがった 岩山。 名前は「青い {塔|とう}」という 意味。',te:'Three sharp granite towers in Chilean Patagonia. The name means "blue towers".'},
+ {id:'cologne',c:'DEU',ll:[6.96,50.94],m:'cologne',ja:'ケルン{大聖堂|だいせいどう}',en:'Cologne Cathedral',k:'けるんだいせいどう どいつ',
+  t:'ドイツの ケルンに ある 大きな 教会。 高さ 157mの 2本の {塔|とう}が ある。 できあがるまで 600年 いじょう かかった。',te:'A huge cathedral in Cologne, Germany, with two 157 m spires. It took over 600 years to finish.'}
 ];
 
 TOY.animals = [
