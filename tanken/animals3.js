@@ -326,4 +326,71 @@
     tube(l, [[-0.15, u.by - 0.01, 0, 0.035, 0.035], [-0.2, u.by - 0.06, 0.04, 0.04, 0.04], [-0.15, u.by - 0.1, 0.1, 0.035, 0.035], [-0.05, u.by - 0.11, 0.11, 0.025, 0.025]], wh, 'tail', 9, 0.15, 3);
     return wrap(g, 0.6);
   };
+  /* ---------- walrus (Svalbard, Norway) ---------- */
+  M.custom.a_walrus = function () {
+    var g = new T.Group();
+    var ice = new T.Mesh(new T.CylinderGeometry(0.3, 0.33, 0.04, 8), solid('#eef6fb', { flatShading: true })); ice.position.y = 0.02; g.add(ice);
+    var sea = new T.Mesh(new T.CylinderGeometry(0.42, 0.42, 0.01, 20), solid('#2f6a9a', { flatShading: true })); sea.position.y = 0.004; g.add(sea);
+    var skin = function (x, y, z) { return vary('#b8826a', x, y, z, 0.07); };
+    // a huge, wrinkly pink-brown body lying on the ice
+    tube(g, [[-0.26, 0.06, 0, 0.04, 0.03], [-0.16, 0.08, 0, 0.1, 0.07], [-0.02, 0.1, 0, 0.12, 0.09], [0.1, 0.11, 0, 0.1, 0.085], [0.17, 0.13, 0, 0.065, 0.065]], skin, 'body', 11, 0.15, 6);
+    ball(g, 0.21, 0.15, 0, 0.055, '#b8826a', 1, 0.95, 1.05, 1);
+    ball(g, 0.25, 0.135, 0, 0.04, '#c89478', 0.8, 0.8, 1.3); // the bristly moustache pad
+    for (var w = 0; w < 10; w++) cone(g, [0.27, 0.135 + (w % 3 - 1) * 0.01, -0.035 + w * 0.008], [0.29, 0.13 + (w % 3 - 1) * 0.01, -0.04 + w * 0.009], 0.0015, '#f2ece0', 3);
+    [-1, 1].forEach(function (s) { eye(g, 0.235, 0.18, s * 0.035, 0.005); cone(g, [0.26, 0.12, s * 0.018], [0.27, 0.02, s * 0.022], 0.008, '#f6f0dc', 5); // long ivory tusks, used to pull itself out onto the ice
+      var fl = new T.Mesh(new T.SphereGeometry(0.035, 6, 4), solid('#a8725a', { flatShading: true })); fl.scale.set(1.2, 0.2, 0.8); fl.position.set(0.08, 0.045, s * 0.1); fl.rotation.y = s * 0.4; g.add(fl);
+      var tf = new T.Mesh(new T.SphereGeometry(0.03, 6, 4), solid('#a8725a', { flatShading: true })); tf.scale.set(1.4, 0.2, 0.8); tf.position.set(-0.28, 0.045, s * 0.03); tf.rotation.y = s * 0.5; g.add(tf); });
+    return wrap(g, 0.6);
+  };
+
+  /* ---------- orca (British Columbia, Canada) ---------- */
+  M.custom.a_orca = function () {
+    var g = new T.Group();
+    var sea = new T.Mesh(new T.CylinderGeometry(0.4, 0.4, 0.01, 20), solid('#2f6a9a', { flatShading: true })); sea.position.y = 0.004; sea.scale.z = 0.7; g.add(sea);
+    var c = function (x, y, z) { if (y < 0.05 + x * 0.1) return '#f6f6f4'; if (x > 0.14 && x < 0.2 && y > 0.1 && Math.abs(z) > 0.03) return '#f6f6f4'; return '#1a1c22'; }; // black and white, with the white eye patch
+    // leaping out of the water in an arc
+    var b = new T.Group(); b.rotation.z = 0.5; b.position.set(0, 0.05, 0); g.add(b);
+    tube(b, [[-0.26, 0.05, 0, 0.02, 0.015], [-0.16, 0.07, 0, 0.06, 0.055], [0.0, 0.09, 0, 0.09, 0.085], [0.13, 0.09, 0, 0.075, 0.07], [0.22, 0.08, 0, 0.035, 0.035]], c, 'body', 11, 0.06, 4);
+    var fin = new T.Shape(); fin.moveTo(0, 0); fin.quadraticCurveTo(0.01, 0.1, -0.02, 0.15); fin.quadraticCurveTo(0.02, 0.07, 0.06, 0); fin.lineTo(0, 0);
+    var fm = new T.Mesh(new T.ExtrudeGeometry(fin, { depth: 0.01, bevelEnabled: false }), solid('#1a1c22')); fm.position.set(-0.02, 0.165, -0.005); b.add(fm); // the tall back fin
+    [-1, 1].forEach(function (s) { var pf = new T.Mesh(new T.SphereGeometry(0.035, 6, 4), solid('#1a1c22', { flatShading: true })); pf.scale.set(1.3, 0.2, 0.8); pf.position.set(0.1, 0.04, s * 0.08); pf.rotation.x = s * 0.5; b.add(pf); var fl = new T.Mesh(new T.SphereGeometry(0.03, 6, 4), solid('#1a1c22', { flatShading: true })); fl.scale.set(1.3, 0.2, 1); fl.position.set(-0.28, 0.05, s * 0.035); b.add(fl); eye(b, 0.17, 0.11, s * 0.045, 0.004); });
+    for (var k = 0; k < 10; k++) { var sp = new T.Mesh(new T.IcosahedronGeometry(0.01 + hash(k, 1) * 0.012, 0), solid('#e8f4fa', { flatShading: true })); sp.position.set(-0.15 + hash(k, 2) * 0.1, 0.02 + hash(k, 3) * 0.06, (hash(k, 4) - 0.5) * 0.12); g.add(sp); }
+    // a second orca's fin in the distance
+    var f2 = fm.clone(); f2.position.set(0.25, 0.006, -0.18); f2.scale.setScalar(0.7); g.add(f2);
+    return wrap(g, 0.4);
+  };
+
+  /* ---------- emu (Australia) ---------- */
+  M.custom.a_emu = function () {
+    var g = new T.Group();
+    blobGround(g, '#c8a060');
+    var fe = function (x, y, z, p) { return vary(hash(Math.round(x * 80), Math.round(y * 80)) > 0.5 ? '#6a5a48' : '#4a3e32', x, y, z, 0.06); };
+    // a big shaggy body on long legs (it can't fly but runs at 50 km/h)
+    tube(g, [[-0.14, 0.34, 0, 0.06, 0.05], [-0.06, 0.4, 0, 0.11, 0.1], [0.05, 0.42, 0, 0.1, 0.095], [0.11, 0.42, 0, 0.06, 0.06]], fe, 'body', 11, 0.3, 4);
+    tube(g, [[0.1, 0.44, 0, 0.03, 0.03], [0.14, 0.55, 0, 0.022, 0.022], [0.15, 0.66, 0, 0.02, 0.02]], function (x, y) { return y > 0.5 ? '#5a7a9a' : '#4a3e32'; }, 'neck', 7, 0.1); // the bare blue neck
+    ball(g, 0.16, 0.68, 0, 0.03, '#3a3632', 1.1, 0.9, 0.9, 1); cone(g, [0.18, 0.675, 0], [0.22, 0.67, 0], 0.01, '#3a3632', 5); [-1, 1].forEach(function (s) { ball(g, 0.175, 0.69, s * 0.022, 0.006, '#c8783a'); ball(g, 0.18, 0.69, s * 0.025, 0.003, '#111'); });
+    [-1, 1].forEach(function (s) { tube(g, [[0.0, 0.34, s * 0.04, 0.025, 0.025], [0.02, 0.2, s * 0.045, 0.014, 0.014], [0.0, 0.1, s * 0.045, 0.011, 0.011], [0.01, 0.005, s * 0.045, 0.01, 0.008]], '#6a6258', 'leg', 6, 0.05); [-0.4, 0, 0.4].forEach(function (a) { cone(g, [0.01, 0.004, s * 0.045], [0.01 + Math.cos(a) * 0.05, 0.003, s * 0.045 + Math.sin(a) * 0.05], 0.006, '#6a6258', 3); }); });
+    // dry spinifex grass and a big green egg — the dad sits on the eggs!
+    for (var k = 0; k < 6; k++) { var a = k / 6 * D2; ball(g, Math.cos(a) * 0.28, 0.03, Math.sin(a) * 0.22, 0.04, '#a8a860', 1, 0.6, 1); }
+    ball(g, -0.18, 0.04, 0.1, 0.035, '#2f5f4a', 0.85, 1.2, 0.85, 1);
+    return wrap(g, 0.5);
+  };
+  function blobGround(g, col) { var m = new T.Mesh(new T.CylinderGeometry(0.34, 0.36, 0.01, 12), solid(col, { flatShading: true })); m.position.y = 0.004; g.add(m); }
+
+  /* ---------- Atlantic puffin (Faroe Islands) ---------- */
+  M.custom.a_puffin = function () {
+    var g = new T.Group();
+    var cl = new T.Mesh(new T.IcosahedronGeometry(0.2, 1), solid('#6a6a62', { flatShading: true })); cl.scale.set(1.5, 0.5, 1.1); cl.position.y = 0.05; g.add(cl);
+    var grass = new T.Mesh(new T.IcosahedronGeometry(0.19, 1), solid('#5f9a45', { flatShading: true })); grass.scale.set(1.45, 0.2, 1.05); grass.position.y = 0.12; g.add(grass);
+    function puf(x, z, s, turn, fish) {
+      var b = bird({ len: 0.12 * s, r: 0.045 * s, tilt: 0.25, hr: 0.035 * s, beak: 0.001, beakR: 0.001, eye: 0.005 * s, legH: 0.03 * s, legCol: '#f28a2a', col: function (x, y, z, p) { if (p === 'head') return '#1d1c20'; if (p === 'body' && x > 0.0) return '#f6f6f4'; return '#1d1c20'; } });
+      var hc = b.userData.hc; [-1, 1].forEach(function (k) { ball(b, hc[0] + 0.005 * s, hc[1], k * 0.024 * s, 0.02 * s, '#e8e4dc', 1, 1, 0.5); eye(b, hc[0] + 0.012 * s, hc[1] + 0.008 * s, k * 0.034 * s, 0.004 * s); });
+      // the colourful triangle beak — orange, yellow and blue-grey stripes (only in the breeding season)
+      tube(b, [[hc[0] + 0.02 * s, hc[1] - 0.005 * s, 0, 0.012 * s, 0.022 * s], [hc[0] + 0.045 * s, hc[1] - 0.012 * s, 0, 0.007 * s, 0.014 * s], [hc[0] + 0.06 * s, hc[1] - 0.02 * s, 0, 0.003 * s, 0.004 * s]], function (x) { return x < hc[0] + 0.03 * s ? '#4a5a6a' : x < hc[0] + 0.04 * s ? '#f2c14e' : '#f2602a'; }, 'beak', 6, 0);
+      if (fish) for (var f = 0; f < 3; f++) { var fs = new T.Mesh(new T.SphereGeometry(0.008 * s, 5, 3), solid('#c8d0d8')); fs.scale.set(0.4, 0.4, 3); fs.position.set(hc[0] + 0.045 * s, hc[1] - 0.02 * s, (f - 1) * 0.008 * s); b.add(fs); } // a beak full of little fish
+      b.position.set(x, 0.14, z); b.rotation.y = turn; g.add(b);
+    }
+    puf(0, 0, 1.2, 0, true); puf(-0.12, -0.08, 0.9, 0.6); puf(0.12, -0.1, 0.85, -0.5);
+    return wrap(g, 0.6);
+  };
 })();

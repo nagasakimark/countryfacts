@@ -187,7 +187,7 @@ Landmark,Macao,Macau Tower,yes,macautower,Macau Tower
 Landmark,Macao,Ruins of St. Paul's,yes,stpaulmacao,Ruins of St. Paul's
 Landmark,Malaysia,"Murugan Statue, Batu Caves",no,,
 Landmark,Malaysia,Petronas Twin Towers,yes,petronas,Petronas Twin Towers
-Landmark,Malaysia,Sultan Abdul Samad Building,no,,
+Landmark,Malaysia,Sultan Abdul Samad Building,yes,abdulsamad,Sultan Abdul Samad Building
 Landmark,Maldives,Maldives Overwater Villas,yes,maldives,Maldives Water Villas
 Landmark,Mongolia,Genghis Khan Equestrian Statue,yes,genghis,Genghis Khan Equestrian Statue
 Landmark,Myanmar,Bagan,yes,bagan,Bagan
@@ -259,7 +259,7 @@ Landmark,South Korea,Sungnyemun (Namdaemun) Gate,no,,
 Landmark,South Korea,Trade Tower,no,,
 Landmark,Sri Lanka,Sigiriya (Lion Rock),yes,sigiriya,Sigiriya (Lion Rock)
 Landmark,Sri Lanka,Temple of the Sacred Tooth Relic,yes,toothtemple,Temple of the Tooth
-Landmark,Syria,Citadel of Aleppo,no,,
+Landmark,Syria,Citadel of Aleppo,yes,aleppo,Citadel of Aleppo
 Landmark,Syria,Krak des Chevaliers,yes,krak,Krak des Chevaliers
 Landmark,Syria,Umayyad Mosque,yes,umayyad,Umayyad Mosque
 Landmark,Taiwan,Chiang Kai-shek Memorial Hall,yes,ckshall,Chiang Kai-shek Memorial Hall
@@ -470,7 +470,7 @@ Landmark,Guinea,Grand Mosque of Conakry,yes,conakry,Grand Mosque of Conakry
 Landmark,Guinea-Bissau,Pidjiguiti Memorial,yes,pidjiguiti,Pidjiguiti Memorial
 Landmark,Kenya,Fort Jesus,yes,fortjesus,Fort Jesus
 Landmark,Kenya,Maasai Mara,yes,maasai,Maasai Mara
-Landmark,Kenya,Mount Kenya,no,,
+Landmark,Kenya,Mount Kenya,yes,mountkenya,Mount Kenya
 Landmark,Lesotho,Basotho Hat building,yes,basotho,Basotho Hat Building
 Landmark,Liberia,Ducor Hotel,yes,ducor,Ducor Hotel
 Landmark,Libya,Leptis Magna,yes,leptis,Leptis Magna
@@ -506,7 +506,7 @@ Landmark,South Africa,Ponte City Apartments,no,,
 Landmark,South Africa,Robben Island Prison,no,,
 Landmark,South Africa,Table Mountain,yes,table,Table Mountain
 Landmark,South Africa,The Leonardo,no,,
-Landmark,South Africa,Three Rondavels (Blyde River Canyon),no,,
+Landmark,South Africa,Three Rondavels (Blyde River Canyon),yes,rondavels,Three Rondavels (Blyde River Canyon)
 Landmark,South Africa,Union Buildings,no,,
 Landmark,South Africa,Voortrekker Monument,no,,
 Landmark,South Sudan,John Garang Mausoleum,yes,garang,John Garang Mausoleum
@@ -804,7 +804,7 @@ Landmark,New Zealand,ChristChurch Cathedral,no,,
 Landmark,New Zealand,"Half Moon Bay Marina, Auckland",no,,
 Landmark,New Zealand,Hobbiton Movie Set,no,,
 Landmark,New Zealand,Milford Sound (Mitre Peak),yes,milford,Milford Sound
-Landmark,New Zealand,Sky Tower,no,,
+Landmark,New Zealand,Sky Tower,yes,skytower,Sky Tower
 Landmark,New Zealand,"The Beehive, Wellington",no,,
 Landmark,New Zealand,Waitangi Treaty Grounds,no,,
 Landmark,New Zealand,"Weta Cave, Wellington",no,,
@@ -988,7 +988,7 @@ Animal,Mammal,Norway lemming,no,,
 Animal,Mammal,Nubian ibex,no,,
 Animal,Mammal,Numbat,no,,
 Animal,Mammal,Okapi,yes,okapi,Okapi
-Animal,Mammal,Orca,no,,
+Animal,Mammal,Orca,yes,orca,Orca
 Animal,Mammal,Pallas's cat,no,,
 Animal,Mammal,Patagonian mara,no,,
 Animal,Mammal,Philippine tarsier,no,,
@@ -1042,7 +1042,7 @@ Animal,Mammal,Tamaraw,no,,
 Animal,Mammal,Tasmanian devil,no,,
 Animal,Mammal,Vaquita,no,,
 Animal,Mammal,Vicuña,no,,
-Animal,Mammal,Walrus,no,,
+Animal,Mammal,Walrus,yes,walrus,Walrus
 Animal,Mammal,Wapiti (elk),no,,
 Animal,Mammal,Water deer,no,,
 Animal,Mammal,Weddell seal,no,,
@@ -1062,7 +1062,7 @@ Animal,Bird,African penguin,no,,
 Animal,Bird,American flamingo,no,,
 Animal,Bird,Andean cock-of-the-rock,no,,
 Animal,Bird,Andean condor,no,,
-Animal,Bird,Atlantic puffin,no,,
+Animal,Bird,Atlantic puffin,yes,puffin,Atlantic puffin
 Animal,Bird,Australasian gannet,no,,
 Animal,Bird,Bald eagle,yes,eagle,Bald eagle
 Animal,Bird,Bee hummingbird,no,,
@@ -1072,7 +1072,7 @@ Animal,Bird,Chinstrap penguin,no,,
 Animal,Bird,Common kingfisher,no,,
 Animal,Bird,Common ostrich,no,,
 Animal,Bird,Emperor penguin,yes,penguin,Emperor penguin
-Animal,Bird,Emu,no,,
+Animal,Bird,Emu,yes,emu,Emu
 Animal,Bird,Eurasian eagle-owl,no,,
 Animal,Bird,Eurasian hoopoe,no,,
 Animal,Bird,Eurasian magpie,no,,

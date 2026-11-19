@@ -711,7 +711,23 @@ TOY.landmarks = [
 {id:'nuuk',c:'GRL',ll:[-51.7216,64.1814],m:'nuuk',ja:'ヌーク',en:'Nuuk',k:'ぬーく ぐりーんらんど',
   t:'グリーンランドの 首都。 赤や 青、 黄色の 木の 家が 岩の 上に ならぶ。 海には 氷山が うかぶ。',te:'The capital of Greenland. Red, blue and yellow wooden houses sit on bare rocks, and icebergs float in the sea.'},
 {id:'tongapalace',c:'TON',ll:[-175.2043,-21.1333],m:'tongapalace',ja:'トンガ王宮',en:'Royal Palace of Tonga',k:'とんがおうきゅう とんが ぬくあろふぁ',
-  t:'トンガの ヌクアロファの 海べに ある、 白い 木の 王宮。 1867年に ニュージーランドの 木で たてられた。',te:'A white wooden royal palace on the waterfront in Nukuʻalofa, Tonga, built in 1867 from New Zealand timber.'}
+  t:'トンガの ヌクアロファの 海べに ある、 白い 木の 王宮。 1867年に ニュージーランドの 木で たてられた。',te:'A white wooden royal palace on the waterfront in Nukuʻalofa, Tonga, built in 1867 from New Zealand timber.'},
+{id:'mountkenya',c:'KEN',ll:[37.3086,-0.1521],m:'mountkenya',ja:'ケニア山',en:'Mount Kenya',k:'けにあさん けにあ',
+  t:'アフリカで 2番めに 高い 山（5199m）。 赤道の すぐ近くなのに、 てっぺんには 雪と 氷河が ある。 ケニアの 国の 名前は この 山から。',te:'Africa\'s second-highest mountain (5,199 m). It has snow and glaciers even though it is near the equator, and the country of Kenya is named after it.'},
+{id:'aleppo',c:'SYR',ll:[37.1625,36.1993],m:'aleppo',ja:'アレッポ{城|じょう}',en:'Citadel of Aleppo',k:'あれっぽじょう しりあ',
+  t:'シリアの アレッポの まん中の おかに 立つ、 世界で いちばん 古くて 大きい お{城|しろ}の 1つ。 まわりは ほりと 石の 坂で 守られて いる。',te:'One of the oldest and largest castles in the world, on a hill in the middle of Aleppo, Syria. A moat and a steep stone slope protect it.'},
+{id:'skytower',c:'NZL',ll:[174.7622,-36.8485],m:'skytower',ja:'スカイタワー',en:'Sky Tower',k:'すかいたわー にゅーじーらんど おーくらんど',
+  t:'ニュージーランドの オークランドに ある 328mの {塔|とう}。 192mの 高さから、 ワイヤーに つながれて とびおりる ことが できる。',te:'A 328 m tower in Auckland, New Zealand. You can jump off it from 192 m up, held by a wire.'},
+{id:'abdulsamad',c:'MYS',ll:[101.6942,3.1488],m:'abdulsamad',ja:'スルタン・アブドゥル・サマド・ビル',en:'Sultan Abdul Samad Building',k:'するたんあぶどぅるさまど まれーしあ くあらるんぷーる',
+  t:'マレーシアの クアラルンプールに ある、 1897年に できた レンガの たてもの。 銅の 丸い 屋根と、 41mの 時計台が ある。 前の 広場で 1957年に 国の 独立を いわった。',te:'A brick building from 1897 in Kuala Lumpur, Malaysia, with copper domes and a 41 m clock tower. In 1957 the country\'s independence was celebrated on the square in front.'},
+{id:'rijksmuseum',c:'NLD',ll:[4.8852,52.3600],m:'rijksmuseum',ja:'アムステルダム国立美術館',en:'Rijksmuseum',k:'あむすてるだむ こくりつびじゅつかん らいくすみゅーじあむ おらんだ',
+  t:'オランダの アムステルダムに ある 美術館。 レンブラントの 名画が ある。 たてものの 下の トンネルを 自転車が 通りぬける。',te:'The national art museum in Amsterdam, Netherlands, with famous paintings by Rembrandt. Bicycles ride through a passage under the building.'},
+{id:'rondavels',c:'ZAF',ll:[30.8158,-24.5806],m:'rondavels',ja:'スリー・ロンダベル',en:'Three Rondavels (Blyde River Canyon)',k:'すりーろんだべる みなみあふりか ぶらいでりばーきゃにおん',
+  t:'南アフリカの ブライデ・リバー・キャニオンに ある 3つの 岩山。 この 地方の 丸い 家「ロンダベル」に にている。',te:'Three rock peaks above the Blyde River Canyon in South Africa, shaped like "rondavels", the round huts of the region.'},
+{id:'chapelbridge',c:'CHE',ll:[8.3075,47.0517],m:'chapelbridge',ja:'カペル橋',en:'Chapel Bridge (Lucerne)',k:'かぺるばし すいす るつぇるん',
+  t:'スイスの ルツェルンに ある、 屋根の ついた 木の 橋。 1365年ごろ できた、 ヨーロッパで いちばん 古い 屋根つきの 木の 橋の 1つ。 赤い 花で かざられて いる。',te:'A covered wooden bridge in Lucerne, Switzerland, built around 1365 — one of the oldest of its kind in Europe. It is decorated with red flowers.'},
+{id:'grandplace',c:'BEL',ll:[4.3524,50.8467],m:'grandplace',ja:'グラン・プラス',en:'Grand-Place (Brussels)',k:'ぐらんぷらす べるぎー ぶりゅっせる',
+  t:'ベルギーの ブリュッセルの 広場。 金の かざりの ある たてものに かこまれて いる。 2年に 1回、 広場に 花の じゅうたんが しかれる。',te:'The main square of Brussels, Belgium, surrounded by buildings decorated in gold. Every two years it is covered with a carpet of flowers.'}
 ];
 
 TOY.animals = [
@@ -769,7 +785,11 @@ TOY.animals = [
  {id:'narwhal',e:'🐋',ll:[-60.0,72.0],ja:'イッカク',en:'Narwhal',t:'グリーンランドの 冷たい 海に すむ クジラ。 長い きばは、 じつは 歯が のびた もの。 3mに なる ことも ある。',te:'A whale of Greenland\'s icy seas. Its long tusk is really a tooth that keeps growing — up to about 3 m.'},
  {id:'anteater',e:'🦡',ll:[-64.0,-14.5],ja:'オオアリクイ',en:'Giant anteater',t:'ボリビアの 草原に すむ。 歯が なく、 長い {舌|した}で 1日に 3万びきも アリや シロアリを 食べる。',te:'It lives on the grasslands of Bolivia. It has no teeth, and its long tongue slurps up about 30,000 ants and termites a day.'},
  {id:'shoebill',e:'🐦',ll:[32.5,1.5],ja:'ハシビロコウ',en:'Shoebill',t:'ウガンダの ぬまに すむ 大きな 鳥。 魚を ねらって、 何時間も じっと 動かない。',te:'A big bird of Uganda\'s swamps. It stands perfectly still for hours, waiting to catch a fish.'},
- {id:'arcticfox',e:'🦊',ll:[-21.0,65.5],ja:'ホッキョクギツネ',en:'Arctic fox',t:'アイスランドに もとから いた ただ1つの 陸の ほにゅうるい。 冬は 白く、 夏は 茶色の 毛に かわる。',te:'The only land mammal native to Iceland. Its fur is white in winter and turns brown in summer.'}
+ {id:'arcticfox',e:'🦊',ll:[-21.0,65.5],ja:'ホッキョクギツネ',en:'Arctic fox',t:'アイスランドに もとから いた ただ1つの 陸の ほにゅうるい。 冬は 白く、 夏は 茶色の 毛に かわる。',te:'The only land mammal native to Iceland. Its fur is white in winter and turns brown in summer.'},
+ {id:'walrus',e:'🦭',ll:[16.0,78.5],ja:'セイウチ',en:'Walrus',t:'ノルウェーの スバールバル{諸島|しょとう}の 氷の 上で くらす。 長い きばを 氷に さして、 体を 引き上げる。',te:'It lives on the ice around Svalbard, Norway. It digs its long tusks into the ice to haul itself out of the water.'},
+ {id:'orca',e:'🐋',ll:[-127.5,50.5],ja:'シャチ',en:'Orca',t:'カナダの 西の 海に すむ。 家族で むれを つくり、 むれごとに ちがう 「ことば」で 話す。',te:'It lives in the seas off western Canada. Orcas live in family groups, and each group has its own "dialect" of calls.'},
+ {id:'emu',e:'🐦',ll:[121.0,-28.0],ja:'エミュー',en:'Emu',t:'オーストラリアに すむ、 飛べない 大きな 鳥。 時速 50kmで 走る。 たまごを あたためるのは お父さん。',te:'A big Australian bird that cannot fly but can run at 50 km/h. The dad keeps the eggs warm.'},
+ {id:'puffin',e:'🐧',ll:[-6.9,62.1],ja:'ニシツノメドリ',en:'Atlantic puffin',t:'フェロー{諸島|しょとう}の がけに すむ 鳥。 カラフルな くちばしに、 小さな 魚を 一度に 10ぴきいじょう くわえられる。',te:'A seabird of the cliffs of the Faroe Islands. It can hold more than 10 small fish at once in its colourful beak.'}
 ];
 
 /* Vehicles travel there and back forever. p = route points [lon,lat] (great-circle between points).
