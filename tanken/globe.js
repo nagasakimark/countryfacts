@@ -118,11 +118,18 @@
     return [lon, dec / D];
   }
   function updSun() { var s = sunLL(Date.now()); G.sun = s; ll2v(s[0], s[1], 1, NIGHT.uSun.value); }
-  updSun(); setInterval(updSun, 30000);
+  updSun(); setInterval(function () { if (!G.fixedSun) updSun(); }, 30000); G._night = NIGHT;
   /* ---------- the world: raised land, ocean, borders, roads, scenery ---------- */
   var WORLD = G.world = makeWorld({ scene: scene, ll2v: ll2v, feat: feat, FILL: FILL, nightify: nightify, routes: ROUTES });
   globe.material.color.set(0x1a5aa6); WORLD.oceanTexture(function (t) { globe.material.map = t; globe.material.color.set(0xffffff); globe.material.needsUpdate = true; lastSig = ''; });
   WORLD.onReady = function () { lastSig = ''; };
+  WORLD.pads = ((window.TOY && TOY.landmarks) || []).map(function (l) { return l.ll; });
+  // while riding, the sea round the vehicle turns see-through so the sea floor shows
+  globe.material.userData.preKey = 'sea'; globe.material.userData.pre = function (sh) {
+    sh.uniforms.uRideC = WORLD.uniforms.uRideC; sh.uniforms.uRideA = WORLD.uniforms.uRideA;
+    sh.fragmentShader = 'uniform vec3 uRideC; uniform float uRideA;\n' + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n  if (uRideA > 0.0) { float an = acos(clamp(dot(normalize(vWP), uRideC), -1.0, 1.0)); float dy = smoothstep(-0.08, 0.12, dot(normalize(vWP), uSun)); gl_FragColor.a = mix(mix(0.93, 0.62, dy), 1.0, smoothstep(uRideA * 0.55, uRideA, an)); }');
+  };
+  function seeThrough(on) { if (globe.material.transparent !== on) { globe.material.transparent = on; globe.material.needsUpdate = true; } }
   var FIDX = {}; feat.forEach(function (f, i) { FIDX[f.properties.id] = i; });
 
   (function lights() {
@@ -188,7 +195,7 @@
     var look = f.clone().applyQuaternion(q);
     if (RC.fp) { camPos.copy(o.pos).addScaledVector(n, rs * 0.32).addScaledVector(f, rs * 0.5); tgt.copy(camPos).addScaledVector(look, 1).addScaledVector(n, -Math.sin(RC.pitch - 0.3) * 0.6); }
     else { var back = look.clone().negate(); camPos.copy(o.pos).addScaledVector(back, Math.cos(RC.pitch) * RC.dist * rs).addScaledVector(n, Math.sin(RC.pitch) * RC.dist * rs + rs * 0.3); tgt.copy(o.pos).addScaledVector(n, rs * 0.35); }
-    var gl = v2ll(camPos), gh = 1 + WORLD.groundH(gl[0], gl[1]) + rs * 0.15; if (camPos.length() < gh) camPos.setLength(gh);
+    var gl = v2ll(camPos), gh = 1 + Math.max(0, WORLD.groundH(gl[0], gl[1])) + rs * 0.15; if (camPos.length() < gh) camPos.setLength(gh);
     camera.position.copy(camPos); camera.up.copy(n); camera.lookAt(tgt);
     camera.near = rs * 0.05; camera.far = 3; camera.clearViewOffset(); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
     V.lon = gl[0]; V.lat = gl[1]; V.alt = Math.max(0.004, camPos.length() - 1);
@@ -237,15 +244,26 @@
       rideLine = new T.Line(new T.BufferGeometry().setFromPoints(pts), new T.LineDashedMaterial({ color: 0xffffff, dashSize: 0.002, gapSize: 0.002, transparent: true, opacity: 0.7 }));
       rideLine.computeLineDistances(); scene.add(rideLine);
     }
+    WORLD.setRide(true); seeThrough(true); rideFirst = true; r.prof = null;
+    if (r.type === 'plane') { // keep planes well above the (taller) ride-along mountains
+      var g0 = []; for (var pi = 0; pi <= 200; pi++) { var qq = along(r, r.len * pi / 200); g0.push(Math.max(0, WORLD.groundH(qq[0], qq[1]))); }
+      r.prof = g0.map(function (x, i) { var m = 0; for (var k = Math.max(0, i - 5); k <= Math.min(200, i + 5); k++) m = Math.max(m, g0[k]); return m; });
+      if (rideLine) { var lp = rideLine.geometry.attributes.position; for (var li = 0; li <= 160; li++) { var dd = r.len * li / 160, q2 = along(r, dd), pv = ll2v(q2[0], q2[1], 1 + planeH(r, dd)); lp.setXYZ(li, pv.x, pv.y, pv.z); } lp.needsUpdate = true; rideLine.computeLineDistances(); }
+    }
     WORLD.scatter(0, 0, 9); lastSig = '';
   };
+  var rideFirst = false;
   G.unride = function () {
     if (riding && riding.ll) { V.lon = riding.ll[0]; V.lat = riding.ll[1]; V.alt = 0.35; clampV(); }
-    riding = null; rideCam = false; if (rideLine) { scene.remove(rideLine); rideLine = null; } WORLD.scatter(0, 0, 9); lastSig = '';
+    if (riding) riding.r.prof = null; riding = null; rideCam = false; WORLD.setRide(false); seeThrough(false); if (rideLine) { scene.remove(rideLine); rideLine = null; } WORLD.scatter(0, 0, 9); lastSig = '';
   };
   G.firstPerson = function (on) { RC.fp = on == null ? !RC.fp : on; RC.yaw = 0; RC.pitch = RC.fp ? 0.3 : 0.3; return RC.fp; };
   G.riding = function () { return riding && riding.r; };
-  function planeH(r, d) { var f = d / r.len, e = Math.min(1, Math.min(f, 1 - f) * r.len / 0.03); e = e * e * (3 - 2 * e); return 0.0025 + e * (0.004 + Math.min(0.004, r.len * 0.002)); }
+  function planeH(r, d) {
+    var f = d / r.len, e = Math.min(1, Math.min(f, 1 - f) * r.len / 0.03); e = e * e * (3 - 2 * e); var h = 0.0025 + e * (0.004 + Math.min(0.004, r.len * 0.002));
+    if (r.prof) { var x = Math.max(0, Math.min(200, f * 200)), i = Math.min(199, Math.floor(x)), g = r.prof[i] + (r.prof[i + 1] - r.prof[i]) * (x - i); h += g - 0.0019 + e * 0.0012; }
+    return h;
+  }
 
   /* ---------- per-frame object placement ---------- */
   function scaleNow() { return Math.max(0.0115, Math.min(0.11, 0.008 + 0.031 * V.alt)); }
@@ -268,9 +286,18 @@
       if (r.x > W + 60 || r.x + r.w < -60 || r.y > H + 60 || r.y + r.h < -80) { m.visible = false; return; }
       var hit = false; for (var i = 0; i < placed.length; i++) { var p = placed[i]; if (r.x < p.x + p.w * 0.8 && r.x + r.w * 0.8 > p.x && r.y < p.y + p.h * 0.8 && r.y + r.h * 0.8 > p.y) { hit = true; break; } }
       if (hit) { m.visible = false; return; }
+      var rad = o.r;
+      if (rideCam) {
+        if (o.rv !== WORLD.rideState.ver) { o.rv = WORLD.rideState.ver; o.rr = 1 + WORLD.groundH(o.d.ll[0], o.d.ll[1]); } rad = o.rr;
+        // hide a landmark the camera is inside, or one standing between the camera and the vehicle
+        gp.copy(o.n).multiplyScalar(rad).addScaledVector(o.n, ss * 0.5);
+        if (gp.distanceTo(camPos) < ss * 0.9) { m.visible = false; return; }
+        if (riding && riding.pos && gp.distanceTo(riding.pos) < ss * 0.75) { m.visible = false; return; }
+        if (riding && riding.pos) { var seg = tmp.copy(riding.pos).sub(camPos), tt = Math.max(0, Math.min(1, tmp2.copy(gp).sub(camPos).dot(seg) / seg.lengthSq())); if (tmp2.copy(camPos).addScaledVector(seg, tt).distanceTo(gp) < ss * 0.45 && tt < 0.97) { m.visible = false; return; } }
+      }
       placed.push(r); lmRects.push({ r: r, id: (o.an ? 'a:' : '') + o.d.id });
       m.visible = true;
-      fw2.copy(camUp).negate().addScaledVector(up2, camUp.dot(up2)); if (fw2.lengthSq() < 1e-6) fw2.copy(o.t).negate(); fw2.normalize(); x2.copy(up2).cross(fw2); mat.makeBasis(x2, up2, fw2); m.matrix.copy(mat).scale(tmp2.set(ss, ss, ss)).setPosition(gp.copy(o.n).multiplyScalar(o.r));
+      fw2.copy(camUp).negate().addScaledVector(up2, camUp.dot(up2)); if (fw2.lengthSq() < 1e-6) fw2.copy(o.t).negate(); fw2.normalize(); x2.copy(up2).cross(fw2); mat.makeBasis(x2, up2, fw2); m.matrix.copy(mat).scale(tmp2.set(ss, ss, ss)).setPosition(gp.copy(o.n).multiplyScalar(rad));
       m.matrixWorldNeedsUpdate = true;
     });
   }
@@ -520,6 +547,7 @@
     // natural ground, trees, towns and clouds only while riding along; the normal globe keeps country colours
     WORLD.uniforms.uNear.value = riding && rideCam ? 1 : 0;
     sceneryDirty = (riding && rideCam ? WORLD.scatter(riding.ll ? riding.ll[0] : V.lon, riding.ll ? riding.ll[1] : V.lat, 0.3, { R: riding.r.type === 'plane' ? 2.6 : 1.5, size: RC.size * (riding.r.type === 'plane' ? 0.2 : 0.3), cloud: RC.size, avoid: riding.r.type === 'plane' ? null : riding.r.dense || (riding.r.dense = densify(riding.r.pts)) }) : WORLD.scatter(0, 0, 9)) || sceneryDirty;
+    if (riding && rideCam && riding.ll) { if (WORLD.rideUpdate(riding.ll[0], riding.ll[1], rideFirst ? 120 : 5)) sceneryDirty = true; rideFirst = false; }
     sky(); if (G._lights) G._lights.visible = !(riding && rideCam);
     var a = performance.now();
     var sig = V.lon.toFixed(4) + V.lat.toFixed(4) + V.alt.toFixed(5) + Math.round(off) + G.lang + G.quiz + G.ver + (G.sel || '') + G.pins.map(function (q) { return q.ll[0].toFixed(2) + q.col; }).join() + (riding ? 1 : 0) + G.stampN();

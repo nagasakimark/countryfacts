@@ -3,7 +3,7 @@
    Everything is built once or rebuilt rarely; scenery uses instancing (one draw call per kind). */
 window.makeWorld = function (env) {
   var T = THREE, K = MODELS.kit, noise = K.noise, hash = K.hash, D2R = Math.PI / 180, scene = env.scene, ll2v = env.ll2v, feat = env.feat;
-  var W = {};
+  var W = {}, RIDE = W.rideState = { on: false, ver: 0 };
 
   /* ---------- height of the land ---------- */
   var RANGES = [ // [polyline lon/lat, height, width in degrees]
@@ -65,7 +65,8 @@ window.makeWorld = function (env) {
     return (HG[j * GW + i0] * (1 - fx) + HG[j * GW + i1] * fx) * (1 - fy) + (HG[(j + 1) * GW + i0] * (1 - fx) + HG[(j + 1) * GW + i1] * fx) * fy;
   }
   function bFast(lon, lat) { var i = ((Math.round((lon + 180) * 2) % GW) + GW) % GW, j = Math.max(0, Math.min(GH - 1, Math.round((90 - lat) * 2))); return BG[j * GW + i]; }
-  W.groundH = function (lon, lat) { return isLand(lon, lat) ? hFast(lon, lat) : 0; };
+  function baseG(lon, lat) { return isLand(lon, lat) ? hFast(lon, lat) : 0; }
+  W.groundH = function (lon, lat) { return RIDE.on ? rideH(lon, lat) : baseG(lon, lat); };
 
   /* ---------- biomes ---------- */
   var B = { snow: 0, tundra: 1, desert: 2, savanna: 3, rain: 4, forest: 5, taiga: 6, grass: 7 };
@@ -154,18 +155,18 @@ window.makeWorld = function (env) {
   lg.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); lg.setAttribute('color', new T.Float32BufferAttribute(col, 3));
   lg.setAttribute('bcol', new T.Float32BufferAttribute(bcol, 3)); lg.setAttribute('cid', new T.Float32BufferAttribute(cid, 1));
   lg.setIndex(idx); lg.computeVertexNormals(); lg.computeBoundingSphere();
-  var U = W.uniforms = { uNear: { value: 0 }, uSel: { value: -9 }, uRelief: { value: null }, uSat: { value: null }, uShade: { value: 0 } };
+  var U = W.uniforms = { uRideC: { value: new T.Vector3(1, 0, 0) }, uRideA: { value: 0 }, uNear: { value: 0 }, uSel: { value: -9 }, uRelief: { value: null }, uSat: { value: null }, uShade: { value: 0 } };
   var tl = new T.TextureLoader();
-  tl.load('data/relief.png', function (t) { t.wrapS = T.RepeatWrapping; t.minFilter = T.LinearFilter; t.generateMipmaps = false; U.uRelief.value = t; U.uShade.value = 1; if (W.onReady) W.onReady(); });
-  tl.load('data/earth.jpg', function (t) { t.colorSpace = T.SRGBColorSpace; t.wrapS = T.RepeatWrapping; U.uSat.value = t; if (W.onReady) W.onReady(); });
+  tl.load('data/relief.png', function (t) { t.wrapS = T.RepeatWrapping; t.minFilter = T.LinearFilter; t.generateMipmaps = false; U.uRelief.value = t; W._relImg = t.image; U.uShade.value = 1; if (W.onReady) W.onReady(); });
+  tl.load('data/earth.jpg', function (t) { t.colorSpace = T.SRGBColorSpace; t.wrapS = T.RepeatWrapping; U.uSat.value = t; tileMat.map = t; tileMat.needsUpdate = true; if (W.onReady) W.onReady(); });
   var landMat = new T.MeshLambertMaterial({ vertexColors: true });
   landMat.userData.preKey = 'land'; landMat.userData.pre = function (sh) {
     for (var k in U) sh.uniforms[k] = U[k];
     sh.vertexShader = 'attribute vec3 bcol; attribute float cid; uniform float uNear; uniform float uSel; varying vec3 vLN; varying float vTop;\n' + sh.vertexShader.replace('#include <color_vertex>',
       '#include <color_vertex>\n  vLN = normalize(position); vTop = cid < -0.5 ? 0.0 : 1.0;\n  vColor.rgb = mix(vColor.rgb, bcol, uNear);\n  if (abs(cid - uSel) < 0.5) vColor.rgb = mix(vColor.rgb, vec3(1.0, 0.93, 0.78), 0.55);');
-    sh.fragmentShader = 'uniform sampler2D uRelief; uniform sampler2D uSat; uniform float uNear; uniform float uShade; varying vec3 vLN; varying float vTop;\n' +
+    sh.fragmentShader = 'uniform sampler2D uRelief; uniform sampler2D uSat; uniform float uNear; uniform float uShade; uniform vec3 uRideC; uniform float uRideA; varying vec3 vLN; varying float vTop;\n' +
       'vec2 llUV(vec3 n){ return vec2(atan(-n.z, n.x) * 0.15915494 + 0.5, asin(clamp(n.y, -1.0, 1.0)) * 0.31830989 + 0.5); }\n' +
-      sh.fragmentShader.replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\n' +
+      sh.fragmentShader.replace('#include <clipping_planes_fragment>', '#include <clipping_planes_fragment>\n  if (uRideA > 0.0 && acos(clamp(dot(normalize(vLN), uRideC), -1.0, 1.0)) < uRideA) discard;').replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\n' +
       '  if (vTop > 0.5 && uShade > 0.5) {\n' +
       '    vec3 n = normalize(vLN); vec2 uv = llUV(n); float cl = max(0.2, sqrt(1.0 - n.y * n.y));\n' +
       '    float h0 = texture2D(uRelief, uv).r, hE = texture2D(uRelief, uv + vec2(1.0 / 2048.0, 0.0)).r, hN = texture2D(uRelief, uv + vec2(0.0, 1.0 / 1024.0)).r;\n' +
@@ -215,6 +216,10 @@ window.makeWorld = function (env) {
     env.routes.forEach(function (r) {
       if (r.type === 'plane') return;
       if (r.type === 'ship') { r.pts.forEach(function (p, i) { if (i) { var a = r.pts[i - 1]; ll2v(a[0], a[1], 1.0006, v); lanes.push(v.x, v.y, v.z); ll2v(p[0], p[1], 1.0006, v); lanes.push(v.x, v.y, v.z); } }); return; }
+      ribbon(r);
+    });
+    W.rebuildRibbons = function () { env.routes.forEach(function (r) { if (r._rib) { scene.remove(r._rib); r._rib.geometry.dispose(); r._rib = null; ribbon(r); } }); };
+    function ribbon(r) {
       var pts = [], P = [], Uv = [], ix = [], dist = 0, wd = r.type === 'car' ? 0.0011 : 0.0009;
       for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.12)); for (var k = 0; k < n; k++) pts.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]); }
       pts.push(r.pts[r.pts.length - 1]);
@@ -227,11 +232,123 @@ window.makeWorld = function (env) {
         if (i) { var b0 = (i - 1) * 2; ix.push(b0, b0 + 1, b0 + 2, b0 + 1, b0 + 3, b0 + 2); }
       });
       var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(P, 3)); g.setAttribute('uv', new T.Float32BufferAttribute(Uv, 2)); g.setIndex(ix); g.computeVertexNormals();
-      var m = new T.Mesh(g, r.type === 'car' ? roadM : railM); m.material.side = T.DoubleSide; scene.add(m);
-    });
+      var m = new T.Mesh(g, r.type === 'car' ? roadM : railM); m.material.side = T.DoubleSide; scene.add(m); r._rib = m;
+    }
     var lg2 = new T.BufferGeometry(); lg2.setAttribute('position', new T.Float32BufferAttribute(lanes, 3));
     var lm = new T.LineDashedMaterial({ color: 0xcfefff, dashSize: 0.006, gapSize: 0.006, transparent: true, opacity: 0.6 }), ls = new T.LineSegments(lg2, lm); ls.computeLineDistances(); scene.add(ls);
   })();
+
+  /* ---------- ride-along terrain: real relief in 4° tiles round the vehicle, built nearest first ----------
+     Heights come from NASA/GEBCO elevation and sea depth (relief exaggerated more than on the globe),
+     flattened into level beds under railways and roads and flat pads under landmarks. The globe's own land
+     is cut away inside the covered circle and the sea there turns see-through so the sea floor shows. */
+  var REL = null, DEP = null, ANCH = null, EXR = EXAG * 2.5;
+  W.pads = [];
+  function grab(img, w, h) { var c = document.createElement('canvas'); c.width = w; c.height = h; var x = c.getContext('2d'); x.drawImage(img, 0, 0, w, h); var d = x.getImageData(0, 0, w, h).data, a = new Uint8Array(w * h); for (var i = 0; i < a.length; i++) a[i] = d[i * 4]; return a; }
+  var depImg = new Image(); depImg.onload = function () { DEP = grab(depImg, 1024, 512); ANCH = null; RIDE.ver++; }; depImg.src = 'data/depth.jpg';
+  function samp(a, w, h, lon, lat) {
+    var x = (lon + 180) / 360 * w - 0.5, y = Math.max(0, Math.min(h - 1.001, (90 - lat) / 180 * h - 0.5)), i = Math.floor(x), j = Math.floor(y), fx = x - i, fy = y - j, i0 = ((i % w) + w) % w, i1 = (i0 + 1) % w;
+    return (a[j * w + i0] * (1 - fx) + a[j * w + i1] * fx) * (1 - fy) + (a[(j + 1) * w + i0] * (1 - fx) + a[(j + 1) * w + i1] * fx) * fy;
+  }
+  function landF(lon, lat) { // 0 sea … 1 land, smooth across the 0.25° mask
+    var x = (lon + 180) * 4 - 0.5, y = Math.max(0, Math.min(MH - 1.001, (90 - lat) * 4 - 0.5)), i = Math.floor(x), j = Math.floor(y), fx = x - i, fy = y - j, i0 = ((i % MW) + MW) % MW, i1 = (i0 + 1) % MW;
+    var f = (mask[j * MW + i0] * (1 - fx) + mask[j * MW + i1] * fx) * (1 - fy) + (mask[(j + 1) * MW + i0] * (1 - fx) + mask[(j + 1) * MW + i1] * fx) * fy;
+    return f * f * (3 - 2 * f);
+  }
+  function rawH(lon, lat) {
+    var e = REL ? samp(REL, 2048, 1024, lon, lat) / 255 * 6400 : (ELEV ? elevM(lon, lat) : 0);
+    var land = 0.0005 + e * EXR + 0.00015 * noise(lon * 4, lat * 4);
+    var d = DEP ? (255 - samp(DEP, 1024, 512, lon, lat)) / 255 * 8000 : 300;
+    var sea = -0.0007 - d * EXAG * 0.45, f = landF(lon, lat);
+    return sea + (land - sea) * f;
+  }
+  function ensure() {
+    if (!REL && W._relImg) { REL = grab(W._relImg, 2048, 1024); ANCH = null; RIDE.ver++; }
+    if (ANCH) return; ANCH = {};
+    function add(lon, lat, h, r0, r1, pad) { var k = Math.floor(lon) + ',' + Math.floor(lat); (ANCH[k] || (ANCH[k] = [])).push([lon, lat, h, r0, r1, pad || 0]); }
+    env.routes.forEach(function (r) { // keep sea lanes in water all the way into port
+      if (r.type !== 'ship') return;
+      for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.05)); for (var k = 0; k <= n; k++) { var x = a[0] + (b[0] - a[0]) * k / n, y = a[1] + (b[1] - a[1]) * k / n; if (landF(x, y) > 0.05) add(x, y, -0.0012, 0.05, 0.16); } }
+    });
+    env.routes.forEach(function (r) { // level beds for railways and roads
+      if (r.type === 'plane' || r.type === 'ship') return;
+      var pts = [];
+      for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.08)); for (var k = 0; k < n; k++) pts.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]); }
+      pts.push(r.pts[r.pts.length - 1]);
+      var hs = pts.map(function (p) { return rawH(p[0], p[1]); });
+      pts.forEach(function (p, i) { var s = 0, c = 0; for (var k = Math.max(0, i - 6); k <= Math.min(pts.length - 1, i + 6); k++) { s += hs[k]; c++; } add(p[0], p[1], Math.max(0.0006, s / c), 0.03, 0.3); });
+    });
+    W.pads.forEach(function (p) { // flat ground under landmarks
+      var s = 0, c = 0; for (var a = -1; a <= 1; a++) for (var b = -1; b <= 1; b++) { var x = p[0] + a * 0.25 / Math.max(0.2, Math.cos(p[1] * D2R)), y = p[1] + b * 0.25; if (landF(x, y) > 0.5) { s += rawH(x, y); c++; } }
+      add(p[0], p[1], Math.max(0.0008, c ? s / c : H0), 0.42, 0.95, 1);
+    });
+  }
+  function rideH(lon, lat) {
+    ensure();
+    var h = rawH(lon, lat), best = 0, bh = 0, kc = Math.cos(lat * D2R), fl = Math.floor(lon), ft = Math.floor(lat);
+    for (var di = -1; di <= 1; di++) for (var dj = -1; dj <= 1; dj++) {
+      var L = ANCH[(fl + di) + ',' + (ft + dj)]; if (!L) continue;
+      for (var q = 0; q < L.length; q++) {
+        var a = L[q], dx = (a[0] - lon) * kc, dy = a[1] - lat; if (Math.abs(dx) > a[4] || Math.abs(dy) > a[4]) continue;
+        var d = Math.sqrt(dx * dx + dy * dy); if (d >= a[4]) continue;
+        var w = d <= a[3] ? 1 : 1 - (d - a[3]) / (a[4] - a[3]); w = w * w * (3 - 2 * w); if (a[5]) w *= landF(lon, lat); if (w > best) { best = w; bh = a[2]; if (w === 1) break; }
+      }
+    }
+    return best ? h + (bh - h) * best : h;
+  }
+  W.rideH = rideH;
+  var TS = 4, TN = 32, RW = 7.5, tiles = {}, tileMat = new T.MeshLambertMaterial({ color: 0xffffff });
+  tileMat.color.setScalar(1.3); env.nightify(tileMat, true);
+  tileMat.userData.preKey = 'tile'; tileMat.userData.pre = function (sh) { // sea floor: sandy in the shallows, blue-green in the deep
+    sh.vertexShader = 'attribute vec2 aSea; varying vec2 vSea;\n' + sh.vertexShader.replace('#include <color_vertex>', '#include <color_vertex>\n  vSea = aSea;');
+    sh.fragmentShader = 'varying vec2 vSea;\n' + sh.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\n  diffuseColor.rgb = mix(diffuseColor.rgb, mix(vec3(0.72, 0.68, 0.48), vec3(0.08, 0.32, 0.42), vSea.y), vSea.x);');
+  };
+  function buildTile(i, j) {
+    var lon0 = i * TS, lat0 = j * TS, n = TN + 1, P = new Float32Array(n * n * 3), UV = new Float32Array(n * n * 2), SE = new Float32Array(n * n * 2), ix = [];
+    for (var b = 0; b < n; b++) for (var a = 0; a < n; a++) {
+      var lon = lon0 + a * TS / TN, lat = Math.max(-89.9, Math.min(89.9, lat0 + b * TS / TN)), k = b * n + a;
+      var hh = rideH(lon, lat); SE[k * 2] = Math.max(0, Math.min(1, (0.0002 - hh) / 0.0006)); SE[k * 2 + 1] = Math.max(0, Math.min(1, -hh / 0.004)); ll2v(lon, lat, 1 + hh, v); P[k * 3] = v.x; P[k * 3 + 1] = v.y; P[k * 3 + 2] = v.z; UV[k * 2] = (lon + 180) / 360; UV[k * 2 + 1] = (lat + 90) / 180;
+    }
+    for (var bb = 0; bb < TN; bb++) for (var aa = 0; aa < TN; aa++) { var k0 = bb * n + aa; ix.push(k0, k0 + 1, k0 + n, k0 + 1, k0 + n + 1, k0 + n); }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(P, 3)); g.setAttribute('uv', new T.BufferAttribute(UV, 2)); g.setAttribute('aSea', new T.BufferAttribute(SE, 2)); g.setIndex(ix); g.computeVertexNormals(); g.computeBoundingSphere();
+    var m = new T.Mesh(g, tileMat); scene.add(m); return m;
+  }
+  function tileDist(i, j, lon, lat) { // degrees from the point to the nearest edge of the tile
+    var x0 = i * TS, y0 = j * TS, dl = ((lon - x0 + 540) % 360) - 180, dx = dl < 0 ? -dl : (dl > TS ? dl - TS : 0), dy = lat < y0 ? y0 - lat : (lat > y0 + TS ? lat - y0 - TS : 0);
+    var cl = Math.cos(Math.min(89, Math.min(Math.abs(lat), Math.abs(lat) + dy)) * D2R); return Math.hypot(dx * Math.max(0.05, cl), dy);
+  }
+  W.setRide = function (on) {
+    RIDE.on = on; RIDE.ver++;
+    if (!on) { for (var k in tiles) { scene.remove(tiles[k]); tiles[k].geometry.dispose(); } tiles = {}; U.uRideA.value = 0; }
+    else ensure();
+    if (W.borders) W.borders.visible = !on;
+    W.rebuildRibbons();
+  };
+  // Build the tiles nearest the vehicle first, spending at most `budget` ms; returns true if anything changed.
+  W.rideUpdate = function (lon, lat, budget) {
+    if (!RIDE.on) return false;
+    var t0 = performance.now(), kc = Math.max(0.12, Math.cos(lat * D2R)), want = [], changed = false;
+    for (var j = Math.floor((lat - RW) / TS); j <= Math.floor((lat + RW) / TS); j++) {
+      if (j * TS >= 90 || (j + 1) * TS <= -90) continue;
+      for (var i = Math.floor((lon - RW / kc) / TS); i <= Math.floor((lon + RW / kc) / TS); i++) {
+        var ii = (((i + 45) % 90) + 90) % 90 - 45, d = tileDist(ii, j, lon, lat); if (d <= RW) want.push([d, ii, j]);
+      }
+    }
+    want.sort(function (a, b) { return a[0] - b[0]; });
+    var cover = RW, keep = {};
+    for (var w = 0; w < want.length; w++) {
+      var key = want[w][1] + ',' + want[w][2]; keep[key] = 1;
+      if (!tiles[key]) {
+        if (performance.now() - t0 < budget) { tiles[key] = buildTile(want[w][1], want[w][2]); changed = true; }
+        else cover = Math.min(cover, want[w][0]);
+      }
+    }
+    for (var k in tiles) if (!keep[k] && tileDist(+k.split(',')[0], +k.split(',')[1], lon, lat) > RW + 3) { scene.remove(tiles[k]); tiles[k].geometry.dispose(); delete tiles[k]; changed = true; }
+    ll2v(lon, lat, 1, U.uRideC.value); var A = Math.max(0, cover - 0.15) * D2R;
+    if (Math.abs(A - U.uRideA.value) > 1e-4) { U.uRideA.value = A; changed = true; }
+    return changed;
+  };
+  W.rideTiles = function () { return Object.keys(tiles).length; };
 
   /* ---------- scenery around the view (instanced) ---------- */
   function lam(c, flat) { var m = new T.MeshLambertMaterial({ color: c, flatShading: !!flat }); env.nightify(m, false); return m; }
@@ -295,7 +412,7 @@ window.makeWorld = function (env) {
       var tn = TOWNS[t], ddx = (((tn[0] - lon + 540) % 360) - 180) * kc, ddy = tn[1] - lat; if (ddx * ddx + ddy * ddy > R2) continue;
       var nh = Math.min(30, 3 + tn[2] * 3), rad = size * (0.5 + tn[2] * 0.22) / 0.0175;
       for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy) || blocked(hx, hy)) continue; put(S.ho, hx, hy, size * 0.5, a, HC[hI % 4]); }
-      if (tn[2] >= 9) for (var k3 = 0; k3 < 7; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.75, size * (1.0 + hash(k3, t) * 1.4), size * 0.75))); }
+      if (tn[2] >= 9) for (var k3 = 0; k3 < 7; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; if (blocked(tx, ty)) continue; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.75, size * (1.0 + hash(k3, t) * 1.4), size * 0.75))); }
     }
     // clouds: puffy groups, mostly away from the middle of the view so they sit at the horizon
     var cR = opt.cloud ? R * 5 : R * 2.6, cIn = opt.cloud ? R * 1.6 : R * 0.8, ccell = Math.max(0.5, R / 6);
