@@ -15,6 +15,7 @@
   function collect(kind, id) { if (S[kind][id]) return false; S[kind][id] = today(); persist(); upd(); return true; }
   Globe.collected = function (kind, id) { return !!S[kind][id]; };
   Globe.stampsOf = function () { return App.save.stamps || {}; };
+  Globe.stampN = function () { return total(); };
   function total() { return Object.keys(S.lm).length + Object.keys(S.an).length + Object.keys(S.ve).length + Object.keys(App.save.stamps || {}).length; }
   function upd() { $('#cnt').textContent = total(); }
 

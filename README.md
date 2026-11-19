@@ -53,4 +53,4 @@ Editing:
 - `data/atlas.js`: cultural content for the country pages (draft, needs fact-check and co-teacher review).
 - Flags from flag-icons (MIT) in `flags/`. No network needed at runtime.
 
-Credits: Three.js r159 (MIT, `vendor/three.LICENSE.txt`). City names, positions and populations (`data/cities.js`, `data/nightlights.jpg`): GeoNames (geonames.org, CC BY 4.0), via the all-the-cities package. The idea comes from My Earth Toy (myearthtoy.com). All models and text here are original.
+Credits: Three.js r159 (MIT, `vendor/three.LICENSE.txt`). City names, positions and populations (`data/cities.js`, `data/lights.js`): GeoNames (geonames.org, CC BY 4.0), via the all-the-cities package. The idea comes from My Earth Toy (myearthtoy.com). All models and text here are original.

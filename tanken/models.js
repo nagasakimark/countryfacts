@@ -126,19 +126,25 @@
       geo.applyMatrix4(new T.Matrix4().multiplyMatrices(inv, o.matrixWorld));
       var parts = (Array.isArray(o.material) && geo.groups.length) ? geo.groups : [{ start: 0, count: geo.attributes.position.count, materialIndex: 0 }];
       parts.forEach(function (gr) {
-        var m = mm[gr.materialIndex || 0], k = matKey(m); mats[k] = m; (groups[k] = groups[k] || []).push({ g: geo, s: gr.start, c: gr.count, m: m });
+        var m = mm[gr.materialIndex || 0], k = matKey(m), plain = !m.map && !m.transparent && m.side === T.FrontSide;
+        if (plain) { // all plain coloured parts share one vertex-coloured mesh (one draw call)
+          if (m.flatShading && !geo.userData.flat) { geo.computeVertexNormals(); geo.userData.flat = 1; }
+          k = 'PLAIN'; mats[k] = VCM;
+        } else mats[k] = m;
+        (groups[k] = groups[k] || []).push({ g: geo, s: gr.start, c: gr.count, m: m });
       });
     });
     var out = new T.Group();
     Object.keys(groups).forEach(function (k) {
-      var list = groups[k], m = mats[k], useUV = !!m.map, useCol = !!m.vertexColors, P = [], N = [], U = [], C = [];
+      var list = groups[k], m = mats[k], useUV = !!m.map, useCol = !!m.vertexColors, P = [], N = [], U = [], C = [], tc = new T.Color();
       list.forEach(function (it) {
-        var a = it.g.attributes;
+        var a = it.g.attributes, solidCol = k === 'PLAIN' && !it.m.vertexColors;
+        if (solidCol) { tc.copy(it.m.color); if (it.m.emissive) tc.add(it.m.emissive); }
         for (var i = it.s; i < it.s + it.c; i++) {
           P.push(a.position.getX(i), a.position.getY(i), a.position.getZ(i));
           if (a.normal) N.push(a.normal.getX(i), a.normal.getY(i), a.normal.getZ(i)); else N.push(0, 1, 0);
           if (useUV) { if (a.uv) U.push(a.uv.getX(i), a.uv.getY(i)); else U.push(0, 0); }
-          if (useCol) { if (a.color) C.push(a.color.getX(i), a.color.getY(i), a.color.getZ(i)); else C.push(1, 1, 1); }
+          if (useCol) { if (solidCol) C.push(tc.r, tc.g, tc.b); else if (a.color) C.push(a.color.getX(i), a.color.getY(i), a.color.getZ(i)); else C.push(1, 1, 1); }
         }
       });
       var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(P, 3)); g.setAttribute('normal', new T.Float32BufferAttribute(N, 3));
@@ -147,6 +153,7 @@
     });
     return out;
   };
+  var VCM = new T.MeshLambertMaterial({ vertexColors: true });
   var bakedCache = {};
   M.object = function (key, colour) {
     if (M.custom[key]) { if (!bakedCache[key]) bakedCache[key] = M.bake(M.custom[key]()); var g = bakedCache[key].clone(); g.userData.detailed = true; return g; }

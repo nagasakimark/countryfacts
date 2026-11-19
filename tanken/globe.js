@@ -6,7 +6,7 @@
   var W = 1366, H = 598, D2R = Math.PI / 180, FOV = 40, PPR = (H / 2) / Math.tan(FOV / 2 * D2R);
   var $ = function (s) { return document.querySelector(s); };
   var byId = App.byId;
-  G.lang = 'ja'; G.speed = 1; G.quiz = false; G.stampsOf = function () { return {}; }; G.collected = function () { return false; };
+  G.lang = 'ja'; G.speed = 1; G.quiz = false; G.stampsOf = function () { return {}; }; G.stampN = function () { return 0; }; G.collected = function () { return false; };
   G.onPick = function () { }; G.onHover = function () { }; G.onRide = function () { }; G.onArrive = function () { }; G.onTap = null;
 
   function ll2v(lon, lat, r, out) { var la = lat * D2R, lo = lon * D2R, c = Math.cos(la); r = r || 1; return (out || new T.Vector3()).set(c * Math.cos(lo) * r, Math.sin(la) * r, -c * Math.sin(lo) * r); }
@@ -74,7 +74,7 @@
   G.routes = ROUTES;
 
   /* ---------- map texture ---------- */
-  var TW = 4096, TH = 2048, tcv = document.createElement('canvas'); tcv.width = TW; tcv.height = TH;
+  var TW = 2048, TH = 1024, tcv = document.createElement('canvas'); tcv.width = TW; tcv.height = TH;
   var tctx = tcv.getContext('2d', { willReadFrequently: true });
   function paint(ctx, proj, scale, list, cheap) {
     var gp = d3.geoPath(proj, ctx), w = ctx.canvas.width, h = ctx.canvas.height, F = list || feat;
@@ -115,7 +115,7 @@
     ctx.beginPath(); gp(FEAT[id]); ctx.fillStyle = '#fff3d6'; ctx.fill(); ctx.strokeStyle = '#ff5a4d'; ctx.lineWidth = 4 * scale; ctx.stroke();
   }
   var tproj = d3.geoEquirectangular().scale(TW / (2 * Math.PI)).translate([TW / 2, TH / 2]).precision(0.2);
-  paint(tctx, tproj, 1);
+  paint(tctx, tproj, 0.55);
   var saved = null;
 
   /* ---------- three.js scene ---------- */
@@ -136,21 +136,19 @@
   })();
 
   /* ---------- day and night (real time) ---------- */
-  var NIGHT = { uSun: { value: new T.Vector3(1, 0, 0) }, uLights: { value: null } };
-  try { var lt = new T.TextureLoader().load('data/nightlights.jpg'); lt.colorSpace = T.SRGBColorSpace; NIGHT.uLights.value = lt; } catch (e) { }
-  // Darken the side of the Earth where it is night now; the map adds city lights there.
-  function nightify(m, lights) {
-    if (m.userData.night) return; m.userData.night = 1; lights = lights && NIGHT.uLights.value;
+  var NIGHT = { uSun: { value: new T.Vector3(1, 0, 0) } };
+  // Darken the side of the Earth where it is night now (ground = map, otherwise a model).
+  function nightify(m, ground) {
+    if (m.userData.night) return; m.userData.night = 1;
     m.onBeforeCompile = function (sh) {
-      sh.uniforms.uSun = NIGHT.uSun; if (lights) sh.uniforms.uLights = NIGHT.uLights;
+      sh.uniforms.uSun = NIGHT.uSun;
       sh.vertexShader = 'varying vec3 vWP;\n' + sh.vertexShader.replace('#include <project_vertex>', '#include <project_vertex>\n  vWP = (modelMatrix * vec4(transformed, 1.0)).xyz;');
-      sh.fragmentShader = 'varying vec3 vWP;\nuniform vec3 uSun;\n' + (lights ? 'uniform sampler2D uLights;\n' : '') + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n' +
-        '  { vec3 nn = normalize(vWP); float dd = dot(nn, uSun); float day = smoothstep(-0.08, 0.12, dd);\n' +
-        (lights ? '    vec3 nc = gl_FragColor.rgb * vec3(0.13, 0.16, 0.38);\n    vec2 luv = vec2(atan(-nn.z, nn.x) * 0.15915494 + 0.5, asin(clamp(nn.y, -1.0, 1.0)) * 0.31830989 + 0.5);\n    nc += texture2D(uLights, luv).rgb * 0.95;\n'
-                : '    vec3 nc = gl_FragColor.rgb * vec3(0.3, 0.33, 0.58);\n') +
+      sh.fragmentShader = 'varying vec3 vWP;\nuniform vec3 uSun;\n' + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n' +
+        '  { float dd = dot(normalize(vWP), uSun); float day = smoothstep(-0.08, 0.12, dd);\n' +
+        '    vec3 nc = gl_FragColor.rgb * ' + (ground ? 'vec3(0.15, 0.18, 0.4)' : 'vec3(0.3, 0.33, 0.58)') + ';\n' +
         '    gl_FragColor.rgb = mix(nc, gl_FragColor.rgb, day);\n    gl_FragColor.rgb += vec3(0.2, 0.08, 0.0) * (1.0 - smoothstep(0.0, 0.12, abs(dd))) * 0.45; }');
     };
-    m.customProgramCacheKey = function () { return lights ? 'nightL' : 'night'; };
+    m.customProgramCacheKey = function () { return ground ? 'nightG' : 'nightM'; };
     m.needsUpdate = true;
   }
   G.nightify = nightify;
@@ -165,13 +163,26 @@
   }
   function updSun() { var s = sunLL(Date.now()); G.sun = s; ll2v(s[0], s[1], 1, NIGHT.uSun.value); }
   updSun(); setInterval(updSun, 30000);
+  (function lights() {
+    var L = window.LIGHTS || [], n = L.length / 3, pos = new Float32Array(n * 3), size = new Float32Array(n), v = new T.Vector3();
+    for (var i = 0; i < n; i++) { ll2v(L[i * 3] / 10, L[i * 3 + 1] / 10, 1.0016, v); pos[i * 3] = v.x; pos[i * 3 + 1] = v.y; pos[i * 3 + 2] = v.z; size[i] = L[i * 3 + 2]; }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(pos, 3)); g.setAttribute('aSize', new T.BufferAttribute(size, 1));
+    G.lightU = { uSun: NIGHT.uSun, uK: { value: 1.0 } };
+    var m = new T.ShaderMaterial({ uniforms: G.lightU, transparent: true, depthWrite: false,
+      vertexShader: 'uniform vec3 uSun; uniform float uK; attribute float aSize; varying float vA; varying float vS;\n' +
+        'void main(){ float d = dot(normalize(position), uSun); vA = 1.0 - smoothstep(-0.1, 0.04, d); vec4 mv = modelViewMatrix * vec4(position, 1.0);\n' +
+        '  gl_Position = vA < 0.01 ? vec4(2.0, 2.0, 2.0, 1.0) : projectionMatrix * mv; float px = (0.8 + aSize * 0.45) * uK / -mv.z; vS = clamp(px, 2.4, 8.0); gl_PointSize = vS; }',
+      fragmentShader: 'varying float vA; varying float vS;\nvoid main(){ vec2 c = gl_PointCoord - 0.5; float r = length(c) * 2.0; float core = smoothstep(1.0, 0.25, r);\n' +
+        '  gl_FragColor = vec4(vec3(1.0, 0.8, 0.38) * (0.8 + 0.35 * (1.0 - r)), core * core * vA * (0.6 + 0.4 * min(1.0, vS / 4.0))); }' });
+    var pts = new T.Points(g, m); pts.frustumCulled = false; pts.renderOrder = 3; scene.add(pts);
+  })();
   G.isNight = function (ll) { return ll2v(ll[0], ll[1], 1).dot(NIGHT.uSun.value) < 0; };
 
   /* ---------- sharper map tiles when zoomed in ----------
      The world is cut into fixed squares (30° and 10°). Each square is painted once, only with the
      countries inside it, at most one per frame, then kept. No more big repaints while moving. */
   var FB = feat.map(function (f) { return d3.geoBounds(f); });
-  var TILES = {}, tileQueue = [], tileFrame = 0, LEV = { 1: { S: 30, N: 512, R: 1.0005, max: 30, sc: 0.75 }, 2: { S: 10, N: 768, R: 1.0008, max: 18, sc: 1.1 } };
+  var TILES = {}, tileQueue = [], tileFrame = 0, LEV = { 1: { S: 30, N: 512, R: 1.0005, max: 34, sc: 0.75 }, 2: { S: 10, N: 768, R: 1.0008, max: 18, sc: 1.1 } };
   var tcvTmp = null;
   function featuresIn(lon0, lat0, lon1, lat1) {
     var out = [];
@@ -202,7 +213,7 @@
     tileFrame++;
     if (tileFrame % 4 === 0) {
       need = {};
-      var levels = V.alt < 1.0 ? (V.alt < 0.4 ? [1, 2] : [1]) : [];
+      var levels = V.alt < 1.6 ? (V.alt < 0.4 ? [1, 2] : [1]) : [];
       if (levels.length) for (var gx = 0; gx <= 8; gx++) for (var gy = 0; gy <= 5; gy++) {
         var ll = G.llAt(gx / 8 * W, gy / 5 * H); if (!ll) continue;
         levels.forEach(function (lev) {
@@ -211,11 +222,11 @@
           if (!need[key] || need[key].d > cx) need[key] = { lev: lev, i: i, j: j, d: cx };
         });
       }
-      Object.keys(TILES).forEach(function (k) { TILES[k].mesh.visible = !!need[k]; if (need[k]) TILES[k].used = tileFrame; });
+      Object.keys(TILES).forEach(function (k) { var v2 = !!need[k]; if (TILES[k].mesh.visible !== v2) tileDirty = true; TILES[k].mesh.visible = v2; if (v2) TILES[k].used = tileFrame; });
       tileQueue = Object.keys(need).filter(function (k) { return !TILES[k]; }).sort(function (a, b) { return need[a].lev - need[b].lev || need[a].d - need[b].d; });
       [1, 2].forEach(function (lev) { var ks = Object.keys(TILES).filter(function (k) { return TILES[k].lev === lev; }); if (ks.length > LEV[lev].max) ks.sort(function (a, b) { return TILES[a].used - TILES[b].used; }).slice(0, ks.length - LEV[lev].max).forEach(function (k) { if (!need[k]) dropTile(k); }); });
     }
-    if (tileQueue.length && !(drag && moved > 5 && tileFrame % 2)) { var key = tileQueue.shift(), n = need[key]; if (n && !TILES[key]) TILES[key] = { mesh: paintTile(n.lev, n.i, n.j), lev: n.lev, used: tileFrame }; }
+    if (tileQueue.length && !(drag && moved > 5 && tileFrame % 2)) { var key = tileQueue.shift(), n = need[key]; if (n && !TILES[key]) { TILES[key] = { mesh: paintTile(n.lev, n.i, n.j), lev: n.lev, used: tileFrame }; tileDirty = true; } }
   }
 
   /* ---------- landmarks ---------- */
@@ -301,7 +312,8 @@
   var lmRects = [], q0 = [0, 0, 0], q1 = [0, 0, 0];
   var camUp = new T.Vector3(), camBack = new T.Vector3(), up2 = new T.Vector3(), fw2 = new T.Vector3(), x2 = new T.Vector3();
   function placeLandmarks() {
-    var far = Math.max(0, Math.min(1, (V.alt - 0.25) / 1.3)), s = scaleNow() * (2.1 - 1.15 * far), placed = [], lean = far * 0.8, gp = new T.Vector3();
+    shadowMat.visible = V.alt < 1.3 && qLow === 0;
+    var far = Math.max(0, Math.min(1, (V.alt - 0.25) / 1.3)), s = scaleNow() * (1.35 - 0.6 * far), placed = [], lean = far * 0.8, gp = new T.Vector3();
     camUp.setFromMatrixColumn(camera.matrixWorld, 1); camBack.setFromMatrixColumn(camera.matrixWorld, 2);
     lmRects = [];
     LMS.forEach(function (o) {
@@ -320,7 +332,7 @@
     });
   }
   function moveVehicles(dt) {
-    var s = scaleNow() * 0.95;
+    var s = scaleNow() * 0.95, anyVis = false;
     VEH.forEach(function (o) {
       var r = o.r, m = o.mesh;
       if (r.wait > 0) { r.wait -= dt * G.speed; if (r.wait <= 0) { r.dir *= -1; } }
@@ -334,20 +346,21 @@
       if (!isFinite(fwd.x) || fwd.lengthSq() < 0.5) fwd.set(0, 1, 0).cross(n).normalize();
       o.pos = pos; o.n = n; o.ll = p;
       var vis = !G.quiz && facing(n, pos); m.visible = vis;
-      if (!vis) return;
+      if (!vis) return; anyVis = true;
       var x = n.clone().cross(fwd);
       mat.makeBasis(x, n, fwd); var ss = riding === o ? s * 1.25 : s; m.matrix.copy(mat).scale(tmp2.set(ss, ss, ss)).setPosition(pos); m.matrixWorldNeedsUpdate = true;
     });
     if (riding) {
-      var rr = riding.r; G.onRide(rr, rr.dir > 0 ? rr.d / rr.len : 1 - rr.d / rr.len);
+      anyVis = true; var rr = riding.r; G.onRide(rr, rr.dir > 0 ? rr.d / rr.len : 1 - rr.d / rr.len);
       if (!anim && riding.ll) { var dl = ((riding.ll[0] - V.lon + 540) % 360) - 180; V.lon += dl * Math.min(1, dt * 4); V.lat += (riding.ll[1] - V.lat) * Math.min(1, dt * 4); clampV(); }
     }
+    return anyVis;
   }
 
   /* ---------- 2D label layer ---------- */
   var ov = $('#ov'), octx = ov.getContext('2d'), Q = 1, hits = [];
   var FONT = '"RocknRoll One","Hiragino Maru Gothic ProN","M PLUS Rounded 1c","Yu Gothic UI","Meiryo",sans-serif';
-  var FL = {}; function flag(c) { if (!c.a2) return null; var f = FL[c.a2]; if (!f) { f = FL[c.a2] = new Image(); f.onload = function () { f.ok = 1; }; f.src = 'flags/' + c.a2.toLowerCase() + '.svg'; } return f.ok ? f : null; }
+  var FL = {}; function flag(c) { if (!c.a2) return null; var f = FL[c.a2]; if (!f) { f = FL[c.a2] = { img: new Image() }; f.img.onload = function () { var cv2 = document.createElement('canvas'); cv2.width = 68; cv2.height = 51; cv2.getContext('2d').drawImage(f.img, 0, 0, 68, 51); f.bmp = cv2; f.img = null; G.ver++; }; f.img.src = 'flags/' + c.a2.toLowerCase() + '.svg'; } return f.bmp || null; } // SVGs are drawn once into small bitmaps
   var ANI = ((window.TOY && TOY.animals) || []).map(function (a) { return { d: a, n: ll2v(a.ll[0], a.ll[1], 1) }; });
   var ANB = {}; ANI.forEach(function (o) { ANB[o.d.id] = o; });
   G.pins = []; // quiz markers: {ll, col, label}
@@ -357,7 +370,7 @@
     if (G.lang === 'en') return 'pop. ' + (k >= 1000 ? (k >= 10000 ? Math.round(k / 1000) : Math.round(k / 100) / 10) + 'm' : k + 'k');
     return '人口 ' + App.fmtPeople(k * 1000).replace('約', '');
   }
-  var widthCache = {};
+  var widthCache = {}, PINS = {}; G.ver = 0;
   function tw(ctx, key, text) { var w = widthCache[key]; if (w == null) { w = widthCache[key] = ctx.measureText(text).width; } return w; }
   function drawStar(ctx, x, y, r) { ctx.beginPath(); for (var i = 0; i < 10; i++) { var a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.45 : r; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } ctx.closePath(); ctx.fillStyle = '#ffc531'; ctx.fill(); ctx.lineWidth = 1.8; ctx.strokeStyle = '#3b2a5c'; ctx.stroke(); }
   function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
@@ -382,11 +395,13 @@
       ANI.forEach(function (o) {
         if (!scr(o.n, p)) return; var x = p[0], y = p[1] - az * 0.75, r = { x: x - az / 2, y: y - az / 2, w: az, h: az + 6 };
         if (!free(r)) return; placed.push(r);
-        var got = G.collected('an', o.d.id);
-        ctx.fillStyle = got ? '#fff3b0' : '#fff'; ctx.strokeStyle = got ? '#e0a400' : '#3b2a5c'; ctx.lineWidth = 2.5;
-        ctx.beginPath(); ctx.moveTo(x - 6, y + az / 2 - 3); ctx.lineTo(x, y + az / 2 + 7); ctx.lineTo(x + 6, y + az / 2 - 3); ctx.closePath(); ctx.fill(); ctx.stroke();
-        ctx.beginPath(); ctx.arc(x, y, az / 2, 0, 7); ctx.fill(); ctx.stroke();
-        ctx.fillStyle = '#000'; ctx.fillText(o.d.e, x, y + 1);
+        var got = G.collected('an', o.d.id), key = o.d.id + az + (got ? 1 : 0), bm = PINS[key];
+        if (!bm) { bm = PINS[key] = document.createElement('canvas'); bm.width = az + 8; bm.height = az + 16; var b = bm.getContext('2d'), cx = bm.width / 2, cy = az / 2 + 3;
+          b.fillStyle = got ? '#fff3b0' : '#fff'; b.strokeStyle = got ? '#e0a400' : '#3b2a5c'; b.lineWidth = 2.5;
+          b.beginPath(); b.moveTo(cx - 6, cy + az / 2 - 3); b.lineTo(cx, cy + az / 2 + 7); b.lineTo(cx + 6, cy + az / 2 - 3); b.closePath(); b.fill(); b.stroke();
+          b.beginPath(); b.arc(cx, cy, az / 2, 0, 7); b.fill(); b.stroke();
+          b.font = Math.round(az * 0.62) + 'px "Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif'; b.textAlign = 'center'; b.textBaseline = 'middle'; b.fillStyle = '#000'; b.fillText(o.d.e, cx, cy + 1); }
+        ctx.drawImage(bm, x - bm.width / 2, y - az / 2 - 3);
         hits.push({ r: r, kind: 'animal', id: o.d.id });
       });
       ctx.textBaseline = 'top';
@@ -468,7 +483,7 @@
     G.sel = id;
     if (id && FEAT[id]) {
       var b = d3.geoPath(tproj).bounds(FEAT[id]), x = Math.max(0, Math.floor(b[0][0]) - 8), y = Math.max(0, Math.floor(b[0][1]) - 8), w = Math.min(TW - x, Math.ceil(b[1][0] - b[0][0]) + 16), h = Math.min(TH - y, Math.ceil(b[1][1] - b[0][1]) + 16);
-      saved = { img: tctx.getImageData(x, y, w, h), x: x, y: y }; highlight(tctx, tproj, 1, id);
+      saved = { img: tctx.getImageData(x, y, w, h), x: x, y: y }; highlight(tctx, tproj, 0.55, id);
     }
     tex.needsUpdate = true; clearTiles();
   };
@@ -510,14 +525,24 @@
   /* ---------- size / loop ---------- */
   var bg = $('#bg'), stage = $('#stage');
   (function stars() { var c = bg.getContext('2d'); bg.width = W; bg.height = H; var g = c.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 820); g.addColorStop(0, '#17337d'); g.addColorStop(1, '#050b25'); c.fillStyle = g; c.fillRect(0, 0, W, H); c.fillStyle = '#fff'; for (var i = 0; i < 140; i++) { c.globalAlpha = 0.3 + Math.random() * 0.6; var s = Math.random() * 1.7 + 0.4; c.fillRect(Math.random() * W, Math.random() * H, s, s); } c.globalAlpha = 1; })();
+  var QSCALE = 1, qT = 0, qN = 0, qLow = 0, HQ = location.search.indexOf("hq") > -1;
+  // If this computer can't keep up (under ~24 fps while drawing), lower the resolution and drop extras.
+  function quality(now, drew) {
+    if (!drew || HQ) return; qN++; if (!qT) qT = now; if (now - qT < 2500) return;
+    var fps = qN / ((now - qT) / 1000); qT = now; qN = 0;
+    if (fps < 24 && qLow < 2) { qLow++; QSCALE = qLow === 1 ? 0.8 : 0.65; G._glow.material.opacity = 0.6; shadowMat.visible = false; fit(); }
+  }
+  G.info = function () { return { frames: renderer.info.render.frame, calls: renderer.info.render.calls, tris: renderer.info.render.triangles, tex: renderer.info.memory.textures, geo: renderer.info.memory.geometries }; };
+  G.quality = function () { return { low: qLow, scale: QSCALE }; };
   function fit() {
     var s = Math.min(innerWidth / W, innerHeight / H); stage.style.transform = 'scale(' + s + ')';
-    var q = Math.min(1.5, Math.max(1, s * (window.devicePixelRatio || 1)));
-    renderer.setPixelRatio(q); renderer.setSize(W, H, false);
-    if (Math.round(W * q) !== ov.width) { Q = q; ov.width = Math.round(W * Q); ov.height = Math.round(H * Q); }
+    var q = Math.min(1, s * (window.devicePixelRatio || 1)) * QSCALE;
+    renderer.setPixelRatio(q); renderer.setSize(W, H, false); if (G.lightU) G.lightU.uK.value = q;
+    var oq = Math.min(1, s * (window.devicePixelRatio || 1)); // labels stay sharp even in low quality
+    if (Math.round(W * oq) !== ov.width) { Q = oq; ov.width = Math.round(W * Q); ov.height = Math.round(H * Q); lastSig = ''; }
   }
   addEventListener('resize', fit); fit();
-  var t0 = performance.now(), restT = 0, lastHover = 0, PERF = location.search.indexOf('perf') > -1; G.__ms = [];
+  var t0 = performance.now(), restT = 0, lastHover = 0, lastSig = '', frameN = 0, tileDirty = false, PERF = location.search.indexOf('perf') > -1; G.__ms = [];
   function loop(now) {
     var dt = Math.min(0.1, (now - t0) / 1000); t0 = now;
     if (anim && anim(now)) anim = null;
@@ -526,9 +551,16 @@
     setCam();
     updateTiles();
     var a = performance.now();
-    moveVehicles(dt); placeLandmarks();
-    renderer.render(scene, camera);
-    drawLabels();
+    var sig = V.lon.toFixed(4) + V.lat.toFixed(4) + V.alt.toFixed(5) + Math.round(off) + G.lang + G.quiz + G.ver + (G.sel || '') + G.pins.map(function (q) { return q.ll[0].toFixed(2) + q.col; }).join() + (riding ? 1 : 0) + G.stampN();
+    var changed = sig !== lastSig; lastSig = sig;
+    var vis = moveVehicles(dt);
+    if (changed) placeLandmarks();
+    // when the view is still, draw at most 30 times a second, and not at all if nothing on screen moves
+    frameN++;
+    var draw = changed || tileDirty || (vis && (frameN % 2 === 0)) || frameN % 30 === 0;
+    if (draw) { renderer.render(scene, camera); tileDirty = false; }
+    if (changed || riding) drawLabels();
+    quality(now, draw);
     if (hoverAt && now - lastHover > 90) { lastHover = now; var h = G.pick(hoverAt[0], hoverAt[1], true); G.onHover(h, hoverAt); cv.style.cursor = h ? 'pointer' : 'grab'; hoverAt = null; }
     if (PERF) G.__ms.push(+(performance.now() - a).toFixed(1));
     requestAnimationFrame(loop);
