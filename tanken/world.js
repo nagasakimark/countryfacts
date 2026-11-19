@@ -308,8 +308,10 @@ window.makeWorld = function (env) {
       }
     }
     if (best) h += (bh - h) * best; // (pads and harbour channels first, then the road or rail bed on top: the line itself is never broken by a pad)
-    if (sb) h += (sh - h) * sb;
-    return cw ? h + (-0.0012 - h) * cw : h; // (shipping channels last: a road or a landmark beside a river never fills it in)
+    // a road/rail bed and a shipping channel: whichever line you're nearer to is laid last — a causeway or bridge over a strait
+    // stays whole, and a road running beside a river never fills the river in
+    if (sb >= cw) { if (cw) h += (-0.0012 - h) * cw; return sb ? h + (sh - h) * sb : h; }
+    if (sb) h += (sh - h) * sb; return h + (-0.0012 - h) * cw;
   }
   W.rideH = rideH;
   var TS = 4, TN = 32, RW = 7.5, tiles = {}, tileMat = new T.MeshLambertMaterial({ color: 0xffffff });

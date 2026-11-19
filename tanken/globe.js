@@ -57,6 +57,26 @@
   // 1-D noise (fading to nothing at every waypoint, so stations and towns stay put), then rounded off (Chaikin) so the curves are smooth.
   // Roads and railways go round the landmarks (riding, a landmark stands ~1° across): every point is pushed out of a ring round each landmark,
   // then the line is smoothed again, a few times over, so it bends round them in a curve instead of a sharp kink; a last push keeps it clear.
+  // Landmarks and animals are spread apart so no two models ever stand on top of each other (London and Paris have many close together):
+  // pairs closer than SEP push each other apart, each also pulled gently back towards its true spot, a few hundred rounds. The true
+  // spot is kept as ll0; ll becomes the place it is shown (at most ~1.6° away). Run once at start-up.
+  (function spread() {
+    var L = ((window.TOY && TOY.landmarks) || []).map(function (l) { return { o: l, an: 0 }; }).concat(((window.TOY && TOY.animals) || []).map(function (a) { return { o: a, an: 1 }; }));
+    L.forEach(function (q) { if (!q.o.ll0) q.o.ll0 = q.o.ll.slice(); q.x = q.o.ll0[0]; q.y = q.o.ll0[1]; });
+    function sep(a, b) { return a.an && b.an ? 0.5 : a.an || b.an ? 0.62 : 0.82; }
+    for (var it = 0; it < 220; it++) {
+      for (var i = 0; i < L.length; i++) for (var j = i + 1; j < L.length; j++) {
+        var a = L[i], b = L[j], S = sep(a, b), dy = b.y - a.y; if (Math.abs(dy) >= S) continue;
+        var kx = Math.cos((a.y + b.y) * 0.5 * D2R), dx = (((b.x - a.x + 540) % 360) - 180) * kx; if (Math.abs(dx) >= S) continue;
+        var d = Math.hypot(dx, dy); if (d >= S) continue;
+        if (d < 1e-6) { dx = Math.cos(i * 2.4 + j); dy = Math.sin(i * 2.4 + j); d = 1; } else { dx /= d; dy /= d; }
+        var m = (S - d) * 0.5 * (it < 200 ? 0.6 : 1); a.x -= dx * m / kx; a.y -= dy * m; b.x += dx * m / kx; b.y += dy * m;
+      }
+      if (it < 200) L.forEach(function (q) { var kx = Math.cos(q.y * D2R), ox = (((q.o.ll0[0] - q.x + 540) % 360) - 180), oy = q.o.ll0[1] - q.y, dd = Math.hypot(ox * kx, oy); var pull = dd > 1.6 ? (dd - 1.6) / dd : 0.03; q.x += ox * pull; q.y += oy * pull; });
+    }
+    L.forEach(function (q) { q.o.ll = [((q.x + 540) % 360) - 180, q.y]; });
+    G._spreadL = L;
+  })();
   var AV_R = 0.5, AV = ((window.TOY && TOY.landmarks) || []).map(function (l) { return l.ll; });
   function avoidLandmarks(pts) {
     function push() { var moved = 0; pts.forEach(function (p, i) { var kx = Math.max(0.2, Math.cos(p[1] * D2R)); for (var k = 0; k < AV.length; k++) { var c = AV[k], dx = (((p[0] - c[0] + 540) % 360) - 180) * kx, dy = p[1] - c[1]; if (Math.abs(dy) > AV_R || Math.abs(dx) > AV_R) continue; var d = Math.hypot(dx, dy); if (d >= AV_R) continue;
@@ -156,6 +176,8 @@
   var WORLD = G.world = makeWorld({ scene: scene, ll2v: ll2v, feat: feat, FILL: FILL, nightify: nightify, routes: ROUTES });
   globe.material.color.set(0x1a5aa6); WORLD.oceanTexture(function (t) { globe.material.map = t; globe.material.color.set(0xffffff); globe.material.needsUpdate = true; lastSig = ''; });
   WORLD.onReady = function () { lastSig = ''; };
+  (G._spreadL || []).forEach(function (q) { var o = q.o; if (!WORLD.isLand(o.ll0[0], o.ll0[1]) || WORLD.isLand(o.ll[0], o.ll[1])) return; // (spread from land into the sea: walk back towards the true spot until on land)
+    for (var k = 1; k <= 10; k++) { var x = o.ll[0] + (((o.ll0[0] - o.ll[0] + 540) % 360) - 180) * k / 10, y = o.ll[1] + (o.ll0[1] - o.ll[1]) * k / 10; if (WORLD.isLand(x, y) || k === 10) { o.ll[0] = x; o.ll[1] = y; break; } } });
   WORLD.pads = ((window.TOY && TOY.landmarks) || []).map(function (l) { return l.ll; });
   // while riding, the sea round the vehicle turns see-through so the sea floor shows
   globe.material.userData.preKey = 'sea'; globe.material.userData.pre = function (sh) {
@@ -302,13 +324,23 @@
   // beside it instead of through it. Its flat ground moves with it; everything goes back where it was when you get off.
   function rideLayout(r) {
     var path = [], step = 0.004; for (var d = 0; d <= r.len; d += step) path.push(ll2v.apply(null, along(r, d).concat([1]))); path.push(ll2v.apply(null, along(r, r.len).concat([1])));
-    var CL = 0.5 * D2R, pads = [];
-    LMS.forEach(function (o) { o.rideN = null; o.rideLL = null; if (o.an) return;
-      if (r.type !== 'plane') { var best = 9, bi = 0; for (var i = 0; i < path.length; i++) { var a = path[i].angleTo(o.n); if (a < best) { best = a; bi = i; } }
-        if (best < CL) { var c = path[bi], away = o.n.clone().sub(c); away.addScaledVector(c, -away.dot(c));
-          if (away.lengthSq() < 1e-12) { var nx = path[Math.min(path.length - 1, bi + 1)].clone().sub(path[Math.max(0, bi - 1)]); away.crossVectors(c, nx); }
-          away.normalize(); var nv = c.clone().multiplyScalar(Math.cos(CL)).addScaledVector(away, Math.sin(CL)).normalize(); o.rideN = nv; o.rideLL = v2ll(nv); } }
-      pads.push(o.rideLL || o.d.ll); });
+    var CL = 0.5 * D2R, SP = 0.78 * D2R, pads = [], near = [];
+    LMS.forEach(function (o) { o.rideN = null; o.rideLL = null; });
+    if (r.type !== 'plane') LMS.forEach(function (o) { var best = 9; for (var i = 0; i < path.length; i += 4) best = Math.min(best, path[i].angleTo(o.n)); if (best < 5 * D2R) near.push({ o: o, v: o.n.clone(), R: o.an ? CL * 0.6 : CL }); });
+    function pushOff(q) { var best = 9, bi = 0; for (var i = 0; i < path.length; i++) { var a = path[i].angleTo(q.v); if (a < best) { best = a; bi = i; } } if (best >= q.R) return;
+      var c = path[bi], away = q.v.clone().sub(c); away.addScaledVector(c, -away.dot(c));
+      if (away.lengthSq() < 1e-12) { var nx = path[Math.min(path.length - 1, bi + 1)].clone().sub(path[Math.max(0, bi - 1)]); away.crossVectors(c, nx); }
+      away.normalize(); q.v.copy(c).multiplyScalar(Math.cos(q.R)).addScaledVector(away, Math.sin(q.R)).normalize(); }
+    // off the line, then apart from each other, a few rounds: landmarks line the way on both sides and you ride through the gaps between them
+    for (var it = 0; it < 12; it++) {
+      near.forEach(pushOff);
+      for (var a = 0; a < near.length; a++) for (var b = a + 1; b < near.length; b++) { var A = near[a], B = near[b], S = A.o.an && B.o.an ? SP * 0.6 : A.o.an || B.o.an ? SP * 0.75 : SP, an = A.v.angleTo(B.v); if (an >= S) continue;
+        var t = B.v.clone().sub(A.v); if (t.lengthSq() < 1e-14) t.set(Math.sin(a + 1), Math.cos(b + 1), 0.3); var m = (S - an) * 0.5; t.normalize();
+        A.v.addScaledVector(t, -m).normalize(); B.v.addScaledVector(t, m).normalize(); }
+    }
+    near.forEach(pushOff);
+    near.forEach(function (q) { if (q.v.angleTo(q.o.n) > 1e-5) { q.o.rideN = q.v; q.o.rideLL = v2ll(q.v); } });
+    LMS.forEach(function (o) { if (!o.an) pads.push(o.rideLL || o.d.ll); });
     WORLD.setPads(pads);
   }
   var rideFirst = false;
@@ -318,6 +350,7 @@
   };
   G.firstPerson = function (on) { RC.fp = on == null ? !RC.fp : on; RC.yaw = 0; RC.pitch = RC.fp ? 0.3 : 0.3; return RC.fp; };
   G.riding = function () { return riding && riding.r; };
+  G.rideCam = function () { return rideCam; };
   G._near = function () { if (!riding || !riding.pos) return null; var v = riding.pos.clone().normalize(); return LMS.filter(function (o) { return !o.an; }).map(function (o) { return [o.d.id, +(o.n.angleTo(v) / D2R).toFixed(3), o.mesh.visible]; }).sort(function (a, b) { return a[1] - b[1]; }).slice(0, 4).concat([[riding.ll, +(camPos.distanceTo(riding.pos)).toFixed(4)]]); };
   // Riding a plane: one smooth flight — a roll along the runway, a long climb, a calm cruise high enough to clear every mountain and landmark
   // near the way (with a margin, then smoothed out over tens of km so it never follows the bumps of the ground), a long descent and landing.
@@ -346,7 +379,7 @@
   var camUp = new T.Vector3(), camBack = new T.Vector3(), up2 = new T.Vector3(), fw2 = new T.Vector3(), x2 = new T.Vector3();
   function placeLandmarks() {
     shadowMat.visible = V.alt < 1.3 && qLow === 0;
-    var far = rideCam ? 0 : Math.max(0, Math.min(1, (V.alt - 0.25) / 1.3)), s = rideCam ? LM_RIDE : scaleNow() * (1.05 - 0.45 * far), placed = [], lean = far * 0.8, gp = new T.Vector3();
+    var far = rideCam ? 0 : Math.max(0, Math.min(1, (V.alt - 0.25) / 1.3)), s = rideCam ? LM_RIDE : scaleNow() * (0.85 - 0.35 * far), placed = [], lean = far * 0.8, gp = new T.Vector3();
     camUp.setFromMatrixColumn(camera.matrixWorld, 1); camBack.setFromMatrixColumn(camera.matrixWorld, 2);
     lmRects = [];
     LMS.forEach(function (o) {
@@ -358,7 +391,7 @@
       var h = Math.max(8, Math.abs(q0[1] - q1[1]) + Math.abs(q0[0] - q1[0])), w = h * 0.9, r = { x: q0[0] - w / 2, y: q0[1] - h, w: w, h: h };
       if (r.x > W + 60 || r.x + r.w < -60 || r.y > H + 60 || r.y + r.h < -80) { m.visible = false; return; }
       if (rideCam && tmp.copy(N).sub(camPos).length() > 0.4) { m.visible = false; return; } // (riding: everything near enough shows, however crowded)
-      var hit = false; if (!rideCam) for (var i = 0; i < placed.length; i++) { var p = placed[i]; if (Math.abs((r.x + r.w / 2) - (p.x + p.w / 2)) < 0.35 * Math.min(r.w, p.w) && Math.abs((r.y + r.h) - (p.y + p.h)) < 0.3 * Math.min(r.h, p.h)) { hit = true; break; } } // (only a model standing almost on top of another hides; neighbours both stay)
+      var hit = false; if (!rideCam) for (var i = 0; i < placed.length; i++) { var p = placed[i]; if (Math.abs((r.x + r.w / 2) - (p.x + p.w / 2)) < 0.42 * (r.w + p.w) && Math.abs((r.y + r.h) - (p.y + p.h)) < 0.3 * (r.h + p.h)) { hit = true; break; } } // (zoomed out, a model that would overlap one already shown waits until you zoom in — they never stand on top of each other)
       if (hit) { m.visible = false; return; }
       var rad = o.r;
       if (rideCam) {

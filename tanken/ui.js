@@ -189,9 +189,9 @@
 
   /* ---------- landmark & animal cards ---------- */
   function where(ll, cid) { var id = Globe.countryAt(ll) || cid, c = id && byId[id]; return c ? '<span class="cchip" data-c="' + c.id + '">' + flagImg(c) + esc(cn(c)) + ' ▶</span>' : '<span class="cchip">🌊 ' + L('海・こおりの 上', 'Sea or ice') + '</span>'; }
-  function showLandmark(id) {
-    var l = Globe.landmark(id); if (!l) return; if (Globe.riding()) Globe.unride(); endGame(); boing(); Globe.select(null);
-    Globe.flyTo(l.ll[0], l.ll[1] - 0.35, 0.3, 1200); var fresh = newSticker('lm', id, nm(l)); open('landmark', { id: id, fresh: fresh });
+  function showLandmark(id, onRide) { // (onRide: tapped from the ride-along — the info opens and the ride carries on underneath)
+    var l = Globe.landmark(id); if (!l) return; if (!onRide && Globe.riding()) Globe.unride(); endGame(); boing(); Globe.select(null);
+    if (!onRide) Globe.flyTo(l.ll[0], l.ll[1] - 0.35, 0.3, 1200); var fresh = newSticker('lm', id, nm(l)); open('landmark', { id: id, fresh: fresh });
   }
   R.landmark = function (a) {
     var l = Globe.landmark(a.id), c = byId[l.c], next = App.pick(LMS.filter(function (x) { return x.id !== l.id && !S.lm[x.id]; })) || App.pick(LMS);
@@ -201,9 +201,9 @@
       '<div class="btns">' + where(l.ll, l.c) + '</div>' +
       '<div class="btns"><button class="btn bl" data-lm="' + next.id + '">' + L('つぎの たてもの へ ▶', 'Next landmark ▶') + '</button><button class="btn pu" data-go="book:lm">' + L('📒 ずかん', '📒 Sticker book') + '</button></div>';
   };
-  function showAnimal(id) {
-    var a = Globe.animal(id); if (!a) return; if (Globe.riding()) Globe.unride(); endGame(); boing(); Globe.select(null);
-    Globe.flyTo(a.ll[0], a.ll[1] - 0.5, 0.42, 1200); var fresh = newSticker('an', id, nm(a)); open('animal', { id: id, fresh: fresh });
+  function showAnimal(id, onRide) {
+    var a = Globe.animal(id); if (!a) return; if (!onRide && Globe.riding()) Globe.unride(); endGame(); boing(); Globe.select(null);
+    if (!onRide) Globe.flyTo(a.ll[0], a.ll[1] - 0.5, 0.42, 1200); var fresh = newSticker('an', id, nm(a)); open('animal', { id: id, fresh: fresh });
   }
   R.animal = function (o) {
     var a = Globe.animal(o.id), next = App.pick(ANS.filter(function (x) { return x.id !== a.id && !S.an[x.id]; })) || App.pick(ANS);
@@ -440,6 +440,7 @@
   /* ---------- picking on the globe ---------- */
   Globe.onPick = function (h) {
     if (game) return;
+    if (Globe.riding() && Globe.rideCam()) { if (h.kind === 'landmark') showLandmark(h.id, true); else if (h.kind === 'animal') showAnimal(h.id, true); return; } // (riding: tap a landmark or animal to read about it without getting off)
     if (h.kind === 'country') choose(h.id); else if (h.kind === 'city') showCity(h.id); else if (h.kind === 'landmark') showLandmark(h.id); else if (h.kind === 'animal') showAnimal(h.id); else if (h.kind === 'vehicle') ride(h.id);
   };
   Globe.onHover = function (h, p) {
