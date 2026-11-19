@@ -174,4 +174,83 @@
     for (var k2 = 0; k2 < 10; k2++) { var a = k2 / 10 * D2; cone(g, [Math.cos(a) * 0.24, 0, Math.sin(a) * 0.2], [Math.cos(a) * 0.25, 0.06, Math.sin(a) * 0.21], 0.008, '#d8c070', 3); }
     return wrap(g, 0.6);
   };
+  /* ---------- platypus (Australia, Tasmania) ---------- */
+  M.custom.a_platypus = function () {
+    var g = new T.Group();
+    var cr = new T.Mesh(new T.CylinderGeometry(0.3, 0.3, 0.01, 20), solid('#4a8ab0', { flatShading: true })); cr.position.y = 0.004; cr.scale.z = 0.7; g.add(cr);
+    var bank = new T.Mesh(new T.SphereGeometry(0.18, 10, 5, 0, D2, 0, Math.PI / 2), solid('#7a6a4a', { flatShading: true })); bank.scale.set(1.2, 0.25, 0.8); bank.position.set(-0.2, 0, -0.18); g.add(bank);
+    var fur = function (x, y, z) { return vary(y < 0.03 ? '#a88a68' : '#6a4a30', x, y, z, 0.05); };
+    // a flat furry body, swimming at the surface
+    tube(g, [[-0.14, 0.03, 0, 0.04, 0.025], [-0.06, 0.04, 0, 0.07, 0.042], [0.04, 0.045, 0, 0.068, 0.042], [0.1, 0.045, 0, 0.045, 0.034]], fur, 'body', 10, 0.1, 3);
+    ball(g, 0.13, 0.05, 0, 0.034, '#6a4a30', 1.1, 0.85, 1, 1); [-1, 1].forEach(function (s) { eye(g, 0.15, 0.06, s * 0.024, 0.005); });
+    // the duck-like bill (soft and rubbery; it feels for food in the mud with its eyes shut)
+    var bill = new T.Mesh(new T.SphereGeometry(0.04, 10, 6), new T.MeshLambertMaterial({ color: '#4a4a52', flatShading: true })); bill.scale.set(1.4, 0.3, 0.85); bill.position.set(0.2, 0.045, 0); g.add(bill);
+    // the flat beaver-like tail and webbed feet
+    var tl = new T.Mesh(new T.SphereGeometry(0.05, 8, 5), solid('#5a3c26', { flatShading: true })); tl.scale.set(1.4, 0.25, 0.9); tl.position.set(-0.2, 0.025, 0); g.add(tl);
+    [[0.06, 1], [0.06, -1], [-0.1, 1], [-0.1, -1]].forEach(function (q) { var ft = new T.Mesh(new T.CircleGeometry(0.022, 6), new T.MeshLambertMaterial({ color: '#4a4a52', side: T.DoubleSide })); ft.rotation.x = -Math.PI / 2 + 0.3 * q[1]; ft.position.set(q[0], 0.02, q[1] * 0.07); g.add(ft); });
+    // ripples, reeds
+    for (var r = 1; r <= 2; r++) { var rg = new T.Mesh(new T.TorusGeometry(0.08 * r + 0.1, 0.003, 3, 24), new T.MeshLambertMaterial({ color: '#cfe8f4' })); rg.rotation.x = Math.PI / 2; rg.position.set(0, 0.011, 0); g.add(rg); }
+    for (var k = 0; k < 10; k++) cone(g, [-0.3 + hash(k, 1) * 0.12, 0, -0.24 + k * 0.02], [-0.3 + hash(k, 1) * 0.12, 0.12 + 0.04 * hash(k, 2), -0.24 + k * 0.02], 0.004, '#6a9a4a', 3);
+    return wrap(g, 0.6);
+  };
+
+  /* ---------- cheetah (Namibia) ---------- */
+  M.custom.a_cheetah = function () {
+    var g = new T.Group();
+    var spot = function (x, y, z, p) {
+      if (y < 0.012) return '#3a2a20';
+      if ((p === 'body' && y < 0.235) || (p === 'head' && x > 0.4 && y < 0.37)) return vary('#f4ead2', x, y, z, 0.03);
+      if (A.worley(x, y, z, p === 'leg' ? 80 : 60).f1 < 0.3) return '#2a2420';      // round black spots (not rosettes like a leopard)
+      return vary('#e2b45a', x, y, z, 0.04);
+    };
+    // long thin legs and a deep chest: built to be the fastest runner on land (up to about 100 km/h)
+    var l = quad({ sides: 10, L: 0.46, legH: 0.25, bR: 0.075, bW: 0.06, legR: 0.016, prof: [0.6, 0.85, 1, 0.95, 0.9, 0.75], slope: -0.05, kneeR: -0.03, neck: { len: 0.06, ang: 0.45, r: 0.035 }, head: { len: 0.09, r: 0.04, snout: 0.026, ang: -0.2, eye: 0.007 }, earL: 0.014, earR: 0.011, tail: false, col: spot });
+    g.add(l);
+    var u = l.userData, ep = u.hp(0.45);
+    [-1, 1].forEach(function (s) { tube(l, [[ep[0] + 0.006, ep[1] + 0.008, s * 0.03, 0.003, 0.003], [ep[0] + 0.03, ep[1] - 0.025, s * 0.022, 0.003, 0.003], [ep[0] + 0.04, ep[1] - 0.045, s * 0.016, 0.003, 0.003]], '#2a2420', 'tear', 3, 0); }); // black "tear lines" from the eyes
+    tube(l, [[-0.23, u.by + 0.02, 0, 0.014, 0.014], [-0.33, u.by - 0.08, 0, 0.012, 0.012], [-0.37, u.by - 0.17, 0.02, 0.011, 0.011], [-0.34, u.by - 0.22, 0.04, 0.01, 0.01]], function (x, y) { return y < u.by - 0.17 ? (Math.sin(y * 160) > 0 ? '#2a2420' : '#f4ead2') : '#e2b45a'; }, 'tail', 6, 0.05, 2);
+    // a termite mound to look out from, and dry grass
+    var tm = new T.Mesh(new T.ConeGeometry(0.06, 0.2, 7), solid('#c8804a', { flatShading: true })); tm.position.set(-0.28, 0.1, -0.15); g.add(tm);
+    for (var k = 0; k < 14; k++) { var a = k / 14 * D2; cone(g, [Math.cos(a) * 0.3, 0, Math.sin(a) * 0.22], [Math.cos(a) * 0.31, 0.08, Math.sin(a) * 0.23], 0.008, '#d8c070', 3); }
+    return wrap(g, 0.5);
+  };
+
+  /* ---------- reindeer (Finland, Lapland) ---------- */
+  M.custom.a_reindeer = function () {
+    var g = new T.Group();
+    var snow = new T.Mesh(new T.CylinderGeometry(0.34, 0.36, 0.02, 12), solid('#f4f7fa', { flatShading: true })); snow.position.y = 0.01; g.add(snow);
+    var c = function (x, y, z, p) { if (y < 0.012) return '#3a3028'; if (p === 'neck' && y < 0.42) return vary('#f2ece2', x, y, z, 0.03); if (p === 'body' && y < 0.26) return vary('#d8d0c4', x, y, z, 0.04); return vary('#7a6a58', x, y, z, 0.05); };
+    var l = quad({ sides: 10, neckSides: 9, L: 0.42, legH: 0.22, bR: 0.085, bW: 0.075, legR: 0.019, kneeR: -0.025, neck: { len: 0.1, ang: 0.6, r: 0.045 }, head: { len: 0.13, r: 0.04, snout: 0.03, ang: -0.7, eye: 0.007 }, earL: 0.025, earR: 0.01, tail: 0.04, col: c });
+    l.position.y = 0.02; g.add(l);
+    var u = l.userData, hb = u.hp(0.12);
+    // big branching antlers — both males and females grow them
+    [-1, 1].forEach(function (s) {
+      var b0 = [hb[0] - 0.01, hb[1] + 0.03, s * 0.02], b1 = [hb[0] - 0.06, hb[1] + 0.12, s * 0.07], b2 = [hb[0] - 0.04, hb[1] + 0.22, s * 0.1], b3 = [hb[0] + 0.02, hb[1] + 0.26, s * 0.08];
+      tube(l, [b0.concat([0.006, 0.006]), b1.concat([0.006, 0.006]), b2.concat([0.005, 0.005]), b3.concat([0.004, 0.004])], '#d8c8a8', 'antler', 5, 0.05);
+      [[b1, [0.04, 0.05, 0.0]], [b2, [0.05, 0.03, 0.01]], [b1, [-0.03, 0.06, 0.02]]].forEach(function (q) { var a = q[0], t = [a[0] + q[1][0], a[1] + q[1][1], a[2] + s * q[1][2]]; tube(l, [a.concat([0.004, 0.004]), t.concat([0.003, 0.003])], '#d8c8a8', 'antler', 4, 0); });
+    });
+    var tip = u.hp(1.0); ball(l, tip[0], tip[1], 0, 0.014, '#3a3028');
+    // a little sled hitched behind, and snowy fir trees
+    var sl = new T.Group(); sl.position.set(-0.36, 0.02, 0.1); g.add(sl); box3(sl, 0.12, 0.02, 0.06, 0, 0.03, 0, '#a8402a'); [-0.025, 0.025].forEach(function (z) { box3(sl, 0.14, 0.006, 0.006, 0.0, 0.006, z, '#3a2a20'); });
+    for (var t = 0; t < 4; t++) { var tx = -0.25 + t * 0.15, tz = -0.25; cone(g, [tx, 0.02, tz], [tx, 0.25, tz], 0.05, '#2f5f3a', 6); cone(g, [tx, 0.15, tz], [tx, 0.27, tz], 0.03, '#f4f7fa', 6); }
+    return wrap(g, 0.5);
+  };
+  function box3(g, w, h, d, x, y, z, col) { var geo = new T.BoxGeometry(w, h, d); geo.translate(x, y + h / 2, z); return part(g, geo, col); }
+
+  /* ---------- toco toucan (Paraguay) ---------- */
+  M.custom.a_toucan = function () {
+    var g = new T.Group();
+    branch(g, [-0.25, 0.26, 0], [0.25, 0.28, 0], 0.016, '#6a4a32');
+    tube(g, [[-0.15, 0.0, -0.04, 0.03, 0.03], [-0.14, 0.27, -0.01, 0.022, 0.022]], function (x, y, z) { return vary('#6a4a32', x, y, z, 0.06); }, 'trunk', 6, 0.2);
+    leaves(g, 0.2, 0.34, -0.05, 6, 0.04, '#4f9a3f');
+    var b = bird({ len: 0.17, r: 0.05, tilt: 0.25, hr: 0.035, beak: 0.001, beakR: 0.001, eye: 0.007, legH: 0.0, col: function (x, y, z, p) { if (p === 'head' && x > 0.05) return '#f6f4ee'; if (p === 'body' && x > 0.02 && y > 0.12) return '#f6f4ee'; return vary('#1d1c20', x, y, z, 0.04); } });
+    b.position.set(0, 0.275, 0); g.add(b);
+    var hc = b.userData.hc;
+    [-1, 1].forEach(function (s) { ball(b, hc[0] + 0.012, hc[1] + 0.008, s * 0.024, 0.011, '#3aa8e0', 1, 1, 0.5); });
+    // the giant orange bill — huge but light, a bit like a honeycomb inside — with a black tip
+    tube(b, [[hc[0] + 0.02, hc[1] + 0.0, 0, 0.022, 0.03], [hc[0] + 0.08, hc[1] - 0.02, 0, 0.016, 0.022], [hc[0] + 0.14, hc[1] - 0.045, 0, 0.007, 0.01]], function (x) { return x > hc[0] + 0.12 ? '#1d1c20' : '#f28a1e'; }, 'bill', 8, 0.05);
+    tube(b, [[-0.02, 0.06, 0, 0.022, 0.015], [-0.06, -0.02, 0, 0.02, 0.012], [-0.07, -0.08, 0, 0.012, 0.008]], '#1d1c20', 'tail', 5, 0.05);
+    ball(b, -0.01, 0.045, 0, 0.018, '#e8352b', 1.2, 0.6, 1);
+    return wrap(g, 0.6);
+  };
 })();

@@ -2,7 +2,7 @@ Section,Country / group,MyEarthToy name,In our version,Our id,Our name
 Landmark,Afghanistan,"Blue Mosque, Mazar-i-Sharif",yes,bluemosque,"Blue Mosque, Mazar-i-Sharif"
 Landmark,Bangladesh,Ahsan Manzil,no,,
 Landmark,Bangladesh,Jatiya Sangsad Bhaban,yes,jatiya,Jatiya Sangsad Bhaban
-Landmark,Bangladesh,Lalbagh Fort (Tomb of Pari Bibi),no,,
+Landmark,Bangladesh,Lalbagh Fort (Tomb of Pari Bibi),yes,lalbagh,Lalbagh Fort
 Landmark,Bhutan,Paro Taktsang (Tiger's Nest),yes,tigersnest,Tiger's Nest (Paro Taktsang)
 Landmark,Brunei,Omar Ali Saifuddien Mosque,yes,omarali,Omar Ali Saifuddien Mosque
 Landmark,Cambodia,Angkor Wat,yes,angkor,Angkor Wat
@@ -262,7 +262,7 @@ Landmark,Sri Lanka,Temple of the Sacred Tooth Relic,yes,toothtemple,Temple of th
 Landmark,Syria,Citadel of Aleppo,no,,
 Landmark,Syria,Krak des Chevaliers,yes,krak,Krak des Chevaliers
 Landmark,Syria,Umayyad Mosque,yes,umayyad,Umayyad Mosque
-Landmark,Taiwan,Chiang Kai-shek Memorial Hall,no,,
+Landmark,Taiwan,Chiang Kai-shek Memorial Hall,yes,ckshall,Chiang Kai-shek Memorial Hall
 Landmark,Taiwan,Lungshan Temple of Manka,no,,
 Landmark,Taiwan,Taipei 101,yes,taipei101,Taipei 101
 Landmark,Tajikistan,Dushanbe Flagpole,yes,tajikflag,Dushanbe Flagpole
@@ -333,7 +333,7 @@ Landmark,Greece,Meteora,yes,meteora,Meteora
 Landmark,Greece,Palace of Knossos,yes,knossos,Palace of Knossos
 Landmark,Greece,Parthenon,yes,parthenon,Parthenon
 Landmark,Greece,Santorini (Oia),yes,santorini,Santorini
-Landmark,Hungary,Buda Castle,no,,
+Landmark,Hungary,Buda Castle,yes,budacastle,Buda Castle
 Landmark,Hungary,Hungarian Parliament Building,yes,hunparl,Hungarian Parliament Building
 Landmark,Iceland,Hallgrímskirkja,yes,hallgrim,Hallgrímskirkja
 Landmark,Ireland,Cliffs of Moher,yes,moher,Cliffs of Moher
@@ -359,7 +359,7 @@ Landmark,Montenegro,Our Lady of the Rocks,yes,ladyrocks,Our Lady of the Rocks
 Landmark,Netherlands,Zaanse Schans windmills,yes,kinderdijk,Kinderdijk Windmills
 Landmark,North Macedonia,Church of St. John at Kaneo,yes,kaneo,Church of St. John at Kaneo
 Landmark,Norway,Holmenkollen Ski Jump,no,,
-Landmark,Norway,Oslo Opera House,no,,
+Landmark,Norway,Oslo Opera House,yes,osloopera,Oslo Opera House
 Landmark,Norway,Preikestolen (Pulpit Rock),yes,preikestolen,Preikestolen (Pulpit Rock)
 Landmark,Poland,Malbork Castle,yes,malbork,Malbork Castle
 Landmark,Poland,Wawel Castle,yes,wawel,Wawel Castle
@@ -397,7 +397,7 @@ Landmark,Spain,Sagrada Família,yes,sagrada,Sagrada Família
 Landmark,Spain,Santiago de Compostela Cathedral,no,,
 Landmark,Sweden,Avicii Arena (Globen),no,,
 Landmark,Sweden,Stockholm City Hall,yes,stockholm,Stockholm City Hall
-Landmark,Sweden,Vasa Museum,no,,
+Landmark,Sweden,Vasa Museum,yes,vasa,Vasa Museum
 Landmark,Switzerland,CERN – Globe of Science and Innovation,no,,
 Landmark,Switzerland,Matterhorn,yes,matterhorn,Matterhorn
 Landmark,Türkiye,Basilica Cistern,no,,
@@ -477,7 +477,7 @@ Landmark,Libya,Leptis Magna,yes,leptis,Leptis Magna
 Landmark,Madagascar,Avenue of the Baobabs,yes,baobab,Avenue of the Baobabs
 Landmark,Malawi,"St Peter's Cathedral, Likoma",yes,likoma,"St Peter's Cathedral, Likoma"
 Landmark,Mali,Great Mosque of Djenné,yes,djenne,Great Mosque of Djenné
-Landmark,Mali,Sankore Mosque,no,,
+Landmark,Mali,Sankore Mosque,yes,sankore,Sankore Mosque
 Landmark,Mauritania,Richat Structure,yes,richat,Richat Structure (Eye of the Sahara)
 Landmark,Mauritius,Le Morne Brabant,yes,lemorne,Le Morne Brabant
 Landmark,Morocco,Aït Benhaddou,yes,aitbenhaddou,Aït Benhaddou
@@ -750,7 +750,7 @@ Landmark,Colombia,Colpatria Tower,no,,
 Landmark,Colombia,El Peñón de Guatapé,no,,
 Landmark,Colombia,Las Lajas Sanctuary,yes,laslajas,Las Lajas Sanctuary
 Landmark,Colombia,Walled City of Cartagena,yes,cartagena,Walled City of Cartagena
-Landmark,Ecuador,Cotopaxi,no,,
+Landmark,Ecuador,Cotopaxi,yes,cotopaxi,Cotopaxi
 Landmark,Ecuador,Galápagos Islands,yes,galapagos,Galápagos Islands
 Landmark,Falkland Islands,"Christ Church Cathedral, Stanley",yes,stanley,"Christ Church Cathedral, Stanley"
 Landmark,Guyana,Kaieteur Falls,yes,kaieteur,Kaieteur Falls
@@ -821,7 +821,7 @@ Landmark,Antarctica,Jang Bogo Station,no,,
 Landmark,Antarctica,King Sejong Station,no,,
 Landmark,Antarctica,McMurdo Station,no,,
 Landmark,Antarctica,Vostok Station,no,,
-Landmark,Armenia,Geghard Monastery,no,,
+Landmark,Armenia,Geghard Monastery,yes,geghard,Geghard Monastery
 Landmark,Armenia,Mother Armenia,no,,
 Landmark,Armenia,Mount Ararat & Khor Virap,yes,khorvirap,Mount Ararat & Khor Virap
 Landmark,Azerbaijan,Flame Towers,yes,flametowers,Flame Towers
@@ -882,7 +882,7 @@ Animal,Mammal,Capybara,yes,capybara,Capybara
 Animal,Mammal,Caracal,no,,
 Animal,Mammal,Caspian seal,no,,
 Animal,Mammal,Chamois,no,,
-Animal,Mammal,Cheetah,no,,
+Animal,Mammal,Cheetah,yes,cheetah,Cheetah
 Animal,Mammal,Chimpanzee,no,,
 Animal,Mammal,Chinchilla,no,,
 Animal,Mammal,Chinese white dolphin,no,,
@@ -993,7 +993,7 @@ Animal,Mammal,Pallas's cat,no,,
 Animal,Mammal,Patagonian mara,no,,
 Animal,Mammal,Philippine tarsier,no,,
 Animal,Mammal,Plains zebra,yes,zebra,Zebra
-Animal,Mammal,Platypus,no,,
+Animal,Mammal,Platypus,yes,platypus,Platypus
 Animal,Mammal,Polar bear,yes,polarbear,Polar bear
 Animal,Mammal,Proboscis monkey,no,,
 Animal,Mammal,Pronghorn,no,,
@@ -1005,7 +1005,7 @@ Animal,Mammal,Raccoon dog,no,,
 Animal,Mammal,Red fox,no,,
 Animal,Mammal,Red kangaroo,yes,kangaroo,Kangaroo
 Animal,Mammal,Red panda,yes,redpanda,Red panda
-Animal,Mammal,Reindeer,no,,
+Animal,Mammal,Reindeer,yes,reindeer,Reindeer
 Animal,Mammal,Ribbon seal,no,,
 Animal,Mammal,Ring-tailed lemur,yes,lemur,Ring-tailed lemur
 Animal,Mammal,Ringed seal,no,,
@@ -1119,7 +1119,7 @@ Animal,Bird,Snowy owl,no,,
 Animal,Bird,Southern cassowary,no,,
 Animal,Bird,Southern ground hornbill,no,,
 Animal,Bird,Steller's sea eagle,no,,
-Animal,Bird,Toco toucan,no,,
+Animal,Bird,Toco toucan,yes,toucan,Toco toucan
 Animal,Bird,Victoria crowned pigeon,no,,
 Animal,Bird,Vulturine guineafowl,no,,
 Animal,Bird,Wandering albatross,no,,

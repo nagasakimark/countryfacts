@@ -679,7 +679,23 @@ TOY.landmarks = [
 {id:'antigua',c:'GTM',ll:[-90.7344,14.5605],m:'antigua',ja:'サンタ・カタリーナの アーチ',en:'Santa Catalina Arch (Antigua Guatemala)',k:'さんたかたりーな あーち あんてぃぐあ ぐあてまら',
   t:'グアテマラの 古い 町 アンティグアの 黄色い アーチ。 おいのりを する 女の人たちが、 人に 見られずに 道を わたれるように つくられた。 うしろには 火山が 見える。',te:'A yellow arch in the old town of Antigua, Guatemala. It was built so nuns could cross the street without being seen. A volcano rises behind.'},
 {id:'svetitskhoveli',c:'GEO',ll:[44.7208,41.8421],m:'svetitskhoveli',ja:'スヴェティツホヴェリ{大聖堂|だいせいどう}',en:'Svetitskhoveli Cathedral',k:'すゔぇてぃつほゔぇり だいせいどう じょーじあ むつへた',
-  t:'ジョージアの 古い 都 ムツヘタに ある 教会。 1000年ほど 前に たてられ、 石の かべに かこまれて いる。',te:'A cathedral in Mtskheta, the old capital of Georgia, built about 1,000 years ago and surrounded by a stone fortress wall.'}
+  t:'ジョージアの 古い 都 ムツヘタに ある 教会。 1000年ほど 前に たてられ、 石の かべに かこまれて いる。',te:'A cathedral in Mtskheta, the old capital of Georgia, built about 1,000 years ago and surrounded by a stone fortress wall.'},
+{id:'budacastle',c:'HUN',ll:[19.0396,47.4962],m:'budacastle',ja:'ブダ{城|じょう}',en:'Buda Castle',k:'ぶだじょう はんがりー ぶだぺすと',
+  t:'ハンガリーの ブダペストの おかの 上に ある お{城|しろ}。 ドナウ川を はさんで、 くさりの 橋で 向こう岸の 町と つながる。',te:'A castle-palace on a hill in Budapest, Hungary. The Chain Bridge links it across the Danube to the other half of the city.'},
+{id:'geghard',c:'ARM',ll:[44.8178,40.1405],m:'geghard',ja:'ゲガルド{修道院|しゅうどういん}',en:'Geghard Monastery',k:'げがるど しゅうどういん あるめにあ',
+  t:'アルメニアの 谷に ある、 がけの 岩を ほって つくった 教会。 中で 歌うと、 声が とても きれいに ひびく。',te:'A monastery in a gorge in Armenia, partly carved right into the cliff rock. Inside, voices echo beautifully.'},
+{id:'lalbagh',c:'BGD',ll:[90.3884,23.7189],m:'lalbagh',ja:'ラールバーグ{城|じょう}',en:'Lalbagh Fort',k:'らーるばーぐじょう ばんぐらでしゅ だっか',
+  t:'バングラデシュの ダッカに ある、 300年いじょう 前の とりで。 とちゅうで 工事が 止まり、 未完成の まま。 まん中に 白い お{墓|はか}が ある。',te:'A Mughal fort in Dhaka, Bangladesh, started over 300 years ago and never finished. In the middle stands the white tomb of Princess Pari Bibi.'},
+{id:'cotopaxi',c:'ECU',ll:[-78.4378,-0.6838],m:'cotopaxi',ja:'コトパクシ山',en:'Cotopaxi',k:'ことぱくしさん えくあどる かざん',
+  t:'エクアドルの 火山。 高さ 5897m。 赤道の すぐ近くなのに、 てっぺんには 一年中 氷河が ある。',te:'A 5,897 m volcano in Ecuador. Even though it is close to the equator, a glacier covers its top all year.'},
+{id:'sankore',c:'MLI',ll:[-3.0006,16.7756],m:'sankore',ja:'サンコーレ・モスク',en:'Sankore Mosque',k:'さんこーれ もすく まり とんぶくとぅ',
+  t:'マリの トンブクトゥに ある どろの モスク。 昔は 大学のように 学者が 集まり、 たくさんの 本が 書かれた。',te:'A mud-brick mosque in Timbuktu, Mali. Long ago it was like a university, where scholars gathered and many books were written.'},
+{id:'osloopera',c:'NOR',ll:[10.7531,59.9075],m:'osloopera',ja:'オスロ・オペラハウス',en:'Oslo Opera House',k:'おすろ おぺらはうす のるうぇー',
+  t:'ノルウェーの オスロの 海べに ある 白い げきじょう。 ななめの 屋根を 歩いて、 てっぺんまで のぼれる。',te:'A white opera house on the waterfront in Oslo, Norway. You can walk up its sloping roof all the way to the top.'},
+{id:'vasa',c:'SWE',ll:[18.0915,59.3280],m:'vasa',ja:'ヴァーサ号博物館',en:'Vasa Museum',k:'ゔぁーさごう はくぶつかん すうぇーでん すとっくほるむ',
+  t:'スウェーデンの ストックホルムに ある 博物館。 1628年に はじめての 航海で しずんだ 軍の 船が、 333年後に 引き上げられて ここに ある。',te:'A museum in Stockholm, Sweden, holding the warship Vasa, which sank on her first voyage in 1628 and was raised from the sea 333 years later.'},
+{id:'ckshall',c:'TWN',ll:[121.5219,25.0347],m:'ckshall',ja:'{中正紀念堂|ちゅうせいきねんどう}',en:'Chiang Kai-shek Memorial Hall',k:'ちゅうせいきねんどう たいわん たいぺい',
+  t:'{台湾|たいわん}の 台北に ある 大きな 白い 記念館。 青い 屋根と 白い かべは、 空と 太陽を 表して いる。 1時間ごとに 兵士の 交代式が ある。',te:'A huge white memorial hall in Taipei, Taiwan. Its blue roof and white walls stand for the sky and the sun. Guards change every hour in a ceremony.'}
 ];
 
 TOY.animals = [
@@ -729,7 +745,11 @@ TOY.animals = [
  {id:'snowleopard',e:'🐆',ll:[77.5,41.6],ja:'ユキヒョウ',en:'Snow leopard',t:'キルギスなどの 高い 山に すむ。 長くて 太い しっぽを マフラーのように 顔に まいて ねる。',te:'It lives in high mountains such as those of Kyrgyzstan. It sleeps with its long, thick tail wrapped round its face like a scarf.'},
  {id:'quetzal',e:'🐦',ll:[-90.3,15.4],ja:'ケツァール',en:'Resplendent quetzal',t:'グアテマラの 国の 鳥で、 お金の 名前にも なっている。 オスは しっぽまで 入れると 1mほど ある。',te:'Guatemala\'s national bird — even its money is called the quetzal. With its tail streamers, the male is about 1 m long.'},
  {id:'capybara',e:'🐹',ll:[-67.5,7.5],ja:'カピバラ',en:'Capybara',t:'ベネズエラの 草原の 水べに すむ、 世界で いちばん 大きな ネズミの なかま。 とても おだやかで、 鳥が せなかに のっても へいき。',te:'The world\'s largest rodent, living by the water on the grasslands of Venezuela. It is so calm that birds sit on its back.'},
- {id:'meerkat',e:'🐿️',ll:[22.5,-23.5],ja:'ミーアキャット',en:'Meerkat',t:'ボツワナの カラハリ{砂漠|さばく}に すむ。 なかまが 食べている 間、 1ぴきが 立って 見はりを する。',te:'It lives in the Kalahari Desert in Botswana. While the family eats, one stands up tall on guard.'}
+ {id:'meerkat',e:'🐿️',ll:[22.5,-23.5],ja:'ミーアキャット',en:'Meerkat',t:'ボツワナの カラハリ{砂漠|さばく}に すむ。 なかまが 食べている 間、 1ぴきが 立って 見はりを する。',te:'It lives in the Kalahari Desert in Botswana. While the family eats, one stands up tall on guard.'},
+ {id:'platypus',e:'🦫',ll:[146.5,-42.0],ja:'カモノハシ',en:'Platypus',t:'オーストラリアに すむ。 たまごを うむ めずらしい ほにゅうるい。 くちばしで 水の 中の 小さな 生き物を さがす。',te:'It lives in Australia. It is a rare mammal that lays eggs, and it hunts for small animals underwater with its bill.'},
+ {id:'cheetah',e:'🐆',ll:[17.0,-20.0],ja:'チーター',en:'Cheetah',t:'ナミビアの 草原に すむ。 陸で いちばん 速い 動物で、 時速 100kmちかくで 走る。',te:'It lives on the grasslands of Namibia. It is the fastest animal on land, running at nearly 100 km/h.'},
+ {id:'reindeer',e:'🦌',ll:[26.5,68.0],ja:'トナカイ',en:'Reindeer',t:'フィンランドの ラップランドに すむ。 オスにも メスにも 角が ある。 そりを 引く ことも ある。',te:'It lives in Lapland, Finland. Both males and females grow antlers, and some pull sleds.'},
+ {id:'toucan',e:'🦜',ll:[-57.5,-23.0],ja:'オニオオハシ',en:'Toco toucan',t:'パラグアイなどの 森に すむ。 大きな オレンジ色の くちばしは、 中が スカスカで とても かるい。',te:'It lives in the forests of Paraguay and nearby. Its huge orange bill is hollow inside and very light.'}
 ];
 
 /* Vehicles travel there and back forever. p = route points [lon,lat] (great-circle between points).
