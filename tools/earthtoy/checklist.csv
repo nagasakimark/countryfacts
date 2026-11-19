@@ -440,7 +440,7 @@ Landmark,Central African Republic,Boali Falls,no,,
 Landmark,Chad,Aloba Arch,no,,
 Landmark,Congo - Brazzaville,Nabemba Tower,no,,
 Landmark,Congo - Kinshasa,Limete Tower (Tour de l'Échangeur),no,,
-Landmark,Congo - Kinshasa,Mount Nyiragongo,no,,
+Landmark,Congo - Kinshasa,Mount Nyiragongo,yes,nyiragongo,Mount Nyiragongo
 Landmark,Congo - Kinshasa,Palais du Peuple,no,,
 Landmark,Côte d'Ivoire,Basilica of Our Lady of Peace of Yamoussoukro,no,,
 Landmark,Djibouti,Lake Abbe limestone chimneys,no,,
@@ -449,7 +449,7 @@ Landmark,Egypt,Al-Azhar Mosque,no,,
 Landmark,Egypt,Bibliotheca Alexandrina,no,,
 Landmark,Egypt,Citadel of Saladin & Muhammad Ali Mosque,no,,
 Landmark,Egypt,Iconic Tower,no,,
-Landmark,Egypt,Karnak Temple,no,,
+Landmark,Egypt,Karnak Temple,yes,karnak,Karnak Temple
 Landmark,Egypt,Luxor Temple,no,,
 Landmark,Egypt,Pyramids of Giza,yes,pyramid,Pyramids of Giza
 Landmark,Egypt,Step Pyramid of Djoser,no,,
@@ -471,7 +471,7 @@ Landmark,Guinea-Bissau,Pidjiguiti Memorial,no,,
 Landmark,Kenya,Fort Jesus,no,,
 Landmark,Kenya,Maasai Mara,yes,maasai,Maasai Mara
 Landmark,Kenya,Mount Kenya,no,,
-Landmark,Lesotho,Basotho Hat building,no,,
+Landmark,Lesotho,Basotho Hat building,yes,basotho,Basotho Hat Building
 Landmark,Liberia,Ducor Hotel,no,,
 Landmark,Libya,Leptis Magna,no,,
 Landmark,Madagascar,Avenue of the Baobabs,yes,baobab,Avenue of the Baobabs
@@ -479,8 +479,8 @@ Landmark,Malawi,"St Peter's Cathedral, Likoma",no,,
 Landmark,Mali,Great Mosque of Djenné,yes,djenne,Great Mosque of Djenné
 Landmark,Mali,Sankore Mosque,no,,
 Landmark,Mauritania,Richat Structure,yes,richat,Richat Structure (Eye of the Sahara)
-Landmark,Mauritius,Le Morne Brabant,no,,
-Landmark,Morocco,Aït Benhaddou,no,,
+Landmark,Mauritius,Le Morne Brabant,yes,lemorne,Le Morne Brabant
+Landmark,Morocco,Aït Benhaddou,yes,aitbenhaddou,Aït Benhaddou
 Landmark,Morocco,Chefchaouen,yes,chefchaouen,Chefchaouen
 Landmark,Morocco,Erg Chebbi Dunes,no,,
 Landmark,Morocco,Hassan II Mosque,yes,hassan2,Hassan II Mosque
@@ -495,8 +495,8 @@ Landmark,Nigeria,National Arts Theatre,no,,
 Landmark,Nigeria,NECOM House,no,,
 Landmark,Nigeria,Zuma Rock,yes,zuma,Zuma Rock
 Landmark,Rwanda,Volcanoes National Park,no,,
-Landmark,Senegal,African Renaissance Monument,no,,
-Landmark,Seychelles,Anse Source d'Argent,no,,
+Landmark,Senegal,African Renaissance Monument,yes,renaissance,African Renaissance Monument
+Landmark,Seychelles,Anse Source d'Argent,yes,ansesource,Anse Source d'Argent
 Landmark,Sierra Leone,Bunce Island,no,,
 Landmark,Somalia,Laas Geel,no,,
 Landmark,South Africa,Carlton Centre,no,,
@@ -513,7 +513,7 @@ Landmark,South Sudan,John Garang Mausoleum,no,,
 Landmark,Sudan,Pyramids of Meroë,yes,meroe,Pyramids of Meroë
 Landmark,Tanzania,Mount Kilimanjaro,yes,kilimanjaro,Mount Kilimanjaro
 Landmark,Tanzania,Ngorongoro Crater,yes,ngorongoro,Ngorongoro Crater
-Landmark,Tanzania,"Stone Town, Zanzibar",no,,
+Landmark,Tanzania,"Stone Town, Zanzibar",yes,stonetown,"Stone Town, Zanzibar"
 Landmark,Togo,"Independence Monument, Lomé",no,,
 Landmark,Tunisia,Amphitheatre of El Jem,yes,eljem,Amphitheatre of El Jem
 Landmark,Tunisia,Carthage – Antonine Baths,no,,

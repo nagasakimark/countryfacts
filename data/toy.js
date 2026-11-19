@@ -375,7 +375,23 @@ TOY.landmarks = [
  {id:'goryokaku',c:'JPN',ll:[140.76,41.80],m:'goryokaku',ja:'{五稜郭|ごりょうかく}',en:'Goryōkaku',k:'ごりょうかく はこだて ほっかいどう',
   t:'北海道の {函館|はこだて}に ある、 星の 形を した とりで。 春は さくらで いっぱいに なる。',te:'A star-shaped fort in Hakodate, Hokkaido. In spring it fills with cherry blossoms.'},
  {id:'nikko',c:'JPN',ll:[139.60,36.76],m:'nikko',ja:'日光{東照宮|とうしょうぐう}',en:'Nikkō Tōshō-gū',k:'にっこうとうしょうぐう とちぎ',
-  t:'{栃木|とちぎ}県に ある、 {徳川家康|とくがわいえやす}を まつる 神社。 金や あざやかな 色の ほりものが 美しい。「見ざる・言わざる・聞かざる」の サルが 有名。',te:'A shrine in Tochigi honouring Tokugawa Ieyasu, covered in gold and colourful carvings — including the famous "see no evil, hear no evil, speak no evil" monkeys.'}
+  t:'{栃木|とちぎ}県に ある、 {徳川家康|とくがわいえやす}を まつる 神社。 金や あざやかな 色の ほりものが 美しい。「見ざる・言わざる・聞かざる」の サルが 有名。',te:'A shrine in Tochigi honouring Tokugawa Ieyasu, covered in gold and colourful carvings — including the famous "see no evil, hear no evil, speak no evil" monkeys.'},
+{id:'aitbenhaddou',c:'MAR',ll:[-7.13,31.05],m:'aitbenhaddou',ja:'アイト・ベン・ハドゥ',en:'Aït Benhaddou',k:'あいとべんはどぅ もろっこ',
+  t:'サハラ{砂漠|さばく}へ むかう 道に ある、 土で つくった 村。 たくさんの 家と 塔が 丘を のぼって いく。 {映画|えいが}の ロケ地にも なった。',te:'A village built from earth on the old road to the Sahara. Mud houses and towers climb up the hill. Many films have been shot here.'},
+{id:'karnak',c:'EGY',ll:[32.66,25.72],m:'karnak',ja:'カルナック{神殿|しんでん}',en:'Karnak Temple',k:'かるなっくしんでん えじぷと るくそーる',
+  t:'ルクソールに ある 古代エジプトの 大きな {神殿|しんでん}。 134本の 太い 柱が 森のように ならぶ。 2000年 かけて つくられた。',te:'A huge temple of ancient Egypt in Luxor. 134 giant columns stand like a forest. It took about 2,000 years to build.'},
+{id:'nyiragongo',c:'COD',ll:[29.25,-1.52],m:'nyiragongo',ja:'ニーラゴンゴ山',en:'Mount Nyiragongo',k:'にーらごんごさん こんご かざん',
+  t:'コンゴ{民主|みんしゅ}{共和国|きょうわこく}の 火山。 てっぺんの 火口には、 世界で いちばん 大きい 「よう岩の みずうみ」が ある。',te:'A volcano in DR Congo. Its crater holds the largest lava lake in the world, bubbling and glowing.'},
+{id:'stonetown',c:'TZA',ll:[39.19,-6.16],m:'stonetown',ja:'ザンジバルの ストーンタウン',en:'Stone Town, Zanzibar',k:'ざんじばる すとーんたうん たんざにあ',
+  t:'インド洋の 島の 古い 町。 アフリカ、 アラブ、 インドの 文化が まざる。 {彫刻|ちょうこく}の ある 木の ドアが 有名。 帆船ダウが 走る。',te:'An old town on an Indian Ocean island where African, Arab and Indian cultures mix. Famous for its carved wooden doors. Dhow sailboats sail by.'},
+{id:'renaissance',c:'SEN',ll:[-17.5,14.72],m:'renaissance',ja:'アフリカ{復興|ふっこう}の{像|ぞう}',en:'African Renaissance Monument',k:'あふりかふっこうのぞう せねがる だかーる',
+  t:'セネガルの ダカールの 丘に 立つ 49mの 像。 家族が 海の 方を 見て、 子どもを 高く かかげて いる。',te:'A 49 m statue on a hill in Dakar, Senegal. A family looks out to sea, holding a child up high.'},
+{id:'ansesource',c:'SYC',ll:[55.83,-4.37],m:'ansesource',ja:'アンス・ソース・ダルジャン',en:'Anse Source d\'Argent',k:'あんすそーすだるじゃん せーしぇる びーち',
+  t:'セーシェルの ビーチ。 白い すなと 青い 海に、 ピンク色の 大きな 丸い 岩が ならぶ。 世界で いちばん きれいな ビーチの 一つ。',te:'A beach in the Seychelles. Big round pink granite boulders sit on white sand by turquoise water. One of the most beautiful beaches in the world.'},
+{id:'basotho',c:'LSO',ll:[27.48,-29.31],m:'basotho',ja:'バソト・ハット',en:'Basotho Hat Building',k:'ばそとはっと れそと ぼうし',
+  t:'レソトの {伝統|でんとう}的な ぼうし 「モコロトロ」の 形の たてもの。 ぼうしは 国旗にも かかれて いる。 山の 国なので、 馬に のる 人も 多い。',te:'A building shaped like the mokorotlo, Lesotho\'s traditional straw hat, which also appears on the flag. In this mountain kingdom, many people ride horses.'},
+{id:'lemorne',c:'MUS',ll:[57.32,-20.45],m:'lemorne',ja:'ル・モーン・ブラバン',en:'Le Morne Brabant',k:'るもーんぶらばん もーりしゃす',
+  t:'モーリシャスの 海に つき出た 山。 近くの 海は、 すなの もようで 「海の 中の たき」に 見える。 {世界遺産|せかいいさん}。',te:'A mountain on a peninsula in Mauritius. Nearby, sand patterns under the sea look like an underwater waterfall. A World Heritage Site.'}
 ];
 
 TOY.animals = [
