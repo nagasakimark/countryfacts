@@ -281,7 +281,7 @@ TOY.landmarks = [
  {id:'oura',c:'JPN',ll:[129.87,32.73],m:'oura',ja:'{大浦天主堂|おおうらてんしゅどう}',en:'Ōura Church',k:'おおうらてんしゅどう ながさき',
   t:'長崎に ある、 日本に 今 のこる いちばん 古い 教会。 1864年に できた。 {世界遺産|せかいいさん}。',te:'A church in Nagasaki built in 1864 — the oldest church still standing in Japan. A World Heritage Site.'},
 {id:'harbourbridge',c:'AUS',ll:[151.21,-33.85],m:'harbourbridge',ja:'シドニー・ハーバーブリッジ',en:'Sydney Harbour Bridge',k:'しどにーはーばーぶりっじ おーすとらりあ',
-  t:'シドニーの 湾に かかる 大きな アーチの 橋。 1932年に できた。 形から「コートハンガー」と よばれる。',te:'A huge steel arch bridge across Sydney Harbour, opened in 1932 and nicknamed "the Coathanger".'},
+  t:'シドニーの {湾|わん}に かかる 大きな アーチの 橋。 1932年に できた。 形から「コートハンガー」と よばれる。',te:'A huge steel arch bridge across Sydney Harbour, opened in 1932 and nicknamed "the Coathanger".'},
  {id:'hagiasophia',c:'TUR',ll:[28.98,41.01],m:'hagiasophia',ja:'アヤソフィア',en:'Hagia Sophia',k:'あやそふぃあ いすたんぶーる とるこ',
   t:'イスタンブールに ある、 約1500年 前に できた 大きな ドームの たてもの。 教会から モスクに かわった れきしが ある。',te:'A great domed building in Istanbul, about 1,500 years old. It was first a church and later became a mosque.'},
  {id:'arc',c:'FRA',ll:[2.30,48.87],m:'arc',ja:'{凱旋門|がいせんもん}',en:'Arc de Triomphe',k:'がいせんもん ぱり ふらんす',
