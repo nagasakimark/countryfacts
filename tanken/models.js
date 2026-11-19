@@ -112,8 +112,44 @@
   M.keys = Object.keys(D);
   M.custom = M.custom || {};
   // A fresh object for the scene: detailed builders (tanken/detailed.js) win over simple part lists.
+  // Merge a detailed model's many parts into one mesh per material (few draw calls on Chromebooks).
+  function matKey(m) {
+    return [m.map ? m.map.source.uuid + ':' + m.map.repeat.x + ',' + m.map.repeat.y : '', m.color ? m.color.getHexString() : '', m.emissive ? m.emissive.getHexString() : '',
+      m.vertexColors ? 'vc' : '', m.flatShading ? 'f' : '', m.transparent ? 't' + m.opacity : '', m.alphaTest || '', m.side].join('|');
+  }
+  M.bake = function (root) {
+    root.updateMatrixWorld(true);
+    var inv = new T.Matrix4().copy(root.matrixWorld).invert(), groups = {}, mats = {};
+    root.traverse(function (o) {
+      if (!o.isMesh) return;
+      var mm = Array.isArray(o.material) ? o.material : [o.material], geo = o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone();
+      geo.applyMatrix4(new T.Matrix4().multiplyMatrices(inv, o.matrixWorld));
+      var parts = (Array.isArray(o.material) && geo.groups.length) ? geo.groups : [{ start: 0, count: geo.attributes.position.count, materialIndex: 0 }];
+      parts.forEach(function (gr) {
+        var m = mm[gr.materialIndex || 0], k = matKey(m); mats[k] = m; (groups[k] = groups[k] || []).push({ g: geo, s: gr.start, c: gr.count, m: m });
+      });
+    });
+    var out = new T.Group();
+    Object.keys(groups).forEach(function (k) {
+      var list = groups[k], m = mats[k], useUV = !!m.map, useCol = !!m.vertexColors, P = [], N = [], U = [], C = [];
+      list.forEach(function (it) {
+        var a = it.g.attributes;
+        for (var i = it.s; i < it.s + it.c; i++) {
+          P.push(a.position.getX(i), a.position.getY(i), a.position.getZ(i));
+          if (a.normal) N.push(a.normal.getX(i), a.normal.getY(i), a.normal.getZ(i)); else N.push(0, 1, 0);
+          if (useUV) { if (a.uv) U.push(a.uv.getX(i), a.uv.getY(i)); else U.push(0, 0); }
+          if (useCol) { if (a.color) C.push(a.color.getX(i), a.color.getY(i), a.color.getZ(i)); else C.push(1, 1, 1); }
+        }
+      });
+      var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(P, 3)); g.setAttribute('normal', new T.Float32BufferAttribute(N, 3));
+      if (useUV) g.setAttribute('uv', new T.Float32BufferAttribute(U, 2)); if (useCol) g.setAttribute('color', new T.Float32BufferAttribute(C, 3));
+      g.computeBoundingSphere(); var mesh = new T.Mesh(g, m); if (m.transparent) mesh.renderOrder = 2; out.add(mesh);
+    });
+    return out;
+  };
+  var bakedCache = {};
   M.object = function (key, colour) {
-    if (M.custom[key]) { var g = M.custom[key](); g.userData.detailed = true; return g; }
+    if (M.custom[key]) { if (!bakedCache[key]) bakedCache[key] = M.bake(M.custom[key]()); var g = bakedCache[key].clone(); g.userData.detailed = true; return g; }
     return new T.Mesh(M.geometry(key, colour), M.material);
   };
   M.material = new T.MeshLambertMaterial({ vertexColors: true, flatShading: true });

@@ -21,6 +21,8 @@
   function cyl(g, m, rt, rb, h, x, y, z, seg, rot) { var b = new T.Mesh(new T.CylinderGeometry(rt, rb, h, seg || 8), m); b.position.set(x, y + h / 2, z); if (rot) b.rotation.y = rot; g.add(b); return b; }
   function plane(g, m, w, h, x, y, z, ry) { var p = new T.Mesh(new T.PlaneGeometry(w, h), m); p.position.set(x, y, z); p.rotation.y = ry || 0; g.add(p); return p; }
 
+  M.kit = { tex: tex, mat: mat, solid: solid, box: box, cyl: cyl, plane: plane };
+
   /* ---------- textures ---------- */
   var SAND = '#d4ab68', SAND_L = '#e6c383', SAND_D = '#a8854a', WIN = '#3b4d48', GOLD = '#d8ad4c';
   function palaceBay() { // one window bay, three floors, buttress strip on the left
