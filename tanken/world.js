@@ -318,7 +318,7 @@ window.makeWorld = function (env) {
     var m = ELEV ? elevM(lon, lat) : 0, snowLine = snowAt(lat);
     if (m > snowLine - 800) out.lerp(ROCKC, Math.min(1, (m - snowLine + 800) / 700) * 0.75);
     if (m > snowLine) out.lerp(SNOWC, Math.min(1, (m - snowLine) / 500));
-    var f = landF(lon, lat); if (f < 0.9 && hh > -0.0003) out.lerp(SANDC, (0.9 - f) / 0.9); // (a pale beach along the coast)
+    var f = landF(lon, lat); if (f < 0.6 && hh > -0.0003) out.lerp(SANDC, Math.min(1, (0.6 - f) / 0.35)); // (a narrow pale beach right at the coast) // (a pale beach along the coast)
     var nz = 0.92 + 0.16 * noise(lon * 9.1, lat * 9.1); out.multiplyScalar(nz); return out;
   }
   function buildTile(i, j) {

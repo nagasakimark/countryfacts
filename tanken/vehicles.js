@@ -101,14 +101,18 @@
     return g;
   };
   /* ---------- sports car ---------- */
-  M.custom.v_car = function (col) {
+  M.custom.v_car = function (col) { // a low sports car: wedge body, glass cabin, louvred engine cover, wide tail lights, wheels at the corners
     var g = new T.Group(), c = col || '#ff5a4d';
-    var side = new T.Shape(); side.moveTo(-0.3, 0.03); side.lineTo(0.32, 0.03); side.lineTo(0.33, 0.07); side.quadraticCurveTo(0.2, 0.1, 0.08, 0.11); side.quadraticCurveTo(0.0, 0.17, -0.1, 0.16); side.lineTo(-0.28, 0.12); side.lineTo(-0.3, 0.03);
-    var bg = new T.ExtrudeGeometry(side, { depth: 0.2, bevelEnabled: true, bevelSize: 0.012, bevelThickness: 0.012, bevelSegments: 1 }); bg.translate(0, 0, -0.1); bg.rotateY(-Math.PI / 2); part(g, bg, c);
-    box(g, '#1d2533', 0.17, 0.045, 0.1, 0, 0.13, -0.02); box(g, '#1d2533', 0.18, 0.03, 0.06, 0, 0.12, 0.06);
-    box(g, '#1d1d22', 0.2, 0.012, 0.05, 0, 0.16, -0.27); box(g, '#1d1d22', 0.012, 0.035, 0.02, 0.08, 0.14, -0.26); box(g, '#1d1d22', 0.012, 0.035, 0.02, -0.08, 0.14, -0.26);
-    [-1, 1].forEach(function (s) { box(g, '#ffe9a8', 0.04, 0.015, 0.006, s * 0.07, 0.07, 0.335); box(g, '#ff2a2a', 0.05, 0.012, 0.006, s * 0.07, 0.09, -0.312); });
-    [[0.2], [-0.19]].forEach(function (q) { [-1, 1].forEach(function (s) { var wh = new T.Group(); wh.position.set(s * 0.105, 0.045, q[0]); wh.userData.spin = 'x'; cyl(wh, '#1d1d22', 0.045, 0.045, 0.035, 0, 0, 0, 12, 0, Math.PI / 2); cyl(wh, '#c9ced6', 0.025, 0.025, 0.037, 0, 0, 0, 8, 0, Math.PI / 2); g.add(wh); }); });
+    var side = new T.Shape(); side.moveTo(-0.3, 0.03); side.lineTo(0.32, 0.03); side.lineTo(0.33, 0.065); side.quadraticCurveTo(0.2, 0.09, 0.09, 0.1); side.lineTo(-0.29, 0.11); side.lineTo(-0.3, 0.03);
+    var bg = new T.ExtrudeGeometry(side, { depth: 0.19, bevelEnabled: true, bevelSize: 0.01, bevelThickness: 0.01, bevelSegments: 2 }); bg.translate(0, 0, -0.095); bg.rotateY(-Math.PI / 2); part(g, bg, c);
+    var cab = new T.Shape(); cab.moveTo(0.1, 0.1); cab.quadraticCurveTo(0.02, 0.165, -0.06, 0.165); cab.lineTo(-0.16, 0.112); cab.lineTo(0.1, 0.1);
+    var cg = new T.ExtrudeGeometry(cab, { depth: 0.15, bevelEnabled: false }); cg.translate(0, 0, -0.075); cg.rotateY(-Math.PI / 2); part(g, cg, '#1c2a3e');
+    box(g, c, 0.152, 0.008, 0.08, 0, 0.163, -0.03); // (roof)
+    for (var k = 0; k < 6; k++) box(g, '#14161a', 0.15, 0.006, 0.012, 0, 0.112 + k * 0.0005, -0.18 - k * 0.018); // (engine cover louvres)
+    box(g, '#14161a', 0.2, 0.035, 0.012, 0, 0.055, -0.305); // (dark rear panel)
+    [-1, 1].forEach(function (s) { box(g, '#ff2a2a', 0.07, 0.012, 0.008, s * 0.06, 0.088, -0.307); box(g, '#ffe9a8', 0.045, 0.014, 0.006, s * 0.075, 0.068, 0.335); cyl(g, '#9aa0a8', 0.009, 0.009, 0.02, s * 0.025, 0.04, -0.31, 8, Math.PI / 2); });
+    box(g, '#14161a', 0.21, 0.008, 0.05, 0, 0.125, -0.28); [-1, 1].forEach(function (s) { box(g, '#14161a', 0.008, 0.02, 0.008, s * 0.07, 0.115, -0.27); }); // (rear wing)
+    [[0.2], [-0.19]].forEach(function (q) { [-1, 1].forEach(function (s) { var wh = new T.Group(); wh.position.set(s * 0.108, 0.045, q[0]); wh.userData.spin = 'x'; cyl(wh, '#1d1d22', 0.047, 0.047, 0.042, 0, 0, 0, 14, 0, Math.PI / 2); cyl(wh, '#c9ced6', 0.026, 0.026, 0.045, 0, 0, 0, 8, 0, Math.PI / 2); g.add(wh); }); });
     return g;
   };
 
