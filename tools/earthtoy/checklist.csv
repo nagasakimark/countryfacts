@@ -79,7 +79,7 @@ Landmark,Hong Kong,Tian Tan Buddha,yes,tiantan,Tian Tan Buddha
 Landmark,Hong Kong,Two International Finance Centre,no,,
 Landmark,India,Agra Fort,no,,
 Landmark,India,Ajanta Caves,no,,
-Landmark,India,Amber Fort,no,,
+Landmark,India,Amber Fort,yes,amberfort,Amber Fort
 Landmark,India,Antilia,no,,
 Landmark,India,Bangalore Palace,no,,
 Landmark,India,Bombay Stock Exchange,no,,
@@ -127,10 +127,10 @@ Landmark,Indonesia,Mount Bromo,yes,mtbromo,Mount Bromo
 Landmark,Indonesia,National Monument (Monas),no,,
 Landmark,Indonesia,Prambanan,yes,prambanan,Prambanan
 Landmark,Indonesia,Pura Besakih,no,,
-Landmark,Indonesia,Pura Ulun Danu Beratan,no,,
+Landmark,Indonesia,Pura Ulun Danu Beratan,yes,ulundanu,Pura Ulun Danu Beratan
 Landmark,Indonesia,Raja Ampat (Piaynemo),no,,
 Landmark,Indonesia,Tanah Lot Temple,yes,tanahlot,Tanah Lot
-Landmark,Indonesia,Tongkonan of Tana Toraja (Ke'te Kesu),no,,
+Landmark,Indonesia,Tongkonan of Tana Toraja (Ke'te Kesu),yes,toraja,Tongkonan of Tana Toraja (Ke'te Kesu)
 Landmark,Indonesia,Wisma 46,no,,
 Landmark,Iran,Azadi Tower,no,,
 Landmark,Iran,Chogha Zanbil,no,,
@@ -328,7 +328,7 @@ Landmark,Germany,Brandenburg Gate,yes,brandenburg,Brandenburg Gate
 Landmark,Germany,Cologne Cathedral,yes,cologne,Cologne Cathedral
 Landmark,Germany,Neuschwanstein Castle,yes,neuschwanstein,Neuschwanstein Castle
 Landmark,Germany,Reichstag Building,no,,
-Landmark,Greece,Delphi,no,,
+Landmark,Greece,Delphi,yes,delphi,Delphi
 Landmark,Greece,Meteora,yes,meteora,Meteora
 Landmark,Greece,Palace of Knossos,yes,knossos,Palace of Knossos
 Landmark,Greece,Parthenon,yes,parthenon,Parthenon
@@ -339,9 +339,9 @@ Landmark,Iceland,Hallgrímskirkja,yes,hallgrim,Hallgrímskirkja
 Landmark,Ireland,Cliffs of Moher,yes,moher,Cliffs of Moher
 Landmark,Italy,Castel del Monte,no,,
 Landmark,Italy,Colosseum,yes,colosseum,Colosseum
-Landmark,Italy,Florence Cathedral,no,,
+Landmark,Italy,Florence Cathedral,yes,florence,Florence Cathedral
 Landmark,Italy,Leaning Tower of Pisa,yes,pisa,Leaning Tower of Pisa
-Landmark,Italy,"Manarola, Cinque Terre",no,,
+Landmark,Italy,"Manarola, Cinque Terre",yes,cinqueterre,"Manarola, Cinque Terre"
 Landmark,Italy,Milan Cathedral,no,,
 Landmark,Italy,Pantheon,no,,
 Landmark,Italy,Pompeii,yes,pompeii,Pompeii
@@ -383,7 +383,7 @@ Landmark,Serbia,Church of Saint Sava,yes,stsava,Church of Saint Sava
 Landmark,Slovakia,Bratislava Castle,yes,bratislava,Bratislava Castle
 Landmark,Slovenia,Lake Bled,yes,bled,Lake Bled
 Landmark,Spain,Alhambra,yes,alhambra,Alhambra
-Landmark,Spain,Aqueduct of Segovia,no,,
+Landmark,Spain,Aqueduct of Segovia,yes,segovia,Aqueduct of Segovia
 Landmark,Spain,Cibeles Palace & Fountain,no,,
 Landmark,Spain,Cuatro Torres Business Area,no,,
 Landmark,Spain,Guggenheim Museum Bilbao,no,,
@@ -468,7 +468,7 @@ Landmark,Ghana,Cape Coast Castle,yes,capecoast,Cape Coast Castle
 Landmark,Ghana,Larabanga Mosque,no,,
 Landmark,Guinea,Grand Mosque of Conakry,yes,conakry,Grand Mosque of Conakry
 Landmark,Guinea-Bissau,Pidjiguiti Memorial,yes,pidjiguiti,Pidjiguiti Memorial
-Landmark,Kenya,Fort Jesus,no,,
+Landmark,Kenya,Fort Jesus,yes,fortjesus,Fort Jesus
 Landmark,Kenya,Maasai Mara,yes,maasai,Maasai Mara
 Landmark,Kenya,Mount Kenya,no,,
 Landmark,Lesotho,Basotho Hat building,yes,basotho,Basotho Hat Building

@@ -615,7 +615,23 @@ TOY.landmarks = [
 {id:'tulou',c:'CHN',ll:[117.06,24.58],m:'tulou',ja:'{福建土楼|ふっけんどろう}',en:'Fujian Tulou',k:'ふっけんどろう ちゅうごく',
   t:'中国の 福建省に ある、 土で できた 丸い 大きな 家。 一つの 家に 何十もの 家族が いっしょに くらす。 {世界遺産|せかいいさん}。',te:'Big round houses made of earth in Fujian, China. Dozens of families live together in a single house. A World Heritage Site.'},
 {id:'intramuros',c:'PHL',ll:[120.9706,14.5953],m:'intramuros',ja:'サンチャゴ{要塞|ようさい}',en:'Fort Santiago, Intramuros',k:'さんちゃごようさい いんとらむろす ふぃりぴん まにら',
-  t:'フィリピンの マニラに ある、 スペイン時代の 石の {城|じょう}へきの 町 「イントラムロス」の とりで。 馬車で めぐる ことも できる。',te:'A fort in Intramuros, the old walled city of Manila, Philippines, from the Spanish era. You can tour it by horse-drawn carriage.'}
+  t:'フィリピンの マニラに ある、 スペイン時代の 石の {城|じょう}へきの 町 「イントラムロス」の とりで。 馬車で めぐる ことも できる。',te:'A fort in Intramuros, the old walled city of Manila, Philippines, from the Spanish era. You can tour it by horse-drawn carriage.'},
+{id:'toraja',c:'IDN',ll:[119.9,-3.0],m:'toraja',ja:'トラジャの トンコナン',en:'Tongkonan of Tana Toraja',k:'とらじゃ とんこなん いんどねしあ すらうぇし',
+  t:'インドネシアの スラウェシ島の トラジャの 家。 船のように 両はしが 大きく そり上がった 屋根が とくちょう。 前には 水牛の 角を かざる。',te:'Traditional Toraja houses on Sulawesi, Indonesia. Their huge roofs curve up at both ends like boats, and buffalo horns decorate the front.'},
+{id:'ulundanu',c:'IDN',ll:[115.1667,-8.275],m:'ulundanu',ja:'ウルン・ダヌ・ブラタン寺院',en:'Pura Ulun Danu Beratan',k:'うるんだぬぶらたん じいん ばりとう いんどねしあ',
+  t:'インドネシアの バリ島の 湖に うかぶように 立つ お寺。 黒い 屋根を 11だんも 重ねた {塔|とう}が ある。 水の 女神を まつる。',te:'A temple that seems to float on a lake in Bali, Indonesia. One tower has 11 stacked black roofs. It honours the goddess of water.'},
+{id:'florence',c:'ITA',ll:[11.2558,43.7731],m:'florence',ja:'フィレンツェの {大聖堂|だいせいどう}',en:'Florence Cathedral',k:'ふぃれんつぇ どぅおーも いたりあ',
+  t:'イタリアの フィレンツェの {大聖堂|だいせいどう}。 600年前に つくられた 赤い 大きな ドームは、 今でも れんがの ドームで 世界一。',te:'The cathedral of Florence, Italy. Its great red dome, built 600 years ago, is still the largest brick dome in the world.'},
+{id:'cinqueterre',c:'ITA',ll:[9.7292,44.1069],m:'cinqueterre',ja:'チンクエ・テッレ',en:'Manarola, Cinque Terre',k:'ちんくえてっれ まなろーら いたりあ',
+  t:'イタリアの 海ぞいの がけに ある 5つの 村。 カラフルな 家が がけに へばりつくように ならぶ。 上には ぶどう畑。',te:'Five villages on the cliffs of the Italian coast. Colourful houses cling to the rocks, with vineyards above.'},
+{id:'segovia',c:'ESP',ll:[-4.1175,40.9481],m:'segovia',ja:'セゴビアの 水道橋',en:'Aqueduct of Segovia',k:'せごびあのすいどうきょう すぺいん',
+  t:'スペインの セゴビアに ある 古代ローマの 水道橋。 2000年近く前に、 セメントを 使わず 石だけを つんで つくった。',te:'An ancient Roman aqueduct in Segovia, Spain. Built nearly 2,000 years ago, its stones are stacked without any cement.'},
+{id:'amberfort',c:'IND',ll:[75.8513,26.9855],m:'amberfort',ja:'アンベール{城|じょう}',en:'Amber Fort',k:'あんべーるじょう いんど じゃいぷーる',
+  t:'インドの ジャイプール近くの {丘|おか}の 上の はちみつ色の お{城|しろ}。 むかしは ゾウに のって 坂を のぼった。',te:'A honey-coloured fort on a hill near Jaipur, India. Long ago, people rode elephants up the slope to reach it.'},
+{id:'delphi',c:'GRC',ll:[22.5011,38.4824],m:'delphi',ja:'デルフィ',en:'Delphi',k:'でるふぃ ぎりしゃ',
+  t:'ギリシャの 山の {中腹|ちゅうふく}に ある 古代の {聖地|せいち}。 むかしの ギリシャ人は ここを 「世界の まん中」と 考えた。',te:'An ancient sacred site on a mountainside in Greece. The ancient Greeks believed it was the centre of the world.'},
+{id:'fortjesus',c:'KEN',ll:[39.6797,-4.0628],m:'fortjesus',ja:'ジーザス{要塞|ようさい}',en:'Fort Jesus',k:'じーざすようさい けにあ もんばさ',
+  t:'ケニアの モンバサの 海ぞいの とりで。 400年前に ポルトガルが つくった。 上から 見ると 人が ねている 形に 見える。',te:'A fort on the coast of Mombasa, Kenya, built by the Portuguese 400 years ago. From above, it looks like a person lying down.'}
 ];
 
 TOY.animals = [
