@@ -519,7 +519,23 @@ TOY.landmarks = [
 {id:'likoma',c:'MWI',ll:[34.7333,-12.0667],m:'likoma',ja:'リコマ島の {大聖堂|だいせいどう}',en:'St Peter\'s Cathedral, Likoma',k:'りこまとう だいせいどう まらうい',
   t:'マラウイ湖に うかぶ リコマ島の 大きな 石の 教会。 アフリカの 湖の 小さな 島に、 100年いじょう前に たてられた。',te:'A big stone cathedral on Likoma Island in Lake Malawi, built on this small island over 100 years ago.'},
 {id:'bridgetown',c:'BRB',ll:[-59.6153,13.0975],m:'bridgetown',ja:'バルバドスの 国会議事堂',en:'Parliament Buildings, Bridgetown',k:'こっかいぎじどう ばるばどす ぶりっじたうん',
-  t:'バルバドスの {首都|しゅと}の 国会。 世界でも とても 古い 議会の 一つ。 前の みなとには カラフルな 船。',te:'The parliament in the capital of Barbados, home to one of the oldest parliaments in the world. Colourful boats float in the harbour in front.'}
+  t:'バルバドスの {首都|しゅと}の 国会。 世界でも とても 古い 議会の 一つ。 前の みなとには カラフルな 船。',te:'The parliament in the capital of Barbados, home to one of the oldest parliaments in the world. Colourful boats float in the harbour in front.'},
+{id:'stanley',c:'FLK',ll:[-57.8597,-51.6922],m:'stanley',ja:'スタンリーの {大聖堂|だいせいどう}',en:'Christ Church Cathedral, Stanley',k:'すたんりー だいせいどう ふぉーくらんどしょとう くじら',
+  t:'フォークランド{諸島|しょとう}の 町 スタンリーの 教会。 前には、 4頭の シロナガスクジラの あごの {骨|ほね}で つくった アーチが ある。 ペンギンも 近くに いる。',te:'A church in Stanley in the Falkland Islands. In front stands an arch made from the jawbones of four blue whales. Penguins live nearby.'},
+{id:'nkembo',c:'GAB',ll:[9.4536,0.4064],m:'nkembo',ja:'ンケンボの {聖ミカエル|せいミカエル}教会',en:'St. Michael\'s Church, Nkembo',k:'んけんぼ せいみかえるきょうかい がぼん',
+  t:'ガボンの {首都|しゅと} リーブルビルの 木の 教会。 31本の 木の 柱に、 {聖書|せいしょ}の 物語が ほられて いる。',te:'A wooden church in Libreville, the capital of Gabon. Bible stories are carved into its 31 wooden columns.'},
+{id:'netomausoleum',c:'AGO',ll:[13.2167,-8.8361],m:'netomausoleum',ja:'アゴスティーニョ・ネト{廟|びょう}',en:'Mausoleum of Agostinho Neto',k:'あごすてぃーにょねと びょう あんごら るあんだ',
+  t:'アンゴラの {首都|しゅと} ルアンダに 立つ 120mの 高い {塔|とう}。 国の 最初の 大統領が ねむって いる。',te:'A 120 m tall tower in Luanda, the capital of Angola. It is the resting place of the country\'s first president.'},
+{id:'sourcenile',c:'BDI',ll:[29.8833,-3.9333],m:'sourcenile',ja:'ナイル川の {源|みなもと}の ピラミッド',en:'Source of the Nile Pyramid',k:'ないるがわのみなもと ぴらみっど ぶるんじ',
+  t:'ブルンジの 山の 上の 小さな ピラミッド。 世界で 一番 長い ナイル川の、 一番 南の はじまりの 場所を しめす。',te:'A small pyramid on a hill in Burundi. It marks the southernmost source of the Nile, the longest river in the world.'},
+{id:'malabo',c:'GNQ',ll:[8.7833,3.7547],m:'malabo',ja:'マラボの {聖エリザベス|せいエリザベス}{大聖堂|だいせいどう}',en:'St. Elizabeth\'s Cathedral, Malabo',k:'まらぼ だいせいどう せきどうぎにあ',
+  t:'赤道ギニアの {首都|しゅと} マラボの {大聖堂|だいせいどう}。 2本の 高い {塔|とう}と、 クリーム色と 赤の かべが きれい。',te:'The cathedral of Malabo, capital of Equatorial Guinea. It has two tall towers and pretty cream and red walls.'},
+{id:'roimata',c:'VUT',ll:[168.18,-17.63],m:'roimata',ja:'ロイ・マタ首長の 地',en:'Chief Roi Mata\'s Domain',k:'ろいまた しゅちょう ばぬあつ',
+  t:'バヌアツの 伝説の 首長 ロイ・マタに ゆかりの ある 海辺と 島。 今も 村の 人たちが 大切に 守って いる。 {世界遺産|せかいいさん}。',te:'A coast and islands in Vanuatu linked to the legendary chief Roi Mata, still cared for by local villagers. A World Heritage Site.'},
+{id:'bunce',c:'SLE',ll:[-13.0397,8.5694],m:'bunce',ja:'バンス島',en:'Bunce Island',k:'ばんすとう しえられおね',
+  t:'シエラレオネの 川に うかぶ 小さな 島。 むかし、 ここから 多くの アフリカの 人が むりやり アメリカへ つれて いかれた。 今は とりでの あとが のこる。',te:'A small island in a river in Sierra Leone. Long ago, many Africans were forced onto ships to the Americas from here. The ruins of the fort remain.'},
+{id:'chisinau',c:'MDA',ll:[28.8317,47.0256],m:'chisinau',ja:'キシナウの {凱旋門|がいせんもん}',en:'Triumphal Arch, Chișinău',k:'きしなう がいせんもん もるどば',
+  t:'モルドバの {首都|しゅと} キシナウの 公園に 立つ 門。 上には 大きな 時計が あり、 うしろには {大聖堂|だいせいどう}が ある。',te:'An arch in a park in Chișinău, the capital of Moldova. It has a big clock on top, with the cathedral behind it.'}
 ];
 
 TOY.animals = [

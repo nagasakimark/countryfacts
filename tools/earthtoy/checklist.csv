@@ -353,7 +353,7 @@ Landmark,Kosovo,Newborn monument,yes,newborn,Newborn monument
 Landmark,Latvia,Freedom Monument,yes,freedomriga,Freedom Monument
 Landmark,Lithuania,Gediminas' Tower,yes,gediminas,Gediminas' Tower
 Landmark,Luxembourg,Vianden Castle,yes,vianden,Vianden Castle
-Landmark,Moldova,"Triumphal Arch, Chișinău",no,,
+Landmark,Moldova,"Triumphal Arch, Chișinău",yes,chisinau,"Triumphal Arch, Chișinău"
 Landmark,Monaco,Circuit de Monaco,yes,monaco,Circuit de Monaco
 Landmark,Montenegro,Our Lady of the Rocks,yes,ladyrocks,Our Lady of the Rocks
 Landmark,Netherlands,Zaanse Schans windmills,yes,kinderdijk,Kinderdijk Windmills
@@ -430,11 +430,11 @@ Landmark,United Kingdom,Westminster Abbey,no,,
 Landmark,United Kingdom,Windsor Castle,no,,
 Landmark,Vatican City,St. Peter's Basilica,yes,stpeters,St. Peter's Basilica
 Landmark,Algeria,Maqam Echahid (Martyrs' Memorial),yes,maqam,Maqam Echahid (Martyrs' Memorial)
-Landmark,Angola,Mausoleum of Agostinho Neto,no,,
+Landmark,Angola,Mausoleum of Agostinho Neto,yes,netomausoleum,Mausoleum of Agostinho Neto
 Landmark,Benin,Door of No Return,yes,doornoreturn,Door of No Return
 Landmark,Botswana,Okavango Delta,yes,okavango,Okavango Delta
 Landmark,Burkina Faso,Grand Mosque of Bobo-Dioulasso,yes,bobo,Grand Mosque of Bobo-Dioulasso
-Landmark,Burundi,Source of the Nile Pyramid (Rutovu),no,,
+Landmark,Burundi,Source of the Nile Pyramid (Rutovu),yes,sourcenile,Source of the Nile Pyramid (Rutovu)
 Landmark,Cameroon,Reunification Monument,yes,reunification,Reunification Monument
 Landmark,Central African Republic,Boali Falls,yes,boali,Boali Falls
 Landmark,Chad,Aloba Arch,yes,aloba,Aloba Arch
@@ -456,13 +456,13 @@ Landmark,Egypt,Step Pyramid of Djoser,no,,
 Landmark,Egypt,Suez Canal,no,,
 Landmark,Egypt,Temple of Hatshepsut,no,,
 Landmark,Egypt,Valley of the Kings,no,,
-Landmark,Equatorial Guinea,"St. Elizabeth's Cathedral, Malabo",no,,
+Landmark,Equatorial Guinea,"St. Elizabeth's Cathedral, Malabo",yes,malabo,"St. Elizabeth's Cathedral, Malabo"
 Landmark,Eritrea,Fiat Tagliero Building,yes,fiattagliero,Fiat Tagliero Building
 Landmark,Eswatini,Sibebe Rock,yes,sibebe,Sibebe Rock
 Landmark,Ethiopia,"Church of St. George, Lalibela",yes,lalibela,"Church of St George, Lalibela"
 Landmark,Ethiopia,Fasil Ghebbi,no,,
 Landmark,Ethiopia,Obelisk of Aksum,no,,
-Landmark,Gabon,"St. Michael's Church, Nkembo",no,,
+Landmark,Gabon,"St. Michael's Church, Nkembo",yes,nkembo,"St. Michael's Church, Nkembo"
 Landmark,Gambia,Arch 22,yes,arch22,Arch 22
 Landmark,Ghana,Cape Coast Castle,yes,capecoast,Cape Coast Castle
 Landmark,Ghana,Larabanga Mosque,no,,
@@ -497,7 +497,7 @@ Landmark,Nigeria,Zuma Rock,yes,zuma,Zuma Rock
 Landmark,Rwanda,Volcanoes National Park,yes,rwandavolc,Volcanoes National Park
 Landmark,Senegal,African Renaissance Monument,yes,renaissance,African Renaissance Monument
 Landmark,Seychelles,Anse Source d'Argent,yes,ansesource,Anse Source d'Argent
-Landmark,Sierra Leone,Bunce Island,no,,
+Landmark,Sierra Leone,Bunce Island,yes,bunce,Bunce Island
 Landmark,Somalia,Laas Geel,yes,laasgeel,Laas Geel
 Landmark,South Africa,Carlton Centre,no,,
 Landmark,South Africa,Castle of Good Hope,no,,
@@ -752,7 +752,7 @@ Landmark,Colombia,Las Lajas Sanctuary,no,,
 Landmark,Colombia,Walled City of Cartagena,yes,cartagena,Walled City of Cartagena
 Landmark,Ecuador,Cotopaxi,no,,
 Landmark,Ecuador,Galápagos Islands,yes,galapagos,Galápagos Islands
-Landmark,Falkland Islands,"Christ Church Cathedral, Stanley",no,,
+Landmark,Falkland Islands,"Christ Church Cathedral, Stanley",yes,stanley,"Christ Church Cathedral, Stanley"
 Landmark,Guyana,Kaieteur Falls,yes,kaieteur,Kaieteur Falls
 Landmark,Paraguay,Itaipu Dam,yes,itaipu,Itaipu Dam
 Landmark,Peru,Cathedral of Lima,no,,
@@ -813,7 +813,7 @@ Landmark,Papua New Guinea,"National Parliament House, Port Moresby",yes,pngparl,
 Landmark,Solomon Islands,National Parliament of Solomon Islands,no,,
 Landmark,Tonga,Ha'amonga 'a Maui Trilithon,yes,haamonga,Ha'amonga 'a Maui Trilithon
 Landmark,Tonga,Royal Palace of Tonga,no,,
-Landmark,Vanuatu,Chief Roi Mata's Domain,no,,
+Landmark,Vanuatu,Chief Roi Mata's Domain,yes,roimata,Chief Roi Mata's Domain
 Landmark,Antarctica,Amundsen–Scott South Pole Station,yes,southpole,Amundsen–Scott South Pole Station
 Landmark,Antarctica,Concordia Station,no,,
 Landmark,Antarctica,Halley VI Research Station,no,,
