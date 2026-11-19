@@ -167,7 +167,23 @@ TOY.landmarks = [
  {id:'alhambra',c:'ESP',ll:[-3.59,37.18],m:'alhambra',ja:'アルハンブラ{宮殿|きゅうでん}',en:'Alhambra',k:'あるはんぶらきゅうでん すぺいん ぐらなだ',
   t:'スペインの グラナダに ある、 イスラムの 王が くらした お{城|しろ}と {宮殿|きゅうでん}。 こまかい もようの かべが 美しい。',te:'A palace-fortress in Granada, Spain, built by Muslim rulers and famous for its beautiful patterned walls.'},
  {id:'cappadocia',c:'TUR',ll:[34.83,38.64],m:'cappadocia',ja:'カッパドキア',en:'Cappadocia',k:'かっぱどきあ とるこ ききゅう',
-  t:'トルコの、 キノコのような 形の 岩が ならぶ ところ。 朝には たくさんの 気球が 空に うかぶ。',te:'A place in Turkey full of mushroom-shaped rocks. In the morning the sky fills with hot-air balloons.'}
+  t:'トルコの、 キノコのような 形の 岩が ならぶ ところ。 朝には たくさんの 気球が 空に うかぶ。',te:'A place in Turkey full of mushroom-shaped rocks. In the morning the sky fills with hot-air balloons.'},
+{id:'goldentemple',c:'IND',ll:[74.88,31.62],m:'goldentemple',ja:'{黄金|おうごん}寺院',en:'Golden Temple (Harmandir Sahib)',k:'おうごんじいん あむりとさる いんど',
+  t:'インドの シク教で いちばん 大切な 寺院。 池の まん中に たち、 金で おおわれている。 毎日 何万人もの 人に 無料で 食事を ふるまう。',te:'The holiest place of the Sikh religion, in India. Covered in gold, it stands in a pool and serves free meals to tens of thousands of people every day.'},
+ {id:'hawamahal',c:'IND',ll:[75.83,26.92],m:'hawamahal',ja:'ハワー・マハル（風の {宮殿|きゅうでん}）',en:'Hawa Mahal (Palace of Winds)',k:'はわーまはる じゃいぷる いんど',
+  t:'インドの ジャイプルに ある ピンク色の たてもの。 953この 小さな まどから すずしい 風が 入る。',te:'A pink palace in Jaipur, India, with 953 small windows that let cool breezes in.'},
+ {id:'bulguksa',c:'KOR',ll:[129.33,35.79],m:'bulguksa',ja:'{仏国寺|ぶっこくじ}',en:'Bulguksa Temple',k:'ぶっこくじ ぷるぐくさ きょんじゅ',
+  t:'かん国の キョンジュに ある 古い お寺。 1200年 いじょう 前の 石の {階段|かいだん}や 石の {塔|とう}が のこる。',te:'An old temple in Gyeongju, Korea. Its stone stairways and pagodas are more than 1,200 years old.'},
+ {id:'teotihuacan',c:'MEX',ll:[-98.84,19.69],m:'teotihuacan',ja:'テオティワカン',en:'Teotihuacan',k:'てぉてぃわかん たいようのぴらみっど めきしこ',
+  t:'メキシコの 古代都市。 太陽の ピラミッドは 高さ 約65mで、 約1800年 前に つくられた。',te:'An ancient city in Mexico. Its Pyramid of the Sun, about 65 m tall, was built around 1,800 years ago.'},
+ {id:'tikal',c:'GTM',ll:[-89.62,17.22],m:'tikal',ja:'ティカル',en:'Tikal',k:'てぃかる ぐあてまら まや',
+  t:'グアテマラの ジャングルの 中の マヤ文明の 町。 高い ピラミッドが 木の 上に つき出ている。',te:'A Maya city in the Guatemalan jungle, where tall pyramids rise above the treetops.'},
+ {id:'iguazu',c:'ARG',ll:[-54.44,-25.69],m:'iguazu',ja:'イグアスの たき',en:'Iguazu Falls',k:'いぐあすのたき あるぜんちん ぶらじる',
+  t:'アルゼンチンと ブラジルの 国境に ある、 約275の たきが 集まった 場所。 いちばん すごい ところは「{悪魔|あくま}の のど笛」。',te:'About 275 waterfalls on the border of Argentina and Brazil. The biggest is called the Devil\'s Throat.'},
+ {id:'santorini',c:'GRC',ll:[25.38,36.46],m:'santorini',ja:'サントリーニ島',en:'Santorini',k:'さんとりーにとう ぎりしゃ',
+  t:'ギリシャの 火山の 島。 がけの 上に 白い 家と 青い やねの 教会が ならぶ。',te:'A volcanic Greek island with white houses and blue-domed churches along the cliff tops.'},
+ {id:'venice',c:'ITA',ll:[12.34,45.44],m:'venice',ja:'ベネチアの リアルト橋',en:'Rialto Bridge, Venice',k:'べねちあ りあるとばし いたりあ',
+  t:'水の 町 ベネチアの 大運河に かかる 石の 橋。 橋の 上には お店が ならび、 下を ゴンドラが 通る。',te:'A stone bridge with shops on top, crossing the Grand Canal in Venice, where gondolas glide below.'}
 ];
 
 TOY.animals = [
