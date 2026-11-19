@@ -1,7 +1,7 @@
 Section,Country / group,MyEarthToy name,In our version,Our id,Our name
-Landmark,Afghanistan,"Blue Mosque, Mazar-i-Sharif",no,,
+Landmark,Afghanistan,"Blue Mosque, Mazar-i-Sharif",yes,bluemosque,"Blue Mosque, Mazar-i-Sharif"
 Landmark,Bangladesh,Ahsan Manzil,no,,
-Landmark,Bangladesh,Jatiya Sangsad Bhaban,no,,
+Landmark,Bangladesh,Jatiya Sangsad Bhaban,yes,jatiya,Jatiya Sangsad Bhaban
 Landmark,Bangladesh,Lalbagh Fort (Tomb of Pari Bibi),no,,
 Landmark,Bhutan,Paro Taktsang (Tiger's Nest),yes,tigersnest,Tiger's Nest (Paro Taktsang)
 Landmark,Brunei,Omar Ali Saifuddien Mosque,yes,omarali,Omar Ali Saifuddien Mosque
@@ -214,7 +214,7 @@ Landmark,Philippines,"Fort Santiago, Intramuros",no,,
 Landmark,Philippines,Manila Cathedral,no,,
 Landmark,Philippines,Manila City Hall,no,,
 Landmark,Philippines,Mayon Volcano,yes,mayon,Mayon Volcano
-Landmark,Qatar,"Museum of Islamic Art, Doha",no,,
+Landmark,Qatar,"Museum of Islamic Art, Doha",yes,mia,"Museum of Islamic Art, Doha"
 Landmark,Russia,"Golden Bridge & Russky Bridge, Vladivostok",no,,
 Landmark,Russia,Klyuchevskaya Sopka,no,,
 Landmark,Russia,Novosibirsk Opera and Ballet Theatre,no,,
@@ -292,7 +292,7 @@ Landmark,Vietnam,Imperial City of Huế (Meridian Gate),no,,
 Landmark,Vietnam,"Japanese Covered Bridge, Hội An",yes,hoian,"Japanese Covered Bridge, Hội An"
 Landmark,Vietnam,Landmark 81,no,,
 Landmark,Vietnam,Notre-Dame Cathedral Basilica of Saigon,no,,
-Landmark,Yemen,Dar al-Hajar,no,,
+Landmark,Yemen,Dar al-Hajar,yes,daralhajar,Dar al-Hajar
 Landmark,Albania,Clock Tower of Tirana,no,,
 Landmark,Austria,Hallstatt,yes,hallstatt,Hallstatt
 Landmark,Austria,Schönbrunn Palace,no,,
@@ -431,19 +431,19 @@ Landmark,United Kingdom,Windsor Castle,no,,
 Landmark,Vatican City,St. Peter's Basilica,yes,stpeters,St. Peter's Basilica
 Landmark,Algeria,Maqam Echahid (Martyrs' Memorial),no,,
 Landmark,Angola,Mausoleum of Agostinho Neto,no,,
-Landmark,Benin,Door of No Return,no,,
+Landmark,Benin,Door of No Return,yes,doornoreturn,Door of No Return
 Landmark,Botswana,Okavango Delta,yes,okavango,Okavango Delta
 Landmark,Burkina Faso,Grand Mosque of Bobo-Dioulasso,no,,
 Landmark,Burundi,Source of the Nile Pyramid (Rutovu),no,,
 Landmark,Cameroon,Reunification Monument,no,,
 Landmark,Central African Republic,Boali Falls,no,,
-Landmark,Chad,Aloba Arch,no,,
+Landmark,Chad,Aloba Arch,yes,aloba,Aloba Arch
 Landmark,Congo - Brazzaville,Nabemba Tower,no,,
 Landmark,Congo - Kinshasa,Limete Tower (Tour de l'Échangeur),no,,
 Landmark,Congo - Kinshasa,Mount Nyiragongo,yes,nyiragongo,Mount Nyiragongo
 Landmark,Congo - Kinshasa,Palais du Peuple,no,,
 Landmark,Côte d'Ivoire,Basilica of Our Lady of Peace of Yamoussoukro,yes,yamoussoukro,Basilica of Our Lady of Peace of Yamoussoukro
-Landmark,Djibouti,Lake Abbe limestone chimneys,no,,
+Landmark,Djibouti,Lake Abbe limestone chimneys,yes,lakeabbe,Lake Abbe limestone chimneys
 Landmark,Egypt,Abu Simbel Temples,yes,abusimbel,Abu Simbel
 Landmark,Egypt,Al-Azhar Mosque,no,,
 Landmark,Egypt,Bibliotheca Alexandrina,no,,
@@ -494,7 +494,7 @@ Landmark,Nigeria,Civic Tower,no,,
 Landmark,Nigeria,National Arts Theatre,no,,
 Landmark,Nigeria,NECOM House,no,,
 Landmark,Nigeria,Zuma Rock,yes,zuma,Zuma Rock
-Landmark,Rwanda,Volcanoes National Park,no,,
+Landmark,Rwanda,Volcanoes National Park,yes,rwandavolc,Volcanoes National Park
 Landmark,Senegal,African Renaissance Monument,yes,renaissance,African Renaissance Monument
 Landmark,Seychelles,Anse Source d'Argent,yes,ansesource,Anse Source d'Argent
 Landmark,Sierra Leone,Bunce Island,no,,

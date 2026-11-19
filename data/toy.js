@@ -455,7 +455,23 @@ TOY.landmarks = [
 {id:'laasgeel',c:'SOM',ll:[44.335,9.78],m:'laasgeel',ja:'ラース・ギール',en:'Laas Geel',k:'らーすぎーる そまりあ どうくつ',
   t:'ソマリアの 岩の かげに のこる、 5000年いじょう前の 絵。 赤や 白で えがかれた 牛と 人が 今も あざやか。',te:'Rock shelters in Somalia with paintings over 5,000 years old. The cattle and people painted in red and white are still bright today.'},
 {id:'itaipu',c:'PRY',ll:[-54.5881,-25.4083],m:'itaipu',ja:'イタイプ・ダム',en:'Itaipu Dam',k:'いたいぷだむ ぱらぐあい ぶらじる',
-  t:'パラグアイと ブラジルの さかいの 川に ある、 とても 大きな ダム。 パラグアイの 電気の ほとんどを つくって いる。',te:'A gigantic dam on the river between Paraguay and Brazil. It makes most of Paraguay\'s electricity.'}
+  t:'パラグアイと ブラジルの さかいの 川に ある、 とても 大きな ダム。 パラグアイの 電気の ほとんどを つくって いる。',te:'A gigantic dam on the river between Paraguay and Brazil. It makes most of Paraguay\'s electricity.'},
+{id:'bluemosque',c:'AFG',ll:[67.1109,36.7092],m:'bluemosque',ja:'マザーリシャリーフの 青の モスク',en:'Blue Mosque, Mazar-i-Sharif',k:'あおのもすく あふがにすたん まざーりしゃりーふ',
+  t:'アフガニスタンの 町に ある、 青い タイルで おおわれた モスク。 白い ハトが たくさん いて、 春の お祭りの 中心に なる。',te:'A mosque in Afghanistan covered in blue tiles. Many white doves live here, and it is the centre of the spring New Year festival.'},
+{id:'jatiya',c:'BGD',ll:[90.3788,23.7626],m:'jatiya',ja:'バングラデシュ国会議事堂',en:'National Parliament House, Dhaka',k:'こっかいぎじどう ばんぐらでしゅ だっか',
+  t:'バングラデシュの {首都|しゅと} ダッカの 国会。 コンクリートの かべに 大きな 丸や 三角の {穴|あな}が あいて いる。 まわりを 池が かこむ。',te:'Bangladesh\'s parliament in Dhaka. Its concrete walls are cut with giant circles and triangles, and a lake surrounds it.'},
+{id:'mia',c:'QAT',ll:[51.5394,25.2953],m:'mia',ja:'イスラム{美術館|びじゅつかん}',en:'Museum of Islamic Art, Doha',k:'いすらむびじゅつかん かたーる どーは',
+  t:'カタールの ドーハの 海に うかぶ {美術館|びじゅつかん}。 四角い 形を 少しずつ 回して つみ重ねた、 白い たてもの。',te:'A museum on its own island in Doha, Qatar. The white building is made of square shapes turned and stacked on top of each other.'},
+{id:'daralhajar',c:'YEM',ll:[44.1406,15.4031],m:'daralhajar',ja:'ダール・アル・ハジャル',en:'Dar al-Hajar',k:'だーるあるはじゃる いえめん いわのきゅうでん',
+  t:'イエメンの 谷に ある、 高い 岩の 上に たてた 「岩の 宮{殿|でん}」。 白い ふちどりと 丸い ステンドグラスの まどが ある。',te:'The "Rock Palace", built on top of a tall rock in a valley in Yemen. It has white trim and round stained-glass windows.'},
+{id:'doornoreturn',c:'BEN',ll:[2.0897,6.3253],m:'doornoreturn',ja:'帰らざる門',en:'Door of No Return',k:'かえらざるもん べなん うぃだー',
+  t:'ベナンの 海岸に 立つ 記念の 門。 むかし、 ここから 多くの アフリカの 人たちが むりやり 船で つれて いかれた。 そのことを わすれない ための 門。',te:'A memorial arch on the coast of Benin. Long ago, many Africans were forced onto ships from here. The arch helps people remember them.'},
+{id:'aloba',c:'TCD',ll:[22.2414,16.7072],m:'aloba',ja:'アロバ・アーチ',en:'Aloba Arch',k:'あろばあーち ちゃど えねでぃ',
+  t:'チャドの サハラ{砂漠|さばく}に ある、 自然に できた 岩の アーチ。 高さは 120mも あり、 世界で 一番 大きい アーチの 一つ。',te:'A natural rock arch in the Sahara in Chad. At about 120 m high, it is one of the biggest natural arches in the world.'},
+{id:'lakeabbe',c:'DJI',ll:[41.85,11.15],m:'lakeabbe',ja:'アッベ湖',en:'Lake Abbe',k:'あっべこ じぶち えんとつ',
+  t:'ジブチの しおからい 湖。 まわりに 石の えんとつが 森のように 立ち、 湯気が 出て いる。 フラミンゴも くる。',te:'A salty lake in Djibouti. Stone chimneys stand around it like a forest, some puffing steam. Flamingos visit too.'},
+{id:'rwandavolc',c:'RWA',ll:[29.5,-1.45],m:'rwandavolc',ja:'火山国立公園',en:'Volcanoes National Park',k:'かざんこくりつこうえん るわんだ ごりら',
+  t:'ルワンダの 火山が ならぶ 国立公園。 竹の 森に、 めずらしい マウンテンゴリラの 家族が くらして いる。',te:'A national park of volcanoes in Rwanda. Rare mountain gorilla families live in its bamboo forests.'}
 ];
 
 TOY.animals = [
