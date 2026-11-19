@@ -309,7 +309,7 @@ window.makeWorld = function (env) {
   };
   // the ground's own colours while riding: a bright toy palette per biome (blended across biome edges), bare rock and snow up high, a little
   // mottling so big plains are not one flat colour; the satellite picture only shades it slightly
-  var RCOL = [0, 1, 2, 3, 4, 5, 6, 7].map(function (k) { return new T.Color(['#eef3f6', '#b4c08e', '#e9cb8a', '#d4c470', '#5aa04a', '#7cb455', '#6c9c58', '#9ccc62'][k]); }), gcol = new T.Color(), gtmp = new T.Color(), ROCKC = new T.Color('#a39a8c'), SNOWC = new T.Color('#f2f6f8'), SANDC = new T.Color('#eadcb0');
+  var RCOL = [0, 1, 2, 3, 4, 5, 6, 7].map(function (k) { return new T.Color(['#eef3f6', '#b4c08e', '#ecc985', '#d8c66a', '#5aab48', '#78bb52', '#6aa457', '#94d05a'][k]); }), gcol = new T.Color(), gtmp = new T.Color(), ROCKC = new T.Color('#a39a8c'), SNOWC = new T.Color('#f2f6f8'), SANDC = new T.Color('#eadcb0');
   function snowAt(lat) { var al = Math.abs(lat); return al > 66 ? 800 : al > 58 ? 1400 : al > 50 ? 2300 : al > 42 ? 3100 : al > 35 ? 4800 : 5400; } // (rough snow lines: low near the poles, highest in the tropics and on the Tibetan plateau)
   W.snowAt = snowAt;
   function groundCol(lon, lat, hh, out) {
@@ -335,6 +335,7 @@ window.makeWorld = function (env) {
     var x0 = i * TS, y0 = j * TS, dl = ((lon - x0 + 540) % 360) - 180, dx = dl < 0 ? -dl : (dl > TS ? dl - TS : 0), dy = lat < y0 ? y0 - lat : (lat > y0 + TS ? lat - y0 - TS : 0);
     var cl = Math.cos(Math.min(89, Math.min(Math.abs(lat), Math.abs(lat) + dy)) * D2R); return Math.hypot(dx * Math.max(0.05, cl), dy);
   }
+  W.setPads = function (list) { W.pads = list; ANCH = null; RIDE.ver++; if (RIDE.on) { for (var k in tiles) { scene.remove(tiles[k]); tiles[k].geometry.dispose(); } tiles = {}; } };
   W.setRide = function (on) {
     RIDE.on = on; RIDE.ver++;
     if (!on) { for (var k in tiles) { scene.remove(tiles[k]); tiles[k].geometry.dispose(); } tiles = {}; U.uRideA.value = 0; }
@@ -385,7 +386,7 @@ window.makeWorld = function (env) {
   var tower = merged([[new T.BoxGeometry(0.5, 1, 0.5).translate(0, 0.5, 0), '#ffffff'], [new T.BoxGeometry(0.52, 0.04, 0.52).translate(0, 1.0, 0), '#d9dde3']]);
   var rock = new T.IcosahedronGeometry(0.4, 0).scale(1, 0.55, 0.8).translate(0, 0.12, 0); rock = merged([[rock, '#ffffff']]);
   var puff = new T.IcosahedronGeometry(1, 1);
-  var cloudMat = new T.MeshLambertMaterial({ color: 0xf6f1f8, flatShading: true, emissive: 0x3a3450 }); env.nightify(cloudMat, false);
+  var cloudMat = new T.MeshLambertMaterial({ color: 0xffffff, flatShading: true, emissive: 0x8a93a8 }); env.nightify(cloudMat, false);
   // Ride-along vegetation: many shapes of each kind (tier counts, crown sizes, lean and lumpiness vary), so a forest never looks stamped out
   function jit(g, amt, seed) { var p = g.attributes.position; for (var i = 0; i < p.count; i++) { var k = 1 + amt * (hash(seed + Math.round((p.getX(i) * 7 + p.getY(i) * 13 + p.getZ(i) * 17) * 10), seed * 0.37) - 0.5); p.setXYZ(i, p.getX(i) * k, p.getY(i) * k, p.getZ(i) * k); } return g; }
   function rr(k, seed) { return hash(seed * 13.1 + k * 7.7, k * 3.3 + seed); }
@@ -413,8 +414,10 @@ window.makeWorld = function (env) {
     var sx = [1, 1.4, 0.9, 0.6][shape], sy = [0.6, 0.35, 0.7, 1.3][shape], p = g.attributes.position; for (var i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i) * sx, Math.max(-0.1, p.getY(i)) * sy + 0.08, p.getZ(i) * (0.8 + 0.3 * rr(1, v)));
     return merged([[g, '#ffffff']]); }
   function shrubV(v) { var parts = []; for (var i = 0; i < 3; i++) parts.push([jit(new T.IcosahedronGeometry(0.18 + 0.08 * rr(i, v), 0), 0.3, v * 5 + i).scale(1, 0.7, 1).translate((rr(i + 3, v) - 0.5) * 0.35, 0.12, (rr(i + 6, v) - 0.5) * 0.35), '#ffffff']); return merged(parts); }
-  var VEG = { con: [0, 1, 2, 3].map(function (v) { return conV(v); }), snow: [4, 5].map(function (v) { return conV(v, true); }), br: [0, 1, 2].map(broadV), rd: [0, 1].map(roundV), palm: [0, 1].map(palmV), ac: [0, 1].map(acaciaV), ca: [0, 1, 2, 3].map(cactusV), rk: [0, 1, 2, 3].map(rockV), sh: [0, 1].map(shrubV) };
-  var V2 = {}; Object.keys(VEG).forEach(function (k) { VEG[k].forEach(function (g, i) { V2[k + i] = { geo: g, max: k === 'con' || k === 'br' || k === 'rd' ? 2600 : k === 'rk' ? 1400 : 900 }; }); });
+  function farCon() { return merged([[trunk(0.25), TRUNK], [new T.ConeGeometry(0.34, 0.8, 5).translate(0, 0.62, 0), '#ffffff']]); }
+  function farBall() { return merged([[trunk(0.35), TRUNK], [new T.IcosahedronGeometry(0.36, 0).scale(1, 0.85, 1).translate(0, 0.62, 0), '#ffffff']]); }
+  var VEG = { fc: [farCon()], fb: [farBall()], con: [0, 1, 2, 3].map(function (v) { return conV(v); }), snow: [4, 5].map(function (v) { return conV(v, true); }), br: [0, 1, 2].map(broadV), rd: [0, 1].map(roundV), palm: [0, 1].map(palmV), ac: [0, 1].map(acaciaV), ca: [0, 1, 2, 3].map(cactusV), rk: [0, 1, 2, 3].map(rockV), sh: [0, 1].map(shrubV) };
+  var V2 = {}; Object.keys(VEG).forEach(function (k) { VEG[k].forEach(function (g, i) { V2[k + i] = { geo: g, max: k === 'fc' || k === 'fb' ? 9000 : k === 'con' || k === 'br' || k === 'rd' ? 3200 : k === 'rk' ? 1400 : 900 }; }); });
   var S = { con: kind(conifer, 5000), br: kind(broad, 5000), ac: kind(acacia, 1200), ca: kind(cactus, 1500), rk: kind(rock, 2000), ho: kind(house, 3500), tw: kind(tower, 300), cl: kind(puff, 1400, cloudMat) };
   Object.keys(V2).forEach(function (k) { S['v_' + k] = kind(V2[k].geo, V2[k].max); });
   var mtx = new T.Matrix4(), q = new T.Quaternion(), q2 = new T.Quaternion(), sc = new T.Vector3(), up = new T.Vector3(0, 1, 0), pv = new T.Vector3(), col2 = new T.Color();
@@ -458,22 +461,22 @@ window.makeWorld = function (env) {
     // towns: little houses around every town over 25,000 people, towers in big cities
     var HC = ['#f4efe4', '#efe2c8', '#e8e8ec', '#f2d9b8'], R2 = R * R;
     for (var t = 0; t < TOWNS.length; t++) {
-      var tn = TOWNS[t], ddx = (((tn[0] - lon + 540) % 360) - 180) * kc, ddy = tn[1] - lat; if (ddx * ddx + ddy * ddy > R2) continue;
+      var tn = TOWNS[t], ddx = (((tn[0] - lon + 540) % 360) - 180) * kc, ddy = tn[1] - lat; if (ddx * ddx + ddy * ddy > R2) continue; if (opt.ride && tn[2] < 3) continue; // (riding: only real towns, not a house in every field)
       var nh = Math.min(30, 3 + tn[2] * 3), rad = size * (0.5 + tn[2] * 0.22) / 0.0175;
       for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy) || blocked(hx, hy)) continue; put(S.ho, hx, hy, size * (opt.ride ? 0.38 : 0.5), a, HC[hI % 4]); }
-      if (tn[2] >= 9) for (var k3 = 0; k3 < 7; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; if (blocked(tx, ty)) continue; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.75, size * (1.0 + hash(k3, t) * 1.4), size * 0.75))); }
+      if (tn[2] >= 9 && !opt.ride) for (var k3 = 0; k3 < 7; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; if (blocked(tx, ty)) continue; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.75, size * (1.0 + hash(k3, t) * 1.4), size * 0.75))); }
     }
     // clouds: puffy groups, mostly away from the middle of the view so they sit at the horizon
     var cR = opt.cloud ? R * 5 : R * 2.6, cIn = opt.cloud ? R * 1.6 : R * 0.8, ccell = Math.max(0.5, R / 6);
     for (var ci = Math.floor((lon - cR / kc) / ccell); ci <= Math.ceil((lon + cR / kc) / ccell); ci++) for (var cj = Math.floor((lat - cR) / ccell); cj <= Math.ceil((lat + cR) / ccell); cj++) {
-      if (hash(ci * 1.7, cj * 2.3) > (opt.cloud ? 0.24 : 0.42)) continue;
+      if (hash(ci * 1.7, cj * 2.3) > (opt.cloud ? 0.09 : 0.42)) continue;
       var cx = (ci + hash(ci, cj + 5)) * ccell, cy = (cj + hash(cj, ci + 9)) * ccell, cdx = (((cx - lon + 540) % 360) - 180) * kc, cdy = cy - lat, cd = Math.hypot(cdx, cdy);
       if (cd > cR || cd < cIn || cy > 80 || cy < -80) continue;
       var cl = ((cx + 540) % 360) - 180, cs = opt.cloud ? opt.cloud * (0.9 + hash(ci, cj) * 0.9) : size * (1.4 + hash(ci, cj) * 1.4), np = 3 + Math.floor(hash(cj, ci) * 4);
       for (var pI = 0; pI < np; pI++) {
         var px = cl + (pI - np / 2) * cs * 50 * (0.7 + hash(pI, ci) * 0.5) / Math.max(0.3, Math.cos(cy * D2R)), py = cy + (hash(pI, cj) - 0.5) * cs * 30, pr = cs * (0.7 + hash(pI + 3, ci) * 0.8) * (opt.cloud ? 0.6 : 1);
         if (S.cl.count >= 1400) break;
-        var n2 = ll2v(px, py, 1); pv.copy(n2).multiplyScalar(1 + (opt.cloud ? 0.012 + cs * 0.8 : 0.006 + cs * 1.5) + hash(pI, cj + 1) * cs * 0.5); q.setFromUnitVectors(up, n2); sc.set(pr * 1.4, pr * (0.8 + hash(pI, 2) * 0.5), pr);
+        var n2 = ll2v(px, py, 1); pv.copy(n2).multiplyScalar(1 + (opt.cloud ? 0.026 + cs * 1.2 : 0.006 + cs * 1.5) + hash(pI, cj + 1) * cs * 0.5); q.setFromUnitVectors(up, n2); sc.set(pr * 1.4, pr * (0.8 + hash(pI, 2) * 0.5), pr);
         mtx.compose(pv, q, sc); S.cl.setMatrixAt(S.cl.count, mtx); S.cl.setColorAt(S.cl.count, col2.set('#ffffff')); S.cl.count++;
       }
     }
@@ -482,7 +485,7 @@ window.makeWorld = function (env) {
   };
   // Riding: one tree (or rock, or cactus) per 0.1° cell where the land allows, fixed per cell (moving on never reshuffles them), thinned by a
   // patchy noise so forests come in clumps and clearings; nothing on the roads or on a landmark's flat ground; shrinking away at the edge.
-  var GC = new T.Color(), GREENS = { con: ['#2c5f3c', '#24563a', '#336a45', '#2a5e3a'], br: ['#3b8c32', '#2f7a2c', '#46982f', '#357f3a'], rd: ['#5a9440', '#4f8a3a', '#6d9e3e', '#62994a'], palm: ['#3f9a4a', '#4aa84f'], ac: ['#7f9a3a', '#8aa548'], sh: ['#7a8a48', '#8a9a52', '#6f7f44'] };
+  var GC = new T.Color(), GREENS = { con: ['#2f7a45', '#2a6e40', '#3a8a50', '#286a3c'], br: ['#43a03a', '#3a9032', '#52ad3a', '#3f9440'], rd: ['#6aaa48', '#5ea040', '#7cb84a', '#70ad50'], palm: ['#3f9a4a', '#4aa84f'], ac: ['#7f9a3a', '#8aa548'], sh: ['#7a8a48', '#8a9a52', '#6f7f44'] };
   function clump(lon, lat, salt) { var a = noise(lon * 1.3 + salt, lat * 1.3 - salt), b = noise(lon * 4.1 - salt, lat * 4.1 + salt); var t = Math.max(0, Math.min(1, (a - 0.35) / 0.45)); return t * t * (3 - 2 * t) * (0.4 + 0.6 * b); }
   function rideVeg(lon, lat, R, opt, blocked) {
     var cell = opt.cell || 0.1, kc = Math.max(0.05, Math.cos(lat * D2R)), size = opt.size || 0.0022, pads = (W.pads || []).filter(function (p) { return Math.abs(p[1] - lat) < R + 1 && Math.abs(((p[0] - lon + 540) % 360) - 180) * kc < R + 1; });
@@ -499,16 +502,30 @@ window.makeWorld = function (env) {
       if (ELEV && elevM(lx, y) > snowAt(y) - 900) { if (hash(i * 0.3, j * 0.7) < 0.05) vput('rk' + (i & 3), lx, y, (opt.size || 0.0022) * 0.5, h1 * 6.28, '#9a948a'); continue; } // (above the tree line: bare, a boulder here and there)
       var b = bFast(lx, y), p = hash(i * 0.71 + 11, j * 1.29 + 5), c = clump(lx, y, 3.1), r3 = hash(i + 0.5, j * 3.1 + 7), yaw = h1 * 6.28, edge = Math.min(1, (R - d) / (R * 0.18)), sz = size * (0.75 + 0.55 * h2) * edge * edge * (3 - 2 * edge), al = Math.abs(y);
       var gi = Math.floor(r3 * 4);
-      if (b === B.rain) { if (p > 0.55 + 0.4 * c) continue; if (r3 < 0.14) vput('palm' + (gi % 2), lx, y, sz * 1.15, yaw, GREENS.palm[gi % 2]); else vput(r3 < 0.6 ? 'br' + (gi % 3) : 'rd' + (gi % 2), lx, y, sz * 1.15, yaw, GREENS.br[gi]); }
-      else if (b === B.forest) { if (p > 0.3 + 0.6 * c) continue; var s3 = hash(i * 0.13, j * 0.07); if (s3 < 0.4) vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi], 0.85 + 0.3 * h1); else if (s3 < 0.7) vput('br' + (gi % 3), lx, y, sz, yaw, GREENS.br[gi]); else vput('rd' + (gi % 2), lx, y, sz, yaw, GREENS.rd[gi]); }
-      else if (b === B.taiga) { if (p > 0.35 + 0.55 * c) continue; if (al > 56 && r3 < 0.5) vput('snow' + (gi % 2), lx, y, sz, yaw, '#ffffff', 0.85 + 0.3 * h1); else vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi], 0.85 + 0.3 * h1); }
-      else if (b === B.grass) { if (p > 0.05 + 0.32 * c * c) continue; if (r3 < 0.25 && al > 35) vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi]); else vput('rd' + (gi % 2), lx, y, sz * 0.95, yaw, GREENS.rd[gi]); }
+      var two = c > 0.45 && hash(i * 2.3, j * 1.7) < 0.7, sx2 = (hash(i + 9, j) - 0.5) * cell * 0.8 / kc, sy2 = (hash(j + 9, i) - 0.5) * cell * 0.8;
+      if (b === B.rain) { if (p > 0.78 + 0.22 * c) continue; if (two) vput('br' + ((gi + 1) % 3), lx + sx2, y + sy2, sz * 1.05, yaw + 1, GREENS.br[(gi + 1) % 4]); if (r3 < 0.14) vput('palm' + (gi % 2), lx, y, sz * 1.15, yaw, GREENS.palm[gi % 2]); else vput(r3 < 0.6 ? 'br' + (gi % 3) : 'rd' + (gi % 2), lx, y, sz * 1.15, yaw, GREENS.br[gi]); }
+      else if (b === B.forest) { if (p > 0.5 + 0.48 * c) continue; var s3 = hash(i * 0.13, j * 0.07); if (two) vput(s3 < 0.5 ? 'con' + ((gi + 1) % 4) : 'rd' + ((gi + 1) % 2), lx + sx2, y + sy2, sz * 0.9, yaw + 1, s3 < 0.5 ? GREENS.con[(gi + 1) % 4] : GREENS.rd[(gi + 1) % 4]); if (s3 < 0.4) vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi], 0.85 + 0.3 * h1); else if (s3 < 0.7) vput('br' + (gi % 3), lx, y, sz, yaw, GREENS.br[gi]); else vput('rd' + (gi % 2), lx, y, sz, yaw, GREENS.rd[gi]); }
+      else if (b === B.taiga) { if (p > 0.55 + 0.43 * c) continue; if (two) vput('con' + ((gi + 2) % 4), lx + sx2, y + sy2, sz * 0.85, yaw + 2, GREENS.con[(gi + 2) % 4], 0.9); if (al > 56 && r3 < 0.5) vput('snow' + (gi % 2), lx, y, sz, yaw, '#ffffff', 0.85 + 0.3 * h1); else vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi], 0.85 + 0.3 * h1); }
+      else if (b === B.grass) { if (p > 0.06 + 0.45 * c * c) continue; if (r3 < 0.25 && al > 35) vput('con' + gi, lx, y, sz, yaw, GREENS.con[gi]); else vput('rd' + (gi % 2), lx, y, sz * 0.95, yaw, GREENS.rd[gi]); }
       else if (b === B.savanna) { if (p > 0.07 + 0.16 * c) continue; if (r3 < 0.55) vput('ac' + (gi % 2), lx, y, sz * 1.1, yaw, GREENS.ac[gi % 2], 1.15); else vput('sh' + (gi % 2), lx, y, sz * 0.6, yaw, GREENS.sh[gi % 3]); }
       else if (b === B.desert) { if (p > 0.05 + 0.2 * c) continue; var amer = lx < -30, sand = '#c9a46a'; GC.set(BCOL[B.desert]).multiplyScalar(0.78 + 0.2 * h1);
         if (amer && r3 < 0.35) vput('ca' + gi, lx, y, sz * 0.75, yaw, '#5a8a46');
         else if (r3 < 0.2) vput('sh' + (gi % 2), lx, y, sz * 0.45, yaw, '#8a8a52');
         else for (var k = 0, nk = 1 + Math.floor(hash(i, j + 0.3) * 3); k < nk; k++) vput('rk' + ((gi + k) % 4), lx + (k ? (hash(i + k, j) - 0.5) * cell * 0.6 / kc : 0), y + (k ? (hash(j + k, i) - 0.5) * cell * 0.6 : 0), sz * (0.35 + 0.4 * hash(k, i + j)) * (k ? 0.6 : 1), yaw + k, '#' + GC.getHexString()); }
       else if (b === B.tundra) { if (p > 0.04 + 0.12 * c) continue; if (r3 < 0.4) vput('snow' + (gi % 2), lx, y, sz * 0.8, yaw, '#ffffff'); else vput('rk' + gi, lx, y, sz * 0.4, yaw, '#9a9a8e'); }
+    }
+    // the far ring, out to the horizon: simpler trees on a coarser grid, so forests carry on into the distance instead of stopping
+    var R2 = R * 2.3, fcell = cell * 2, fi0 = Math.floor((lon - R2 / kc) / fcell), fi1 = Math.ceil((lon + R2 / kc) / fcell), fj0 = Math.floor((lat - R2) / fcell), fj1 = Math.ceil((lat + R2) / fcell);
+    for (var fi = fi0; fi <= fi1; fi++) for (var fj = fj0; fj <= fj1; fj++) {
+      var fx = (fi + 0.5 + 0.6 * (hash(fi * 3.1, fj) - 0.5)) * fcell, fy = (fj + 0.5 + 0.6 * (hash(fj * 2.7, fi) - 0.5)) * fcell; if (fy > 84 || fy < -84) continue;
+      var fdx = (((fx - lon + 540) % 360) - 180) * kc, fdy = fy - lat, fd = Math.sqrt(fdx * fdx + fdy * fdy); if (fd > R2 || fd < R * 0.92) continue;
+      var flx = ((fx + 540) % 360) - 180; if (!isLand(flx, fy) || landF(flx, fy) < 0.7 || blocked(flx, fy)) continue;
+      var fb2 = bFast(flx, fy), fc = clump(flx, fy, 3.1), fp = hash(fi * 0.71 + 11, fj * 1.29 + 5), fe = Math.min(1, (R2 - fd) / (R2 * 0.12)), fs = (opt.size || 0.0022) * 1.45 * fe;
+      if (ELEV && elevM(flx, fy) > snowAt(fy) - 900) continue;
+      if (fb2 === B.rain && fp < 0.85) vput('fb0', flx, fy, fs * 1.1, fp * 9, GREENS.br[fi & 3]);
+      else if (fb2 === B.forest && fp < 0.55 + 0.4 * fc) vput(fp < 0.45 ? 'fc0' : 'fb0', flx, fy, fs, fp * 9, fp < 0.45 ? GREENS.con[fi & 3] : GREENS.rd[fj & 3]);
+      else if (fb2 === B.taiga && fp < 0.6 + 0.35 * fc) vput('fc0', flx, fy, fs, fp * 9, GREENS.con[fj & 3]);
+      else if (fb2 === B.grass && fp < 0.05 + 0.35 * fc * fc) vput('fb0', flx, fy, fs * 0.9, fp * 9, GREENS.rd[fi & 3]);
     }
   }
   W.counts = function () { var o = {}; for (var k in S) o[k] = S[k].count; return o; };
