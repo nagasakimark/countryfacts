@@ -75,7 +75,7 @@ Landmark,Hong Kong,International Commerce Centre,no,,
 Landmark,Hong Kong,Jardine House,no,,
 Landmark,Hong Kong,Lippo Centre,no,,
 Landmark,Hong Kong,Star Ferry,no,,
-Landmark,Hong Kong,Tian Tan Buddha,no,,
+Landmark,Hong Kong,Tian Tan Buddha,yes,tiantan,Tian Tan Buddha
 Landmark,Hong Kong,Two International Finance Centre,no,,
 Landmark,India,Agra Fort,no,,
 Landmark,India,Ajanta Caves,no,,
@@ -144,7 +144,7 @@ Landmark,Iraq,Erbil Citadel,no,,
 Landmark,Iraq,Great Ziggurat of Ur,yes,ur,Ziggurat of Ur
 Landmark,Iraq,"Ishtar Gate, Babylon",no,,
 Landmark,Iraq,"Malwiya Minaret, Samarra",no,,
-Landmark,Israel,Masada,no,,
+Landmark,Israel,Masada,yes,masada,Masada
 Landmark,Japan,Abeno Harukas,no,,
 Landmark,Japan,Azabudai Hills Mori JP Tower,no,,
 Landmark,Japan,Fuji Television Headquarters Building,no,,
@@ -184,7 +184,7 @@ Landmark,Laos,Pha That Luang,yes,thatluang,Pha That Luang
 Landmark,Lebanon,Baalbek,yes,baalbek,Baalbek
 Landmark,Macao,Grand Lisboa,no,,
 Landmark,Macao,Macau Tower,no,,
-Landmark,Macao,Ruins of St. Paul's,no,,
+Landmark,Macao,Ruins of St. Paul's,yes,stpaulmacao,Ruins of St. Paul's
 Landmark,Malaysia,"Murugan Statue, Batu Caves",no,,
 Landmark,Malaysia,Petronas Twin Towers,yes,petronas,Petronas Twin Towers
 Landmark,Malaysia,Sultan Abdul Samad Building,no,,
@@ -224,7 +224,7 @@ Landmark,Russia,Vostochny Cosmodrome,no,,
 Landmark,Saudi Arabia,Abraj Al-Bait Clock Tower,no,,
 Landmark,Saudi Arabia,"Al-Balad, Historic Jeddah",no,,
 Landmark,Saudi Arabia,Edge of the World,no,,
-Landmark,Saudi Arabia,Hegra (AlUla),no,,
+Landmark,Saudi Arabia,Hegra (AlUla),yes,hegra,Hegra (AlUla)
 Landmark,Saudi Arabia,Jeddah Corniche Circuit,no,,
 Landmark,Saudi Arabia,King Fahd's Fountain,no,,
 Landmark,Saudi Arabia,Kingdom Centre,no,,
@@ -299,7 +299,7 @@ Landmark,Austria,Schönbrunn Palace,no,,
 Landmark,Austria,St. Stephen's Cathedral,no,,
 Landmark,Belarus,National Library of Belarus,no,,
 Landmark,Belgium,Atomium,yes,atomium,Atomium
-Landmark,Bosnia & Herzegovina,"Stari Most, Mostar",no,,
+Landmark,Bosnia & Herzegovina,"Stari Most, Mostar",yes,starimost,"Stari Most, Mostar"
 Landmark,Bulgaria,Rila Monastery,yes,rila,Rila Monastery
 Landmark,Croatia,Dubrovnik Old Town,yes,dubrovnik,Dubrovnik
 Landmark,Croatia,Plitvice Lakes,yes,plitvice,Plitvice Lakes
@@ -428,7 +428,7 @@ Landmark,United Kingdom,University of Cambridge,no,,
 Landmark,United Kingdom,University of Oxford,no,,
 Landmark,United Kingdom,Westminster Abbey,no,,
 Landmark,United Kingdom,Windsor Castle,no,,
-Landmark,Vatican City,St. Peter's Basilica,no,,
+Landmark,Vatican City,St. Peter's Basilica,yes,stpeters,St. Peter's Basilica
 Landmark,Algeria,Maqam Echahid (Martyrs' Memorial),no,,
 Landmark,Angola,Mausoleum of Agostinho Neto,no,,
 Landmark,Benin,Door of No Return,no,,
@@ -560,7 +560,7 @@ Landmark,Guatemala,Antigua Guatemala,no,,
 Landmark,Guatemala,Tikal,yes,tikal,Tikal
 Landmark,Haiti,Citadelle Laferrière,yes,citadelle,Citadelle Laferrière
 Landmark,Haiti,Sans-Souci Palace,no,,
-Landmark,Honduras,Copán,no,,
+Landmark,Honduras,Copán,yes,copan,Copán
 Landmark,Jamaica,Dunn's River Falls,yes,dunnsriver,Dunn's River Falls
 Landmark,Jamaica,Rose Hall Great House,no,,
 Landmark,Mexico,Chichén Itzá,yes,chichen,Chichén Itzá
@@ -797,7 +797,7 @@ Landmark,Australia,Wheel of Brisbane,no,,
 Landmark,Australia,WRC Rally Australia (Coffs Harbour),no,,
 Landmark,Fiji,Sri Siva Subramaniya Temple,no,,
 Landmark,Guam,War in the Pacific National Historical Park,no,,
-Landmark,Micronesia,Nan Madol,no,,
+Landmark,Micronesia,Nan Madol,yes,nanmadol,Nan Madol
 Landmark,New Caledonia,Jean-Marie Tjibaou Cultural Centre,no,,
 Landmark,New Zealand,Auckland War Memorial Museum,no,,
 Landmark,New Zealand,ChristChurch Cathedral,no,,
