@@ -439,7 +439,23 @@ TOY.landmarks = [
 {id:'leptis',c:'LBY',ll:[14.2903,32.6383],m:'leptis',ja:'レプティス・マグナ',en:'Leptis Magna',k:'れぷてぃすまぐな りびあ',
   t:'リビアの 海ぞいに のこる 古代ローマの 町。 アーチの 門や {劇場|げきじょう}、 たくさんの 柱が 今も 立って いる。',te:'An ancient Roman city on the coast of Libya. Its arch, theatre and many columns are still standing.'},
 {id:'yamoussoukro',c:'CIV',ll:[-5.2967,6.8114],m:'yamoussoukro',ja:'ヤムスクロの 平和の {聖母|せいぼ} {大聖堂|だいせいどう}',en:'Basilica of Our Lady of Peace',k:'やむすくろ だいせいどう こーとじぼわーる',
-  t:'コートジボワールの {首都|しゅと}に ある 教会。 サン・ピエトロ{大聖堂|だいせいどう}を まねて つくられ、 とても 大きい。 ステンドグラスが きれい。',te:'A church in the capital of Côte d\'Ivoire, modelled on St. Peter\'s Basilica and enormous in size. Its stained glass is beautiful.'}
+  t:'コートジボワールの {首都|しゅと}に ある 教会。 サン・ピエトロ{大聖堂|だいせいどう}を まねて つくられ、 とても 大きい。 ステンドグラスが きれい。',te:'A church in the capital of Côte d\'Ivoire, modelled on St. Peter\'s Basilica and enormous in size. Its stained glass is beautiful.'},
+{id:'gediminas',c:'LTU',ll:[25.2906,54.6867],m:'gediminas',ja:'ゲディミナス{城|じょう}の{塔|とう}',en:'Gediminas\' Tower',k:'げでぃみなすじょうのとう りとあにあ びるにゅす',
+  t:'リトアニアの {首都|しゅと} ビリニュスの {丘|おか}に 立つ 赤レンガの {塔|とう}。 てっぺんに 国旗が はためく。 町の シンボル。',te:'A red-brick tower on a hill in Vilnius, the capital of Lithuania, with the national flag flying on top. A symbol of the city.'},
+{id:'freedomriga',c:'LVA',ll:[24.1131,56.9514],m:'freedomriga',ja:'{自由|じゆう}の記念{碑|ひ}',en:'Freedom Monument',k:'じゆうのきねんひ らとびあ りが',
+  t:'ラトビアの {首都|しゅと} リガに 立つ 高い {記念碑|きねんひ}。 上に 立つ 女の人 「ミルダ」が、 3つの 金の 星を 高く かかげて いる。',te:'A tall monument in Riga, the capital of Latvia. On top, a woman called Milda holds up three golden stars.'},
+{id:'stsava',c:'SRB',ll:[20.4688,44.7981],m:'stsava',ja:'{聖|せい}サワ{大聖堂|だいせいどう}',en:'Church of Saint Sava',k:'せいさわだいせいどう せるびあ べおぐらーど',
+  t:'セルビアの {首都|しゅと} ベオグラードの 大きな 教会。 世界で 一番 大きい 正教会の 一つ。 中は 金色の モザイクで いっぱい。',te:'A huge church in Belgrade, the capital of Serbia, and one of the largest Orthodox churches in the world. Inside, it is covered in golden mosaics.'},
+{id:'agadez',c:'NER',ll:[7.9891,16.9733],m:'agadez',ja:'アガデスの モスク',en:'Grand Mosque of Agadez',k:'あがですのもすく にじぇーる',
+  t:'ニジェールの サハラ{砂漠|さばく}の 町に ある、 土で つくった 27mの {塔|とう}。 木の ぼうが たくさん つき出て いて、 直す 時の 足場になる。',te:'A 27 m tower made of mud in a Sahara town in Niger. Wooden poles stick out all over it and are used as scaffolding when it is repaired.'},
+{id:'haamonga',c:'TON',ll:[-175.0444,-21.1356],m:'haamonga',ja:'ハアモンガ・ア・マウイ',en:'Ha\'amonga \'a Maui',k:'はあもんが あ まうい とんが',
+  t:'トンガの 大きな 石の 門。 800年ほど前に、 サンゴの 石を 3つ 組んで つくった。 太陽の 動きを 知る ためと 言われる。',te:'A great stone gateway in Tonga, made about 800 years ago from three blocks of coral stone. It may have been used to follow the sun\'s path.'},
+{id:'elmorro',c:'PRI',ll:[-66.1196,18.4706],m:'elmorro',ja:'エル・モロ{要塞|ようさい}',en:'Castillo San Felipe del Morro',k:'えるもろようさい ぷえるとりこ',
+  t:'プエルトリコの 海に つき出た 古い スペインの とりで。 前の 広い しばふでは、 家族が たこあげを 楽しむ。',te:'An old Spanish fortress jutting out into the sea in Puerto Rico. Families fly kites on the wide lawn in front of it.'},
+{id:'laasgeel',c:'SOM',ll:[44.335,9.78],m:'laasgeel',ja:'ラース・ギール',en:'Laas Geel',k:'らーすぎーる そまりあ どうくつ',
+  t:'ソマリアの 岩の かげに のこる、 5000年いじょう前の 絵。 赤や 白で えがかれた 牛と 人が 今も あざやか。',te:'Rock shelters in Somalia with paintings over 5,000 years old. The cattle and people painted in red and white are still bright today.'},
+{id:'itaipu',c:'PRY',ll:[-54.5881,-25.4083],m:'itaipu',ja:'イタイプ・ダム',en:'Itaipu Dam',k:'いたいぷだむ ぱらぐあい ぶらじる',
+  t:'パラグアイと ブラジルの さかいの 川に ある、 とても 大きな ダム。 パラグアイの 電気の ほとんどを つくって いる。',te:'A gigantic dam on the river between Paraguay and Brazil. It makes most of Paraguay\'s electricity.'}
 ];
 
 TOY.animals = [
