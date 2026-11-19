@@ -111,4 +111,42 @@
     [[0.2], [-0.19]].forEach(function (q) { [-1, 1].forEach(function (s) { var wh = new T.Group(); wh.position.set(s * 0.105, 0.045, q[0]); wh.userData.spin = 'x'; cyl(wh, '#1d1d22', 0.045, 0.045, 0.035, 0, 0, 0, 12, 0, Math.PI / 2); cyl(wh, '#c9ced6', 0.025, 0.025, 0.037, 0, 0, 0, 8, 0, Math.PI / 2); g.add(wh); }); });
     return g;
   };
+
+  /* ---------- more road vehicles (picked per route with r.car) ---------- */
+  function wheels(g, xs, zs, r, w) { zs.forEach(function (z) { xs.forEach(function (x) { var wh = new T.Group(); wh.position.set(x, r, z); wh.userData.spin = 'x'; cyl(wh, '#1d1d22', r, r, w, 0, 0, 0, 12, 0, Math.PI / 2); cyl(wh, '#c9ced6', r * 0.55, r * 0.55, w + 0.004, 0, 0, 0, 8, 0, Math.PI / 2); g.add(wh); }); }); }
+  function lights(g, x, yF, zF, yB, zB) { [-1, 1].forEach(function (s) { box(g, '#fff3c4', 0.035, 0.022, 0.006, s * x, yF, zF); box(g, '#e8302a', 0.04, 0.016, 0.006, s * x, yB, zB); }); }
+  function person(g, x, y, z, shirt) { box(g, shirt || '#3a6ab0', 0.05, 0.05, 0.04, x, y, z); ball(g, x, y + 0.05, z, 0.024, '#e8b48a', 1, 1, 1); box(g, '#3a2a1a', 0.05, 0.012, 0.05, x, y + 0.072, z); }
+  M.custom.v_convertible = function (col) { // 1950s American convertible: long fins, chrome, open top, a driver
+    var g = new T.Group(), c = col || '#3fc0b8', chrome = '#e6e9ee';
+    box(g, c, 0.24, 0.07, 0.7, 0, 0.065, 0); box(g, c, 0.22, 0.03, 0.2, 0, 0.115, 0.22); box(g, c, 0.22, 0.03, 0.22, 0, 0.115, -0.22);
+    [-1, 1].forEach(function (s) { box(g, c, 0.02, 0.05, 0.12, s * 0.11, 0.13, -0.3); }); // (tail fins)
+    box(g, '#f2ece0', 0.2, 0.02, 0.24, 0, 0.1, -0.02); box(g, '#f2ece0', 0.2, 0.06, 0.03, 0, 0.13, -0.11); box(g, '#f2ece0', 0.2, 0.06, 0.03, 0, 0.13, 0.04);
+    box(g, '#9ad0e8', 0.2, 0.05, 0.008, 0, 0.15, 0.12); box(g, chrome, 0.25, 0.025, 0.02, 0, 0.045, 0.355); box(g, chrome, 0.25, 0.025, 0.02, 0, 0.045, -0.355); box(g, chrome, 0.004, 0.012, 0.6, 0.121, 0.085, 0); box(g, chrome, 0.004, 0.012, 0.6, -0.121, 0.085, 0);
+    person(g, 0.05, 0.11, 0.07, '#f2f2f2'); lights(g, 0.08, 0.075, 0.352, 0.09, -0.352);
+    wheels(g, [-0.11, 0.11], [0.22, -0.22], 0.045, 0.035); return g; };
+  M.custom.v_pickup = function (col) { // pickup truck: cab and open bed
+    var g = new T.Group(), c = col || '#c0392b';
+    box(g, c, 0.24, 0.08, 0.68, 0, 0.07, 0); box(g, c, 0.23, 0.09, 0.22, 0, 0.15, 0.06); box(g, '#22324a', 0.232, 0.05, 0.18, 0, 0.16, 0.06); box(g, '#22324a', 0.2, 0.05, 0.006, 0, 0.165, 0.172);
+    box(g, '#3a3a3e', 0.2, 0.012, 0.28, 0, 0.115, -0.19); [-1, 1].forEach(function (s) { box(g, c, 0.02, 0.05, 0.3, s * 0.11, 0.135, -0.19); }); box(g, c, 0.24, 0.05, 0.02, 0, 0.135, -0.33);
+    box(g, '#9aa0a8', 0.25, 0.03, 0.03, 0, 0.05, 0.345); box(g, '#2a2a2e', 0.18, 0.04, 0.006, 0, 0.09, 0.342); lights(g, 0.09, 0.09, 0.342, 0.12, -0.342);
+    wheels(g, [-0.115, 0.115], [0.22, -0.2], 0.055, 0.045); return g; };
+  M.custom.v_camper = function (col) { // camper van: two-tone, rounded front, boxy
+    var g = new T.Group(), c = col || '#e8a83a';
+    box(g, c, 0.24, 0.1, 0.62, 0, 0.065, 0); box(g, '#f6f2ea', 0.24, 0.13, 0.6, 0, 0.165, -0.01); box(g, '#f6f2ea', 0.22, 0.02, 0.5, 0, 0.235, -0.03);
+    box(g, '#22324a', 0.2, 0.07, 0.006, 0, 0.18, 0.302); [-1, 1].forEach(function (s) { for (var i = 0; i < 3; i++) box(g, '#22324a', 0.004, 0.06, 0.11, s * 0.121, 0.18, 0.15 - i * 0.15); });
+    var logo = ball(g, 0, 0.12, 0.31, 0.025, '#f6f2ea', 1, 1, 0.3); box(g, '#cfd3d8', 0.25, 0.025, 0.02, 0, 0.04, 0.31); lights(g, 0.085, 0.1, 0.31, 0.1, -0.31);
+    box(g, '#5a5a5e', 0.18, 0.02, 0.3, 0, 0.25, -0.05); // (roof rack)
+    wheels(g, [-0.11, 0.11], [0.2, -0.2], 0.05, 0.04); return g; };
+  M.custom.v_jeep = function (col) { // 4x4 safari wagon: tall, roof rack with luggage, spare wheel on the back
+    var g = new T.Group(), c = col || '#e8e2d4';
+    box(g, c, 0.25, 0.11, 0.62, 0, 0.09, 0); box(g, c, 0.24, 0.1, 0.42, 0, 0.19, -0.06); box(g, '#22324a', 0.242, 0.06, 0.38, 0, 0.2, -0.06); box(g, '#22324a', 0.21, 0.06, 0.006, 0, 0.2, 0.152);
+    box(g, '#3a3a3e', 0.22, 0.012, 0.4, 0, 0.245, -0.06); box(g, '#8a5a32', 0.12, 0.04, 0.12, 0.02, 0.26, -0.1); box(g, '#3a6ab0', 0.08, 0.03, 0.08, -0.06, 0.255, 0.02);
+    var sp = cyl(g, '#1d1d22', 0.055, 0.055, 0.03, 0, 0.14, -0.325, 12, Math.PI / 2); box(g, '#3a3a3e', 0.26, 0.04, 0.03, 0, 0.06, 0.32); box(g, '#3a3a3e', 0.26, 0.04, 0.03, 0, 0.06, -0.32); lights(g, 0.09, 0.11, 0.312, 0.11, -0.312);
+    wheels(g, [-0.12, 0.12], [0.2, -0.2], 0.06, 0.05); return g; };
+  M.custom.v_tuktuk = function (col) { // auto-rickshaw: one front wheel, canvas roof
+    var g = new T.Group(), c = col || '#f2c230';
+    box(g, c, 0.2, 0.1, 0.34, 0, 0.09, -0.03); box(g, '#2a6a3a', 0.22, 0.02, 0.4, 0, 0.27, -0.02); [[-0.1, 0.16], [0.1, 0.16], [-0.1, -0.2], [0.1, -0.2]].forEach(function (q) { box(g, '#2a2a2e', 0.012, 0.13, 0.012, q[0], 0.14, q[1]); });
+    box(g, c, 0.12, 0.08, 0.1, 0, 0.1, 0.2); box(g, '#9ad0e8', 0.14, 0.07, 0.006, 0, 0.2, 0.17); box(g, '#5a3a28', 0.18, 0.05, 0.12, 0, 0.14, -0.1);
+    person(g, 0, 0.16, 0.1, '#f2f2f2'); box(g, '#fff3c4', 0.03, 0.02, 0.006, 0, 0.13, 0.252);
+    wheels(g, [0], [0.2], 0.04, 0.03); wheels(g, [-0.1, 0.1], [-0.15], 0.04, 0.03); return g; };
 })();

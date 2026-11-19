@@ -207,12 +207,12 @@ window.makeWorld = function (env) {
   (function () {
     function stripTex(kind) {
       var c = document.createElement('canvas'); c.width = 64; c.height = 64; var x = c.getContext('2d');
-      if (kind === 'road') { x.fillStyle = '#45484f'; x.fillRect(0, 0, 64, 64); x.fillStyle = '#eceae2'; x.fillRect(4, 0, 2.5, 64); x.fillRect(57.5, 0, 2.5, 64); x.fillStyle = '#f2c230'; x.fillRect(30.5, 0, 3, 34); }
+      if (kind === 'road' || kind === 'roadW') { x.fillStyle = '#45484f'; x.fillRect(0, 0, 64, 64); x.fillStyle = '#eceae2'; x.fillRect(4, 0, 2.5, 64); x.fillRect(57.5, 0, 2.5, 64); x.fillStyle = kind === 'roadW' ? '#eceae2' : '#f2c230'; x.fillRect(30.5, 0, 3, 34); }
       else { x.fillStyle = '#8a7e6e'; x.fillRect(0, 0, 64, 64); x.fillStyle = '#6e6152'; x.fillRect(8, 0, 48, 64); for (var y = 0; y < 64; y += 10) { x.fillStyle = '#5a4434'; x.fillRect(12, y, 40, 4); } x.fillStyle = '#d6d9de'; x.fillRect(20, 0, 3, 64); x.fillRect(41, 0, 3, 64); }
       var t = new T.CanvasTexture(c); t.wrapT = T.RepeatWrapping; t.colorSpace = T.SRGBColorSpace; t.anisotropy = 4; return t;
     }
-    var roadM = new T.MeshLambertMaterial({ map: stripTex('road') }), railM = new T.MeshLambertMaterial({ map: stripTex('rail') }), lanes = [];
-    env.nightify(roadM, true); env.nightify(railM, true);
+    var roadM = new T.MeshLambertMaterial({ map: stripTex('road') }), roadMW = new T.MeshLambertMaterial({ map: stripTex('roadW') }), railM = new T.MeshLambertMaterial({ map: stripTex('rail') }), lanes = [];
+    env.nightify(roadM, true); env.nightify(roadMW, true); env.nightify(railM, true);
     env.routes.forEach(function (r) {
       if (r.type === 'plane') return;
       if (r.type === 'ship') { r.pts.forEach(function (p, i) { if (i) { var a = r.pts[i - 1]; ll2v(a[0], a[1], 1.0006, v); lanes.push(v.x, v.y, v.z); ll2v(p[0], p[1], 1.0006, v); lanes.push(v.x, v.y, v.z); } }); return; }
@@ -226,13 +226,14 @@ window.makeWorld = function (env) {
       var prev = null;
       pts.forEach(function (p, i) {
         var q = pts[Math.min(pts.length - 1, i + 1)], o = pts[Math.max(0, i - 1)], n = ll2v(p[0], p[1], 1), t = ll2v(q[0], q[1], 1).sub(ll2v(o[0], o[1], 1)).normalize(), s = new T.Vector3().crossVectors(n, t).normalize();
-        var c = n.clone().multiplyScalar(1 + W.groundH(p[0], p[1]) + 0.00012);
+        var ex = wd * 1.6 / D2R, kx = Math.max(0.2, Math.cos(p[1] * D2R)), gh = Math.max(W.groundH(p[0], p[1]), W.groundH(p[0] - ex / kx, p[1]), W.groundH(p[0] + ex / kx, p[1]), W.groundH(p[0], p[1] - ex), W.groundH(p[0], p[1] + ex)); // (the highest ground across the road's width: no hump of relief pokes through the asphalt)
+        var c = n.clone().multiplyScalar(1 + gh + 0.00012);
         if (prev) dist += c.distanceTo(prev); prev = c;
         P.push(c.x + s.x * wd, c.y + s.y * wd, c.z + s.z * wd, c.x - s.x * wd, c.y - s.y * wd, c.z - s.z * wd); Uv.push(0, dist / 0.0032, 1, dist / 0.0032);
         if (i) { var b0 = (i - 1) * 2; ix.push(b0, b0 + 1, b0 + 2, b0 + 1, b0 + 3, b0 + 2); }
       });
       var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(P, 3)); g.setAttribute('uv', new T.Float32BufferAttribute(Uv, 2)); g.setIndex(ix); g.computeVertexNormals();
-      var m = new T.Mesh(g, r.type === 'car' ? roadM : railM); m.material.side = T.DoubleSide; scene.add(m); r._rib = m;
+      var m = new T.Mesh(g, r.type === 'car' ? (r.p[0][0] < -30 ? roadM : roadMW) : railM); m.material.side = T.DoubleSide; scene.add(m); r._rib = m; // (yellow centre lines in the Americas, white elsewhere)
     }
     var lg2 = new T.BufferGeometry(); lg2.setAttribute('position', new T.Float32BufferAttribute(lanes, 3));
     var lm = new T.LineDashedMaterial({ color: 0xcfefff, dashSize: 0.006, gapSize: 0.006, transparent: true, opacity: 0.6 }), ls = new T.LineSegments(lg2, lm); ls.computeLineDistances(); scene.add(ls);
@@ -242,7 +243,7 @@ window.makeWorld = function (env) {
      Heights come from NASA/GEBCO elevation and sea depth (relief exaggerated more than on the globe),
      flattened into level beds under railways and roads and flat pads under landmarks. The globe's own land
      is cut away inside the covered circle and the sea there turns see-through so the sea floor shows. */
-  var REL = null, DEP = null, ANCH = null, EXR = EXAG * 2.5;
+  var REL = null, DEP = null, ANCH = null, EXR = EXAG * 5.5; // (riding: mountains well exaggerated, as a toy world)
   W.pads = [];
   function grab(img, w, h) { var c = document.createElement('canvas'); c.width = w; c.height = h; var x = c.getContext('2d'); x.drawImage(img, 0, 0, w, h); var d = x.getImageData(0, 0, w, h).data, a = new Uint8Array(w * h); for (var i = 0; i < a.length; i++) a[i] = d[i * 4]; return a; }
   var depImg = new Image(); depImg.onload = function () { DEP = grab(depImg, 1024, 512); ANCH = null; RIDE.ver++; }; depImg.src = 'data/depth.jpg';
@@ -276,7 +277,7 @@ window.makeWorld = function (env) {
       for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.08)); for (var k = 0; k < n; k++) pts.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]); }
       pts.push(r.pts[r.pts.length - 1]);
       var hs = pts.map(function (p) { return rawH(p[0], p[1]); });
-      pts.forEach(function (p, i) { var s = 0, c = 0; for (var k = Math.max(0, i - 6); k <= Math.min(pts.length - 1, i + 6); k++) { s += hs[k]; c++; } add(p[0], p[1], Math.max(0.0006, s / c), 0.03, 0.3); });
+      pts.forEach(function (p, i) { var w = []; for (var k = Math.max(0, i - 6); k <= Math.min(pts.length - 1, i + 6); k++) w.push(hs[k]); w.sort(function (x, y) { return x - y; }); var lo = w[Math.floor(w.length * 0.3)], mid = w[Math.floor(w.length / 2)]; add(p[0], p[1], Math.max(0.0006, lo * 0.6 + mid * 0.4), 0.17, 0.45); }); // (a little below the local average: in a narrow valley the road follows the valley floor, not a raised bank)
     });
     W.pads.forEach(function (p) { // flat ground under landmarks
       var s = 0, c = 0; for (var a = -1; a <= 1; a++) for (var b = -1; b <= 1; b++) { var x = p[0] + a * 0.25 / Math.max(0.2, Math.cos(p[1] * D2R)), y = p[1] + b * 0.25; if (landF(x, y) > 0.5) { s += rawH(x, y); c++; } }
@@ -306,11 +307,13 @@ window.makeWorld = function (env) {
   // the ground's own colours while riding: a bright toy palette per biome (blended across biome edges), bare rock and snow up high, a little
   // mottling so big plains are not one flat colour; the satellite picture only shades it slightly
   var RCOL = [0, 1, 2, 3, 4, 5, 6, 7].map(function (k) { return new T.Color(['#eef3f6', '#b4c08e', '#e9cb8a', '#d4c470', '#5aa04a', '#7cb455', '#6c9c58', '#9ccc62'][k]); }), gcol = new T.Color(), gtmp = new T.Color(), ROCKC = new T.Color('#a39a8c'), SNOWC = new T.Color('#f2f6f8'), SANDC = new T.Color('#eadcb0');
+  function snowAt(lat) { var al = Math.abs(lat); return al > 66 ? 800 : al > 58 ? 1400 : al > 50 ? 2300 : al > 42 ? 3100 : al > 35 ? 4800 : 5400; } // (rough snow lines: low near the poles, highest in the tropics and on the Tibetan plateau)
+  W.snowAt = snowAt;
   function groundCol(lon, lat, hh, out) {
     out.setRGB(0, 0, 0); var o = 0.22;
     [[0, 0], [o, 0], [-o, 0], [0, o], [0, -o]].forEach(function (d) { out.add(RCOL[Math.max(0, bFast(lon + d[0] / Math.max(0.2, Math.cos(lat * D2R)), lat + d[1]))]); }); out.multiplyScalar(0.2);
-    var m = ELEV ? elevM(lon, lat) : 0, al = Math.abs(lat), snowLine = al > 60 ? 600 : al > 45 ? 2600 : 4300;
-    if (m > snowLine - 1200) out.lerp(ROCKC, Math.min(1, (m - snowLine + 1200) / 900) * 0.8);
+    var m = ELEV ? elevM(lon, lat) : 0, snowLine = snowAt(lat);
+    if (m > snowLine - 800) out.lerp(ROCKC, Math.min(1, (m - snowLine + 800) / 700) * 0.75);
     if (m > snowLine) out.lerp(SNOWC, Math.min(1, (m - snowLine) / 500));
     var f = landF(lon, lat); if (f < 0.9 && hh > -0.0003) out.lerp(SANDC, (0.9 - f) / 0.9); // (a pale beach along the coast)
     var nz = 0.92 + 0.16 * noise(lon * 9.1, lat * 9.1); out.multiplyScalar(nz); return out;
@@ -490,6 +493,7 @@ window.makeWorld = function (env) {
       if (blocked(lx, y)) continue;
       var onPad = false; for (var pI = 0; pI < pads.length; pI++) { var pp = pads[pI], pdx = (((pp[0] - lx + 540) % 360) - 180) * Math.cos(y * D2R), pdy = pp[1] - y, pr = 0.5 * (1 + 0.25 * Math.sin(Math.atan2(pdy, pdx) * 3 + pI)); if (pdx * pdx + pdy * pdy < pr * pr) { onPad = true; break; } }
       if (onPad) continue;
+      if (ELEV && elevM(lx, y) > snowAt(y) - 900) { if (hash(i * 0.3, j * 0.7) < 0.05) vput('rk' + (i & 3), lx, y, (opt.size || 0.0022) * 0.5, h1 * 6.28, '#9a948a'); continue; } // (above the tree line: bare, a boulder here and there)
       var b = bFast(lx, y), p = hash(i * 0.71 + 11, j * 1.29 + 5), c = clump(lx, y, 3.1), r3 = hash(i + 0.5, j * 3.1 + 7), yaw = h1 * 6.28, edge = Math.min(1, (R - d) / (R * 0.18)), sz = size * (0.75 + 0.55 * h2) * edge * edge * (3 - 2 * edge), al = Math.abs(y);
       var gi = Math.floor(r3 * 4);
       if (b === B.rain) { if (p > 0.55 + 0.4 * c) continue; if (r3 < 0.14) vput('palm' + (gi % 2), lx, y, sz * 1.15, yaw, GREENS.palm[gi % 2]); else vput(r3 < 0.6 ? 'br' + (gi % 3) : 'rd' + (gi % 2), lx, y, sz * 1.15, yaw, GREENS.br[gi]); }

@@ -195,7 +195,7 @@
   });
   var LMB = {}; LMS.forEach(function (o) { LMB[(o.an ? 'a:' : '') + o.d.id] = o; });
   var VEH = ROUTES.map(function (r) {
-    var key = r.type === 'plane' ? (r.km < 2500 ? 'v_prop' : 'v_jet') : r.type === 'ship' ? (r.ship === 'ferry' ? 'v_ferry' : 'v_ship') : r.type === 'bullet' ? 'v_bullet' : r.type === 'train' ? 'v_train' : 'v_car';
+    var key = r.type === 'plane' ? (r.km < 2500 ? 'v_prop' : 'v_jet') : r.type === 'ship' ? (r.ship === 'ferry' ? 'v_ferry' : 'v_ship') : r.type === 'bullet' ? 'v_bullet' : r.type === 'train' ? 'v_train' : (r.car && MODELS.custom['v_' + r.car] ? 'v_' + r.car : 'v_car');
     var colr = r.type === 'plane' ? r.col : r.type === 'bullet' ? (r.id === 'eurostar' ? '#f2c14e' : r.id === 'kamome' ? '#c0392b' : '#1f5fbf') : r.type === 'train' || r.type === 'car' ? r.col : null;
     var obj = MODELS.object(MODELS.custom[key] ? key : (r.type === 'ship' ? (r.ship || 'ship') : r.type), colr), m = grounded(obj, 'vehicle', r.id, r.type !== 'plane'), spin = [];
     obj.traverse(function (o) { if (o.userData.spin) spin.push(o); });
@@ -338,7 +338,7 @@
       var fwd = ll2v(p2[0], p2[1], 1).sub(ll2v(p1[0], p1[1], 1)); fwd.addScaledVector(n, -fwd.dot(n)).normalize();
       if (!isFinite(fwd.x) || fwd.lengthSq() < 0.5) fwd.set(0, 1, 0).cross(n).normalize();
       o.pos = pos; o.n = n; o.ll = p;
-      var vis = !G.quiz && facing(n, pos); m.visible = vis;
+      var vis = !G.quiz && facing(n, pos) && (riding === o || rideCam || V.alt < 1.4 || r.type === 'plane' || r.type === 'ship'); m.visible = vis; // (from far out only ships and planes: cars and trains are too small to see and cost draw calls)
       if (!vis) return; anyVis = true;
       for (var si = 0; si < o.spin.length; si++) o.spin[si].rotation[o.spin[si].userData.spin] += dt * G.speed * (o.spin[si].userData.spin === 'z' ? 40 : 25) * (r.wait > 0 ? 0 : 1);
       if (riding === o) { if (RC.fwd.lengthSq() < 0.5) RC.fwd.copy(fwd); else RC.fwd.lerp(fwd, Math.min(1, dt * 2.5)); RC.fwd.addScaledVector(n, -RC.fwd.dot(n)).normalize(); if (rideCam) fwd = RC.fwd.clone(); }

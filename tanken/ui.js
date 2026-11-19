@@ -265,11 +265,12 @@
   };
 
   /* ---------- vehicles ---------- */
-  function vkey(r) { return r.type === 'ship' ? (r.ship || 'ship') : r.type; }
+  function vkey(r) { return r.type === 'ship' ? (r.ship || 'ship') : r.type === 'car' && r.car ? 'v_' + r.car : r.type; }
   function vthumb(r) { return Globe.thumb(vkey(r), r.type === 'ship' ? null : r.col); }
   R.vehicles = function () {
     return '<div class="cname"><h1>🚀 ' + L('のりもの', 'Ride something!') + '</h1><small>' + L('のって 世界を 旅しよう。 さいごまで のると シールが もらえるよ。', 'Ride all the way to the end to get a sticker.') + '</small></div><div class="vlist" style="margin-top:8px">' +
-      RTS.map(function (r) { return '<div class="vt" data-ve="' + r.id + '"><img src="' + vthumb(r) + '" alt=""><div><b>' + rb(nm(r)) + '</b><small>' + Globe.route(r.id).km.toLocaleString() + ' km ・ ' + L('ほんとうは ', 'really ') + esc(lang === 'en' ? r.tm[1] : r.tm[0]) + '</small></div><span class="ok">' + (S.ve[r.id] ? '🏅' : '') + '</span></div>'; }).join('') + '</div><div style="height:8px"></div>';
+      [['car', '🚗 ' + L('車', 'Cars')], ['train', '🚆 ' + L('電車', 'Trains')], ['ship', '⛴️ ' + L('船', 'Boats')], ['plane', '✈️ ' + L('ひこうき', 'Planes')]].map(function (sec) { var list = RTS.filter(function (r) { return (r.type === 'bullet' ? 'train' : r.type) === sec[0]; });
+        return '<h3 style="margin:10px 4px 4px;font-size:15px">' + sec[1] + ' <small style="opacity:.6">' + list.length + '</small></h3>' + list.map(function (r) { return '<div class="vt" data-ve="' + r.id + '"><img src="' + vthumb(r) + '" alt=""><div><b>' + rb(nm(r)) + '</b><small>' + Globe.route(r.id).km.toLocaleString() + ' km ・ ' + L('ほんとうは ', 'really ') + esc(lang === 'en' ? r.tm[1] : r.tm[0]) + '</small></div><span class="ok">' + (S.ve[r.id] ? '🏅' : '') + '</span></div>'; }).join(''); }).join('') + '</div><div style="height:8px"></div>';
   };
   // ride along: the side board closes and a slim bar sits at the bottom, like a game camera
   function ride(id) {
