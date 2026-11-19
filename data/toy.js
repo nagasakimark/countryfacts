@@ -487,7 +487,23 @@ TOY.landmarks = [
 {id:'kolossi',c:'CYP',ll:[32.9667,34.665],m:'kolossi',ja:'コロッシ{城|じょう}',en:'Kolossi Castle',k:'ころっしじょう きぷろす',
   t:'キプロスの 四角い 石の お{城|しろ}。 むかし、 {騎士|きし}たちが ここで さとうや ワインを つくって いた。',te:'A square stone castle in Cyprus. Long ago, knights made sugar and wine here.'},
 {id:'cristorei',c:'TLS',ll:[125.6111,-8.5122],m:'cristorei',ja:'クリスト・レイ{像|ぞう}',en:'Cristo Rei of Dili',k:'くりすとれいぞう ひがしてぃもーる でぃり',
-  t:'東ティモールの {首都|しゅと} ディリの みさきに 立つ、 地球の 上の キリスト{像|ぞう}。 500だんいじょうの かいだんを のぼる。',te:'A statue of Christ standing on a globe at the tip of a cape near Dili, the capital of Timor-Leste. You climb over 500 steps to reach it.'}
+  t:'東ティモールの {首都|しゅと} ディリの みさきに 立つ、 地球の 上の キリスト{像|ぞう}。 500だんいじょうの かいだんを のぼる。',te:'A statue of Christ standing on a globe at the tip of a cape near Dili, the capital of Timor-Leste. You climb over 500 steps to reach it.'},
+{id:'belaruslib',c:'BLR',ll:[27.6464,53.9314],m:'belaruslib',ja:'ベラルーシ国立図書館',en:'National Library of Belarus',k:'べらるーしこくりつとしょかん みんすく',
+  t:'ベラルーシの {首都|しゅと} ミンスクの 図書館。 ダイヤモンドのような 形を して いる。 夜は かべ一面が 光って もようを えがく。',te:'A library in Minsk, the capital of Belarus, shaped like a giant diamond. At night its whole surface lights up with patterns.'},
+{id:'monaco',c:'MCO',ll:[7.4246,43.7347],m:'monaco',ja:'モナコの みなと',en:'Monaco Harbour & Circuit',k:'もなこ みなと えふわん',
+  t:'世界で 2番目に 小さい 国 モナコ。 みなとには ヨットが ならび、 町の 道路が そのまま F1レースの コースに なる。',te:'Monaco is the second-smallest country in the world. Yachts fill its harbour, and its city streets become a Formula 1 race track.'},
+{id:'arch22',c:'GMB',ll:[-16.5856,13.4531],m:'arch22',ja:'アーチ22',en:'Arch 22',k:'あーち22 がんびあ ばんじゅる',
+  t:'ガンビアの {首都|しゅと} バンジュールの 入り口に 立つ 35mの 門。 上には 小さな {博物館|はくぶつかん}が ある。',te:'A 35 m gateway at the entrance to Banjul, the capital of The Gambia. There is a small museum at the top.'},
+{id:'maputo',c:'MOZ',ll:[32.5636,-25.9719],m:'maputo',ja:'マプト中央駅',en:'Maputo Central Railway Station',k:'まぷとちゅうおうえき もざんびーく',
+  t:'モザンビークの {首都|しゅと}の 駅。 ミントグリーンの かべと 銅の ドームが きれいで、 世界で 一番 美しい 駅の 一つと 言われる。',te:'The main station in Mozambique\'s capital. With its mint-green walls and copper dome, it is called one of the most beautiful stations in the world.'},
+{id:'sibebe',c:'SWZ',ll:[31.183,-26.25],m:'sibebe',ja:'シベベ・ロック',en:'Sibebe Rock',k:'しべべろっく えすわてぃに',
+  t:'エスワティニの 大きな {一枚岩|いちまいいわ}。 オーストラリアの ウルルに つぐ、 世界で 2番目に 大きい 岩と 言われる。 歩いて のぼれる。',te:'A giant granite dome in Eswatini, said to be the second-largest exposed rock in the world after Uluru. You can hike to the top.'},
+{id:'boali',c:'CAF',ll:[18.1167,4.8],m:'boali',ja:'ボアリの たき',en:'Boali Falls',k:'ぼありのたき ちゅうおうあふりか',
+  t:'中央アフリカ共和国の 森の 中の たき。 はばの 広い がけから、 何本もの 白い 水が 流れ落ちる。',te:'A waterfall in the forest of the Central African Republic. Many white streams pour over a wide cliff.'},
+{id:'paramaribo',c:'SUR',ll:[-55.1675,5.8278],m:'paramaribo',ja:'パラマリボの 木の {大聖堂|だいせいどう}',en:'Cathedral of Paramaribo',k:'ぱらまりぼ だいせいどう すりなむ',
+  t:'スリナムの {首都|しゅと}に ある、 南アメリカで 一番 大きい 木の たてものの 一つ。 白い かべの 教会で、 町も 木の 家が 多い。',te:'One of the largest wooden buildings in South America, in Suriname\'s capital. The old town around it is full of white wooden houses too.'},
+{id:'fijitemple',c:'FJI',ll:[177.4419,-17.8053],m:'fijitemple',ja:'スリ・シヴァ・スプラマニヤ{寺院|じいん}',en:'Sri Siva Subramaniya Temple',k:'すりしば すぷらまにや じいん ふぃじー',
+  t:'フィジーの ナンディに ある、 カラフルな ヒンドゥー教の お寺。 フィジーには インドから 来た 人の 子そんが たくさん いる。',te:'A colourful Hindu temple in Nadi, Fiji. Many people in Fiji have family roots in India.'}
 ];
 
 TOY.animals = [

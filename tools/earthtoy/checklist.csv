@@ -297,7 +297,7 @@ Landmark,Albania,Clock Tower of Tirana,no,,
 Landmark,Austria,Hallstatt,yes,hallstatt,Hallstatt
 Landmark,Austria,Schönbrunn Palace,no,,
 Landmark,Austria,St. Stephen's Cathedral,no,,
-Landmark,Belarus,National Library of Belarus,no,,
+Landmark,Belarus,National Library of Belarus,yes,belaruslib,National Library of Belarus
 Landmark,Belgium,Atomium,yes,atomium,Atomium
 Landmark,Bosnia & Herzegovina,"Stari Most, Mostar",yes,starimost,"Stari Most, Mostar"
 Landmark,Bulgaria,Rila Monastery,yes,rila,Rila Monastery
@@ -354,7 +354,7 @@ Landmark,Latvia,Freedom Monument,yes,freedomriga,Freedom Monument
 Landmark,Lithuania,Gediminas' Tower,yes,gediminas,Gediminas' Tower
 Landmark,Luxembourg,Vianden Castle,yes,vianden,Vianden Castle
 Landmark,Moldova,"Triumphal Arch, Chișinău",no,,
-Landmark,Monaco,Circuit de Monaco,no,,
+Landmark,Monaco,Circuit de Monaco,yes,monaco,Circuit de Monaco
 Landmark,Montenegro,Our Lady of the Rocks,yes,ladyrocks,Our Lady of the Rocks
 Landmark,Netherlands,Zaanse Schans windmills,yes,kinderdijk,Kinderdijk Windmills
 Landmark,North Macedonia,Church of St. John at Kaneo,yes,kaneo,Church of St. John at Kaneo
@@ -436,7 +436,7 @@ Landmark,Botswana,Okavango Delta,yes,okavango,Okavango Delta
 Landmark,Burkina Faso,Grand Mosque of Bobo-Dioulasso,yes,bobo,Grand Mosque of Bobo-Dioulasso
 Landmark,Burundi,Source of the Nile Pyramid (Rutovu),no,,
 Landmark,Cameroon,Reunification Monument,no,,
-Landmark,Central African Republic,Boali Falls,no,,
+Landmark,Central African Republic,Boali Falls,yes,boali,Boali Falls
 Landmark,Chad,Aloba Arch,yes,aloba,Aloba Arch
 Landmark,Congo - Brazzaville,Nabemba Tower,no,,
 Landmark,Congo - Kinshasa,Limete Tower (Tour de l'Échangeur),no,,
@@ -458,12 +458,12 @@ Landmark,Egypt,Temple of Hatshepsut,no,,
 Landmark,Egypt,Valley of the Kings,no,,
 Landmark,Equatorial Guinea,"St. Elizabeth's Cathedral, Malabo",no,,
 Landmark,Eritrea,Fiat Tagliero Building,yes,fiattagliero,Fiat Tagliero Building
-Landmark,Eswatini,Sibebe Rock,no,,
+Landmark,Eswatini,Sibebe Rock,yes,sibebe,Sibebe Rock
 Landmark,Ethiopia,"Church of St. George, Lalibela",yes,lalibela,"Church of St George, Lalibela"
 Landmark,Ethiopia,Fasil Ghebbi,no,,
 Landmark,Ethiopia,Obelisk of Aksum,no,,
 Landmark,Gabon,"St. Michael's Church, Nkembo",no,,
-Landmark,Gambia,Arch 22,no,,
+Landmark,Gambia,Arch 22,yes,arch22,Arch 22
 Landmark,Ghana,Cape Coast Castle,yes,capecoast,Cape Coast Castle
 Landmark,Ghana,Larabanga Mosque,no,,
 Landmark,Guinea,Grand Mosque of Conakry,no,,
@@ -487,7 +487,7 @@ Landmark,Morocco,Hassan II Mosque,yes,hassan2,Hassan II Mosque
 Landmark,Morocco,Kasbah of the Udayas,no,,
 Landmark,Morocco,Koutoubia Mosque,no,,
 Landmark,Morocco,Volubilis,no,,
-Landmark,Mozambique,Maputo Central Railway Station,no,,
+Landmark,Mozambique,Maputo Central Railway Station,yes,maputo,Maputo Central Railway Station
 Landmark,Namibia,Sossusvlei & Deadvlei,yes,sossusvlei,Sossusvlei
 Landmark,Niger,Grand Mosque of Agadez,yes,agadez,Grand Mosque of Agadez
 Landmark,Nigeria,Civic Tower,no,,
@@ -763,7 +763,7 @@ Landmark,Peru,Nazca Lines,yes,nazca,Nazca Lines
 Landmark,Peru,Qorikancha,no,,
 Landmark,Peru,Sacsayhuamán,no,,
 Landmark,Peru,Vinicunca (Rainbow Mountain),yes,rainbowmtn,Vinicunca (Rainbow Mountain)
-Landmark,Suriname,"Cathedral Basilica of St. Peter and Paul, Paramaribo",no,,
+Landmark,Suriname,"Cathedral Basilica of St. Peter and Paul, Paramaribo",yes,paramaribo,"Cathedral Basilica of St. Peter and Paul, Paramaribo"
 Landmark,Uruguay,La Mano (Punta del Este),yes,lamano,La Mano (Punta del Este)
 Landmark,Venezuela,Angel Falls,yes,angelfalls,Angel Falls
 Landmark,Australia,Adelaide Oval,no,,
@@ -795,7 +795,7 @@ Landmark,Australia,The Twelve Apostles,yes,apostles,The Twelve Apostles
 Landmark,Australia,Uluru,yes,uluru,Uluru
 Landmark,Australia,Wheel of Brisbane,no,,
 Landmark,Australia,WRC Rally Australia (Coffs Harbour),no,,
-Landmark,Fiji,Sri Siva Subramaniya Temple,no,,
+Landmark,Fiji,Sri Siva Subramaniya Temple,yes,fijitemple,Sri Siva Subramaniya Temple
 Landmark,Guam,War in the Pacific National Historical Park,no,,
 Landmark,Micronesia,Nan Madol,yes,nanmadol,Nan Madol
 Landmark,New Caledonia,Jean-Marie Tjibaou Cultural Centre,no,,
