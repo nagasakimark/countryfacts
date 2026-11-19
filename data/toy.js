@@ -363,7 +363,7 @@ TOY.landmarks = [
 {id:'bagan',c:'MMR',ll:[94.86,21.17],m:'bagan',ja:'バガン',en:'Bagan',k:'ばがん みゃんまー',
   t:'ミャンマーの 平原に、 2000 いじょうの お寺や {仏塔|ぶっとう}が ならぶ。 朝には 気球が うかぶ。',te:'Over 2,000 temples and pagodas spread across a plain in Myanmar, with hot-air balloons at sunrise.'},
  {id:'mtbromo',c:'IDN',ll:[112.95,-7.94],m:'mtbromo',ja:'ブロモ山',en:'Mount Bromo',k:'ぶろもさん じゃわ いんどねしあ',
-  t:'インドネシアの ジャワ島に ある 火山。「{砂|すな}の 海」と よばれる 灰色の 平原の 中で、 けむりを はいている。',te:'A smoking volcano on Java, Indonesia, rising from a grey plain called the Sea of Sand.'},
+  t:'インドネシアの ジャワ島に ある 火山。「{砂|すな}の 海」と よばれる {灰色|はいいろ}の 平原の 中で、 けむりを はいている。',te:'A smoking volcano on Java, Indonesia, rising from a grey plain called the Sea of Sand.'},
  {id:'mayon',c:'PHL',ll:[123.69,13.26],m:'mayon',ja:'マヨン火山',en:'Mayon Volcano',k:'まよんかざん ふぃりぴん',
   t:'フィリピンの、 とても きれいな 円すいの 形を した 火山。 今も ときどき ふん火する。',te:'A volcano in the Philippines with an almost perfect cone shape. It still erupts from time to time.'},
  {id:'goldenbridge',c:'VNM',ll:[108.00,16.00],m:'goldenbridge',ja:'ゴールデン・ブリッジ',en:'Golden Bridge, Ba Na Hills',k:'ごーるでんぶりっじ ばーなーひるず べとなむ',
