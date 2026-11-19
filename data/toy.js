@@ -567,7 +567,23 @@ TOY.landmarks = [
 {id:'ducor',c:'LBR',ll:[-10.8058,6.3194],m:'ducor',ja:'デューコー・ヒル',en:'Ducor Hill, Monrovia',k:'でゅーこーひる りべりあ もんろびあ',
   t:'リベリアの {首都|しゅと} モンロビアで 一番 高い {丘|おか}。 古い ホテルの あとが あり、 町と 大西洋が 見わたせる。',te:'The highest hill in Monrovia, the capital of Liberia. An old hotel stands on top, with views over the city and the Atlantic Ocean.'},
 {id:'pigbeach',c:'BHS',ll:[-76.3239,24.1814],m:'pigbeach',ja:'ブタの ビーチ',en:'Pig Beach, Exuma',k:'ぶたのびーち ばはま えぐずーま',
-  t:'バハマの 小さな 島の ビーチ。 なんと ブタたちが すんで いて、 ボートが 来ると 泳いで あいさつに くる。',te:'A beach on a small island in the Bahamas where pigs live! When a boat arrives, they swim out to say hello.'}
+  t:'バハマの 小さな 島の ビーチ。 なんと ブタたちが すんで いて、 ボートが 来ると 泳いで あいさつに くる。',te:'A beach on a small island in the Bahamas where pigs live! When a boat arrives, they swim out to say hello.'},
+{id:'gatewayindia',c:'IND',ll:[72.8347,18.922],m:'gatewayindia',ja:'インド門',en:'Gateway of India',k:'いんどもん むんばい いんど',
+  t:'インドの ムンバイの 海ぞいに 立つ 大きな 門。 1924年に できた。 ここから 船で 島へ 出かける 人も 多い。',te:'A big arch on the waterfront in Mumbai, India, finished in 1924. Many people catch boats to nearby islands from here.'},
+{id:'charminar',c:'IND',ll:[78.4747,17.3616],m:'charminar',ja:'チャールミナール',en:'Charminar',k:'ちゃーるみなーる いんど はいでらばーど',
+  t:'インドの ハイデラバードの シンボル。 名前は 「4つの {塔|とう}」 という 意味。 まわりの 市場では、 カラフルな うでわが 売られて いる。',te:'The symbol of Hyderabad, India. Its name means "four minarets". The market around it sells colourful bangles.'},
+{id:'prambanan',c:'IDN',ll:[110.4914,-7.752],m:'prambanan',ja:'プランバナン{寺院|じいん}',en:'Prambanan',k:'ぷらんばなん じいん いんどねしあ',
+  t:'インドネシアの ジャワ島に ある、 ヒンドゥー教の とがった お寺の 集まり。 1100年前に たてられた。 {世界遺産|せかいいさん}。',te:'A group of pointed Hindu temples on Java, Indonesia, built about 1,100 years ago. A World Heritage Site.'},
+{id:'kelimutu',c:'IDN',ll:[121.8236,-8.7681],m:'kelimutu',ja:'クリムトゥ山',en:'Kelimutu',k:'くりむとぅさん いんどねしあ みずうみ',
+  t:'インドネシアの 火山。 てっぺんに 3つの みずうみが あり、 それぞれ 色が ちがう。 色は ときどき かわる。',te:'A volcano in Indonesia with three crater lakes on top, each a different colour. The colours sometimes change!'},
+{id:'naqshejahan',c:'IRN',ll:[51.6776,32.6575],m:'naqshejahan',ja:'イマーム広場',en:'Naqsh-e Jahan Square',k:'いまーむひろば なくしぇじゃはーん いらん いすふぁはん',
+  t:'イランの イスファハンに ある 大きな 広場。 青い タイルの モスクや 宮{殿|でん}に かこまれて いる。 「世界の 半分」とも よばれた。',te:'A huge square in Isfahan, Iran, surrounded by blue-tiled mosques and a palace. The city was once called "half the world".'},
+{id:'hatshepsut',c:'EGY',ll:[32.6067,25.7381],m:'hatshepsut',ja:'ハトシェプスト女王 {葬祭殿|そうさいでん}',en:'Temple of Hatshepsut',k:'はとしぇぷすと そうさいでん えじぷと るくそーる',
+  t:'エジプトの がけの 前に たつ、 3だんの テラスの {神殿|しんでん}。 古代エジプトの 女の 王さま ハトシェプストの ために つくられた。',te:'A temple with three terraces built against cliffs in Egypt, made for Hatshepsut, a female pharaoh of ancient Egypt.'},
+{id:'pompeii',c:'ITA',ll:[14.4848,40.7489],m:'pompeii',ja:'ポンペイ',en:'Pompeii',k:'ぽんぺい いたりあ ゔぇすゔぃおさん',
+  t:'イタリアの 古代ローマの 町。 2000年前、 ベスビオ火山の ふん火で {灰|はい}に うまった。 今は 発くつされて、 むかしの くらしが よく わかる。',te:'An ancient Roman town in Italy buried in ash when Mount Vesuvius erupted 2,000 years ago. Now dug out, it shows how people lived long ago.'},
+{id:'tulum',c:'MEX',ll:[-87.4291,20.2148],m:'tulum',ja:'トゥルム{遺跡|いせき}',en:'Tulum',k:'とぅるむ いせき めきしこ まや',
+  t:'メキシコの カリブ海の がけの 上に ある マヤの {遺跡|いせき}。 青い 海と 白い すなはまが きれい。 イグアナも いる。',te:'Maya ruins on a cliff above the Caribbean Sea in Mexico, with turquoise water and white sand below. Iguanas live here too.'}
 ];
 
 TOY.animals = [

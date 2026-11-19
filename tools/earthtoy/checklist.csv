@@ -84,11 +84,11 @@ Landmark,India,Antilia,no,,
 Landmark,India,Bangalore Palace,no,,
 Landmark,India,Bombay Stock Exchange,no,,
 Landmark,India,Brihadisvara Temple,no,,
-Landmark,India,Charminar,no,,
+Landmark,India,Charminar,yes,charminar,Charminar
 Landmark,India,Chennai Central railway station,no,,
 Landmark,India,Chhatrapati Shivaji Maharaj Terminus,no,,
 Landmark,India,Dakshineswar Kali Temple,no,,
-Landmark,India,Gateway of India,no,,
+Landmark,India,Gateway of India,yes,gatewayindia,Gateway of India
 Landmark,India,Golconda Fort,no,,
 Landmark,India,Golden Temple (Harmandir Sahib),yes,goldentemple,Golden Temple (Harmandir Sahib)
 Landmark,India,"Great Stupa, Sanchi",no,,
@@ -120,12 +120,12 @@ Landmark,Indonesia,Borobudur,yes,borobudur,Borobudur
 Landmark,Indonesia,Garuda Wisnu Kencana,no,,
 Landmark,Indonesia,Istiqlal Mosque,no,,
 Landmark,Indonesia,Jam Gadang,no,,
-Landmark,Indonesia,Kelimutu,no,,
+Landmark,Indonesia,Kelimutu,yes,kelimutu,Kelimutu
 Landmark,Indonesia,Komodo Island,no,,
 Landmark,Indonesia,Lake Toba,no,,
 Landmark,Indonesia,Mount Bromo,yes,mtbromo,Mount Bromo
 Landmark,Indonesia,National Monument (Monas),no,,
-Landmark,Indonesia,Prambanan,no,,
+Landmark,Indonesia,Prambanan,yes,prambanan,Prambanan
 Landmark,Indonesia,Pura Besakih,no,,
 Landmark,Indonesia,Pura Ulun Danu Beratan,no,,
 Landmark,Indonesia,Raja Ampat (Piaynemo),no,,
@@ -135,7 +135,7 @@ Landmark,Indonesia,Wisma 46,no,,
 Landmark,Iran,Azadi Tower,no,,
 Landmark,Iran,Chogha Zanbil,no,,
 Landmark,Iran,Golestan Palace,no,,
-Landmark,Iran,Naqsh-e Jahan Square,no,,
+Landmark,Iran,Naqsh-e Jahan Square,yes,naqshejahan,Naqsh-e Jahan Square
 Landmark,Iran,Nasir al-Mulk Mosque,no,,
 Landmark,Iran,Persepolis,yes,persepolis,Persepolis
 Landmark,Iran,Tehran International Tower,no,,
@@ -344,7 +344,7 @@ Landmark,Italy,Leaning Tower of Pisa,yes,pisa,Leaning Tower of Pisa
 Landmark,Italy,"Manarola, Cinque Terre",no,,
 Landmark,Italy,Milan Cathedral,no,,
 Landmark,Italy,Pantheon,no,,
-Landmark,Italy,Pompeii,no,,
+Landmark,Italy,Pompeii,yes,pompeii,Pompeii
 Landmark,Italy,Roman Forum,no,,
 Landmark,Italy,Royal Palace of Caserta,no,,
 Landmark,Italy,St Mark's Square,yes,venice,"Rialto Bridge, Venice"
@@ -454,7 +454,7 @@ Landmark,Egypt,Luxor Temple,no,,
 Landmark,Egypt,Pyramids of Giza,yes,pyramid,Pyramids of Giza
 Landmark,Egypt,Step Pyramid of Djoser,no,,
 Landmark,Egypt,Suez Canal,no,,
-Landmark,Egypt,Temple of Hatshepsut,no,,
+Landmark,Egypt,Temple of Hatshepsut,yes,hatshepsut,Temple of Hatshepsut
 Landmark,Egypt,Valley of the Kings,no,,
 Landmark,Equatorial Guinea,"St. Elizabeth's Cathedral, Malabo",yes,malabo,"St. Elizabeth's Cathedral, Malabo"
 Landmark,Eritrea,Fiat Tagliero Building,yes,fiattagliero,Fiat Tagliero Building
@@ -572,7 +572,7 @@ Landmark,Mexico,Templo Mayor,no,,
 Landmark,Mexico,Teotihuacan,yes,teotihuacan,Teotihuacan
 Landmark,Mexico,Torre Latinoamericana,no,,
 Landmark,Mexico,Torre Reforma,no,,
-Landmark,Mexico,Tulum,no,,
+Landmark,Mexico,Tulum,yes,tulum,Tulum
 Landmark,Nicaragua,León Cathedral,yes,leoncath,León Cathedral
 Landmark,Panama,Panama Canal,yes,panama,Panama Canal
 Landmark,Panama,Panamá Viejo,no,,
