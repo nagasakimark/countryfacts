@@ -135,7 +135,23 @@ TOY.landmarks = [
  {id:'baobab',c:'MDG',ll:[44.42,-20.25],m:'baobab',ja:'バオバブの {並木道|なみきみち}',en:'Avenue of the Baobabs',k:'ばおばぶ まだがすかる',
   t:'マダガスカルの、 大きな バオバブの 木が ならぶ 道。 バオバブは 何百年も 生きる。',te:'A road in Madagascar lined with giant baobab trees, which can live for hundreds of years.'},
  {id:'djenne',c:'MLI',ll:[-4.56,13.91],m:'djenne',ja:'ジェンネの 大モスク',en:'Great Mosque of Djenné',k:'じぇんね もすく まり',
-  t:'土と わらの レンガで できた、 世界で いちばん 大きな 土の たてもの。 毎年 町の 人みんなで 土を ぬりなおす。',te:'The largest mud-brick building in the world. Every year the whole town helps re-plaster it with fresh mud.'}
+  t:'土と わらの レンガで できた、 世界で いちばん 大きな 土の たてもの。 毎年 町の 人みんなで 土を ぬりなおす。',te:'The largest mud-brick building in the world. Every year the whole town helps re-plaster it with fresh mud.'},
+{id:'persepolis',c:'IRN',ll:[52.89,29.94],m:'persepolis',ja:'ペルセポリス',en:'Persepolis',k:'ぺるせぽりす いらん',
+  t:'約2500年 前に できた、 ペルシアの 王の 都。 石の 柱や 大きな 門が 今も のこる。',te:'The capital of Persian kings, built about 2,500 years ago. Stone columns and great gates still stand.'},
+ {id:'registan',c:'UZB',ll:[66.98,39.65],m:'registan',ja:'レギスタン広場',en:'Registan, Samarkand',k:'れぎすたん さまるかんど うずべきすたん',
+  t:'サマルカンドの 広場。 青い タイルで かざられた 3つの 学校（マドラサ）が かこむ。 シルクロードで さかえた 町。',te:'A square in Samarkand surrounded by three schools (madrasas) covered in blue tiles. The city grew rich on the Silk Road.'},
+ {id:'shwedagon',c:'MMR',ll:[96.15,16.80],m:'shwedagon',ja:'シュエダゴン・パゴダ',en:'Shwedagon Pagoda',k:'しゅえだごんぱごだ みゃんまー やんごん',
+  t:'ミャンマーの ヤンゴンに ある、 金色に かがやく 高さ 約100mの {仏塔|ぶっとう}。',te:'A golden stupa about 100 m tall in Yangon, Myanmar.'},
+ {id:'sigiriya',c:'LKA',ll:[80.76,7.96],m:'sigiriya',ja:'シーギリヤ・ロック',en:'Sigiriya (Lion Rock)',k:'しーぎりや すりらんか',
+  t:'スリランカの 高さ 約200mの 大きな 岩。 約1500年 前、 王が 岩の 上に {宮殿|きゅうでん}を つくった。 入り口には ライオンの 足が ある。',te:'A 200 m rock in Sri Lanka. About 1,500 years ago a king built a palace on top; giant lion paws guard the way up.'},
+ {id:'tigersnest',c:'BTN',ll:[89.36,27.49],m:'tigersnest',ja:'タクツァン{僧院|そういん}',en:'Tiger\'s Nest (Paro Taktsang)',k:'たくつぁん とらのす ぶーたん',
+  t:'ブータンの がけの とちゅう、 谷から 約900mの 高さに たつ お寺。「トラの 巣」と よばれる。',te:'A monastery clinging to a cliff about 900 m above the valley in Bhutan. It is called the Tiger\'s Nest.'},
+ {id:'uyuni',c:'BOL',ll:[-67.49,-20.13],m:'uyuni',ja:'ウユニ塩湖',en:'Salar de Uyuni',k:'うゆにえんこ ぼりびあ',
+  t:'ボリビアの 高さ 約3600mに ある、 世界一 大きな 塩の 平原。 雨の 後は 空が うつって、 大きな 鏡のように なる。',te:'The world\'s largest salt flat, about 3,600 m up in Bolivia. After rain it turns into a giant mirror of the sky.'},
+ {id:'hallgrim',c:'ISL',ll:[-21.93,64.14],m:'hallgrim',ja:'ハットルグリムス教会',en:'Hallgrímskirkja',k:'はっとるぐりむすきょうかい あいすらんど れいきゃびく',
+  t:'アイスランドの レイキャビクに ある 教会。 よう岩が 冷えて できる 柱の 形を もとに デザインされた。',te:'A church in Reykjavík, Iceland, designed to look like the columns that form when lava cools.'},
+ {id:'preikestolen',c:'NOR',ll:[6.19,58.99],m:'preikestolen',ja:'プレーケストーレン',en:'Preikestolen (Pulpit Rock)',k:'ぷれーけすとーれん のるうぇー',
+  t:'ノルウェーの フィヨルドの 上に つき出た、 たいらな 岩。 海からの 高さは 約600m。',te:'A flat-topped cliff jutting out 600 m above a Norwegian fjord.'}
 ];
 
 TOY.animals = [
