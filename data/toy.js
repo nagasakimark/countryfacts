@@ -551,7 +551,23 @@ TOY.landmarks = [
 {id:'togoind',c:'TGO',ll:[1.2194,6.1311],m:'togoind',ja:'ロメの どくりつ記念{碑|ひ}',en:'Independence Monument, Lomé',k:'どくりつきねんひ とーご ろめ',
   t:'トーゴの {首都|しゅと} ロメに 立つ 白い 記念{碑|ひ}。 うでを 上げた 人が ほられて いて、 1960年の どくりつを 記念して いる。',te:'A white monument in Lomé, the capital of Togo, carved with a figure raising its arms. It celebrates independence in 1960.'},
 {id:'conakry',c:'GIN',ll:[-13.6833,9.5378],m:'conakry',ja:'コナクリの グランドモスク',en:'Grand Mosque of Conakry',k:'こなくり ぐらんどもすく ぎにあ',
-  t:'ギニアの {首都|しゅと} コナクリの 大きな モスク。 緑の ドームと 高い ミナレットが ある。 西アフリカで 一番 大きい モスクの 一つ。',te:'A big mosque in Conakry, the capital of Guinea, with a green dome and a tall minaret. One of the largest mosques in West Africa.'}
+  t:'ギニアの {首都|しゅと} コナクリの 大きな モスク。 緑の ドームと 高い ミナレットが ある。 西アフリカで 一番 大きい モスクの 一つ。',te:'A big mosque in Conakry, the capital of Guinea, with a green dome and a tall minaret. One of the largest mosques in West Africa.'},
+{id:'brimstone',c:'KNA',ll:[-62.8378,17.3475],m:'brimstone',ja:'ブリムストーン・ヒル{要塞|ようさい}',en:'Brimstone Hill Fortress',k:'ぶりむすとーんひる ようさい せんとくりすとふぁーねいびす',
+  t:'セントクリストファー・ネイビスの 山の 上の とりで。 火山の 黒い 石で つくられ、 「西インド{諸島|しょとう}の ジブラルタル」と よばれる。',te:'A fortress on a hill in St. Kitts and Nevis, built of dark volcanic stone. It is called the "Gibraltar of the West Indies".'},
+{id:'tajikflag',c:'TJK',ll:[68.78,38.5767],m:'tajikflag',ja:'ドゥシャンベの {旗|はた}ざお',en:'Dushanbe Flagpole',k:'どぅしゃんべ はたざお たじきすたん',
+  t:'タジキスタンの {首都|しゅと} ドゥシャンベの 165mの {旗|はた}ざお。 世界で 一番 高い {旗|はた}ざおの 一つで、 大きな 国旗が はためく。',te:'A 165 m flagpole in Dushanbe, the capital of Tajikistan. One of the tallest flagpoles in the world, it flies a giant national flag.'},
+{id:'solomonparl',c:'SLB',ll:[159.9625,-9.4342],m:'solomonparl',ja:'ソロモン{諸島|しょとう}の 国会議事堂',en:'National Parliament, Honiara',k:'そろもんしょとう こっかいぎじどう ほにあら',
+  t:'ソロモン{諸島|しょとう}の {首都|しゅと} ホニアラの 国会。 島の 伝統的な 家のような、 とんがった 丸い やねの 形。',te:'The parliament in Honiara, capital of the Solomon Islands. Its round, pointed roof looks like a traditional island house.'},
+{id:'garang',c:'SSD',ll:[31.5825,4.8517],m:'garang',ja:'ジョン・ガラン{廟|びょう}',en:'John Garang Mausoleum',k:'じょんがらん びょう みなみすーだん じゅば',
+  t:'南スーダンの {首都|しゅと} ジュバに ある、 国の 父と よばれる 人の お墓。 2011年に どくりつした、 世界で 一番 新しい 国の 一つ。',te:'The tomb of the man called the father of the nation, in Juba, the capital of South Sudan. South Sudan became independent in 2011, making it one of the world\'s newest countries.'},
+{id:'nabemba',c:'COG',ll:[15.2833,-4.2667],m:'nabemba',ja:'ナベンバ・タワー',en:'Nabemba Tower',k:'なべんばたわー こんごきょうわこく ぶらざびる',
+  t:'コンゴ共和国の {首都|しゅと} ブラザビルの 高い ビル。 中部アフリカで 一番 高い たてもの。 前を 大きな コンゴ川が 流れる。',te:'A tall tower in Brazzaville, capital of the Republic of the Congo, and the tallest building in Central Africa. The great Congo River flows in front.'},
+{id:'pidjiguiti',c:'GNB',ll:[-15.5825,11.8597],m:'pidjiguiti',ja:'ピジギチの 記念{碑|ひ}',en:'Pidjiguiti Memorial',k:'ぴじぎち きねんひ ぎにあびさう',
+  t:'ギニアビサウの みなとに ある、 大きな 黒い にぎりこぶしの 像。 1959年に、 正しい お金を もとめた みなとの 人たちを わすれない ために つくられた。',te:'A giant black fist statue at the port in Guinea-Bissau. It remembers dock workers who stood up for fair pay in 1959.'},
+{id:'ducor',c:'LBR',ll:[-10.8058,6.3194],m:'ducor',ja:'デューコー・ヒル',en:'Ducor Hill, Monrovia',k:'でゅーこーひる りべりあ もんろびあ',
+  t:'リベリアの {首都|しゅと} モンロビアで 一番 高い {丘|おか}。 古い ホテルの あとが あり、 町と 大西洋が 見わたせる。',te:'The highest hill in Monrovia, the capital of Liberia. An old hotel stands on top, with views over the city and the Atlantic Ocean.'},
+{id:'pigbeach',c:'BHS',ll:[-76.3239,24.1814],m:'pigbeach',ja:'ブタの ビーチ',en:'Pig Beach, Exuma',k:'ぶたのびーち ばはま えぐずーま',
+  t:'バハマの 小さな 島の ビーチ。 なんと ブタたちが すんで いて、 ボートが 来ると 泳いで あいさつに くる。',te:'A beach on a small island in the Bahamas where pigs live! When a boat arrives, they swim out to say hello.'}
 ];
 
 TOY.animals = [

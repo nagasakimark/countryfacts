@@ -265,7 +265,7 @@ Landmark,Syria,Umayyad Mosque,yes,umayyad,Umayyad Mosque
 Landmark,Taiwan,Chiang Kai-shek Memorial Hall,no,,
 Landmark,Taiwan,Lungshan Temple of Manka,no,,
 Landmark,Taiwan,Taipei 101,yes,taipei101,Taipei 101
-Landmark,Tajikistan,Dushanbe Flagpole,no,,
+Landmark,Tajikistan,Dushanbe Flagpole,yes,tajikflag,Dushanbe Flagpole
 Landmark,Thailand,Baiyoke Tower II,no,,
 Landmark,Thailand,Big Buddha Phuket,no,,
 Landmark,Thailand,Grand Palace & Wat Phra Kaew,yes,grandpalace,Grand Palace & Wat Phra Kaew
@@ -438,7 +438,7 @@ Landmark,Burundi,Source of the Nile Pyramid (Rutovu),yes,sourcenile,Source of th
 Landmark,Cameroon,Reunification Monument,yes,reunification,Reunification Monument
 Landmark,Central African Republic,Boali Falls,yes,boali,Boali Falls
 Landmark,Chad,Aloba Arch,yes,aloba,Aloba Arch
-Landmark,Congo - Brazzaville,Nabemba Tower,no,,
+Landmark,Congo - Brazzaville,Nabemba Tower,yes,nabemba,Nabemba Tower
 Landmark,Congo - Kinshasa,Limete Tower (Tour de l'Échangeur),no,,
 Landmark,Congo - Kinshasa,Mount Nyiragongo,yes,nyiragongo,Mount Nyiragongo
 Landmark,Congo - Kinshasa,Palais du Peuple,no,,
@@ -467,12 +467,12 @@ Landmark,Gambia,Arch 22,yes,arch22,Arch 22
 Landmark,Ghana,Cape Coast Castle,yes,capecoast,Cape Coast Castle
 Landmark,Ghana,Larabanga Mosque,no,,
 Landmark,Guinea,Grand Mosque of Conakry,yes,conakry,Grand Mosque of Conakry
-Landmark,Guinea-Bissau,Pidjiguiti Memorial,no,,
+Landmark,Guinea-Bissau,Pidjiguiti Memorial,yes,pidjiguiti,Pidjiguiti Memorial
 Landmark,Kenya,Fort Jesus,no,,
 Landmark,Kenya,Maasai Mara,yes,maasai,Maasai Mara
 Landmark,Kenya,Mount Kenya,no,,
 Landmark,Lesotho,Basotho Hat building,yes,basotho,Basotho Hat Building
-Landmark,Liberia,Ducor Hotel,no,,
+Landmark,Liberia,Ducor Hotel,yes,ducor,Ducor Hotel
 Landmark,Libya,Leptis Magna,yes,leptis,Leptis Magna
 Landmark,Madagascar,Avenue of the Baobabs,yes,baobab,Avenue of the Baobabs
 Landmark,Malawi,"St Peter's Cathedral, Likoma",yes,likoma,"St Peter's Cathedral, Likoma"
@@ -509,7 +509,7 @@ Landmark,South Africa,The Leonardo,no,,
 Landmark,South Africa,Three Rondavels (Blyde River Canyon),no,,
 Landmark,South Africa,Union Buildings,no,,
 Landmark,South Africa,Voortrekker Monument,no,,
-Landmark,South Sudan,John Garang Mausoleum,no,,
+Landmark,South Sudan,John Garang Mausoleum,yes,garang,John Garang Mausoleum
 Landmark,Sudan,Pyramids of Meroë,yes,meroe,Pyramids of Meroë
 Landmark,Tanzania,Mount Kilimanjaro,yes,kilimanjaro,Mount Kilimanjaro
 Landmark,Tanzania,Ngorongoro Crater,yes,ngorongoro,Ngorongoro Crater
@@ -577,7 +577,7 @@ Landmark,Nicaragua,León Cathedral,yes,leoncath,León Cathedral
 Landmark,Panama,Panama Canal,yes,panama,Panama Canal
 Landmark,Panama,Panamá Viejo,no,,
 Landmark,Puerto Rico,Castillo San Felipe del Morro,yes,elmorro,Castillo San Felipe del Morro
-Landmark,St. Kitts & Nevis,Brimstone Hill Fortress,no,,
+Landmark,St. Kitts & Nevis,Brimstone Hill Fortress,yes,brimstone,Brimstone Hill Fortress
 Landmark,United States,30 Rockefeller Plaza,no,,
 Landmark,United States,432 Park Avenue,no,,
 Landmark,United States,875 North Michigan Avenue (John Hancock Center),no,,
@@ -810,7 +810,7 @@ Landmark,New Zealand,Waitangi Treaty Grounds,no,,
 Landmark,New Zealand,"Weta Cave, Wellington",no,,
 Landmark,Palau,Airai Bai (Palauan meeting house),yes,palaubai,Airai Bai (Palauan meeting house)
 Landmark,Papua New Guinea,"National Parliament House, Port Moresby",yes,pngparl,"National Parliament House, Port Moresby"
-Landmark,Solomon Islands,National Parliament of Solomon Islands,no,,
+Landmark,Solomon Islands,National Parliament of Solomon Islands,yes,solomonparl,National Parliament of Solomon Islands
 Landmark,Tonga,Ha'amonga 'a Maui Trilithon,yes,haamonga,Ha'amonga 'a Maui Trilithon
 Landmark,Tonga,Royal Palace of Tonga,no,,
 Landmark,Vanuatu,Chief Roi Mata's Domain,yes,roimata,Chief Roi Mata's Domain
@@ -1485,3 +1485,4 @@ Animal (ours only),,Sheep,ours only,sheep,Sheep
 Animal (ours only),,Mongolian horse,ours only,horse,Mongolian horse
 Animal (ours only),,Blakiston's fish owl,ours only,owl,Blakiston's fish owl
 Animal (ours only),,Monarch butterfly,ours only,butterfly,Monarch butterfly
+Landmark (ours only),Bahamas,,yes,pigbeach,"Pig Beach, Exuma"
