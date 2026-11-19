@@ -503,7 +503,23 @@ TOY.landmarks = [
 {id:'paramaribo',c:'SUR',ll:[-55.1675,5.8278],m:'paramaribo',ja:'パラマリボの 木の {大聖堂|だいせいどう}',en:'Cathedral of Paramaribo',k:'ぱらまりぼ だいせいどう すりなむ',
   t:'スリナムの {首都|しゅと}に ある、 南アメリカで 一番 大きい 木の たてものの 一つ。 白い かべの 教会で、 町も 木の 家が 多い。',te:'One of the largest wooden buildings in South America, in Suriname\'s capital. The old town around it is full of white wooden houses too.'},
 {id:'fijitemple',c:'FJI',ll:[177.4419,-17.8053],m:'fijitemple',ja:'スリ・シヴァ・スプラマニヤ{寺院|じいん}',en:'Sri Siva Subramaniya Temple',k:'すりしば すぷらまにや じいん ふぃじー',
-  t:'フィジーの ナンディに ある、 カラフルな ヒンドゥー教の お寺。 フィジーには インドから 来た 人の 子そんが たくさん いる。',te:'A colourful Hindu temple in Nadi, Fiji. Many people in Fiji have family roots in India.'}
+  t:'フィジーの ナンディに ある、 カラフルな ヒンドゥー教の お寺。 フィジーには インドから 来た 人の 子そんが たくさん いる。',te:'A colourful Hindu temple in Nadi, Fiji. Many people in Fiji have family roots in India.'},
+{id:'tjibaou',c:'NCL',ll:[166.4772,-22.2556],m:'tjibaou',ja:'チバウ文化センター',en:'Tjibaou Cultural Centre',k:'ちばうぶんかせんたー にゅーかれどにあ',
+  t:'ニューカレドニアの 文化センター。 カナックの 人たちの 家の 形を まねた、 木の 細い 板で できた 高い たてものが ならぶ。',te:'A cultural centre in New Caledonia. Its tall buildings made of thin wooden slats are inspired by the traditional houses of the Kanak people.'},
+{id:'joyaceren',c:'SLV',ll:[-89.3694,13.8272],m:'joyaceren',ja:'ホヤ・デ・セレン',en:'Joya de Cerén',k:'ほやでせれん えるさるばどる まや',
+  t:'エルサルバドルの マヤの 村の {遺跡|いせき}。 1400年前に 火山の {灰|はい}に うまり、 家や つぼが そのまま のこった。 「アメリカの ポンペイ」。',te:'The ruins of a Maya farming village in El Salvador, buried by volcanic ash 1,400 years ago. Houses and pots were left just as they were — the "Pompeii of the Americas".'},
+{id:'ozama',c:'DOM',ll:[-69.8822,18.4731],m:'ozama',ja:'オサマの {要塞|ようさい}',en:'Fortaleza Ozama',k:'おさまのようさい どみにかきょうわこく',
+  t:'ドミニカ共和国の サントドミンゴに ある、 アメリカ大陸で 一番 古い ヨーロッパ人の とりで。 1502年ごろに つくられた。',te:'The oldest European fort in the Americas, in Santo Domingo, Dominican Republic. It was built around 1502.'},
+{id:'clocktirana',c:'ALB',ll:[19.8189,41.3283],m:'clocktirana',ja:'ティラナの 時計{塔|とう}',en:'Clock Tower of Tirana',k:'てぃらなのとけいとう あるばにあ',
+  t:'アルバニアの {首都|しゅと} ティラナの 時計{塔|とう}。 となりには 古い モスク、 広場には {英雄|えいゆう}スカンデルベグの 像が ある。',te:'A clock tower in Tirana, the capital of Albania. Next to it is an old mosque, and on the square stands a statue of the hero Skanderbeg.'},
+{id:'newborn',c:'KOS',ll:[21.1622,42.6589],m:'newborn',ja:'ニューボーン記念{碑|ひ}',en:'Newborn Monument',k:'にゅーぼーん きねんひ こそぼ',
+  t:'コソボの {首都|しゅと} プリシュティナにある 大きな 文字 「NEWBORN」。 2008年に 作られ、 毎年 ちがう デザインに ぬりかえられる。',te:'Giant letters spelling NEWBORN in Pristina, Kosovo. Made in 2008, they are repainted with a new design every year.'},
+{id:'reunification',c:'CMR',ll:[11.5167,3.8667],m:'reunification',ja:'{再統一|さいとういつ}記念{碑|ひ}',en:'Reunification Monument',k:'さいとういつきねんひ かめるーん やうんで',
+  t:'カメルーンの {首都|しゅと} ヤウンデの 記念{碑|ひ}。 2本の 道が らせんに のぼって 一つに なる。 国の 二つの 地方が 一つに なった ことを 表す。',te:'A monument in Yaoundé, the capital of Cameroon. Two ramps spiral up and join, showing how two parts of the country came together.'},
+{id:'likoma',c:'MWI',ll:[34.7333,-12.0667],m:'likoma',ja:'リコマ島の {大聖堂|だいせいどう}',en:'St Peter\'s Cathedral, Likoma',k:'りこまとう だいせいどう まらうい',
+  t:'マラウイ湖に うかぶ リコマ島の 大きな 石の 教会。 アフリカの 湖の 小さな 島に、 100年いじょう前に たてられた。',te:'A big stone cathedral on Likoma Island in Lake Malawi, built on this small island over 100 years ago.'},
+{id:'bridgetown',c:'BRB',ll:[-59.6153,13.0975],m:'bridgetown',ja:'バルバドスの 国会議事堂',en:'Parliament Buildings, Bridgetown',k:'こっかいぎじどう ばるばどす ぶりっじたうん',
+  t:'バルバドスの {首都|しゅと}の 国会。 世界でも とても 古い 議会の 一つ。 前の みなとには カラフルな 船。',te:'The parliament in the capital of Barbados, home to one of the oldest parliaments in the world. Colourful boats float in the harbour in front.'}
 ];
 
 TOY.animals = [

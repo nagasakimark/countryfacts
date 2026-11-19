@@ -293,7 +293,7 @@ Landmark,Vietnam,"Japanese Covered Bridge, Hội An",yes,hoian,"Japanese Covered
 Landmark,Vietnam,Landmark 81,no,,
 Landmark,Vietnam,Notre-Dame Cathedral Basilica of Saigon,no,,
 Landmark,Yemen,Dar al-Hajar,yes,daralhajar,Dar al-Hajar
-Landmark,Albania,Clock Tower of Tirana,no,,
+Landmark,Albania,Clock Tower of Tirana,yes,clocktirana,Clock Tower of Tirana
 Landmark,Austria,Hallstatt,yes,hallstatt,Hallstatt
 Landmark,Austria,Schönbrunn Palace,no,,
 Landmark,Austria,St. Stephen's Cathedral,no,,
@@ -349,7 +349,7 @@ Landmark,Italy,Roman Forum,no,,
 Landmark,Italy,Royal Palace of Caserta,no,,
 Landmark,Italy,St Mark's Square,yes,venice,"Rialto Bridge, Venice"
 Landmark,Italy,Trulli of Alberobello,yes,alberobello,Trulli of Alberobello
-Landmark,Kosovo,Newborn monument,no,,
+Landmark,Kosovo,Newborn monument,yes,newborn,Newborn monument
 Landmark,Latvia,Freedom Monument,yes,freedomriga,Freedom Monument
 Landmark,Lithuania,Gediminas' Tower,yes,gediminas,Gediminas' Tower
 Landmark,Luxembourg,Vianden Castle,yes,vianden,Vianden Castle
@@ -435,7 +435,7 @@ Landmark,Benin,Door of No Return,yes,doornoreturn,Door of No Return
 Landmark,Botswana,Okavango Delta,yes,okavango,Okavango Delta
 Landmark,Burkina Faso,Grand Mosque of Bobo-Dioulasso,yes,bobo,Grand Mosque of Bobo-Dioulasso
 Landmark,Burundi,Source of the Nile Pyramid (Rutovu),no,,
-Landmark,Cameroon,Reunification Monument,no,,
+Landmark,Cameroon,Reunification Monument,yes,reunification,Reunification Monument
 Landmark,Central African Republic,Boali Falls,yes,boali,Boali Falls
 Landmark,Chad,Aloba Arch,yes,aloba,Aloba Arch
 Landmark,Congo - Brazzaville,Nabemba Tower,no,,
@@ -475,7 +475,7 @@ Landmark,Lesotho,Basotho Hat building,yes,basotho,Basotho Hat Building
 Landmark,Liberia,Ducor Hotel,no,,
 Landmark,Libya,Leptis Magna,yes,leptis,Leptis Magna
 Landmark,Madagascar,Avenue of the Baobabs,yes,baobab,Avenue of the Baobabs
-Landmark,Malawi,"St Peter's Cathedral, Likoma",no,,
+Landmark,Malawi,"St Peter's Cathedral, Likoma",yes,likoma,"St Peter's Cathedral, Likoma"
 Landmark,Mali,Great Mosque of Djenné,yes,djenne,Great Mosque of Djenné
 Landmark,Mali,Sankore Mosque,no,,
 Landmark,Mauritania,Richat Structure,yes,richat,Richat Structure (Eye of the Sahara)
@@ -523,7 +523,7 @@ Landmark,Zambia,Victoria Falls,yes,victoria,Victoria Falls
 Landmark,Zimbabwe,Great Zimbabwe,yes,greatzim,Great Zimbabwe
 Landmark,Zimbabwe,Khami Ruins,no,,
 Landmark,Bahamas,The Royal at Atlantis,no,,
-Landmark,Barbados,"Parliament Buildings, Bridgetown",no,,
+Landmark,Barbados,"Parliament Buildings, Bridgetown",yes,bridgetown,"Parliament Buildings, Bridgetown"
 Landmark,Belize,Great Blue Hole,yes,bluehole,Great Blue Hole
 Landmark,Canada,1000 de La Gauchetière,no,,
 Landmark,Canada,1250 René-Lévesque,no,,
@@ -552,8 +552,8 @@ Landmark,Cuba,Castillo de la Real Fuerza,no,,
 Landmark,Cuba,El Capitolio,yes,havana,Havana
 Landmark,Cuba,Morro Castle (Havana),no,,
 Landmark,Dominican Republic,Cathedral of Santa María la Menor,no,,
-Landmark,Dominican Republic,Fortaleza Ozama,no,,
-Landmark,El Salvador,Joya de Cerén,no,,
+Landmark,Dominican Republic,Fortaleza Ozama,yes,ozama,Fortaleza Ozama
+Landmark,El Salvador,Joya de Cerén,yes,joyaceren,Joya de Cerén
 Landmark,Greenland,Ilulissat Icefjord,yes,ilulissat,Ilulissat Icefjord
 Landmark,Greenland,Nuuk,no,,
 Landmark,Guatemala,Antigua Guatemala,no,,
@@ -798,7 +798,7 @@ Landmark,Australia,WRC Rally Australia (Coffs Harbour),no,,
 Landmark,Fiji,Sri Siva Subramaniya Temple,yes,fijitemple,Sri Siva Subramaniya Temple
 Landmark,Guam,War in the Pacific National Historical Park,no,,
 Landmark,Micronesia,Nan Madol,yes,nanmadol,Nan Madol
-Landmark,New Caledonia,Jean-Marie Tjibaou Cultural Centre,no,,
+Landmark,New Caledonia,Jean-Marie Tjibaou Cultural Centre,yes,tjibaou,Jean-Marie Tjibaou Cultural Centre
 Landmark,New Zealand,Auckland War Memorial Museum,no,,
 Landmark,New Zealand,ChristChurch Cathedral,no,,
 Landmark,New Zealand,"Half Moon Bay Marina, Auckland",no,,
