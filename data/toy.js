@@ -695,7 +695,23 @@ TOY.landmarks = [
 {id:'vasa',c:'SWE',ll:[18.0915,59.3280],m:'vasa',ja:'ヴァーサ号博物館',en:'Vasa Museum',k:'ゔぁーさごう はくぶつかん すうぇーでん すとっくほるむ',
   t:'スウェーデンの ストックホルムに ある 博物館。 1628年に はじめての 航海で しずんだ 軍の 船が、 333年後に 引き上げられて ここに ある。',te:'A museum in Stockholm, Sweden, holding the warship Vasa, which sank on her first voyage in 1628 and was raised from the sea 333 years later.'},
 {id:'ckshall',c:'TWN',ll:[121.5219,25.0347],m:'ckshall',ja:'{中正紀念堂|ちゅうせいきねんどう}',en:'Chiang Kai-shek Memorial Hall',k:'ちゅうせいきねんどう たいわん たいぺい',
-  t:'{台湾|たいわん}の 台北に ある 大きな 白い 記念館。 青い 屋根と 白い かべは、 空と 太陽を 表して いる。 1時間ごとに 兵士の 交代式が ある。',te:'A huge white memorial hall in Taipei, Taiwan. Its blue roof and white walls stand for the sky and the sun. Guards change every hour in a ceremony.'}
+  t:'{台湾|たいわん}の 台北に ある 大きな 白い 記念館。 青い 屋根と 白い かべは、 空と 太陽を 表して いる。 1時間ごとに 兵士の 交代式が ある。',te:'A huge white memorial hall in Taipei, Taiwan. Its blue roof and white walls stand for the sky and the sun. Guards change every hour in a ceremony.'},
+{id:'sanssouci',c:'HTI',ll:[-72.2069,19.6036],m:'sanssouci',ja:'サン・スーシ{宮殿|きゅうでん}',en:'Sans-Souci Palace',k:'さんすーしきゅうでん はいち',
+  t:'ハイチの 王さま アンリ・クリストフが 1813年に たてた {宮殿|きゅうでん}。 1842年の 地しんで こわれ、 今は かべだけが のこる。',te:'A palace built in 1813 by King Henri Christophe of Haiti. An earthquake in 1842 left it in ruins; only its walls still stand.'},
+{id:'santamaria',c:'DOM',ll:[-69.8843,18.4730],m:'santamaria',ja:'サンタ・マリア・ラ・メノール{大聖堂|だいせいどう}',en:'Cathedral of Santa María la Menor',k:'さんたまりあらめのーる だいせいどう どみにか さんとどみんご',
+  t:'ドミニカ共和国の サントドミンゴに ある、 アメリカ大陸で いちばん 古い {大聖堂|だいせいどう}。 1540年に できた。 サンゴの 石で つくられて いる。',te:'The oldest cathedral in the Americas, in Santo Domingo, Dominican Republic. It was finished in 1540 and is built of coral limestone.'},
+{id:'teatrocr',c:'CRI',ll:[-84.0773,9.9332],m:'teatrocr',ja:'コスタリカ国立{劇場|げきじょう}',en:'National Theatre of Costa Rica',k:'こすたりか こくりつげきじょう さんほせ',
+  t:'コスタリカの サンホセに ある {劇場|げきじょう}。 1897年、 コーヒーを 売った お金で たてられた。 屋根には 3つの 像が 立つ。',te:'A theatre in San José, Costa Rica, built in 1897 with money from selling coffee. Three statues stand on its roof.'},
+{id:'panamaviejo',c:'PAN',ll:[-79.4856,9.0062],m:'panamaviejo',ja:'パナマ・ビエホ',en:'Panamá Viejo',k:'ぱなまびえほ ぱなま',
+  t:'パナマに ある、 太平洋がわで さいしょに できた スペインの 町の あと。 1671年に 海ぞくに 町を やかれ、 石の {塔|とう}だけが のこった。',te:'The ruins of the first Spanish city on the Pacific coast, in Panama. Pirates burned it in 1671; its stone cathedral tower still stands.'},
+{id:'parliamentro',c:'ROU',ll:[26.0875,44.4275],m:'parliamentro',ja:'{国民の館|こくみんのやかた}',en:'Palace of the Parliament',k:'こくみんのやかた るーまにあ ぶかれすと',
+  t:'ルーマニアの ブカレストに ある 大きな 白い たてもの。 部屋は 1000いじょう あり、 世界で いちばん 重い たてものの 1つ と 言われる。',te:'A huge white building in Bucharest, Romania, with over 1,000 rooms. It is said to be one of the heaviest buildings in the world.'},
+{id:'motherland',c:'UKR',ll:[30.5629,50.4265],m:'motherland',ja:'{母なる祖国像|ははなるそこくぞう}',en:'Motherland Monument',k:'ははなるそこくぞう うくらいな きーう',
+  t:'ウクライナの キーウに 立つ、 {剣|けん}と たてを 持った 女の人の 像。 高さ 62mで、 ステンレスで できて いる。',te:'A statue in Kyiv, Ukraine, of a woman holding up a sword and a shield. She is 62 m tall and made of stainless steel.'},
+{id:'nuuk',c:'GRL',ll:[-51.7216,64.1814],m:'nuuk',ja:'ヌーク',en:'Nuuk',k:'ぬーく ぐりーんらんど',
+  t:'グリーンランドの 首都。 赤や 青、 黄色の 木の 家が 岩の 上に ならぶ。 海には 氷山が うかぶ。',te:'The capital of Greenland. Red, blue and yellow wooden houses sit on bare rocks, and icebergs float in the sea.'},
+{id:'tongapalace',c:'TON',ll:[-175.2043,-21.1333],m:'tongapalace',ja:'トンガ王宮',en:'Royal Palace of Tonga',k:'とんがおうきゅう とんが ぬくあろふぁ',
+  t:'トンガの ヌクアロファの 海べに ある、 白い 木の 王宮。 1867年に ニュージーランドの 木で たてられた。',te:'A white wooden royal palace on the waterfront in Nukuʻalofa, Tonga, built in 1867 from New Zealand timber.'}
 ];
 
 TOY.animals = [
@@ -749,7 +765,11 @@ TOY.animals = [
  {id:'platypus',e:'🦫',ll:[146.5,-42.0],ja:'カモノハシ',en:'Platypus',t:'オーストラリアに すむ。 たまごを うむ めずらしい ほにゅうるい。 くちばしで 水の 中の 小さな 生き物を さがす。',te:'It lives in Australia. It is a rare mammal that lays eggs, and it hunts for small animals underwater with its bill.'},
  {id:'cheetah',e:'🐆',ll:[17.0,-20.0],ja:'チーター',en:'Cheetah',t:'ナミビアの 草原に すむ。 陸で いちばん 速い 動物で、 時速 100kmちかくで 走る。',te:'It lives on the grasslands of Namibia. It is the fastest animal on land, running at nearly 100 km/h.'},
  {id:'reindeer',e:'🦌',ll:[26.5,68.0],ja:'トナカイ',en:'Reindeer',t:'フィンランドの ラップランドに すむ。 オスにも メスにも 角が ある。 そりを 引く ことも ある。',te:'It lives in Lapland, Finland. Both males and females grow antlers, and some pull sleds.'},
- {id:'toucan',e:'🦜',ll:[-57.5,-23.0],ja:'オニオオハシ',en:'Toco toucan',t:'パラグアイなどの 森に すむ。 大きな オレンジ色の くちばしは、 中が スカスカで とても かるい。',te:'It lives in the forests of Paraguay and nearby. Its huge orange bill is hollow inside and very light.'}
+ {id:'toucan',e:'🦜',ll:[-57.5,-23.0],ja:'オニオオハシ',en:'Toco toucan',t:'パラグアイなどの 森に すむ。 大きな オレンジ色の くちばしは、 中が スカスカで とても かるい。',te:'It lives in the forests of Paraguay and nearby. Its huge orange bill is hollow inside and very light.'},
+ {id:'narwhal',e:'🐋',ll:[-60.0,72.0],ja:'イッカク',en:'Narwhal',t:'グリーンランドの 冷たい 海に すむ クジラ。 長い きばは、 じつは 歯が のびた もの。 3mに なる ことも ある。',te:'A whale of Greenland\'s icy seas. Its long tusk is really a tooth that keeps growing — up to about 3 m.'},
+ {id:'anteater',e:'🦡',ll:[-64.0,-14.5],ja:'オオアリクイ',en:'Giant anteater',t:'ボリビアの 草原に すむ。 歯が なく、 長い {舌|した}で 1日に 3万びきも アリや シロアリを 食べる。',te:'It lives on the grasslands of Bolivia. It has no teeth, and its long tongue slurps up about 30,000 ants and termites a day.'},
+ {id:'shoebill',e:'🐦',ll:[32.5,1.5],ja:'ハシビロコウ',en:'Shoebill',t:'ウガンダの ぬまに すむ 大きな 鳥。 魚を ねらって、 何時間も じっと 動かない。',te:'A big bird of Uganda\'s swamps. It stands perfectly still for hours, waiting to catch a fish.'},
+ {id:'arcticfox',e:'🦊',ll:[-21.0,65.5],ja:'ホッキョクギツネ',en:'Arctic fox',t:'アイスランドに もとから いた ただ1つの 陸の ほにゅうるい。 冬は 白く、 夏は 茶色の 毛に かわる。',te:'The only land mammal native to Iceland. Its fur is white in winter and turns brown in summer.'}
 ];
 
 /* Vehicles travel there and back forever. p = route points [lon,lat] (great-circle between points).

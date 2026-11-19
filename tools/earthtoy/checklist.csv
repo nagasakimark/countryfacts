@@ -367,7 +367,7 @@ Landmark,Portugal,Belém Tower,yes,belem,Belém Tower
 Landmark,Portugal,Cristo Rei,no,,
 Landmark,Portugal,"Pena Palace, Sintra",yes,pena,Pena Palace
 Landmark,Romania,Bran Castle,yes,bran,Bran Castle
-Landmark,Romania,Palace of the Parliament,no,,
+Landmark,Romania,Palace of the Parliament,yes,parliamentro,Palace of the Parliament
 Landmark,Russia,Cathedral of Christ the Saviour,no,,
 Landmark,Russia,Church of the Savior on Spilled Blood,no,,
 Landmark,Russia,Evolution Tower,no,,
@@ -407,7 +407,7 @@ Landmark,Türkiye,Hagia Sophia,yes,hagiasophia,Hagia Sophia
 Landmark,Türkiye,Süleymaniye Mosque,no,,
 Landmark,Türkiye,Sultan Ahmed Mosque (Blue Mosque),yes,bluemosque,Blue Mosque
 Landmark,Türkiye,Topkapı Palace,no,,
-Landmark,Ukraine,"Motherland Monument, Kyiv",no,,
+Landmark,Ukraine,"Motherland Monument, Kyiv",yes,motherland,Motherland Monument
 Landmark,Ukraine,"Saint Sophia Cathedral, Kyiv",yes,stsophia,"St Sophia's Cathedral, Kyiv"
 Landmark,United Kingdom,122 Leadenhall Street (The Cheesegrater),no,,
 Landmark,United Kingdom,20 Fenchurch Street (Walkie-Talkie),no,,
@@ -547,19 +547,19 @@ Landmark,Canada,Scotia Plaza,no,,
 Landmark,Canada,Stanley Park Totem Poles,yes,totems,Stanley Park Totem Poles
 Landmark,Canada,Vancouver House,no,,
 Landmark,Costa Rica,Arenal Volcano,yes,arenal,Arenal Volcano
-Landmark,Costa Rica,National Theatre of Costa Rica,no,,
+Landmark,Costa Rica,National Theatre of Costa Rica,yes,teatrocr,National Theatre of Costa Rica
 Landmark,Cuba,Castillo de la Real Fuerza,no,,
 Landmark,Cuba,El Capitolio,yes,havana,Havana
 Landmark,Cuba,Morro Castle (Havana),yes,morrohavana,Morro Castle (Havana)
-Landmark,Dominican Republic,Cathedral of Santa María la Menor,no,,
+Landmark,Dominican Republic,Cathedral of Santa María la Menor,yes,santamaria,Cathedral of Santa María la Menor
 Landmark,Dominican Republic,Fortaleza Ozama,yes,ozama,Fortaleza Ozama
 Landmark,El Salvador,Joya de Cerén,yes,joyaceren,Joya de Cerén
 Landmark,Greenland,Ilulissat Icefjord,yes,ilulissat,Ilulissat Icefjord
-Landmark,Greenland,Nuuk,no,,
+Landmark,Greenland,Nuuk,yes,nuuk,Nuuk
 Landmark,Guatemala,Antigua Guatemala,yes,antigua,Santa Catalina Arch (Antigua Guatemala)
 Landmark,Guatemala,Tikal,yes,tikal,Tikal
 Landmark,Haiti,Citadelle Laferrière,yes,citadelle,Citadelle Laferrière
-Landmark,Haiti,Sans-Souci Palace,no,,
+Landmark,Haiti,Sans-Souci Palace,yes,sanssouci,Sans-Souci Palace
 Landmark,Honduras,Copán,yes,copan,Copán
 Landmark,Jamaica,Dunn's River Falls,yes,dunnsriver,Dunn's River Falls
 Landmark,Jamaica,Rose Hall Great House,no,,
@@ -575,7 +575,7 @@ Landmark,Mexico,Torre Reforma,no,,
 Landmark,Mexico,Tulum,yes,tulum,Tulum
 Landmark,Nicaragua,León Cathedral,yes,leoncath,León Cathedral
 Landmark,Panama,Panama Canal,yes,panama,Panama Canal
-Landmark,Panama,Panamá Viejo,no,,
+Landmark,Panama,Panamá Viejo,yes,panamaviejo,Panamá Viejo
 Landmark,Puerto Rico,Castillo San Felipe del Morro,yes,elmorro,Castillo San Felipe del Morro
 Landmark,St. Kitts & Nevis,Brimstone Hill Fortress,yes,brimstone,Brimstone Hill Fortress
 Landmark,United States,30 Rockefeller Plaza,no,,
@@ -812,7 +812,7 @@ Landmark,Palau,Airai Bai (Palauan meeting house),yes,palaubai,Airai Bai (Palauan
 Landmark,Papua New Guinea,"National Parliament House, Port Moresby",yes,pngparl,"National Parliament House, Port Moresby"
 Landmark,Solomon Islands,National Parliament of Solomon Islands,yes,solomonparl,National Parliament of Solomon Islands
 Landmark,Tonga,Ha'amonga 'a Maui Trilithon,yes,haamonga,Ha'amonga 'a Maui Trilithon
-Landmark,Tonga,Royal Palace of Tonga,no,,
+Landmark,Tonga,Royal Palace of Tonga,yes,tongapalace,Royal Palace of Tonga
 Landmark,Vanuatu,Chief Roi Mata's Domain,yes,roimata,Chief Roi Mata's Domain
 Landmark,Antarctica,Amundsen–Scott South Pole Station,yes,southpole,Amundsen–Scott South Pole Station
 Landmark,Antarctica,Concordia Station,no,,
@@ -847,7 +847,7 @@ Animal,Mammal,American black bear,no,,
 Animal,Mammal,Antarctic fur seal,no,,
 Animal,Mammal,Antarctic minke whale,no,,
 Animal,Mammal,Arabian oryx,no,,
-Animal,Mammal,Arctic fox,no,,
+Animal,Mammal,Arctic fox,yes,arcticfox,Arctic fox
 Animal,Mammal,Arctic hare,no,,
 Animal,Mammal,Argali,no,,
 Animal,Mammal,Asian elephant,no,,
@@ -917,7 +917,7 @@ Animal,Mammal,Ganges river dolphin,no,,
 Animal,Mammal,Gelada,no,,
 Animal,Mammal,Geoffroy's spider monkey,no,,
 Animal,Mammal,Gerenuk,no,,
-Animal,Mammal,Giant anteater,no,,
+Animal,Mammal,Giant anteater,yes,anteater,Giant anteater
 Animal,Mammal,Giant armadillo,no,,
 Animal,Mammal,Giant otter,no,,
 Animal,Mammal,Giant panda,yes,panda,Giant panda
@@ -976,7 +976,7 @@ Animal,Mammal,Mongolian gazelle,no,,
 Animal,Mammal,Moose,no,,
 Animal,Mammal,Mountain goat,no,,
 Animal,Mammal,Muskox,no,,
-Animal,Mammal,Narwhal,no,,
+Animal,Mammal,Narwhal,yes,narwhal,Narwhal
 Animal,Mammal,New Zealand sea lion,no,,
 Animal,Mammal,Nilgai,no,,
 Animal,Mammal,Nine-banded armadillo,no,,
@@ -1114,7 +1114,7 @@ Animal,Bird,Sarus crane,no,,
 Animal,Bird,Scarlet ibis,no,,
 Animal,Bird,Scarlet macaw,yes,macaw,Macaw
 Animal,Bird,Secretarybird,no,,
-Animal,Bird,Shoebill,no,,
+Animal,Bird,Shoebill,yes,shoebill,Shoebill
 Animal,Bird,Snowy owl,no,,
 Animal,Bird,Southern cassowary,no,,
 Animal,Bird,Southern ground hornbill,no,,

@@ -253,4 +253,77 @@
     ball(b, -0.01, 0.045, 0, 0.018, '#e8352b', 1.2, 0.6, 1);
     return wrap(g, 0.6);
   };
+  /* ---------- narwhal (Greenland) ---------- */
+  M.custom.a_narwhal = function () {
+    var g = new T.Group();
+    var sea = new T.Mesh(new T.CylinderGeometry(0.38, 0.38, 0.01, 20), solid('#2f6a9a', { flatShading: true })); sea.position.y = 0.004; sea.scale.z = 0.7; g.add(sea);
+    var floe = new T.Mesh(new T.CylinderGeometry(0.12, 0.13, 0.03, 7), solid('#eef6fb', { flatShading: true })); floe.position.set(-0.22, 0.015, -0.16); g.add(floe);
+    var mot = function (x, y, z) { if (y < 0.03) return vary('#e8e4dc', x, y, z, 0.03); return hash(Math.round(x * 60), Math.round(z * 60 + y * 40)) > 0.6 ? '#3a3a42' : vary('#7a7a80', x, y, z, 0.05); }; // mottled grey back, pale belly
+    // a whale coming up for air, half out of the water
+    tube(g, [[-0.26, 0.02, 0, 0.02, 0.012], [-0.16, 0.035, 0, 0.055, 0.045], [-0.02, 0.045, 0, 0.075, 0.06], [0.1, 0.05, 0, 0.065, 0.055], [0.17, 0.05, 0, 0.04, 0.04]], mot, 'body', 10, 0.08, 4);
+    [-1, 1].forEach(function (s) { var fl = new T.Mesh(new T.SphereGeometry(0.025, 6, 4), solid('#5a5a62', { flatShading: true })); fl.scale.set(1.6, 0.2, 0.8); fl.position.set(-0.29, 0.02, s * 0.03); fl.rotation.y = s * 0.5; g.add(fl); eye(g, 0.14, 0.06, s * 0.04, 0.005); });
+    // the long spiral tusk (really a tooth!) that grows straight out through its lip — up to about 3 m
+    var tk = new T.Mesh(new T.ConeGeometry(0.008, 0.3, 6, 12), solid('#f0e8d0', { flatShading: true })), tp = tk.geometry.attributes.position;
+    for (var i = 0; i < tp.count; i++) { var y = tp.getY(i), a = y * 60, x = tp.getX(i), z = tp.getZ(i), c = Math.cos(a) * 0.15 + 1; tp.setX(i, x * c); tp.setZ(i, z * c); } tk.geometry.computeVertexNormals();
+    tk.rotation.z = -Math.PI / 2 + 0.15; tk.position.set(0.33, 0.07, 0); g.add(tk);
+    // a second narwhal, and splashes
+    var b2 = new T.Group(); b2.position.set(0.05, 0, 0.18); b2.rotation.y = 0.4; g.add(b2); tube(b2, [[-0.12, 0.01, 0, 0.03, 0.02], [0.0, 0.025, 0, 0.05, 0.035], [0.08, 0.025, 0, 0.035, 0.03]], mot, 'body', 8, 0.08, 7);
+    for (var k = 0; k < 5; k++) ball(g, 0.18 + hash(k, 2) * 0.05, 0.02, (hash(k, 3) - 0.5) * 0.1, 0.01 + hash(k, 1) * 0.008, '#e8f4fa');
+    return wrap(g, 0.5);
+  };
+
+  /* ---------- giant anteater (Bolivia) ---------- */
+  M.custom.a_anteater = function () {
+    var g = new T.Group();
+    var c = function (x, y, z, p) {
+      if (y < 0.012) return '#2a2420';
+      if (p === 'body' && x > 0.0 && x < 0.2 && y > 0.12 && y < 0.26 && Math.abs(z) > 0.035) return y > 0.2 || Math.abs(z) > 0.055 ? '#f2ece0' : '#1d1c1c'; // the black stripe edged in white across the shoulder
+      if (p === 'leg' && x > 0.1) return y < 0.06 ? '#2a2420' : '#f2ece0';
+      return vary('#8a7a66', x, y, z, 0.06);
+    };
+    var l = quad({ sides: 10, L: 0.42, legH: 0.12, bR: 0.075, bW: 0.06, legR: 0.02, neck: { len: 0.05, ang: 0.1, r: 0.045 }, head: { len: 0.24, r: 0.03, snout: 0.012, ang: -0.35, eye: 0.004 }, earL: 0.01, earR: 0.01, tail: false, col: c });
+    g.add(l);
+    var u = l.userData;
+    // the huge bushy tail like a broom (it covers itself with it to sleep)
+    tube(l, [[-0.2, u.by + 0.02, 0, 0.02, 0.04], [-0.3, u.by + 0.04, 0, 0.022, 0.07], [-0.4, u.by + 0.02, 0, 0.018, 0.06], [-0.46, u.by - 0.04, 0, 0.012, 0.03]], function (x, y, z) { return vary('#5a4a3a', x, y, z, 0.08); }, 'tail', 8, 0.35, 5);
+    // a long sticky tongue flicking into a termite mound
+    var tip = u.hp(1.0); tube(l, [[tip[0], tip[1], 0, 0.003, 0.003], [tip[0] + 0.05, tip[1] - 0.03, 0, 0.0025, 0.0025], [tip[0] + 0.08, tip[1] - 0.05, 0, 0.002, 0.002]], '#d86a7a', 'tongue', 3, 0);
+    var tm = new T.Mesh(new T.ConeGeometry(0.06, 0.16, 7), solid('#c8804a', { flatShading: true })); tm.position.set(tip[0] + 0.12, 0.08, 0); g.add(tm);
+    for (var k = 0; k < 8; k++) ball(g, tip[0] + 0.1 + hash(k, 1) * 0.04, 0.01 + hash(k, 2) * 0.05, (hash(k, 3) - 0.5) * 0.06, 0.003, '#2a2420');
+    for (var k2 = 0; k2 < 12; k2++) { var a = k2 / 12 * D2; cone(g, [Math.cos(a) * 0.32, 0, Math.sin(a) * 0.22], [Math.cos(a) * 0.33, 0.07, Math.sin(a) * 0.23], 0.008, '#a8b860', 3); }
+    return wrap(g, 0.5);
+  };
+
+  /* ---------- shoebill (Uganda) ---------- */
+  M.custom.a_shoebill = function () {
+    var g = new T.Group();
+    var sw = new T.Mesh(new T.CylinderGeometry(0.3, 0.3, 0.01, 18), solid('#5a8a7a', { flatShading: true })); sw.position.y = 0.004; g.add(sw);
+    for (var k = 0; k < 12; k++) { var a = k / 12 * D2; cone(g, [Math.cos(a) * 0.26, 0, Math.sin(a) * 0.22], [Math.cos(a) * 0.27, 0.22, Math.sin(a) * 0.23], 0.006, '#7aa04a', 3); var hd = new T.Mesh(new T.SphereGeometry(0.02, 6, 4), solid('#8ab05a', { flatShading: true })); hd.position.set(Math.cos(a) * 0.27, 0.23, Math.sin(a) * 0.23); g.add(hd); } // papyrus
+    // a tall grey bird that stands very still for hours, waiting for fish
+    var b = bird({ len: 0.2, r: 0.065, tilt: 0.35, hr: 0.05, beak: 0.001, beakR: 0.001, eye: 0.007, legH: 0.18, legCol: '#3a3a3e', col: function (x, y, z, p) { return vary(p === 'wing' ? '#7a8a96' : '#98a4ae', x, y, z, 0.05); } });
+    b.position.y = 0.01; g.add(b);
+    var hc = b.userData.hc;
+    // the giant bill shaped like a wooden shoe, with a hook at the tip
+    var bl = new T.Mesh(new T.SphereGeometry(0.045, 10, 7), solid('#c8b88a', { flatShading: true })); bl.scale.set(1.6, 0.75, 0.75); bl.position.set(hc[0] + 0.07, hc[1] - 0.02, 0); g.add(bl);
+    cone(g, [hc[0] + 0.14, hc[1] - 0.01, 0], [hc[0] + 0.15, hc[1] - 0.04, 0], 0.008, '#8a7a5a', 4);
+    ball(g, hc[0] - 0.035, hc[1] + 0.035, 0, 0.015, '#98a4ae', 1, 0.6, 0.6); // a little tuft at the back of the head
+    [-1, 1].forEach(function (s) { ball(g, hc[0] + 0.02, hc[1] + 0.015, s * 0.035, 0.008, '#e8e8c8', 1, 1, 0.5); });
+    var fish = new T.Mesh(new T.SphereGeometry(0.02, 6, 4), solid('#a8b0b8')); fish.scale.set(2, 0.6, 0.6); fish.position.set(0.24, 0.012, 0.1); g.add(fish);
+    return wrap(g, 0.6);
+  };
+
+  /* ---------- arctic fox (Iceland) ---------- */
+  M.custom.a_arcticfox = function () {
+    var g = new T.Group();
+    var snow = new T.Mesh(new T.CylinderGeometry(0.3, 0.32, 0.02, 12), solid('#f4f7fa', { flatShading: true })); snow.position.y = 0.01; g.add(snow);
+    for (var r = 0; r < 4; r++) { var rk = new T.Mesh(new T.IcosahedronGeometry(0.05, 0), solid('#5a5a62', { flatShading: true })); rk.scale.y = 0.5; rk.position.set(-0.25 + r * 0.06, 0.02, -0.18); g.add(rk); var cap = new T.Mesh(new T.IcosahedronGeometry(0.045, 0), solid('#f4f7fa', { flatShading: true })); cap.scale.y = 0.25; cap.position.set(-0.25 + r * 0.06, 0.04, -0.18); g.add(cap); }
+    // thick white winter fur (in summer it turns brown-grey), small round ears to keep warm
+    var wh = function (x, y, z, p) { if (y < 0.012) return '#c8c8cc'; return vary('#f6f6f4', x, y, z, 0.03); };
+    var l = quad({ sides: 10, L: 0.3, legH: 0.08, bR: 0.07, bW: 0.065, legR: 0.018, neck: { len: 0.03, ang: 0.4, r: 0.045 }, head: { len: 0.1, r: 0.045, snout: 0.018, ang: -0.25, eye: 0.007 }, earL: 0.018, earR: 0.014, tail: false, col: wh });
+    l.position.y = 0.02; g.add(l);
+    var u = l.userData, tip = u.hp(1.0); ball(l, tip[0], tip[1], 0, 0.009, '#2a2a2e');
+    // the fluffy tail wrapped round its feet
+    tube(l, [[-0.15, u.by - 0.01, 0, 0.035, 0.035], [-0.2, u.by - 0.06, 0.04, 0.04, 0.04], [-0.15, u.by - 0.1, 0.1, 0.035, 0.035], [-0.05, u.by - 0.11, 0.11, 0.025, 0.025]], wh, 'tail', 9, 0.15, 3);
+    return wrap(g, 0.6);
+  };
 })();
