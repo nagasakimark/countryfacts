@@ -295,7 +295,23 @@ TOY.landmarks = [
  {id:'templeofheaven',c:'CHN',ll:[116.41,39.88],m:'templeofheaven',ja:'{天壇|てんだん}',en:'Temple of Heaven',k:'てんだん ぺきん ちゅうごく',
   t:'ペキンに ある、 むかしの {皇帝|こうてい}が 作物の ほうさくを いのった ところ。 まるい たてものに 青い やねが 3だん ある。',te:'Where Chinese emperors prayed for good harvests, in Beijing. Its round hall has three blue roofs.'},
  {id:'marinabay',c:'SGP',ll:[103.86,1.28],m:'marinabay',ja:'マリーナベイ・サンズ',en:'Marina Bay Sands',k:'まりーなべいさんず しんがぽーる',
-  t:'シンガポールの、 3本の ビルの 上に 船のような 大きな 屋上が のっている ホテル。 屋上には プールが ある。',te:'A hotel in Singapore where a ship-shaped garden with a pool sits on top of three towers.'}
+  t:'シンガポールの、 3本の ビルの 上に 船のような 大きな 屋上が のっている ホテル。 屋上には プールが ある。',te:'A hotel in Singapore where a ship-shaped garden with a pool sits on top of three towers.'},
+{id:'nseoultower',c:'KOR',ll:[126.99,37.55],m:'nseoultower',ja:'N ソウルタワー',en:'N Seoul Tower',k:'Nそうるたわー なむさん かんこく',
+  t:'ソウルの まん中の 山、 南山（ナムサン）の 上に たつ タワー。 フェンスには たくさんの「愛の かぎ」が かけられている。',te:'A tower on Namsan mountain in the middle of Seoul. Its fences are covered in "love locks".'},
+ {id:'spaceneedle',c:'USA',ll:[-122.35,47.62],m:'spaceneedle',ja:'スペースニードル',en:'Space Needle',k:'すぺーすにーどる しあとる あめりか',
+  t:'アメリカの シアトルに ある、 てっぺんが ユーフォーのような 形の タワー。 1962年の 万国はくらん会の ために できた。',te:'A tower in Seattle topped with a flying-saucer shape, built for the 1962 World\'s Fair.'},
+ {id:'leshan',c:'CHN',ll:[103.77,29.55],m:'leshan',ja:'{楽山|らくざん}大仏',en:'Leshan Giant Buddha',k:'らくざんだいぶつ ちゅうごく',
+  t:'中国の 川ぞいの がけを ほって つくった、 高さ 71mの 大仏。 世界で いちばん 大きい 石の 仏像。',te:'A 71 m Buddha carved into a riverside cliff in China — the largest stone Buddha in the world.'},
+ {id:'zhangjiajie',c:'CHN',ll:[110.48,29.32],m:'zhangjiajie',ja:'{張家界|ちょうかかい}',en:'Zhangjiajie',k:'ちょうかかい ちゅうごく あばたー',
+  t:'中国の、 細長い 岩の 柱が 3000本 いじょう 立ちならぶ 山。 {映画|えいが}「アバター」に 出てくる 空に うかぶ 山の モデルと いわれる。',te:'Over 3,000 tall stone pillars in China, said to have inspired the floating mountains in the film Avatar.'},
+ {id:'meteora',c:'GRC',ll:[21.63,39.72],m:'meteora',ja:'メテオラ',en:'Meteora',k:'めておら ぎりしゃ',
+  t:'ギリシャの、 高い 岩の てっぺんに たつ {修道院|しゅうどういん}。 名前は「空中に うかぶ」という 意味。',te:'Monasteries perched on top of tall rock pillars in Greece. The name means "suspended in the air".'},
+ {id:'pamukkale',c:'TUR',ll:[29.12,37.92],m:'pamukkale',ja:'パムッカレ',en:'Pamukkale',k:'ぱむっかれ とるこ',
+  t:'トルコの、 白い だんだんの 岩に 温かい 水が たまった 場所。 名前は「わたの お{城|しろ}」という 意味。',te:'White stone terraces filled with warm spring water in Turkey. The name means "cotton castle".'},
+ {id:'sheikhzayed',c:'ARE',ll:[54.48,24.41],m:'sheikhzayed',ja:'シェイク・ザイード・グランド・モスク',en:'Sheikh Zayed Grand Mosque',k:'しぇいくざいーど もすく あぶだび',
+  t:'アラブ{首長国連邦|しゅちょうこくれんぽう}の アブダビに ある 白い 大きな モスク。 82の ドームと、 世界で いちばん 大きい 手おりの じゅうたんが ある。',te:'A huge white mosque in Abu Dhabi with 82 domes and the world\'s largest hand-knotted carpet.'},
+ {id:'hassan2',c:'MAR',ll:[-7.63,33.61],m:'hassan2',ja:'ハッサン2世モスク',en:'Hassan II Mosque',k:'はっさん2せいもすく かさぶらんか もろっこ',
+  t:'モロッコの カサブランカの 海の 上に たつ モスク。 ミナレットの 高さは 210mで、 世界でも とくに 高い。',te:'A mosque built out over the sea in Casablanca, Morocco. Its 210 m minaret is one of the tallest in the world.'}
 ];
 
 TOY.animals = [

@@ -34,7 +34,7 @@ Landmark,China,"Hongyadong, Chongqing",no,,
 Landmark,China,Jiefangbei (People's Liberation Monument),no,,
 Landmark,China,Jin Mao Tower,no,,
 Landmark,China,KK100 (Kingkey 100),no,,
-Landmark,China,Leshan Giant Buddha,no,,
+Landmark,China,Leshan Giant Buddha,yes,leshan,Leshan Giant Buddha
 Landmark,China,"Li River, Guilin",no,,
 Landmark,China,Longmen Grottoes,no,,
 Landmark,China,Mogao Caves,no,,
@@ -66,7 +66,7 @@ Landmark,China,Wuhan Center,no,,
 Landmark,China,Wuhan Greenland Center,no,,
 Landmark,China,"Yellow Crane Tower, Wuhan",no,,
 Landmark,China,Yungang Grottoes,no,,
-Landmark,China,Zhangjiajie,no,,
+Landmark,China,Zhangjiajie,yes,zhangjiajie,Zhangjiajie
 Landmark,China,"Zifeng Tower, Nanjing",no,,
 Landmark,Hong Kong,Bank of China Tower,no,,
 Landmark,Hong Kong,Central Plaza,no,,
@@ -250,7 +250,7 @@ Landmark,South Korea,Hwaseong Fortress,no,,
 Landmark,South Korea,Jongmyo Shrine,no,,
 Landmark,South Korea,Lotte World Tower,no,,
 Landmark,South Korea,Myeongdong Cathedral,no,,
-Landmark,South Korea,N Seoul Tower,no,,
+Landmark,South Korea,N Seoul Tower,yes,nseoultower,N Seoul Tower
 Landmark,South Korea,National Assembly Proceeding Hall,no,,
 Landmark,South Korea,Parc.1,no,,
 Landmark,South Korea,Seokguram Grotto,no,,
@@ -280,7 +280,7 @@ Landmark,Türkiye,Göbekli Tepe,no,,
 Landmark,Turkmenistan,Darvaza gas crater (Door to Hell),yes,darvaza,Darvaza Gas Crater
 Landmark,United Arab Emirates,Burj Al Arab,no,,
 Landmark,United Arab Emirates,Burj Khalifa,yes,burj,Burj Khalifa
-Landmark,United Arab Emirates,Sheikh Zayed Grand Mosque,no,,
+Landmark,United Arab Emirates,Sheikh Zayed Grand Mosque,yes,sheikhzayed,Sheikh Zayed Grand Mosque
 Landmark,Uzbekistan,Ark of Bukhara,no,,
 Landmark,Uzbekistan,Gur-e-Amir,no,,
 Landmark,Uzbekistan,Itchan Kala,no,,
@@ -329,7 +329,7 @@ Landmark,Germany,Cologne Cathedral,yes,cologne,Cologne Cathedral
 Landmark,Germany,Neuschwanstein Castle,yes,neuschwanstein,Neuschwanstein Castle
 Landmark,Germany,Reichstag Building,no,,
 Landmark,Greece,Delphi,no,,
-Landmark,Greece,Meteora,no,,
+Landmark,Greece,Meteora,yes,meteora,Meteora
 Landmark,Greece,Palace of Knossos,no,,
 Landmark,Greece,Parthenon,yes,parthenon,Parthenon
 Landmark,Greece,Santorini (Oia),yes,santorini,Santorini
@@ -483,7 +483,7 @@ Landmark,Mauritius,Le Morne Brabant,no,,
 Landmark,Morocco,Aït Benhaddou,no,,
 Landmark,Morocco,Chefchaouen,yes,chefchaouen,Chefchaouen
 Landmark,Morocco,Erg Chebbi Dunes,no,,
-Landmark,Morocco,Hassan II Mosque,no,,
+Landmark,Morocco,Hassan II Mosque,yes,hassan2,Hassan II Mosque
 Landmark,Morocco,Kasbah of the Udayas,no,,
 Landmark,Morocco,Koutoubia Mosque,no,,
 Landmark,Morocco,Volubilis,no,,
@@ -668,7 +668,7 @@ Landmark,United States,Salt Lake Temple,no,,
 Landmark,United States,Santa Monica Pier,no,,
 Landmark,United States,Soldiers' and Sailors' Monument,no,,
 Landmark,United States,Space Center Houston,no,,
-Landmark,United States,Space Needle,no,,
+Landmark,United States,Space Needle,yes,spaceneedle,Space Needle
 Landmark,United States,St. Johns Bridge,no,,
 Landmark,United States,St. Louis Cathedral,no,,
 Landmark,United States,St. Regis Chicago,no,,
@@ -833,7 +833,7 @@ Landmark,Kazakhstan,Baiterek Tower,yes,bayterek,Bayterek Tower
 Landmark,Russia,Manpupuner Rock Formations,no,,
 Landmark,Trinidad & Tobago,Temple in the Sea,no,,
 Landmark,Türkiye,Library of Celsus,no,,
-Landmark,Türkiye,Pamukkale,no,,
+Landmark,Türkiye,Pamukkale,yes,pamukkale,Pamukkale
 Animal,Mammal,Aardvark,no,,
 Animal,Mammal,Addax,no,,
 Animal,Mammal,African buffalo,no,,
