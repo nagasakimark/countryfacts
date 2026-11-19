@@ -423,7 +423,23 @@ TOY.landmarks = [
 {id:'copan',c:'HND',ll:[-89.141,14.838],m:'copan',ja:'コパン{遺跡|いせき}',en:'Copán',k:'こぱんいせき ほんじゅらす まや',
   t:'ホンジュラスの マヤ{文明|ぶんめい}の {遺跡|いせき}。 もじが ほられた 長い かいだんや、 王の すがたの 石の 柱が ある。 赤い コンゴウインコが とぶ。',te:'Ruins of the Maya civilisation in Honduras, with a long stairway covered in carved writing and stone pillars showing kings. Scarlet macaws fly around.'},
 {id:'nanmadol',c:'FSM',ll:[158.335,6.844],m:'nanmadol',ja:'ナン・マドール',en:'Nan Madol',k:'なんまどーる みくろねしあ',
-  t:'ミクロネシアの 海に うかぶ、 石で つくった 小さな 島が 100いじょう ならぶ {遺跡|いせき}。 黒い 石の 柱を 丸太のように つんで つくった。',te:'Ruins in Micronesia made of over 100 small man-made islands. The walls are built from black stone columns stacked like logs.'}
+  t:'ミクロネシアの 海に うかぶ、 石で つくった 小さな 島が 100いじょう ならぶ {遺跡|いせき}。 黒い 石の 柱を 丸太のように つんで つくった。',te:'Ruins in Micronesia made of over 100 small man-made islands. The walls are built from black stone columns stacked like logs.'},
+{id:'helsinki',c:'FIN',ll:[24.9522,60.1704],m:'helsinki',ja:'ヘルシンキ{大聖堂|だいせいどう}',en:'Helsinki Cathedral',k:'へるしんきだいせいどう ふぃんらんど',
+  t:'フィンランドの {首都|しゅと}の 広場に 立つ、 白い かべと 緑の ドームの 教会。 大きな かいだんは、 みんなの すわる 場所に なって いる。',te:'A white church with green domes on a square in Finland\'s capital. Its big staircase is a favourite place for people to sit.'},
+{id:'ladyrocks',c:'MNE',ll:[18.6883,42.4847],m:'ladyrocks',ja:'岩の上の {聖母|せいぼ}教会',en:'Our Lady of the Rocks',k:'いわのうえのせいぼきょうかい もんてねぐろ ことる',
+  t:'モンテネグロの {湾|わん}に うかぶ 小さな 島の 教会。 島は、 船乗りたちが 何百年も 石を 海に しずめて つくった。',te:'A church on a tiny island in a bay in Montenegro. Sailors made the island over hundreds of years by sinking rocks into the sea.'},
+{id:'kaneo',c:'MKD',ll:[20.7883,41.1114],m:'kaneo',ja:'カネオの {聖ヨハネ|せいヨハネ}教会',en:'Church of St. John at Kaneo',k:'かねおのせいよはねきょうかい きたまけどにあ おほりど',
+  t:'北マケドニアの オフリド湖を 見下ろす がけの 上の 小さな 教会。 レンガと 石で できた、 700年いじょう前の たてもの。',te:'A small church on a cliff above Lake Ohrid in North Macedonia, built of brick and stone over 700 years ago.'},
+{id:'vianden',c:'LUX',ll:[6.2014,49.9351],m:'vianden',ja:'ヴィアンデン{城|じょう}',en:'Vianden Castle',k:'ゔぃあんでんじょう るくせんぶるく',
+  t:'ルクセンブルクの 森の {丘|おか}に 立つ 大きな お{城|しろ}。 一度 くずれたが、 きれいに 直された。 下には 川と 小さな 町が ある。',te:'A large castle on a wooded hill in Luxembourg. It fell into ruin but was beautifully restored. A river and a small town lie below.'},
+{id:'bratislava',c:'SVK',ll:[17.1,48.1423],m:'bratislava',ja:'ブラチスラヴァ{城|じょう}',en:'Bratislava Castle',k:'ぶらちすらゔぁじょう すろばきあ',
+  t:'スロバキアの {首都|しゅと}の {丘|おか}に 立つ 白い お{城|しろ}。 4つの {塔|とう}が あって、 「さかさまの テーブル」と よばれる。 ドナウ川が 流れる。',te:'A white castle on a hill in Slovakia\'s capital. With a tower at each corner, it is nicknamed the "upside-down table". The Danube flows below.'},
+{id:'krak',c:'SYR',ll:[36.2944,34.7569],m:'krak',ja:'クラック・デ・シュヴァリエ',en:'Krak des Chevaliers',k:'くらっくでしゅばりえ しりあ しろ',
+  t:'シリアの {丘|おか}の 上の 大きな 石の とりで。 900年ほど前の {騎士|きし}の {城|しろ}で、 かべが 二重に なって いる。 {世界遺産|せかいいさん}。',te:'A huge stone fortress on a hill in Syria. It is a knights\' castle from about 900 years ago, with two rings of walls. A World Heritage Site.'},
+{id:'leptis',c:'LBY',ll:[14.2903,32.6383],m:'leptis',ja:'レプティス・マグナ',en:'Leptis Magna',k:'れぷてぃすまぐな りびあ',
+  t:'リビアの 海ぞいに のこる 古代ローマの 町。 アーチの 門や {劇場|げきじょう}、 たくさんの 柱が 今も 立って いる。',te:'An ancient Roman city on the coast of Libya. Its arch, theatre and many columns are still standing.'},
+{id:'yamoussoukro',c:'CIV',ll:[-5.2967,6.8114],m:'yamoussoukro',ja:'ヤムスクロの 平和の {聖母|せいぼ} {大聖堂|だいせいどう}',en:'Basilica of Our Lady of Peace',k:'やむすくろ だいせいどう こーとじぼわーる',
+  t:'コートジボワールの {首都|しゅと}に ある 教会。 サン・ピエトロ{大聖堂|だいせいどう}を まねて つくられ、 とても 大きい。 ステンドグラスが きれい。',te:'A church in the capital of Côte d\'Ivoire, modelled on St. Peter\'s Basilica and enormous in size. Its stained glass is beautiful.'}
 ];
 
 TOY.animals = [

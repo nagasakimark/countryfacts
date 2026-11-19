@@ -260,7 +260,7 @@ Landmark,South Korea,Trade Tower,no,,
 Landmark,Sri Lanka,Sigiriya (Lion Rock),yes,sigiriya,Sigiriya (Lion Rock)
 Landmark,Sri Lanka,Temple of the Sacred Tooth Relic,no,,
 Landmark,Syria,Citadel of Aleppo,no,,
-Landmark,Syria,Krak des Chevaliers,no,,
+Landmark,Syria,Krak des Chevaliers,yes,krak,Krak des Chevaliers
 Landmark,Syria,Umayyad Mosque,no,,
 Landmark,Taiwan,Chiang Kai-shek Memorial Hall,no,,
 Landmark,Taiwan,Lungshan Temple of Manka,no,,
@@ -307,7 +307,7 @@ Landmark,Czechia,Charles Bridge & Prague Castle,yes,prague,Charles Bridge & Prag
 Landmark,Czechia,Prague Astronomical Clock,no,,
 Landmark,Denmark,Nyhavn,yes,nyhavn,Nyhavn
 Landmark,Estonia,Tallinn Old Town,yes,tallinn,Tallinn Old Town
-Landmark,Finland,Helsinki Cathedral,no,,
+Landmark,Finland,Helsinki Cathedral,yes,helsinki,Helsinki Cathedral
 Landmark,Finland,Temppeliaukio Church (Rock Church),no,,
 Landmark,Finland,Uspenski Cathedral,no,,
 Landmark,France,Arc de Triomphe,yes,arc,Arc de Triomphe
@@ -352,12 +352,12 @@ Landmark,Italy,Trulli of Alberobello,yes,alberobello,Trulli of Alberobello
 Landmark,Kosovo,Newborn monument,no,,
 Landmark,Latvia,Freedom Monument,no,,
 Landmark,Lithuania,Gediminas' Tower,no,,
-Landmark,Luxembourg,Vianden Castle,no,,
+Landmark,Luxembourg,Vianden Castle,yes,vianden,Vianden Castle
 Landmark,Moldova,"Triumphal Arch, Chișinău",no,,
 Landmark,Monaco,Circuit de Monaco,no,,
-Landmark,Montenegro,Our Lady of the Rocks,no,,
+Landmark,Montenegro,Our Lady of the Rocks,yes,ladyrocks,Our Lady of the Rocks
 Landmark,Netherlands,Zaanse Schans windmills,yes,kinderdijk,Kinderdijk Windmills
-Landmark,North Macedonia,Church of St. John at Kaneo,no,,
+Landmark,North Macedonia,Church of St. John at Kaneo,yes,kaneo,Church of St. John at Kaneo
 Landmark,Norway,Holmenkollen Ski Jump,no,,
 Landmark,Norway,Oslo Opera House,no,,
 Landmark,Norway,Preikestolen (Pulpit Rock),yes,preikestolen,Preikestolen (Pulpit Rock)
@@ -380,7 +380,7 @@ Landmark,Russia,St. Basil's Cathedral,yes,stbasil,St. Basil's Cathedral
 Landmark,Russia,The Motherland Calls,no,,
 Landmark,Russia,Winter Palace (Hermitage),no,,
 Landmark,Serbia,Church of Saint Sava,no,,
-Landmark,Slovakia,Bratislava Castle,no,,
+Landmark,Slovakia,Bratislava Castle,yes,bratislava,Bratislava Castle
 Landmark,Slovenia,Lake Bled,yes,bled,Lake Bled
 Landmark,Spain,Alhambra,yes,alhambra,Alhambra
 Landmark,Spain,Aqueduct of Segovia,no,,
@@ -442,7 +442,7 @@ Landmark,Congo - Brazzaville,Nabemba Tower,no,,
 Landmark,Congo - Kinshasa,Limete Tower (Tour de l'Échangeur),no,,
 Landmark,Congo - Kinshasa,Mount Nyiragongo,yes,nyiragongo,Mount Nyiragongo
 Landmark,Congo - Kinshasa,Palais du Peuple,no,,
-Landmark,Côte d'Ivoire,Basilica of Our Lady of Peace of Yamoussoukro,no,,
+Landmark,Côte d'Ivoire,Basilica of Our Lady of Peace of Yamoussoukro,yes,yamoussoukro,Basilica of Our Lady of Peace of Yamoussoukro
 Landmark,Djibouti,Lake Abbe limestone chimneys,no,,
 Landmark,Egypt,Abu Simbel Temples,yes,abusimbel,Abu Simbel
 Landmark,Egypt,Al-Azhar Mosque,no,,
@@ -473,7 +473,7 @@ Landmark,Kenya,Maasai Mara,yes,maasai,Maasai Mara
 Landmark,Kenya,Mount Kenya,no,,
 Landmark,Lesotho,Basotho Hat building,yes,basotho,Basotho Hat Building
 Landmark,Liberia,Ducor Hotel,no,,
-Landmark,Libya,Leptis Magna,no,,
+Landmark,Libya,Leptis Magna,yes,leptis,Leptis Magna
 Landmark,Madagascar,Avenue of the Baobabs,yes,baobab,Avenue of the Baobabs
 Landmark,Malawi,"St Peter's Cathedral, Likoma",no,,
 Landmark,Mali,Great Mosque of Djenné,yes,djenne,Great Mosque of Djenné
