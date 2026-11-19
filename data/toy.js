@@ -151,7 +151,23 @@ TOY.landmarks = [
  {id:'hallgrim',c:'ISL',ll:[-21.93,64.14],m:'hallgrim',ja:'ハットルグリムス教会',en:'Hallgrímskirkja',k:'はっとるぐりむすきょうかい あいすらんど れいきゃびく',
   t:'アイスランドの レイキャビクに ある 教会。 よう岩が 冷えて できる 柱の 形を もとに デザインされた。',te:'A church in Reykjavík, Iceland, designed to look like the columns that form when lava cools.'},
  {id:'preikestolen',c:'NOR',ll:[6.19,58.99],m:'preikestolen',ja:'プレーケストーレン',en:'Preikestolen (Pulpit Rock)',k:'ぷれーけすとーれん のるうぇー',
-  t:'ノルウェーの フィヨルドの 上に つき出た、 たいらな 岩。 海からの 高さは 約600m。',te:'A flat-topped cliff jutting out 600 m above a Norwegian fjord.'}
+  t:'ノルウェーの フィヨルドの 上に つき出た、 たいらな 岩。 海からの 高さは 約600m。',te:'A flat-topped cliff jutting out 600 m above a Norwegian fjord.'},
+{id:'lalibela',c:'ETH',ll:[39.04,12.03],m:'lalibela',ja:'ラリベラの {聖|せい}ギオルギス教会',en:'Church of St George, Lalibela',k:'らりべら えちおぴあ',
+  t:'エチオピアで、 大きな 1つの 岩を 上から ほって つくった 教会。 上から 見ると 十字の 形。 約800年 前に できた。',te:'A church in Ethiopia carved downward out of a single block of rock. From above it is shaped like a cross. It is about 800 years old.'},
+ {id:'chefchaouen',c:'MAR',ll:[-5.27,35.17],m:'chefchaouen',ja:'シャウエン',en:'Chefchaouen',k:'しゃうえん もろっこ あおいまち',
+  t:'モロッコの 山の 中の 町。 家の かべや 道が 青く ぬられていて「青い 町」と よばれる。',te:'A mountain town in Morocco where walls and streets are painted blue — the "Blue Pearl".'},
+ {id:'prague',c:'CZE',ll:[14.41,50.09],m:'prague',ja:'カレル橋と プラハ城',en:'Charles Bridge & Prague Castle',k:'かれるばし ぷらはじょう ちぇこ',
+  t:'チェコの プラハの 川に かかる 石の 橋。 橋の 上には 30の 像が ならぶ。 おかの 上には 大きな プラハ城。',te:'A stone bridge in Prague lined with 30 statues, with Prague Castle on the hill above.'},
+ {id:'belem',c:'PRT',ll:[-9.22,38.69],m:'belem',ja:'ベレンの {塔|とう}',en:'Belém Tower',k:'べれんのとう ぽるとがる りすぼん',
+  t:'ポルトガルの リスボンの 川の 入り口に たつ {塔|とう}。 約500年 前、 船で 世界へ 出ていった 時代に つくられた。',te:'A tower at the river mouth in Lisbon, built about 500 years ago when Portuguese ships sailed around the world.'},
+ {id:'moher',c:'IRL',ll:[-9.43,52.97],m:'moher',ja:'モハーの {断崖|だんがい}',en:'Cliffs of Moher',k:'もはーのだんがい あいるらんど',
+  t:'アイルランドの 海ぞいに 約14km つづく がけ。 高い ところは 海から 200m いじょう。',te:'Cliffs running about 14 km along the Irish coast, over 200 m high in places.'},
+ {id:'hallstatt',c:'AUT',ll:[13.65,47.56],m:'hallstatt',ja:'ハルシュタット',en:'Hallstatt',k:'はるしゅたっと おーすとりあ',
+  t:'オーストリアの 湖と 山に かこまれた 小さな 村。 7000年 くらい 前から 塩が ほられてきた。',te:'A small Austrian village between a lake and mountains. Salt has been mined here for about 7,000 years.'},
+ {id:'alhambra',c:'ESP',ll:[-3.59,37.18],m:'alhambra',ja:'アルハンブラ{宮殿|きゅうでん}',en:'Alhambra',k:'あるはんぶらきゅうでん すぺいん ぐらなだ',
+  t:'スペインの グラナダに ある、 イスラムの 王が くらした お{城|しろ}と {宮殿|きゅうでん}。 こまかい もようの かべが 美しい。',te:'A palace-fortress in Granada, Spain, built by Muslim rulers and famous for its beautiful patterned walls.'},
+ {id:'cappadocia',c:'TUR',ll:[34.83,38.64],m:'cappadocia',ja:'カッパドキア',en:'Cappadocia',k:'かっぱどきあ とるこ ききゅう',
+  t:'トルコの、 キノコのような 形の 岩が ならぶ ところ。 朝には たくさんの 気球が 空に うかぶ。',te:'A place in Turkey full of mushroom-shaped rocks. In the morning the sky fills with hot-air balloons.'}
 ];
 
 TOY.animals = [
