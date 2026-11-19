@@ -647,7 +647,23 @@ TOY.landmarks = [
 {id:'changdeok',c:'KOR',ll:[126.9910,37.5794],m:'changdeok',ja:'{昌徳宮|チャンドックン}',en:'Changdeokgung Palace',k:'ちゃんどっくん かんこく そうる きゅうでん',
   t:'{韓国|かんこく}の ソウルに ある 王さまの 宮{殿|でん}。 自然の 山の 形に あわせて つくられた。 「ひみつの 庭」の {紅葉|こうよう}が きれい。',te:'A royal palace in Seoul, South Korea, built to fit the natural shape of the hills. Its "Secret Garden" is beautiful in autumn.'},
 {id:'dolhareubang',c:'KOR',ll:[126.53,33.5],m:'dolhareubang',ja:'トルハルバン',en:'Dol Hareubang',k:'とるはるばん ちぇじゅとう かんこく',
-  t:'{韓国|かんこく}の {済州島|チェジュとう}の 「石の おじいさん」。 大きな 目と ぼうしの 黒い 石の 像で、 島を 守る と 言われる。',te:'The "stone grandfathers" of Jeju Island, South Korea. These black stone statues with big eyes and hats are said to protect the island.'}
+  t:'{韓国|かんこく}の {済州島|チェジュとう}の 「石の おじいさん」。 大きな 目と ぼうしの 黒い 石の 像で、 島を 守る と 言われる。',te:'The "stone grandfathers" of Jeju Island, South Korea. These black stone statues with big eyes and hats are said to protect the island.'},
+{id:'schonbrunn',c:'AUT',ll:[16.3122,48.1845],m:'schonbrunn',ja:'シェーンブルン{宮殿|きゅうでん}',en:'Schönbrunn Palace',k:'しぇーんぶるん きゅうでん おーすとりあ うぃーん',
+  t:'オーストリアの ウィーンに ある、 王さまの 夏の {宮殿|きゅうでん}。 部屋は 1400いじょう。 6さいの モーツァルトが ここで ピアノを ひいた。',te:'The summer palace of Austria\'s emperors in Vienna, with over 1,400 rooms. Six-year-old Mozart played the piano here.'},
+{id:'pragueclock',c:'CZE',ll:[14.4207,50.0870],m:'pragueclock',ja:'プラハの 天文時計',en:'Prague Astronomical Clock',k:'ぷらはの てんもんどけい ちぇこ',
+  t:'チェコの プラハに ある、 600年いじょう 動いている 時計。 1時間ごとに、 まどから キリストの 12人の 弟子の 人形が 出てくる。',te:'A clock in Prague, Czechia, that has been running for over 600 years. Every hour, figures of the 12 apostles appear in its windows.'},
+{id:'bayon',c:'KHM',ll:[103.8590,13.4412],m:'bayon',ja:'バイヨン',en:'Bayon',k:'ばいよん かんぼじあ あんこーるとむ',
+  t:'カンボジアの アンコール・トムの まん中に ある 石の お寺。 50ほどの {塔|とう}に、 ほほえむ 大きな 顔が 200いじょう ほられて いる。',te:'A stone temple at the heart of Angkor Thom, Cambodia. More than 200 huge smiling faces are carved on its towers.'},
+{id:'tiwanaku',c:'BOL',ll:[-68.6735,-16.5547],m:'tiwanaku',ja:'ティワナクの 太陽の門',en:'Gate of the Sun (Tiwanaku)',k:'てぃわなく たいようのもん ぼりびあ',
+  t:'ボリビアの 高さ 3800mの ところに ある いせき。 1つの 大きな 石を ほって つくった 門で、 上には 神さまと 羽の ある 人の もようが ならぶ。',te:'Ruins about 3,800 m up in the Andes of Bolivia. The gate is carved from a single block of stone, with a god and rows of winged figures on top.'},
+{id:'laslajas',c:'COL',ll:[-77.5853,0.8053],m:'laslajas',ja:'ラス・ラハス教会',en:'Las Lajas Sanctuary',k:'らすらはす きょうかい ころんびあ',
+  t:'コロンビアの 深い 谷に かかる 橋の 上に たてられた 教会。 お{城|しろ}のような 形で、 谷の 底から 100mの 高さが ある。',te:'A church built on a bridge across a deep gorge in Colombia. It looks like a castle and rises 100 m from the bottom of the canyon.'},
+{id:'ishtar',c:'IRQ',ll:[44.4209,32.5434],m:'ishtar',ja:'イシュタル門',en:'Ishtar Gate (Babylon)',k:'いしゅたるもん ばびろん いらく',
+  t:'イラクの 古代都市 バビロンの 門。 青い タイルに、 金色の りゅうと 牛が ならぶ。 本物は ドイツの はくぶつかんに うつされ、 ここには そっくりな 門が 立つ。',te:'The gate of the ancient city of Babylon in Iraq, covered in blue tiles with golden dragons and bulls. The original was moved to a museum in Germany; a copy stands here.'},
+{id:'toothtemple',c:'LKA',ll:[80.6413,7.2936],m:'toothtemple',ja:'{仏歯寺|ぶっしじ}',en:'Temple of the Tooth',k:'ぶっしじ すりらんか きゃんでぃ',
+  t:'スリランカの キャンディに ある お寺。 お{釈迦|しゃか}さまの 歯が 大切に まつられて いる。 毎年 夏には、 かざった ゾウが 町を 歩く お祭りが ある。',te:'A temple in Kandy, Sri Lanka, that keeps a tooth of the Buddha. Every summer, decorated elephants parade through the town in a great festival.'},
+{id:'larabanga',c:'GHA',ll:[-1.8586,9.2201],m:'larabanga',ja:'ララバンガ・モスク',en:'Larabanga Mosque',k:'ららばんが もすく がーな',
+  t:'ガーナで いちばん 古い モスク。 600年ほど 前に どろで つくられた と 言われる。 かべから 出た 木の ぼうは、 かべを ぬりなおす ときの 足場。',te:'The oldest mosque in Ghana, said to have been built of mud about 600 years ago. The wooden sticks poking out are footholds for re-plastering the walls.'}
 ];
 
 TOY.animals = [
@@ -689,7 +705,11 @@ TOY.animals = [
  {id:'macaw',e:'🦜',ll:[-55.5,-9.0],ja:'コンゴウインコ',en:'Macaw',t:'赤・青・黄色の あざやかな はね。 かたい 木の実も くちばしで わる。',te:'Bright red, blue and yellow feathers. Its beak can crack hard nuts.'},
  {id:'llama',e:'🦙',ll:[-70.0,-15.8],ja:'リャマ',en:'Llama',t:'アンデスの 高い 山で、 にもつを はこぶのを 手つだう。',te:'In the high Andes mountains it helps carry heavy loads.'},
  {id:'flamingo',e:'🦩',ll:[-67.8,-22.3],ja:'フラミンゴ',en:'Flamingo',t:'ピンク色は、 食べている 小さな 生き物の 色から。',te:'It turns pink from the tiny creatures it eats.'},
- {id:'tortoise',e:'🐢',ll:[-90.4,-0.7],ja:'ガラパゴスゾウガメ',en:'Galápagos tortoise',t:'100年 いじょう 生きるものも いる。',te:'Some live for more than 100 years.'}
+ {id:'tortoise',e:'🐢',ll:[-90.4,-0.7],ja:'ガラパゴスゾウガメ',en:'Galápagos tortoise',t:'100年 いじょう 生きるものも いる。',te:'Some live for more than 100 years.'},
+ {id:'redpanda',e:'🦊',ll:[87.8,27.4],ja:'レッサーパンダ',en:'Red panda',t:'ネパールの 山の 森に すむ。 太い しっぽを 体に まいて、 さむさから 身を 守る。',te:'It lives in mountain forests in Nepal. It wraps its thick tail around itself to keep warm.'},
+ {id:'lemur',e:'🐒',ll:[45.2,-23.5],ja:'ワオキツネザル',en:'Ring-tailed lemur',t:'マダガスカルだけに すむ。 朝は 太陽の 方を むいて、 手を 広げて ひなたぼっこ する。',te:'It lives only in Madagascar. In the morning it sits facing the sun with its arms spread to warm up.'},
+ {id:'kiwi',e:'🐦',ll:[175.6,-38.6],ja:'キーウィ',en:'Kiwi',t:'ニュージーランドの 飛べない 鳥。 くちばしの 先に 鼻の あなが あり、 においで 虫を さがす。 たまごは とても 大きい。',te:'A bird from New Zealand that cannot fly. Its nostrils are at the tip of its beak, and it finds worms by smell. Its eggs are huge.'},
+ {id:'okapi',e:'🦓',ll:[28.6,1.6],ja:'オカピ',en:'Okapi',t:'コンゴ民主共和国の 森に すむ、 キリンの なかま。 足は シマウマのような しまもよう。 長い {舌|した}で 自分の 耳まで なめられる。',te:'A relative of the giraffe from the forests of DR Congo. Its legs are striped like a zebra, and its long tongue can lick its own ears.'}
 ];
 
 /* Vehicles travel there and back forever. p = route points [lon,lat] (great-circle between points).

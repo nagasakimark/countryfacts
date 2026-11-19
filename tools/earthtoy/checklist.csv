@@ -6,7 +6,7 @@ Landmark,Bangladesh,Lalbagh Fort (Tomb of Pari Bibi),no,,
 Landmark,Bhutan,Paro Taktsang (Tiger's Nest),yes,tigersnest,Tiger's Nest (Paro Taktsang)
 Landmark,Brunei,Omar Ali Saifuddien Mosque,yes,omarali,Omar Ali Saifuddien Mosque
 Landmark,Cambodia,Angkor Wat,yes,angkor,Angkor Wat
-Landmark,Cambodia,Bayon,no,,
+Landmark,Cambodia,Bayon,yes,bayon,Bayon
 Landmark,China,Beijing National Stadium (Bird's Nest),yes,birdsnest,Beijing National Stadium (Bird's Nest)
 Landmark,China,Bell Tower of Xi'an,no,,
 Landmark,China,Canton Tower,no,,
@@ -142,7 +142,7 @@ Landmark,Iran,Tehran International Tower,no,,
 Landmark,Iraq,Al-Shaheed Monument,no,,
 Landmark,Iraq,Erbil Citadel,yes,erbil,Erbil Citadel
 Landmark,Iraq,Great Ziggurat of Ur,yes,ur,Ziggurat of Ur
-Landmark,Iraq,"Ishtar Gate, Babylon",no,,
+Landmark,Iraq,"Ishtar Gate, Babylon",yes,ishtar,Ishtar Gate (Babylon)
 Landmark,Iraq,"Malwiya Minaret, Samarra",no,,
 Landmark,Israel,Masada,yes,masada,Masada
 Landmark,Japan,Abeno Harukas,no,,
@@ -258,7 +258,7 @@ Landmark,South Korea,Seongsan Ilchulbong,yes,seongsan,Seongsan Ilchulbong
 Landmark,South Korea,Sungnyemun (Namdaemun) Gate,no,,
 Landmark,South Korea,Trade Tower,no,,
 Landmark,Sri Lanka,Sigiriya (Lion Rock),yes,sigiriya,Sigiriya (Lion Rock)
-Landmark,Sri Lanka,Temple of the Sacred Tooth Relic,no,,
+Landmark,Sri Lanka,Temple of the Sacred Tooth Relic,yes,toothtemple,Temple of the Tooth
 Landmark,Syria,Citadel of Aleppo,no,,
 Landmark,Syria,Krak des Chevaliers,yes,krak,Krak des Chevaliers
 Landmark,Syria,Umayyad Mosque,yes,umayyad,Umayyad Mosque
@@ -295,7 +295,7 @@ Landmark,Vietnam,Notre-Dame Cathedral Basilica of Saigon,no,,
 Landmark,Yemen,Dar al-Hajar,yes,daralhajar,Dar al-Hajar
 Landmark,Albania,Clock Tower of Tirana,yes,clocktirana,Clock Tower of Tirana
 Landmark,Austria,Hallstatt,yes,hallstatt,Hallstatt
-Landmark,Austria,Schönbrunn Palace,no,,
+Landmark,Austria,Schönbrunn Palace,yes,schonbrunn,Schönbrunn Palace
 Landmark,Austria,St. Stephen's Cathedral,no,,
 Landmark,Belarus,National Library of Belarus,yes,belaruslib,National Library of Belarus
 Landmark,Belgium,Atomium,yes,atomium,Atomium
@@ -304,7 +304,7 @@ Landmark,Bulgaria,Rila Monastery,yes,rila,Rila Monastery
 Landmark,Croatia,Dubrovnik Old Town,yes,dubrovnik,Dubrovnik
 Landmark,Croatia,Plitvice Lakes,yes,plitvice,Plitvice Lakes
 Landmark,Czechia,Charles Bridge & Prague Castle,yes,prague,Charles Bridge & Prague Castle
-Landmark,Czechia,Prague Astronomical Clock,no,,
+Landmark,Czechia,Prague Astronomical Clock,yes,pragueclock,Prague Astronomical Clock
 Landmark,Denmark,Nyhavn,yes,nyhavn,Nyhavn
 Landmark,Estonia,Tallinn Old Town,yes,tallinn,Tallinn Old Town
 Landmark,Finland,Helsinki Cathedral,yes,helsinki,Helsinki Cathedral
@@ -465,7 +465,7 @@ Landmark,Ethiopia,Obelisk of Aksum,yes,aksum,Obelisk of Aksum
 Landmark,Gabon,"St. Michael's Church, Nkembo",yes,nkembo,"St. Michael's Church, Nkembo"
 Landmark,Gambia,Arch 22,yes,arch22,Arch 22
 Landmark,Ghana,Cape Coast Castle,yes,capecoast,Cape Coast Castle
-Landmark,Ghana,Larabanga Mosque,no,,
+Landmark,Ghana,Larabanga Mosque,yes,larabanga,Larabanga Mosque
 Landmark,Guinea,Grand Mosque of Conakry,yes,conakry,Grand Mosque of Conakry
 Landmark,Guinea-Bissau,Pidjiguiti Memorial,yes,pidjiguiti,Pidjiguiti Memorial
 Landmark,Kenya,Fort Jesus,yes,fortjesus,Fort Jesus
@@ -715,7 +715,7 @@ Landmark,Bolivia,"Basilica of San Francisco, La Paz",no,,
 Landmark,Bolivia,Cristo de la Concordia,no,,
 Landmark,Bolivia,Potosí (Cerro Rico),no,,
 Landmark,Bolivia,Salar de Uyuni,yes,uyuni,Salar de Uyuni
-Landmark,Bolivia,Tiwanaku (Gate of the Sun),no,,
+Landmark,Bolivia,Tiwanaku (Gate of the Sun),yes,tiwanaku,Gate of the Sun (Tiwanaku)
 Landmark,Brazil,Altino Arantes Building (Farol Santander),no,,
 Landmark,Brazil,Amazon Rainforest,no,,
 Landmark,Brazil,Cathedral of Brasília,yes,brasilia,Cathedral of Brasília
@@ -748,7 +748,7 @@ Landmark,Colombia,Castillo San Felipe de Barajas,no,,
 Landmark,Colombia,Ciudad Perdida,no,,
 Landmark,Colombia,Colpatria Tower,no,,
 Landmark,Colombia,El Peñón de Guatapé,no,,
-Landmark,Colombia,Las Lajas Sanctuary,no,,
+Landmark,Colombia,Las Lajas Sanctuary,yes,laslajas,Las Lajas Sanctuary
 Landmark,Colombia,Walled City of Cartagena,yes,cartagena,Walled City of Cartagena
 Landmark,Ecuador,Cotopaxi,no,,
 Landmark,Ecuador,Galápagos Islands,yes,galapagos,Galápagos Islands
@@ -987,7 +987,7 @@ Animal,Mammal,Northern fur seal,no,,
 Animal,Mammal,Norway lemming,no,,
 Animal,Mammal,Nubian ibex,no,,
 Animal,Mammal,Numbat,no,,
-Animal,Mammal,Okapi,no,,
+Animal,Mammal,Okapi,yes,okapi,Okapi
 Animal,Mammal,Orca,no,,
 Animal,Mammal,Pallas's cat,no,,
 Animal,Mammal,Patagonian mara,no,,
@@ -1004,10 +1004,10 @@ Animal,Mammal,Raccoon,no,,
 Animal,Mammal,Raccoon dog,no,,
 Animal,Mammal,Red fox,no,,
 Animal,Mammal,Red kangaroo,yes,kangaroo,Kangaroo
-Animal,Mammal,Red panda,no,,
+Animal,Mammal,Red panda,yes,redpanda,Red panda
 Animal,Mammal,Reindeer,no,,
 Animal,Mammal,Ribbon seal,no,,
-Animal,Mammal,Ring-tailed lemur,no,,
+Animal,Mammal,Ring-tailed lemur,yes,lemur,Ring-tailed lemur
 Animal,Mammal,Ringed seal,no,,
 Animal,Mammal,Rock hyrax,no,,
 Animal,Mammal,Sable,no,,
@@ -1101,7 +1101,7 @@ Animal,Bird,Magellanic penguin,no,,
 Animal,Bird,Magnificent frigatebird,no,,
 Animal,Bird,Mute swan,no,,
 Animal,Bird,Nene,no,,
-Animal,Bird,North Island brown kiwi,no,,
+Animal,Bird,North Island brown kiwi,yes,kiwi,Kiwi
 Animal,Bird,Philippine eagle,no,,
 Animal,Bird,Raggiana bird-of-paradise,no,,
 Animal,Bird,Rainbow lorikeet,no,,

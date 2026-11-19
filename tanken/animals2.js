@@ -170,6 +170,7 @@
     g.userData = { P: P, hc: hc, hr: hr, r: r };
     return g;
   }
+  A.bird = bird;
   M.custom.a_penguin = function () {
     var g = new T.Group(); var ice = new T.Mesh(new T.CylinderGeometry(0.34, 0.36, 0.03, 8), solid('#eef6fb', { flatShading: true })); ice.position.y = 0.015; g.add(ice);
     function pen(x, z, s, turn) {
