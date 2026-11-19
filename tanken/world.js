@@ -68,7 +68,7 @@ window.makeWorld = function (env) {
   function baseG(lon, lat) { return isLand(lon, lat) ? hFast(lon, lat) : 0; }
   W.roadH = function (lon, lat) { // riding: the asphalt's height (the highest ground across the road's width, as the ribbon is drawn)
     if (!RIDE.on) return baseG(lon, lat); var ex = 0.0014 / D2R, kx = Math.max(0.2, Math.cos(lat * D2R));
-    return Math.max(rideH(lon, lat), rideH(lon - ex / kx, lat), rideH(lon + ex / kx, lat), rideH(lon, lat - ex), rideH(lon, lat + ex)); };
+    return rideH(lon, lat) + 0 * ex * kx; }; // (the bed is level across its width and smooth along it, so the middle is enough — sampling the sides picked up the next bend and made steps)
   W.groundH = function (lon, lat) { return RIDE.on ? rideH(lon, lat) : baseG(lon, lat); };
 
   /* ---------- biomes ---------- */
@@ -269,18 +269,24 @@ window.makeWorld = function (env) {
   function ensure() {
     if (!REL && W._relImg) { REL = grab(W._relImg, 2048, 1024); ANCH = null; RIDE.ver++; }
     if (ANCH) return; ANCH = {};
+    function segAdd(p, q, h0, h1, r0, r1) { var x0 = Math.floor(Math.min(p[0], q[0]) - r1 - 0.01), x1 = Math.floor(Math.max(p[0], q[0]) + r1 / Math.max(0.2, Math.cos(p[1] * D2R)) + 0.01), y0 = Math.floor(Math.min(p[1], q[1]) - r1), y1 = Math.floor(Math.max(p[1], q[1]) + r1), e = [p[0], p[1], h0, r0, r1, 0, q[0], q[1], h1];
+      for (var cx = x0; cx <= x1; cx++) for (var cy = y0; cy <= y1; cy++) (ANCH[cx + ',' + cy] || (ANCH[cx + ',' + cy] = [])).push(e); } // (a bed segment: height runs smoothly from one end to the other)
     function add(lon, lat, h, r0, r1, pad) { var k = Math.floor(lon) + ',' + Math.floor(lat); (ANCH[k] || (ANCH[k] = [])).push([lon, lat, h, r0, r1, pad || 0]); }
     env.routes.forEach(function (r) { // keep sea lanes in water all the way into port (only at the shore: a lane drawn straight across a headland cut a dotted trench over the hills)
       if (r.type !== 'ship') return;
-      for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.05)); for (var k = 0; k <= n; k++) { var x = a[0] + (b[0] - a[0]) * k / n, y = a[1] + (b[1] - a[1]) * k / n; var lf = landF(x, y); if (lf > 0.05 && lf < 0.55) add(x, y, -0.0012, 0.05, 0.16); } }
+      var inl = 0; r.pts.forEach(function (p) { if (landF(p[0], p[1]) > 0.55) inl++; }); var river = inl > r.pts.length * 0.4; // (a river cruise: the channel is cut all the way)
+      for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.05)); for (var k = 0; k <= n; k++) { var x = a[0] + (b[0] - a[0]) * k / n, y = a[1] + (b[1] - a[1]) * k / n; var lf = landF(x, y); if (lf > 0.05 && (lf < 0.55 || river)) add(x, y, -0.0012, 0.05, 0.16, 2); } }
     });
-    env.routes.forEach(function (r) { // level beds for railways and roads
+    env.routes.forEach(function (r) { // railways and roads: one smooth height profile along the whole line — embankments and cuttings, never steps
       if (r.type === 'plane' || r.type === 'ship') return;
       var pts = [];
-      for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.08)); for (var k = 0; k < n; k++) pts.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]); }
-      pts.push(r.pts[r.pts.length - 1]);
-      var hs = pts.map(function (p) { return rawH(p[0], p[1]); });
-      pts.forEach(function (p, i) { var w = []; for (var k = Math.max(0, i - 6); k <= Math.min(pts.length - 1, i + 6); k++) w.push(hs[k]); w.sort(function (x, y) { return x - y; }); var lo = w[Math.floor(w.length * 0.3)], mid = w[Math.floor(w.length / 2)]; add(p[0], p[1], Math.max(0.0006, lo * 0.6 + mid * 0.4), 0.17, 0.45); }); // (a little below the local average: in a narrow valley the road follows the valley floor, not a raised bank)
+      for (var i = 0; i < r.pts.length - 1; i++) { var a = r.pts[i], b = r.pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 0.04)); for (var k = 0; k < n; k++) pts.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]); }
+      pts.push(r.pts[r.pts.length - 1]); var N = pts.length;
+      var hs = pts.map(function (p) { return Math.max(0.0006, rawH(p[0], p[1])); }), med = hs.map(function (h, i) { var w = []; for (var k = Math.max(0, i - 6); k <= Math.min(N - 1, i + 6); k++) w.push(hs[k]); w.sort(function (x, y) { return x - y; }); return w[Math.floor(w.length * 0.45)]; });
+      for (var pass = 0; pass < 4; pass++) { var sm = med.slice(); for (var i2 = 0; i2 < N; i2++) { var t = 0, c = 0; for (var k2 = Math.max(0, i2 - 8); k2 <= Math.min(N - 1, i2 + 8); k2++) { t += med[k2]; c++; } sm[i2] = t / c; } med = sm; }
+      var G2 = 0.00055; for (var i3 = 1; i3 < N; i3++) med[i3] = Math.min(med[i3], med[i3 - 1] + G2); for (var i4 = N - 2; i4 >= 0; i4--) med[i4] = Math.min(med[i4], med[i4 + 1] + G2); // (no steep pitches between neighbouring points)
+      r.hprof = med; r.hpts = pts;
+      for (var s2 = 0; s2 < N - 1; s2++) segAdd(pts[s2], pts[s2 + 1], Math.max(0.0006, med[s2]), Math.max(0.0006, med[s2 + 1]), 0.13, 0.4);
     });
     W.pads.forEach(function (p) { // flat ground under landmarks
       var s = 0, c = 0; for (var a = -1; a <= 1; a++) for (var b = -1; b <= 1; b++) { var x = p[0] + a * 0.25 / Math.max(0.2, Math.cos(p[1] * D2R)), y = p[1] + b * 0.25; if (landF(x, y) > 0.5) { s += rawH(x, y); c++; } }
@@ -289,16 +295,21 @@ window.makeWorld = function (env) {
   }
   function rideH(lon, lat) {
     ensure();
-    var h = rawH(lon, lat), best = 0, bh = 0, kc = Math.cos(lat * D2R), fl = Math.floor(lon), ft = Math.floor(lat);
+    var h = rawH(lon, lat), best = 0, bh = 0, sb = 0, sbs = -1, sh = 0, cw = 0, kc = Math.cos(lat * D2R), fl = Math.floor(lon), ft = Math.floor(lat);
     for (var di = -1; di <= 1; di++) for (var dj = -1; dj <= 1; dj++) {
       var L = ANCH[(fl + di) + ',' + (ft + dj)]; if (!L) continue;
       for (var q = 0; q < L.length; q++) {
-        var a = L[q], dx = (a[0] - lon) * kc, dy = a[1] - lat; if (Math.abs(dx) > a[4] || Math.abs(dy) > a[4]) continue;
+        var a = L[q], ah = a[2], dx, dy;
+        if (a.length > 6) { var sx = (a[6] - a[0]) * kc, sy = a[7] - a[1], px = (lon - a[0]) * kc, py = lat - a[1], ss = sx * sx + sy * sy, t = ss > 0 ? Math.max(0, Math.min(1, (px * sx + py * sy) / ss)) : 0; dx = px - sx * t; dy = py - sy * t; ah = a[2] + (a[8] - a[2]) * t; }
+        else { dx = (a[0] - lon) * kc; dy = a[1] - lat; }
+        if (Math.abs(dx) > a[4] || Math.abs(dy) > a[4]) continue;
         var d = Math.sqrt(dx * dx + dy * dy); if (d >= a[4]) continue;
-        var w = d <= a[3] ? 1 : 1 - (d - a[3]) / (a[4] - a[3]); w = w * w * (3 - 2 * w); if (a[5]) w *= landF(lon, lat); if (w > best) { best = w; bh = a[2]; if (w === 1) break; }
+        var w = d <= a[3] ? 1 : 1 - (d - a[3]) / (a[4] - a[3]); w = w * w * (3 - 2 * w); if (a[5] === 2) { if (w > cw) cw = w; continue; } if (a[5]) w *= landF(lon, lat); if (a.length > 6) { var sc = w - d * 0.01; if (sc > sbs) { sbs = sc; sb = w; sh = ah; } } // (the nearest line wins where two run side by side) else if (w > best) { best = w; bh = ah; }
       }
     }
-    return best ? h + (bh - h) * best : h;
+    if (best) h += (bh - h) * best; // (pads and harbour channels first, then the road or rail bed on top: the line itself is never broken by a pad)
+    if (sb) h += (sh - h) * sb;
+    return cw ? h + (-0.0012 - h) * cw : h; // (shipping channels last: a road or a landmark beside a river never fills it in)
   }
   W.rideH = rideH;
   var TS = 4, TN = 32, RW = 7.5, tiles = {}, tileMat = new T.MeshLambertMaterial({ color: 0xffffff });
@@ -461,7 +472,7 @@ window.makeWorld = function (env) {
   var VEG = { fc: [farCon()], fb: [farBall()], con: [0, 1, 2, 3].map(function (v) { return conV(v); }), snow: [4, 5].map(function (v) { return conV(v, true); }), br: [0, 1, 2].map(broadV), rd: [0, 1].map(roundV), palm: [0, 1].map(palmV), ac: [0, 1].map(acaciaV), ca: [0, 1, 2, 3].map(cactusV), rk: [0, 1, 2, 3].map(rockV), sh: [0, 1].map(shrubV), ka: [0, 1, 2].map(karstV) };
   var V2 = {}; Object.keys(VEG).forEach(function (k) { VEG[k].forEach(function (g, i) { V2[k + i] = { geo: g, max: k === 'fc' || k === 'fb' ? 9000 : k === 'con' || k === 'br' || k === 'rd' ? 3200 : k === 'rk' ? 1400 : k === 'ka' ? 500 : 900 }; }); });
   var S = { con: kind(conifer, 5000), br: kind(broad, 5000), ac: kind(acacia, 1200), ca: kind(cactus, 1500), rk: kind(rock, 2000), ho: kind(house, 3500), ho2: kind(house2, 1500), hoF: kind(houseF, 1500), tw: kind(tower, 300), cl: kind(puff, 1400, cloudMat) };
-  Object.keys(V2).forEach(function (k) { S['v_' + k] = kind(V2[k].geo, V2[k].max); });
+  Object.keys(V2).forEach(function (k) { S['v_' + k] = kind(V2[k].geo, V2[k].max); }); Object.keys(S).forEach(function (k) { S[k].name = k; });
   var mtx = new T.Matrix4(), q = new T.Quaternion(), q2 = new T.Quaternion(), sc = new T.Vector3(), up = new T.Vector3(0, 1, 0), pv = new T.Vector3(), col2 = new T.Color();
   function put(m, lon, lat, size, yaw, colHex, lift, sx) {
     if (m.count >= m.instanceMatrix.count) return;
@@ -503,12 +514,12 @@ window.makeWorld = function (env) {
     // towns: little houses around every town over 25,000 people, towers in big cities
     var HC = ['#f4efe4', '#efe2c8', '#e8e8ec', '#f2d9b8'], R2 = R * R;
     for (var t = 0; t < TOWNS.length; t++) {
-      var tn = TOWNS[t], ddx = (((tn[0] - lon + 540) % 360) - 180) * kc, ddy = tn[1] - lat; if (ddx * ddx + ddy * ddy > R2) continue; if (opt.ride && tn[2] < 3) continue; // (riding: only real towns, not a house in every field)
-      var nh = Math.min(30, 3 + tn[2] * 3), rad = size * (0.5 + tn[2] * 0.22) / 0.0175;
-      var tb = bFast(tn[0], tn[1]), dry = tb === B.desert || tb === B.savanna, DC = ['#f6f1e6', '#efe0c2', '#f3e9d8', '#e6d3b0'];
+      var tn = TOWNS[t], ddx = (((tn[0] - lon + 540) % 360) - 180) * kc, ddy = tn[1] - lat; if (ddx * ddx + ddy * ddy > R2 * (opt.ride ? 0.3 : 1)) continue; if (opt.ride && tn[2] < 3) continue; // (riding: villages near the line only — far ones are hidden by the trees and haze anyway) // (riding: only real towns, not a house in every field)
+      var nh = Math.min(opt.ride ? 12 : 30, 3 + tn[2] * 3), rad = size * (0.5 + tn[2] * 0.22) / 0.0175;
+      if (opt.ride && S.ho.count + S.ho2.count + S.hoF.count > 1100) break; var tb = bFast(tn[0], tn[1]), dry = tb === B.desert || tb === B.savanna, DC = ['#f6f1e6', '#efe0c2', '#f3e9d8', '#e6d3b0'];
       for (var hI = 0; hI < nh; hI++) { var a = hash(t, hI) * 6.28, rr = Math.sqrt(hash(hI, t + 3)) * rad, hx = tn[0] + Math.cos(a) * rr / Math.max(0.2, Math.cos(tn[1] * D2R)), hy = tn[1] + Math.sin(a) * rr; if (!isLand(hx, hy) || blocked(hx, hy)) continue;
         var hv = hash(hI * 1.3, t * 0.7), hm = !opt.ride ? S.ho : dry ? (hv < 0.8 ? S.hoF : S.ho) : (hv < 0.62 ? S.ho : S.ho2); // (riding: cottages and two-storey houses; flat roofs where it is hot and dry)
-        put(hm, hx, hy, size * (opt.ride ? 0.38 : 0.5) * (0.85 + 0.3 * hash(hI, t * 1.9)), a, dry ? DC[hI % 4] : HC[hI % 4]); }
+        put(hm, hx, hy, size * (opt.ride ? 0.2 : 0.5) * (0.85 + 0.3 * hash(hI, t * 1.9)), a, dry ? DC[hI % 4] : HC[hI % 4]); }
       if (tn[2] >= 9 && !opt.ride) for (var k3 = 0; k3 < 7; k3++) { var a2 = hash(k3, t + 7) * 6.28, r2 = hash(t + 1, k3) * rad * 0.35, tx = tn[0] + Math.cos(a2) * r2 / Math.max(0.2, Math.cos(tn[1] * D2R)), ty = tn[1] + Math.sin(a2) * r2; if (blocked(tx, ty)) continue; put(S.tw, tx, ty, size * 0.45, a2, k3 % 3 ? '#a9c3db' : '#d9dfe6', 0, 1); S.tw.count && S.tw.setMatrixAt(S.tw.count - 1, mtx.compose(pv, q, sc.set(size * 0.75, size * (1.0 + hash(k3, t) * 1.4), size * 0.75))); }
     }
     // clouds: puffy groups, mostly away from the middle of the view so they sit at the horizon
@@ -520,7 +531,7 @@ window.makeWorld = function (env) {
       var cl = ((cx + 540) % 360) - 180, cs = opt.cloud ? opt.cloud * (0.9 + hash(ci, cj) * 0.9) : size * (1.4 + hash(ci, cj) * 1.4), np = 3 + Math.floor(hash(cj, ci) * 4);
       for (var pI = 0; pI < np; pI++) {
         var px = cl + (pI - np / 2) * cs * 50 * (0.7 + hash(pI, ci) * 0.5) / Math.max(0.3, Math.cos(cy * D2R)), py = cy + (hash(pI, cj) - 0.5) * cs * 30, pr = cs * (0.7 + hash(pI + 3, ci) * 0.8) * (opt.cloud ? 0.6 : 1);
-        if (S.cl.count >= 1400) break;
+        if (S.cl.count >= (opt.ride ? 650 : 1400)) break;
         var n2 = ll2v(px, py, 1); pv.copy(n2).multiplyScalar(1 + (opt.cloud ? 0.026 + cs * 1.2 : 0.006 + cs * 1.5) + hash(pI, cj + 1) * cs * 0.5); q.setFromUnitVectors(up, n2); sc.set(pr * 1.4, pr * (0.8 + hash(pI, 2) * 0.5), pr);
         mtx.compose(pv, q, sc); S.cl.setMatrixAt(S.cl.count, mtx); S.cl.setColorAt(S.cl.count, col2.set('#ffffff')); S.cl.count++;
       }

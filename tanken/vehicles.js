@@ -49,6 +49,28 @@
     return g;
   };
   /* ---------- container ship ---------- */
+  // Ship wakes: a foam trail painted once into a texture — churned white water straight behind the stern that spreads and fades,
+  // and the two thin V arms of the bow waves running out to the sides. Shared by every ship.
+  var WAKE = null;
+  function wakeTex() {
+    if (WAKE) return WAKE;
+    var W2 = 128, H2 = 256, c = document.createElement('canvas'); c.width = W2; c.height = H2; var x = c.getContext('2d'), im = x.createImageData(W2, H2), d = im.data;
+    function nz(a, b) { var v = Math.sin(a * 12.9898 + b * 78.233) * 43758.5453; return v - Math.floor(v); }
+    for (var j = 0; j < H2; j++) for (var i = 0; i < W2; i++) {
+      var u = (i + 0.5) / W2 * 2 - 1, v = (j + 0.5) / H2, fade = Math.pow(1 - v, 1.4);
+      var cw = 0.1 + 0.32 * v, core = Math.exp(-(u * u) / (cw * cw)) * fade * (0.55 + 0.45 * nz(Math.floor(i / 3), Math.floor(j / 3))) * Math.min(1, v * 14);
+      var arm = 0.13 + 0.78 * v, aw = 0.025 + 0.05 * v, da = Math.abs(u) - arm, arms = Math.exp(-(da * da) / (aw * aw)) * Math.pow(1 - v, 1.1) * (0.65 + 0.35 * Math.sin(v * 46 + Math.abs(u) * 9));
+      var a = Math.min(1, core * 1.15 + arms * 0.85), k = (j * W2 + i) * 4;
+      d[k] = 245; d[k + 1] = 251; d[k + 2] = 255; d[k + 3] = Math.round(a * 235);
+    }
+    x.putImageData(im, 0, 0); WAKE = new T.CanvasTexture(c); WAKE.colorSpace = T.SRGBColorSpace; return WAKE;
+  }
+  function wake(g, z, w, len) { // the trail starts at the stern (z) and runs back len
+    var geo = new T.PlaneGeometry(w, len); geo.rotateX(-Math.PI / 2); geo.translate(0, 0.006, z - len / 2);
+    var uv = geo.attributes.uv; for (var i = 0; i < uv.count; i++) uv.setY(i, 1 - uv.getY(i)); // (v = 0 at the stern)
+    var m = new T.Mesh(geo, new T.MeshBasicMaterial({ map: wakeTex(), transparent: true, depthWrite: false, fog: true })); m.renderOrder = 2; g.add(m);
+    return m;
+  }
   M.custom.v_ship = function () {
     var g = new T.Group();
     var hull = new T.Shape(); hull.moveTo(-0.07, -0.5); hull.lineTo(0.07, -0.5); hull.lineTo(0.08, 0.3); hull.quadraticCurveTo(0.07, 0.48, 0, 0.55); hull.quadraticCurveTo(-0.07, 0.48, -0.08, 0.3); hull.lineTo(-0.07, -0.5);
@@ -58,10 +80,7 @@
     for (var r = 0; r < 9; r++) for (var cI = 0; cI < 3; cI++) for (var hI = 0; hI < 2 + ((r * 3 + cI) % 3 === 0 ? 1 : 0); hI++) box(g, cs[(r * 5 + cI * 3 + hI * 7) % 8], 0.045, 0.03, 0.07, -0.05 + cI * 0.05, 0.106 + hI * 0.031, 0.32 - r * 0.075);
     box(g, '#f4f4f4', 0.15, 0.1, 0.07, 0, 0.14, -0.4); box(g, '#22324a', 0.152, 0.015, 0.072, 0, 0.17, -0.4); box(g, '#f4f4f4', 0.18, 0.012, 0.04, 0, 0.192, -0.39);
     cyl(g, '#e8473a', 0.02, 0.022, 0.08, 0, 0.21, -0.46);
-    // wake: two white fans behind and a bow wave
-    var wk = new T.Shape(); wk.moveTo(-0.07, 0); wk.lineTo(0.07, 0); wk.lineTo(0.22, -0.7); wk.lineTo(-0.22, -0.7); wk.lineTo(-0.07, 0);
-    var wg = new T.ShapeGeometry(wk); wg.rotateX(-Math.PI / 2); wg.translate(0, 0.004, -0.48);
-    var wm = new T.Mesh(wg, new T.MeshBasicMaterial({ color: 0xeaf6ff, transparent: true, opacity: 0.55, depthWrite: false })); wm.renderOrder = 2; g.add(wm);
+    wake(g, -0.5, 0.9, 1.5);
     return g;
   };
   M.custom.v_ferry = function () {
@@ -72,8 +91,7 @@
     box(g, '#f6f6f6', 0.12, 0.05, 0.3, 0, 0.19, -0.08); box(g, '#2a3a52', 0.122, 0.016, 0.26, 0, 0.2, -0.08);
     box(g, '#f6f6f6', 0.09, 0.04, 0.08, 0, 0.24, 0.02); box(g, '#2a3a52', 0.092, 0.014, 0.082, 0, 0.255, 0.02);
     cyl(g, '#1f5fbf', 0.025, 0.03, 0.07, 0, 0.27, -0.15); cyl(g, '#ff5a4d', 0.026, 0.026, 0.012, 0, 0.32, -0.15);
-    var wk = new T.Shape(); wk.moveTo(-0.08, 0); wk.lineTo(0.08, 0); wk.lineTo(0.2, -0.55); wk.lineTo(-0.2, -0.55); wk.lineTo(-0.08, 0);
-    var wg = new T.ShapeGeometry(wk); wg.rotateX(-Math.PI / 2); wg.translate(0, 0.004, -0.4); var wm = new T.Mesh(wg, new T.MeshBasicMaterial({ color: 0xeaf6ff, transparent: true, opacity: 0.55, depthWrite: false })); wm.renderOrder = 2; g.add(wm);
+    wake(g, -0.4, 0.8, 1.3);
     return g;
   };
   /* ---------- shinkansen (three cars) ---------- */
