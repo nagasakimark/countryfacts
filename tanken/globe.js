@@ -473,12 +473,41 @@
   function tw(ctx, key, text) { var w = widthCache[key]; if (w == null) { w = widthCache[key] = ctx.measureText(text).width; } return w; }
   function drawStar(ctx, x, y, r) { ctx.beginPath(); for (var i = 0; i < 10; i++) { var a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.45 : r; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } ctx.closePath(); ctx.fillStyle = '#ffc531'; ctx.fill(); ctx.lineWidth = 1.8; ctx.strokeStyle = '#3b2a5c'; ctx.stroke(); }
   function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  /* ---------- true-size shapes (size compare): country outlines moved around the globe without changing size ---------- */
+  G.shapes = []; // {id, f: main shape, from: [lon,lat], to: [lon,lat], col, label}
+  function shapeGeo(s) { if (!s.m || s.mk !== s.to[0] + ',' + s.to[1]) { s.m = App.moveShape(s.f, s.from, s.to); s.mk = s.to[0] + ',' + s.to[1]; } return s.m; }
+  G.shapeAt = function (ll) { for (var i = G.shapes.length - 1; i >= 0; i--) if (d3.geoContains(shapeGeo(G.shapes[i]), ll)) return i; return -1; };
+  G.shapeSig = function () { return G.shapes.map(function (s) { return s.id + s.to[0].toFixed(2) + s.to[1].toFixed(2); }).join(); };
+  function drawShapes(ctx, scr) {
+    if (!G.shapes.length) return;
+    var v = new T.Vector3(), p = [0, 0, 0];
+    G.shapes.forEach(function (s) {
+      var g = shapeGeo(s).geometry, polys = g.type === 'Polygon' ? [g.coordinates] : g.coordinates;
+      ctx.beginPath();
+      polys.forEach(function (poly) {
+        poly.forEach(function (ring) {
+          var pen = false;
+          for (var i = 0; i < ring.length; i++) {
+            ll2v(ring[i][0], ring[i][1], 1.002, v);
+            if (!facing(v, v)) { pen = false; continue; }
+            project(v, p); if (pen) ctx.lineTo(p[0], p[1]); else { ctx.moveTo(p[0], p[1]); pen = true; }
+          }
+          ctx.closePath();
+        });
+      });
+      ctx.globalAlpha = 0.55; ctx.fillStyle = s.col; ctx.fill('evenodd'); ctx.globalAlpha = 1;
+      ctx.lineWidth = 2.5; ctx.strokeStyle = '#fff'; ctx.stroke();
+      ll2v(s.to[0], s.to[1], 1, v);
+      if (s.label && scr(v, p)) { ctx.font = 'bold 17px ' + FONT; ctx.lineWidth = 5; ctx.strokeStyle = '#3b2a5c'; ctx.strokeText(s.label, p[0], p[1] - 9); ctx.fillStyle = '#fff'; ctx.fillText(s.label, p[0], p[1] - 9); }
+    });
+  }
   function drawLabels() {
     var ctx = octx; ctx.setTransform(Q, 0, 0, Q, 0, 0); ctx.clearRect(0, 0, W, H); hits = [];
     var placed = [], vpos = new T.Vector3(), p = [0, 0, 0];
     function free(r) { for (var i = 0; i < placed.length; i++) { var q = placed[i]; if (r.x < q.x + q.w && r.x + r.w > q.x && r.y < q.y + q.h && r.y + r.h > q.y) return false; } return true; }
     function scr(n, out) { if (!facing(n, n)) return null; project(n, out); if (out[0] < -40 || out[0] > W + 40 || out[1] < -40 || out[1] > H + 40) return null; return out; }
     ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.lineJoin = 'round';
+    drawShapes(ctx, scr);
     // quiz pins
     G.pins.forEach(function (pn) {
       ll2v(pn.ll[0], pn.ll[1], 1, vpos); if (!scr(vpos, p)) return;
@@ -594,7 +623,8 @@
   var ptrs = {}, drag = null, moved = 0, pinch = null, last = null;
   cv.addEventListener('pointerdown', function (e) {
     anim = null; vel = null; ptrs[e.pointerId] = pos(e); cv.setPointerCapture(e.pointerId); var n = Object.keys(ptrs).length;
-    if (n === 1) { drag = { p: pos(e), v: { lon: V.lon, lat: V.lat }, t: performance.now(), yaw: RC.yaw, pitch: RC.pitch }; moved = 0; last = { p: pos(e), t: performance.now() }; }
+    if (n === 1) { drag = { p: pos(e), v: { lon: V.lon, lat: V.lat }, t: performance.now(), yaw: RC.yaw, pitch: RC.pitch }; moved = 0; last = { p: pos(e), t: performance.now() };
+      if (G.shapes.length && !riding) { var gl0 = G.llAt(drag.p[0], drag.p[1]), si = gl0 ? G.shapeAt(gl0) : -1; if (si > -1) { var sh = G.shapes.splice(si, 1)[0]; G.shapes.push(sh); drag.shape = { s: sh, ll: gl0, to: sh.to.slice() }; cv.style.cursor = 'grabbing'; } } }
     else if (n === 2) { var a = Object.keys(ptrs).map(function (k) { return ptrs[k]; }); pinch = { d: Math.hypot(a[0][0] - a[1][0], a[0][1] - a[1][1]), alt: V.alt, rd: RC.dist }; drag = null; }
   });
   cv.addEventListener('pointermove', function (e) {
@@ -604,6 +634,10 @@
       if (drag && ks.length === 1) { var ddx = p[0] - drag.p[0], ddy = p[1] - drag.p[1]; moved = Math.max(moved, Math.hypot(ddx, ddy)); if (moved > 5) { RC.yaw = drag.yaw - ddx * 0.008; RC.pitch = Math.max(RC.fp ? -0.6 : -0.05, Math.min(1.35, drag.pitch + ddy * 0.006)); } return; }
     }
     if (pinch && ks.length >= 2) { var a = ptrs[ks[0]], b = ptrs[ks[1]], d = Math.hypot(a[0] - b[0], a[1] - b[1]); V.alt = pinch.alt * pinch.d / Math.max(10, d); clampV(); moved = 99; bump(); return; }
+    if (drag && drag.shape && ks.length === 1) { // dragging a true-size shape: it slides over the globe, keeping its real size
+      moved = Math.max(moved, Math.hypot(p[0] - drag.p[0], p[1] - drag.p[1])); var gl1 = G.llAt(p[0], p[1]); if (!gl1) return;
+      var ds = drag.shape, dl = ((gl1[0] - ds.ll[0] + 540) % 360) - 180; ds.s.to = [((ds.to[0] + dl + 540) % 360) - 180, Math.max(-78, Math.min(80, ds.to[1] + gl1[1] - ds.ll[1]))]; G.onShapeMove && G.onShapeMove(ds.s); return;
+    }
     if (drag && ks.length === 1) {
       var dx = p[0] - drag.p[0], dy = p[1] - drag.p[1]; moved = Math.max(moved, Math.hypot(dx, dy));
       if (moved > 5 && !riding) {
@@ -618,6 +652,7 @@
   var hoverAt = null;
   function endp(e) {
     var p = pos(e), was = Object.keys(ptrs).length; delete ptrs[e.pointerId]; if (was < 2) pinch = null;
+    if (drag && drag.shape) { cv.style.cursor = 'grab'; if (moved >= 6) { var dsh = drag.shape.s; delete ptrs[e.pointerId]; drag = null; vel = null; G.onShapeDrop && G.onShapeDrop(dsh); return; } }
     if (drag && moved < 6 && was === 1) { if (G.onTap) { var ll = G.llAt(p[0], p[1]); if (ll) G.onTap(ll, p); } else { var h = G.pick(p[0], p[1]); if (h) G.onPick(h, p); } vel = null; }
     else if (drag && vel && performance.now() - last.t > 60) vel = null;
     if (Object.keys(ptrs).length === 0) drag = null;
@@ -678,7 +713,7 @@
     if (riding && rideCam && riding.ll) { if (WORLD.rideUpdate(riding.ll[0], riding.ll[1], rideFirst ? 120 : 5)) sceneryDirty = true; rideFirst = false; }
     sky(); if (G._lights) G._lights.visible = !(riding && rideCam);
     var a = performance.now();
-    var sig = V.lon.toFixed(4) + V.lat.toFixed(4) + V.alt.toFixed(5) + Math.round(off) + G.lang + G.quiz + G.ver + (G.sel || '') + G.pins.map(function (q) { return q.ll[0].toFixed(2) + q.col; }).join() + (riding ? 1 : 0) + G.stampN();
+    var sig = V.lon.toFixed(4) + V.lat.toFixed(4) + V.alt.toFixed(5) + Math.round(off) + G.lang + G.quiz + G.ver + (G.sel || '') + G.pins.map(function (q) { return q.ll[0].toFixed(2) + q.col; }).join() + G.shapeSig() + (riding ? 1 : 0) + G.stampN();
     var changed = sig !== lastSig; lastSig = sig;
     RC.dt = dt; var vis = moveVehicles(dt); if (rideCam && riding) setCam();
     if (changed) placeLandmarks();
@@ -688,7 +723,7 @@
     if (draw) { renderer.render(scene, camera); sceneryDirty = false; }
     if (changed || riding) drawLabels();
     quality(now, draw);
-    if (hoverAt && now - lastHover > 90) { lastHover = now; var h = G.pick(hoverAt[0], hoverAt[1], true); G.onHover(h, hoverAt); cv.style.cursor = h ? 'pointer' : 'grab'; hoverAt = null; }
+    if (hoverAt && now - lastHover > 90) { lastHover = now; var h = G.pick(hoverAt[0], hoverAt[1], true); G.onHover(h, hoverAt); var hs = G.shapes.length && !h ? G.llAt(hoverAt[0], hoverAt[1]) : null; cv.style.cursor = h ? 'pointer' : hs && G.shapeAt(hs) > -1 ? 'move' : 'grab'; hoverAt = null; }
     if (PERF) G.__ms.push(+(performance.now() - a).toFixed(1));
     requestAnimationFrame(loop);
   }

@@ -1,0 +1,380 @@
+/* せかいたんけん: landmark deep dives (the "もっと 知る" pages on a landmark card).
+   Same Japanese rules as data/toy.js: kanji up to grade 5, harder words as {漢字|よみ}; (せつ) = "it is said" (legend / not certain).
+   Check with: python3 tools/kcheck.py data/deep.js
+   Each entry (key = landmark id in data/toy.js):
+     y: [ja, en]                       when it was built
+     n: [ja, en]                       one number to picture (size, weight, steps…)
+     h: [[yearJa, yearEn, ja, en], …]  history timeline
+     s: [[ja, en], …]                  secrets & surprises
+     q: [[qJa, qEn], [[optJa, optEn] ×3], answerIndex, [whyJa, whyEn]]
+   Draft written Nov 2026 — please fact-check with a co-teacher before relying on it in class. */
+window.DEEP = {};
+
+/* ---------- Nagasaki & Japan ---------- */
+DEEP.megane = {
+  y: ['1634年', '1634'],
+  n: ['長さ 約22m。 川の 水に うつった アーチと あわせると、 まるい めがねの 形に なる。', 'About 22 m long. With its reflection in the river, the two arches make a pair of glasses.'],
+  h: [['1634年', '1634', '{興福寺|こうふくじ}の お{坊|ぼう}さん、 {黙子如定|もくすにょじょう}が 中国の やり方で つくった。 日本で いちばん 古い 石の アーチ{橋|ばし}の 1つ。', 'Mokusu Nyojo, a Chinese monk at Kofukuji Temple, built it the Chinese way. It is one of the oldest stone arch bridges in Japan.'],
+    ['1960年', '1960', '国の 大切な 文化{財|ざい}（{重要|じゅうよう}文化{財|ざい}）に えらばれた。', 'It became an Important Cultural Property of Japan.'],
+    ['1982年', '1982', '7月の 長崎大水害で 橋の 一部が こわれた。', 'The great Nagasaki flood in July broke part of the bridge.'],
+    ['1983年', '1983', '川から ひろった もとの 石を つかって、 もとどおりに なおされた。', 'It was rebuilt using the original stones taken from the river.']],
+  s: [['川ぞいの 石がきに、 ハートの 形の 石が かくれている。 見つけると しあわせに なれる（せつ）！', 'A heart-shaped stone is hidden in the stone wall along the river. Find it for good luck (so people say)!'],
+    ['中島川には ほかにも 石の 橋が たくさん あって、 めがね{橋|ばし}は その 1つ。', 'There are many stone bridges on the Nakashima River. Megane Bridge is one of them.'],
+    ['ふたつの アーチの 間の 石も、 てつの 部品を つかわず 石の 重さだけで ささえあっている。', 'No iron parts hold the arches up. The stones hold each other up with their own weight.']],
+  q: [['めがね{橋|ばし}の 近くに かくれている 石は どんな 形？', 'What shape is the hidden stone near Megane Bridge?'], [['ハート', 'A heart'], ['ほし', 'A star'], ['さかな', 'A fish']], 0, ['ハートの 石だよ。 長崎に 行ったら さがしてみよう！', 'A heart! Look for it when you visit Nagasaki.']],
+};
+DEEP.gunkanjima = {
+  y: ['1890年ごろから 石炭の 島として', 'A coal-mining island from about 1890'],
+  n: ['島の 大きさは 南北 約480m・東西 約160m。 東京ドーム 約1.4こ分しか ない。', 'Only about 480 m long and 160 m wide (about 6 hectares).'],
+  h: [['1890年', '1890', '{三菱|みつびし}が 島を 買って、 海の 下の 石炭を ほりはじめた。 うめたてで 島を 少しずつ 大きくした。', 'Mitsubishi bought the island and started mining coal under the sea. The island was made bigger with landfill.'],
+    ['1916年', '1916', '日本で はじめての 鉄{筋|きん}コンクリートの アパート（30号{棟|とう}）が たった。', 'Japan\'s first big reinforced-concrete apartment block (Building 30) was built.'],
+    ['1940年代', '1940s', '{戦争|せんそう}中には、 {朝鮮半島|ちょうせんはんとう}や 中国から つれてこられた 人たちも、 きびしい {条件|じょうけん}で はたらかされた。', 'During the war, people brought from the Korean Peninsula and China were also made to work in harsh conditions.'],
+    ['1959年', '1959', '約5300人が くらし、 その ころ 世界で いちばん 人が ぎゅうぎゅうの 場所だった。 学校・病院・プールも あった。', 'About 5,300 people lived here, the most crowded place in the world at the time. There was a school, a hospital and a pool.'],
+    ['1974年', '1974', '石炭を ほるのを やめ、 みんな 島を 出て、 だれも すまない 島に なった。', 'The mine closed and everyone left. Nobody has lived there since.'],
+    ['2015年', '2015', '「明治日本の 産業{革命|かくめい}{遺産|いさん}」の 1つとして 世界{遺産|いさん}に なった。', 'It became part of a World Heritage Site: Sites of Japan\'s Meiji Industrial Revolution.']],
+  s: [['正しい 名前は「{端島|はしま}」。 海から 見た 形が {軍艦|ぐんかん}（せんそうの 船）の「土佐」に にていたので「{軍艦|ぐんかん}島」と よばれた。', 'Its real name is Hashima. From the sea it looked like the battleship Tosa, so people called it "Battleship Island".'],
+    ['土が ほとんど ないので、 アパートの 屋上で 野菜を そだてていた。', 'There was almost no soil, so people grew vegetables on the apartment roofs.'],
+    ['水は はじめ 船で はこんでいたが、 1957年に 海の 下の 水道管で とどくように なった。', 'At first water came by boat. From 1957 it came through a pipe under the sea.']],
+  q: [['{軍艦|ぐんかん}島で 人が いなくなったのは いつ？', 'When did everyone leave Gunkanjima?'], [['1974年', '1974'], ['1916年', '1916'], ['2015年', '2015']], 0, ['1974年に 石炭を ほるのを やめて、 みんな 島を 出たよ。', 'In 1974 the coal mine closed and everyone left.']],
+};
+DEEP.oura = {
+  y: ['1864年', '1864'],
+  n: ['日本に のこっている キリスト教の 教会の中で いちばん 古い。', 'The oldest Christian church still standing in Japan.'],
+  h: [['1864年', '1864', 'フランス人の {神父|しんぷ}たちが、 長崎に すむ 外国人の ために たてた。', 'French priests built it for foreigners living in Nagasaki.'],
+    ['1865年', '1865', '{浦上|うらかみ}の 村の 人たちが {訪|おとず}れ、「わたしたちの 心は あなたと おなじ」と つたえた。 250年 近く キリスト教を かくれて 守ってきた「{潜伏|せんぷく}キリシタン」が 見つかった 日。', 'People from Urakami village came and said, "Our hearts are the same as yours." Hidden Christians who had kept their faith secret for almost 250 years were found.'],
+    ['1933年', '1933', '{国宝|こくほう}に なった（西洋風の たてものとして はじめて）。', 'It became a National Treasure, the first Western-style building to do so.'],
+    ['2018年', '2018', '「長崎と 天草地方の {潜伏|せんぷく}キリシタン関連{遺産|いさん}」の 1つとして 世界{遺産|いさん}に なった。', 'It became part of the World Heritage Site for the Hidden Christian sites of Nagasaki and Amakusa.']],
+  s: [['{江戸|えど}時代の 日本では キリスト教が きんしされ、 見つかると ばつを うけた。 それでも 人々は 家の 中で こっそり いのりを つづけた。', 'In the Edo period Christianity was banned and people were punished if found. Some kept praying in secret at home.'],
+    ['1865年の 出来事は「信徒発見」と よばれ、 世界中の キリスト教の 人を おどろかせた。', 'The meeting in 1865 is called the "Discovery of the Hidden Christians". It amazed Christians all around the world.'],
+    ['ステンドグラスの まどが きれい。 長崎の {原爆|げんばく}で こわれ、 あとで なおされた。', 'Its stained-glass windows were broken by the atomic bomb in Nagasaki and repaired later.']],
+  q: [['1865年、 {大浦|おおうら}天主堂で 何が おきた？', 'What happened at Oura Church in 1865?'], [['かくれて いのってきた 人たちが 見つかった', 'Hidden Christians made themselves known'], ['大きな 地しんで たおれた', 'An earthquake knocked it down'], ['日本で はじめて 電気が ついた', 'Japan\'s first electric light was switched on']], 0, ['{浦上|うらかみ}の 人たちが、 自分たちも キリスト教だと {神父|しんぷ}に つたえたんだ。', 'People from Urakami told the priest that they were Christians too.']],
+};
+DEEP.genbaku = {
+  y: ['1915年（たてもの）', '1915 (the building)'],
+  n: ['1945年8月6日 午前8時15分、 {原子爆弾|げんしばくだん}は この たてものの 近く、 地上 約600mで ばくはつした。', 'At 8:15 a.m. on 6 August 1945 the atomic bomb exploded about 600 m above the ground, close to this building.'],
+  h: [['1915年', '1915', 'チェコの {建築家|けんちくか} ヤン・レツルの 設計で「広島県物産{陳列館|ちんれつかん}」として できた。 広島の 品物を しょうかいする たてもの。', 'It opened as a hall to show products from Hiroshima, designed by the Czech architect Jan Letzel.'],
+    ['1945年', '1945', '8月6日、 アメリカ軍が 広島に {原子爆弾|げんしばくだん}を 落とした。 中に いた 人は みんな なくなり、 たてものは ほねぐみだけが のこった。 3日後の 8月9日には 長崎にも 落とされた。', 'On 6 August the US dropped an atomic bomb on Hiroshima. Everyone inside died; only the frame was left standing. Three days later, on 9 August, a bomb was dropped on Nagasaki too.'],
+    ['1966年', '1966', '「のこしてほしい」という 声が 広がり、 広島市が ずっと 守っていくことを きめた。', 'Many people asked for it to be kept, and Hiroshima City decided to preserve it.'],
+    ['1996年', '1996', '「二度と {核兵器|かくへいき}を つかっては いけない」という ねがいを つたえる 世界{遺産|いさん}に なった。', 'It became a World Heritage Site, carrying the wish that nuclear weapons must never be used again.']],
+  s: [['1さいの ときに ひばくし、 16さいで なくなった {楮山|かじやま}ヒロ子さんは、 日記に「この たてものだけが いつまでも {原爆|げんばく}の おそろしさを 世界に うったえてくれるだろう」という 思いを 書いていた。 その 思いが のこす きっかけの 1つに なった。', 'Hiroko Kajiyama, exposed to the bomb as a baby, died at 16. In her diary she wrote that this building would tell the world about the horror of the bomb forever. Her words helped save it.'],
+    ['たおれないように、 中を 鉄の はりで ささえ、 何年かごとに しらべて 守っている。', 'Steel beams inside hold it up, and it is checked every few years.'],
+    ['長崎には {浦上|うらかみ}天主堂の こわれた かべや、 {平和祈念像|へいわきねんぞう}が ある。 広島と 長崎は いっしょに 平和を つたえている。', 'Nagasaki has the broken walls of Urakami Cathedral and the Peace Statue. Hiroshima and Nagasaki share the message of peace.']],
+  q: [['{原爆|げんばく}ドームは もともと 何の たてもの だった？', 'What was the Atomic Bomb Dome before 1945?'], [['広島の 品物を しょうかいする たてもの', 'A hall to show Hiroshima\'s products'], ['お{城|しろ}', 'A castle'], ['駅', 'A train station']], 0, ['「広島県物産{陳列館|ちんれつかん}」と いう 名前だったよ。', 'It was the Hiroshima Prefectural Commercial Exhibition Hall.']],
+};
+DEEP.fuji = {
+  y: ['約10万年前から 今の 形に そだってきた 火山', 'A volcano that has grown over about 100,000 years'],
+  n: ['高さ 3776m。 東京スカイツリー（634m）の 約6こ分。', '3,776 m tall: about six Tokyo Skytrees stacked up.'],
+  h: [['約10万年前', 'c. 100,000 years ago', '{噴火|ふんか}を くりかえして、 今の 富士山の もとが できはじめた。', 'Eruptions began building the mountain we see today.'],
+    ['1707年', '1707', 'さいごの 大きな {噴火|ふんか}（{宝永|ほうえい}{噴火|ふんか}）。 {江戸|えど}の 町にも はいが ふった。', 'The last big eruption (the Hoei eruption). Ash fell on Edo (Tokyo).'],
+    ['1830年ごろ', 'c. 1830', '{葛飾北斎|かつしかほくさい}が「富{嶽|がく}三十六景」を かき、 世界中で 有名に なった。', 'Hokusai made his "Thirty-six Views of Mount Fuji" prints, which became famous worldwide.'],
+    ['2013年', '2013', '自然では なく「文化」の 世界{遺産|いさん}に なった。 昔から 人々が 山を うやまい、 絵や うたに してきたから。', 'It became a World Heritage Site for its culture: people have worshipped it and made art about it for centuries.']],
+  s: [['富士山は 今も 生きている 火山。 いつ {噴火|ふんか}しても おかしくないので、 いつも かんそくされている。', 'Fuji is still an active volcano, so scientists watch it all the time.'],
+    ['8合目より 上は、 じつは 山の ふもとの {神社|じんじゃ}（富士山本宮{浅間|せんげん}大社）の 土地。', 'Above the 8th station, the land belongs to a shrine at the foot of the mountain.'],
+    ['山に のぼれるのは 主に 7月から 9月の 夏だけ。 ちょうじょうは 夏でも 0℃ちかくに なることも ある。', 'People mostly climb it only from July to September. Even in summer the top can be close to 0°C.']],
+  q: [['富士山が さいごに 大きく {噴火|ふんか}したのは いつ？', 'When did Mount Fuji last erupt?'], [['1707年', '1707'], ['1945年', '1945'], ['2000年', '2000']], 0, ['1707年の {宝永|ほうえい}{噴火|ふんか}が さいごだよ。', 'The Hoei eruption of 1707 was the last one.']],
+};
+DEEP.himeji = {
+  y: ['1609年（今の 天守）', '1609 (today\'s main tower)'],
+  n: ['天守の 高さは 石がきを 入れて 約46m。 ビル 15かいだてくらい。', 'The main keep is about 46 m tall with its stone base, like a 15-storey building.'],
+  h: [['1346年', '1346', 'はじめて とりでが つくられた と いわれている（せつ）。', 'The first fort was built here (according to old records).'],
+    ['1609年', '1609', '{池田輝政|いけだてるまさ}が 大きな 天守を {完成|かんせい}させた。 今 見られる すがたの 天守。', 'Ikeda Terumasa finished the great main keep we see today.'],
+    ['1945年', '1945', '{空襲|くうしゅう}で 町が もえたが、 お{城|しろ}は ぶじに のこった。', 'Air raids burned the city, but the castle survived.'],
+    ['1993年', '1993', '{法隆寺|ほうりゅうじ}と いっしょに、 日本で はじめての 世界{遺産|いさん}に なった。', 'It became one of Japan\'s first World Heritage Sites, together with Horyuji Temple.'],
+    ['2015年', '2015', '5年 かけた 大きな しゅうりが おわり、 まっ白な すがたに もどった。', 'A five-year repair finished and the castle shone white again.']],
+  s: [['白い かべは しっくいと いう 材料。 火に 強く、 てきの 火の 矢から お{城|しろ}を 守った。', 'The white walls are plaster, which does not burn easily. It protected the castle from fire arrows.'],
+    ['お{城|しろ}の 道は わざと ぐねぐね。 てきが まよって なかなか 天守に たどりつけない。', 'The paths twist on purpose so enemies get lost on the way to the keep.'],
+    ['せんそうで いちども せめられたことが ない。 だから 昔の すがたが のこっている。', 'It was never attacked in battle, so it still looks as it did 400 years ago.']],
+  q: [['ひめじじょうの 白い かべの いいところは？', 'What is good about Himeji Castle\'s white walls?'], [['火に 強い', 'They do not burn easily'], ['夜に 光る', 'They glow at night'], ['とても かるい', 'They are very light']], 0, ['しっくいの かべは 火に 強いんだ。', 'Plaster walls resist fire.']],
+};
+DEEP.todaiji = {
+  y: ['752年（大仏）', '752 (the Great Buddha)'],
+  n: ['大仏の 高さは 約15m。 顔だけで 約5m ある。', 'The Great Buddha is about 15 m tall. Its face alone is about 5 m.'],
+  h: [['743年', '743', '{聖武天皇|しょうむてんのう}が「大仏を つくろう」と きめた。 病気や さいがいが つづき、 国を 平和に したかった。', 'Emperor Shomu decided to build a giant Buddha. He hoped it would bring peace after disease and disasters.'],
+    ['752年', '752', '大仏が {完成|かんせい}し、 大きな おいわいの 式が ひらかれた。 外国からも お{坊|ぼう}さんが 来た。', 'The Buddha was finished and a huge ceremony was held. Monks came from other countries too.'],
+    ['1180年・1567年', '1180 & 1567', '{戦|いくさ}で 2回 やけてしまい、 そのたびに たてなおされた。', 'It was burned in wars twice and rebuilt each time.'],
+    ['1709年', '1709', '今の {大仏殿|だいぶつでん}が できた。 昔より 小さく なったが、 世界で いちばん 大きい 木の たてものの 1つ。', 'Today\'s Great Buddha Hall was finished. It is smaller than the first one, but still one of the largest wooden buildings in the world.']],
+  s: [['{大仏殿|だいぶつでん}の 柱には、 大仏の 鼻の あなと おなじ 大きさの あなが ある。 くぐりぬけると {願|ねが}いが かなう（せつ）！', 'One pillar has a hole the same size as the Buddha\'s nostril. Crawl through it for good luck (so people say)!'],
+    ['大仏を つくるのに、 のべ 260万人が はたらいたと いわれている（せつ）。', 'It is said that 2.6 million people in total worked on it.'],
+    ['まわりの 奈良公園には しかが 1000頭 以上 いて、 昔から 神さまの お使いと されてきた。', 'More than 1,000 deer live in Nara Park around the temple. They have long been seen as messengers of the gods.']],
+  q: [['{大仏殿|だいぶつでん}の 柱の あなは、 大仏の どこと おなじ 大きさ？', 'The hole in the pillar is the same size as the Buddha\'s…?'], [['鼻の あな', 'Nostril'], ['目', 'Eye'], ['口', 'Mouth']], 0, ['鼻の あなと おなじ 大きさだよ。', 'It is as big as the Buddha\'s nostril.']],
+};
+DEEP.kinkaku = {
+  y: ['1397年', '1397'],
+  n: ['かべに はる 金ぱくは、 1987年の しゅうりで 約20kg つかわれた。', 'About 20 kg of gold leaf was used when it was re-covered in 1987.'],
+  h: [['1397年', '1397', '{将軍|しょうぐん} {足利義満|あしかがよしみつ}が べっそうとして たてた。', 'The shogun Ashikaga Yoshimitsu built it as a villa.'],
+    ['1408年ごろ', 'c. 1408', '義満が なくなったあと、 お寺（{鹿苑寺|ろくおんじ}）に なった。', 'After Yoshimitsu died it became a temple, Rokuon-ji.'],
+    ['1950年', '1950', '火事で ぜんぶ もえてしまった。', 'It burned down in a fire.'],
+    ['1955年', '1955', 'もとの すがたの とおりに たてなおされた。', 'It was rebuilt just like the original.'],
+    ['1994年', '1994', '「古都京都の 文化財」の 1つとして 世界{遺産|いさん}に なった。', 'It became part of the World Heritage Site for historic Kyoto.']],
+  s: [['屋根の 上には 金色の「{鳳凰|ほうおう}」と いう 想像上の 鳥が いる。', 'A golden phoenix, an imaginary bird, stands on the roof.'],
+    ['1かい・2かい・3かいで それぞれ ちがう たてかたに なっている。', 'Each of the three floors is built in a different style.'],
+    ['池に うつる {金閣|きんかく}を「さかさ{金閣|きんかく}」と よぶ。 風が ない 日が チャンス。', 'Its reflection in the pond is called the "upside-down Kinkaku". Look on a day with no wind.']],
+  q: [['{金閣|きんかく}の 屋根の 上に いる 鳥は？', 'What bird is on top of Kinkaku?'], [['{鳳凰|ほうおう}', 'A phoenix'], ['にわとり', 'A chicken'], ['つる', 'A crane']], 0, ['{鳳凰|ほうおう}という 想像上の 鳥だよ。', 'It is a phoenix, an imaginary bird.']],
+};
+DEEP.torii = {
+  y: ['1168年（今の {社殿|しゃでん}の もと）', '1168 (the shrine as we know it)'],
+  n: ['大とりいの 高さは 約16m・重さは 約60トン。', 'The great torii is about 16 m tall and weighs about 60 tonnes.'],
+  h: [['593年', '593', '{神社|じんじゃ}が はじまったと いわれている（せつ）。', 'The shrine is said to have been founded.'],
+    ['1168年', '1168', '{平清盛|たいらのきよもり}が、 海の 上に うかぶような 今の {社殿|しゃでん}の 形に した。', 'Taira no Kiyomori rebuilt it so the shrine seems to float on the sea.'],
+    ['1875年', '1875', '今の 大とりい（8代目）が たてられた。', 'Today\'s great torii, the 8th one, was built.'],
+    ['1996年', '1996', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.'],
+    ['2019〜2022年', '2019–2022', '大きな しゅうりが おこなわれた。', 'The torii had a big repair.']],
+  s: [['大とりいは 海の そこに うまっていない！ 自分の 重さだけで 立っている。 上の はこの 中に 石が つめてあり、 重くしている。', 'The torii is not buried in the sea floor. It stands by its own weight; the box at the top is filled with stones to make it heavy.'],
+    ['しおが みちると 海に うかんで 見え、 ひくと 歩いて 近くまで 行ける。', 'At high tide it seems to float; at low tide you can walk right up to it.'],
+    ['海の 上の ろうかの ゆか板は、 わざと すきまを あけて ある。 高しおの とき、 下から おしてくる 水が にげて、 ゆかが うき上がらない。', 'The floorboards of the corridors over the sea have small gaps on purpose. At high tide the water escapes through them, so the floor does not float away.']],
+  q: [['いつくしまの 大とりいは、 どうやって 立っている？', 'How does the great torii stay standing?'], [['自分の 重さで 立っている', 'By its own weight'], ['海の そこに ふかく うめてある', 'It is buried deep in the sea floor'], ['ロープで ひっぱっている', 'Ropes hold it up']], 0, ['うめていないんだ。 上の はこに 石を つめて 重くしているよ。', 'It is not buried. Stones packed in the top make it heavy.']],
+};
+
+/* ---------- the world ---------- */
+DEEP.stonehenge = {
+  y: ['約5000年前から 何百年も かけて', 'Built in stages from about 5,000 years ago'],
+  n: ['大きい 石は 高さ 約7m、 重さは 1つ 約25トン。 ゾウ 4頭分くらい！', 'The big stones are about 7 m tall and weigh about 25 tonnes each: as much as four elephants!'],
+  h: [['約5000年前', 'c. 3000 BC', 'まるい みぞと 土の かべが ほられた。', 'A round ditch and earth bank were dug.'],
+    ['約4500年前', 'c. 2500 BC', '大きな 石（サーセン石）が はこばれ、 わの 形に ならべられた。', 'The huge sarsen stones were brought and set up in a ring.'],
+    ['約4500年前', 'c. 2500 BC', '小さめの「ブルーストーン」が、 約250kmも はなれた ウェールズの 山から はこばれてきた。', 'Smaller "bluestones" were brought from hills in Wales, about 250 km away.'],
+    ['1986年', '1986', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['{夏至|げし}（1年で 昼が いちばん 長い 日）の 朝、 太陽が ちょうど 石の 間から のぼる。 こよみの ように つかっていた（せつ）。', 'On midsummer morning the sun rises right through a gap in the stones. It may have worked like a calendar.'],
+    ['車も 鉄の 道具も ない 時代。 木の ころや ロープ、 たくさんの 人の 力で 石を うごかしたと 考えられている。', 'There were no wheels or iron tools. People probably moved the stones with wooden rollers, ropes and lots of muscle.'],
+    ['上に のっている 石は、 木の 家と おなじ「ほぞ」の しくみで ずれないように はまっている。', 'The top stones lock onto the uprights with joints like those used in wooden buildings.']],
+  q: [['小さめの ブルーストーンは どこから はこばれてきた？', 'Where did the smaller bluestones come from?'], [['ウェールズの 山（約250km 先）', 'Hills in Wales, about 250 km away'], ['すぐ となりの 野原', 'The field next door'], ['エジプト', 'Egypt']], 0, ['約250kmも はなれた ウェールズから はこんだんだ。', 'They came all the way from Wales, about 250 km away.']],
+};
+DEEP.pyramid = {
+  y: ['約4500年前（紀元前2560年ごろ）', 'About 4,500 years ago (c. 2560 BC)'],
+  n: ['石の ブロックは 約230万こ。 できた ときの 高さは 約146m。', 'About 2.3 million stone blocks. It was about 146 m tall when finished.'],
+  h: [['紀元前2560年ごろ', 'c. 2560 BC', 'エジプトの 王（ファラオ） クフ王の お墓として つくられた。 20年ほど かかったと いわれている。', 'It was built as the tomb of the pharaoh Khufu. It is said to have taken about 20 years.'],
+    ['約3800年間', 'For about 3,800 years', '世界で いちばん 高い たてものだった。', 'It was the tallest building in the world.'],
+    ['1979年', '1979', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['はじめは まわりが ツルツルの 白い 石で おおわれていて、 太陽に かがやいていた。 今は ほとんど はがれて、 てっぺんも けずれて 約139mに なった。', 'It was once covered in smooth white stone that shone in the sun. Most of it is gone now, and the top is lower, at about 139 m.'],
+    ['「古代世界の 7ふしぎ」の 中で、 今も のこっているのは この ピラミッドだけ。', 'It is the only one of the Seven Wonders of the Ancient World still standing.'],
+    ['はたらいたのは どれいでは なく、 おきゅうりょうや 食べ物を もらう 人たちだった と 考えられている。 近くに 村の あとが 見つかった。', 'The builders were probably paid workers, not slaves. Their village has been found nearby.']],
+  q: [['クフ王の ピラミッドの 石の ブロックは だいたい いくつ？', 'About how many stone blocks are in the Great Pyramid?'], [['約230万こ', 'About 2.3 million'], ['約2300こ', 'About 2,300'], ['約23こ', 'About 23']], 0, ['約230万こ！ 1つ 平均 2トン 以上も ある。', 'About 2.3 million, each weighing over 2 tonnes on average!']],
+};
+DEEP.wall = {
+  y: ['2000年 以上 前から 何回も', 'Built again and again over 2,000 years'],
+  n: ['昔の かべを ぜんぶ たすと 長さ 約2万1000km。 地球 半周くらい！', 'All the walls together are about 21,000 km long: about half way round the Earth!'],
+  h: [['紀元前7世紀ごろ', 'c. 7th century BC', '小さな 国どうしが、 それぞれ 守りの かべを つくりはじめた。', 'Small kingdoms began building their own defensive walls.'],
+    ['紀元前221年', '221 BC', '中国を はじめて 1つに まとめた {始皇帝|しこうてい}が、 北の かべを つなげた。', 'The First Emperor, who united China, joined the northern walls together.'],
+    ['1368〜1644年', '1368–1644', '明（みん）の 時代に レンガや 石で つくりなおした。 今 見られる {長城|ちょうじょう}の 多くは この ころの もの。', 'The Ming dynasty rebuilt it with brick and stone. Most of the wall we see today is from this time.'],
+    ['1987年', '1987', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['「うちゅうから 目で 見える」は まちがい！ はばが せまいので、 うちゅう飛行士も 見えなかったと 話している。', '"You can see it from space" is a myth. It is too narrow; astronauts say they could not see it with their eyes.'],
+    ['ところどころに「のろし台」が あり、 けむりで てきが 来たことを 知らせた。', 'Beacon towers along the wall used smoke signals to warn that enemies were coming.'],
+    ['レンガを くっつける のりに、 もち米の しるを まぜていた ところも ある。', 'Some parts used sticky rice soup mixed into the mortar to hold the bricks together.']],
+  q: [['{万里|ばんり}の{長城|ちょうじょう}は うちゅうから 目で 見える？', 'Can you see the Great Wall from space with your eyes?'], [['見えない', 'No'], ['かんたんに 見える', 'Yes, easily'], ['夜だけ 見える', 'Only at night']], 0, ['はばが せまくて 見えないんだ。 よく ある まちがいだよ。', 'It is too narrow to see. That is a common myth.']],
+};
+DEEP.colosseum = {
+  y: ['約1950年前（西{暦|れき}80年）', 'About 1,950 years ago (AD 80)'],
+  n: ['約5万人が 入れた。 高さ 約48m。', 'About 50,000 people could watch. It is about 48 m tall.'],
+  h: [['70年ごろ', 'c. AD 70', 'ローマの {皇帝|こうてい} ウェスパシアヌスが つくりはじめた。', 'The Roman emperor Vespasian started building it.'],
+    ['80年', 'AD 80', '{完成|かんせい}の おいわいに、 100日間も もよおしが つづいた。', 'It opened with games that went on for 100 days.'],
+    ['1349年', '1349', '大きな 地しんで 一部が くずれた。 その 石は ほかの たてものに つかわれた。', 'A big earthquake knocked down part of it. Its stones were reused in other buildings.'],
+    ['1980年', '1980', 'ローマの まちと いっしょに 世界{遺産|いさん}に なった。', 'It became a World Heritage Site along with the historic centre of Rome.']],
+  s: [['ゆかの 下には ちか通路が あり、 エレベーターの ような しかけで どうぶつを とつぜん 出していた。', 'Under the floor were tunnels and lifts that suddenly brought animals up into the arena.'],
+    ['あつい 日には、 大きな ぬのの 屋根を はって ひかげを つくった。 船乗りが ロープを あやつった。', 'On hot days a huge cloth roof was stretched over the seats. Sailors worked the ropes.'],
+    ['入り口は 80こ。 たくさんの 人が 短い 時間で 入れたり 出たり できた。', 'It had 80 entrances, so crowds could get in and out quickly.']],
+  q: [['コロッセオには だいたい 何人 入れた？', 'About how many people fit in the Colosseum?'], [['約5万人', 'About 50,000'], ['約500人', 'About 500'], ['約500万人', 'About 5 million']], 0, ['約5万人。 大きな サッカー場と おなじくらい！', 'About 50,000: as many as a big football stadium!']],
+};
+DEEP.eiffel = {
+  y: ['1889年', '1889'],
+  n: ['鉄の 部品 約1万8000こを、 約250万本の びょう（リベット）で とめている。', 'About 18,000 iron parts held together by about 2.5 million rivets.'],
+  h: [['1887年', '1887', 'パリ{万博|ばんぱく}の ために 工事が はじまった。 フランス{革命|かくめい}から 100年の きねん。', 'Building began for the Paris World\'s Fair, marking 100 years since the French Revolution.'],
+    ['1889年', '1889', '2年と 2か月で {完成|かんせい}。 はじめは「パリに にあわない」と はんたいする 人も 多かった。', 'It was finished in just over two years. Many people said it was ugly at first.'],
+    ['1909年', '1909', '20年で こわす 予定だったが、 ラジオの 電波を 出す アンテナとして やくに立ち、 のこされた。', 'It was meant to be taken down after 20 years, but it was kept because it was useful as a radio antenna.'],
+    ['1930年まで', 'Until 1930', '世界で いちばん 高い たてものだった。', 'It was the tallest structure in the world.']],
+  s: [['夏は 鉄が 熱で のびるので、 冬より 10cm以上 高く なることも ある。', 'Iron expands in the heat, so in summer it can be over 10 cm taller than in winter.'],
+    ['さびないように、 約7年ごとに 60トンもの ペンキで ぬりなおしている。', 'To stop rust, it is repainted about every 7 years with around 60 tonnes of paint.'],
+    ['つくった エッフェルの 会社は、 アメリカの 自由の女神の 中の ほねぐみも つくった。', 'Eiffel\'s company also built the iron frame inside the Statue of Liberty.']],
+  q: [['エッフェルとうが こわされずに のこった わけは？', 'Why was the Eiffel Tower not taken down?'], [['ラジオの アンテナに つかえたから', 'It was useful as a radio antenna'], ['こわすのが こわかったから', 'People were scared to take it down'], ['お金が なかったから', 'There was no money']], 0, ['電波を 出す アンテナとして 大活やく したんだ。', 'It became an important radio antenna.']],
+};
+DEEP.taj = {
+  y: ['1632年ごろ〜1653年ごろ', 'About 1632–1653'],
+  n: ['まん中の 屋根（ドーム）の てっぺんまで 約73m。 約2万人が 工事に 加わった。', 'About 73 m to the top of the dome. Around 20,000 people worked on it.'],
+  h: [['1631年', '1631', 'ムガル{帝国|ていこく}の 王 シャー・ジャハーンの つま、 ムムターズ・マハルが なくなった。', 'Mumtaz Mahal, wife of the Mughal emperor Shah Jahan, died.'],
+    ['1632年ごろ', 'c. 1632', '王は つまの ための お墓を つくりはじめた。', 'The emperor began building a tomb for her.'],
+    ['1653年ごろ', 'c. 1653', 'まわりの 庭や たてものも ふくめて {完成|かんせい}した。', 'The whole complex, with gardens and buildings, was finished.'],
+    ['1983年', '1983', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['白い 大理石は、 朝は ピンク、 昼は 白、 月夜には 青っぽく、 時間で 色が かわって 見える。', 'The white marble looks pink in the morning, white at noon and bluish in the moonlight.'],
+    ['4本の 細い とうは、 少しだけ 外向きに かたむけて たてた。 地しんで たおれても お墓に ぶつからないように（せつ）。', 'The four towers lean slightly outwards, so if they fell in an earthquake they would miss the tomb (so it is said).'],
+    ['石を はこぶのに 1000頭もの ゾウを つかった（せつ）。', 'It is said that 1,000 elephants carried the building materials.']],
+  q: [['タージ・マハルは だれの ために つくられた？', 'Who was the Taj Mahal built for?'], [['王の つま', 'The emperor\'s wife'], ['王の 馬', 'The emperor\'s horse'], ['町の 子どもたち', 'The town\'s children']], 0, ['なくなった つま、 ムムターズ・マハルの ための お墓だよ。', 'It is the tomb of his wife, Mumtaz Mahal.']],
+};
+DEEP.machu = {
+  y: ['1450年ごろ', 'About 1450'],
+  n: ['高さ 約2400mの 山の 上。 富士山の 6合目くらいの 高さに 町が ある。', 'It sits about 2,400 m up a mountain.'],
+  h: [['1450年ごろ', 'c. 1450', 'インカ{帝国|ていこく}の 王 パチャクテクの ために つくられたと 考えられている。', 'It was probably built for the Inca emperor Pachacuti.'],
+    ['1500年代', '1500s', 'スペイン人が せめてきた ころ、 人が いなくなった。 スペイン人は この 町を 見つけられなかった。', 'People left around the time the Spanish invaded. The Spanish never found it.'],
+    ['1911年', '1911', 'アメリカの ハイラム・ビンガムが 地元の 人の 道あんないで おとずれ、 世界に しょうかいした。', 'Local farmers guided the American explorer Hiram Bingham there, and he told the world about it.'],
+    ['1983年', '1983', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['石と 石の 間に セメントなどを つかっていないのに、 ナイフの はも 入らないほど ぴったり。', 'No mortar was used, yet the stones fit so tightly you cannot slip a knife blade between them.'],
+    ['地しんが おきても、 石が 少し ゆれて また もとに もどる つくり。', 'In earthquakes the stones can shift a little and settle back into place.'],
+    ['山の しゃめんに だんだん畑を つくり、 とうもろこしや じゃがいもを そだてた。', 'Terraces cut into the mountainside were used to grow corn and potatoes.']],
+  q: [['マチュピチュの 石の かべで つかっていない ものは？', 'What did the builders NOT use in Machu Picchu\'s stone walls?'], [['石を くっつける セメント', 'Mortar to glue the stones'], ['石', 'Stone'], ['人の 力', 'Human strength']], 0, ['セメントなしで ぴったり くみあわせているんだ。', 'The stones fit perfectly without any mortar.']],
+};
+DEEP.liberty = {
+  y: ['1886年', '1886'],
+  n: ['像の 高さ 約46m、 台を 入れると 約93m。', 'The statue is about 46 m tall; with its base, about 93 m.'],
+  h: [['1865年ごろ', 'c. 1865', 'フランスの 人たちが、 アメリカの 独立100年を いわう プレゼントを 考えた。', 'People in France planned a gift for the 100th anniversary of US independence.'],
+    ['1885年', '1885', 'パリで いちど くみたてた あと、 350この 部品に わけて 船で アメリカへ おくった。', 'It was first put together in Paris, then taken apart into 350 pieces and shipped to America.'],
+    ['1886年', '1886', 'ニューヨークで {完成|かんせい}の 式。', 'It was unveiled in New York.'],
+    ['1984年', '1984', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['はじめは 茶色っぽい 銅の 色だった。 さびて 20〜30年で 今の みどり色に なった。 この さびが 中を 守っている。', 'It was once brownish copper. It turned green over 20–30 years as it weathered, and the green layer protects it.'],
+    ['中の 鉄の ほねぐみを つくったのは、 エッフェルとうを つくった エッフェルの 会社。', 'The iron frame inside was built by Eiffel\'s company, the same one that built the Eiffel Tower.'],
+    ['左手の 板には「1776年7月4日」（アメリカ 独立の 日）と 書いてある。 足もとには こわれた くさりが ある。', 'The tablet in her left hand is dated July 4, 1776, the day the USA declared independence. A broken chain lies at her feet.']],
+  q: [['自由の女神は なぜ みどり色？', 'Why is the Statue of Liberty green?'], [['銅が さびたから', 'The copper weathered'], ['ペンキで ぬったから', 'It was painted'], ['こけが はえたから', 'Moss grew on it']], 0, ['銅の さびの 色なんだ。 10円玉も 古くなると みどりっぽく なるよ。', 'It is copper rust. Old 10-yen coins can turn green too!']],
+};
+DEEP.moai = {
+  y: ['約800〜500年前（1250〜1500年ごろ）', 'About 1250–1500'],
+  n: ['島に 約900体。 大きい ものは 高さ 約10m、 重さ 80トン 以上。', 'About 900 statues on the island. The biggest standing one is about 10 m tall and over 80 tonnes.'],
+  h: [['1200年ごろ', 'c. 1200', 'ポリネシアの 人たちが カヌーで 長い 旅を して、 この 島に すみはじめた。', 'Polynesian people sailed across the ocean by canoe and settled the island.'],
+    ['1250〜1500年ごろ', 'c. 1250–1500', '火山の 石を ほって モアイを つくり、 島中に ならべた。', 'They carved moai from volcanic rock and set them up around the island.'],
+    ['1722年', '1722', 'オランダの 船が イースター（キリスト教の おまつりの 日）に たどりつき、「イースター島」と 名づけた。', 'A Dutch ship arrived on Easter Sunday and named it Easter Island.'],
+    ['1995年', '1995', 'ラパ・ヌイ国立公園として 世界{遺産|いさん}に なった。', 'It became a World Heritage Site, Rapa Nui National Park.']],
+  s: [['モアイの 多くは 海では なく 村の ほう（りく）を 向いて、 村人を 見守っている。 なくなった 先祖を あらわしている と 考えられている。', 'Most moai face inland, towards the villages, watching over people. They are thought to show ancestors.'],
+    ['ロープで 左右に ゆらしながら「歩かせて」はこんだ という {説|せつ}が あり、 じっけんで 本当に 歩かせることが できた。', 'One idea is that people "walked" the statues by rocking them with ropes, and experiments showed it works.'],
+    ['頭の 上に 赤い 石の「ぼうし」を のせた モアイも いる。', 'Some moai wear a red stone "hat" on their heads.']],
+  q: [['モアイの 多くは どっちを 向いている？', 'Which way do most moai face?'], [['村（りく）の ほう', 'Inland, towards the villages'], ['海の ほう', 'Out to sea'], ['空', 'Up at the sky']], 0, ['村人を 見守るように りくの ほうを 向いているんだ。', 'They face inland, as if watching over the villagers.']],
+};
+DEEP.angkor = {
+  y: ['1100年代 前半', 'Early 1100s'],
+  n: ['まわりの お{堀|ほり}は はば 約190m。 全体で 東京ドーム 約35こ分の 広さ。', 'The moat is about 190 m wide. The whole site is one of the biggest religious buildings in the world.'],
+  h: [['1113年ごろ', 'c. 1113', 'クメール王国の 王 スールヤヴァルマン2世が つくりはじめた。 ヒンドゥー教の 神さま ヴィシュヌの お寺。', 'King Suryavarman II began building it as a Hindu temple to the god Vishnu.'],
+    ['1100年代 半ば', 'Mid-1100s', '約30年で {完成|かんせい}した と 考えられている。', 'It was finished in about 30 years.'],
+    ['1200年代の おわりごろから', 'From the late 1200s', 'だんだん ぶっきょうの お寺として つかわれるように なった。', 'It gradually became a Buddhist temple.'],
+    ['1992年', '1992', 'アンコールの いせきとして 世界{遺産|いさん}に なった。', 'It became a World Heritage Site as part of Angkor.']],
+  s: [['カンボジアの 国旗には アンコールワットが かいてある！', 'Angkor Wat is drawn on the flag of Cambodia!'],
+    ['ふつうの お寺と ちがい、 入り口が 西を 向いている。 春分と 秋分の 朝、 太陽が まん中の とうの 上から のぼる。', 'Unlike most temples it faces west. On the spring and autumn equinoxes the sun rises over the central tower.'],
+    ['かべには、 長い 長い 絵の ほりものが ある。 天女（アプサラ）は 1800人 以上！', 'The walls are covered with very long carvings, including more than 1,800 heavenly dancers.']],
+  q: [['アンコールワットが かいてある ものは？', 'Where can you see a picture of Angkor Wat?'], [['カンボジアの 国旗', 'Cambodia\'s flag'], ['日本の お金', 'Japanese money'], ['オリンピックの マーク', 'The Olympic logo']], 0, ['カンボジアの 国旗の まん中に あるよ。', 'It is in the middle of Cambodia\'s flag.']],
+};
+DEEP.parthenon = {
+  y: ['紀元前447〜432年', '447–432 BC'],
+  n: ['はしらは 46本。 1本の 高さは 約10m。', '46 outer columns, each about 10 m tall.'],
+  h: [['紀元前447年', '447 BC', 'アテネの まちが、 女神 アテナの ための {神殿|しんでん}を つくりはじめた。', 'The city of Athens began a temple for the goddess Athena.'],
+    ['紀元前432年', '432 BC', 'かざりの ほりものまで ふくめて {完成|かんせい}。', 'It was finished, including the carved decorations.'],
+    ['1687年', '1687', 'せんそう中、 中に しまっていた 火薬に 大ほうの たまが あたって ばくはつし、 まん中が こわれた。', 'During a war, a cannonball hit gunpowder stored inside. The explosion destroyed the middle.'],
+    ['1987年', '1987', 'アクロポリスとして 世界{遺産|いさん}に なった。', 'It became a World Heritage Site as part of the Acropolis.']],
+  s: [['まっすぐに 見えるけど、 じつは はしらの まん中が 少し ふくらみ、 少し 内がわに かたむいている。 目の さっかくを ふせいで まっすぐに 見せる くふう。', 'It looks straight, but the columns bulge slightly and lean inwards. This trick makes it look perfectly straight to our eyes.'],
+    ['昔は 白では なく、 赤や 青で あざやかに ぬられていた。', 'It was not plain white: it was once painted in bright reds and blues.'],
+    ['ゆかも まん中が 少し もりあがっている。 雨水が ながれやすい。', 'The floor rises slightly in the middle, which also helps rainwater run off.']],
+  q: [['パルテノン{神殿|しんでん}の はしらの ひみつは？', 'What is the secret of the Parthenon\'s columns?'], [['少し ふくらんで かたむいている', 'They bulge and lean a little'], ['中が からっぽ', 'They are hollow'], ['木で できている', 'They are made of wood']], 0, ['まっすぐ 見えるように、 わざと 少し まげているんだ。', 'They are shaped on purpose so the temple looks straight.']],
+};
+DEEP.pisa = {
+  y: ['1173〜1372年ごろ', 'About 1173–1372'],
+  n: ['高さ 約56m。 てっぺんは 下より 約4m ずれている。', 'About 56 m tall. The top is about 4 m out of line with the bottom.'],
+  h: [['1173年', '1173', '{大聖堂|だいせいどう}の かねつき どうとして 工事が はじまった。', 'Work began on a bell tower for the cathedral.'],
+    ['1178年ごろ', 'c. 1178', '3かいまで できた ところで かたむきはじめた。 地面が やわらかかった。', 'After three floors it started to lean. The ground was too soft.'],
+    ['1372年ごろ', 'c. 1372', 'せんそうで 何回も 工事が 止まり、 約200年 かけて {完成|かんせい}。', 'Wars paused the work many times. It took about 200 years to finish.'],
+    ['1990〜2001年', '1990–2001', 'たおれないように、 かたむきを 少し もどす 工事を した。', 'Engineers carefully reduced the lean so it would not fall.']],
+  s: [['工事が 止まっている 間に 地面が かたまったので、 たおれずに すんだ と 考えられている。', 'The long pauses let the ground settle and harden, which may have saved it from falling.'],
+    ['上の かいは、 かたむきを ごまかすため 少し まげて つくってある。 だから 少し バナナみたいな 形。', 'The upper floors were built slightly bent to make up for the lean, so it is a little banana-shaped.'],
+    ['ガリレオが ここから 重さの ちがう 玉を 落とした（せつ）。', 'Galileo is said to have dropped balls of different weights from the top.']],
+  q: [['ピサのしゃとうが かたむいた わけは？', 'Why does the Tower of Pisa lean?'], [['地面が やわらかかった', 'The ground was too soft'], ['わざと ななめに した', 'It was built leaning on purpose'], ['風で おされた', 'The wind pushed it']], 0, ['やわらかい 地面に しずんでしまったんだ。', 'It sank into soft ground.']],
+};
+DEEP.opera = {
+  y: ['1973年', '1973'],
+  n: ['屋根の タイルは 100万まい 以上（1,056,006まい）。', 'More than a million roof tiles: 1,056,006 of them!'],
+  h: [['1957年', '1957', 'デザインの コンテストで、 デンマークの ヨーン・ウツソンの アイデアが えらばれた。', 'The Danish architect Jørn Utzon won the design competition.'],
+    ['1959年', '1959', '工事が はじまった。 屋根の 形が むずかしく、 つくり方を 考えるのに 何年も かかった。', 'Building began. The roof shapes were so hard that working out how to build them took years.'],
+    ['1966年', '1966', 'ウツソンは とちゅうで やめて 国に 帰り、 {完成|かんせい}した すがたを 自分の 目で 見ることは なかった。', 'Utzon left the project and never saw the finished building in person.'],
+    ['1973年', '1973', '{完成|かんせい}。 2007年には 世界{遺産|いさん}に なった。', 'It opened. In 2007 it became a World Heritage Site.']],
+  s: [['屋根の 形は、 オレンジの 皮を むいた ときの 形から 思いついた（せつ）。 どの 屋根も 1つの 大きな 玉から 切りとった 形。', 'The roof shapes are said to come from peeling an orange: every shell is a piece cut from the same imaginary ball.'],
+    ['タイルは スウェーデンで つくられた。 白と クリーム色の 2しゅるいで、 雨で よごれが おちる。', 'The tiles were made in Sweden in two colours, white and cream. Rain washes them clean.'],
+    ['コンサートホールの パイプオルガンは パイプが 1万本 以上。', 'The concert hall\'s pipe organ has more than 10,000 pipes.']],
+  q: [['オペラハウスの 屋根の タイルは だいたい 何まい？', 'About how many roof tiles does the Opera House have?'], [['約100万まい', 'About 1 million'], ['約1000まい', 'About 1,000'], ['約10まい', 'About 10']], 0, ['100万まい 以上！ ぜんぶ 手で はったわけでは なく、 パネルに して とりつけたよ。', 'Over a million! They were fixed on in big panels.']],
+};
+DEEP.christ = {
+  y: ['1931年', '1931'],
+  n: ['像の 高さ 約30m（台を 入れて 約38m）。 りょう手の はばは 約28m。', 'The statue is about 30 m tall (38 m with its base). Its arms span about 28 m.'],
+  h: [['1922年', '1922', 'ブラジルの 独立100年の きねんに つくることが きまった。', 'It was planned to mark 100 years of Brazilian independence.'],
+    ['1922〜1931年', '1922–1931', 'ブラジルの 技術者と フランスの ちょうこく家が 力を あわせて つくった。', 'A Brazilian engineer and a French sculptor worked together on it.'],
+    ['1931年', '1931', '高さ 約700mの コルコバードの 山の 上に {完成|かんせい}した。', 'It was finished on top of Corcovado mountain, about 700 m high.'],
+    ['2007年', '2007', '「新・世界の 7ふしぎ」の 1つに えらばれた。', 'It was voted one of the New Seven Wonders of the World.']],
+  s: [['山の てっぺんに あるので、 1年に 何回も かみなりが 落ちる！ そのたびに 指などを なおしている。', 'Because it stands on a mountain top, lightning hits it several times a year. Fingers and other parts get repaired.'],
+    ['表面は、 何まいもの 小さな 三角形の ろう石の タイルで おおわれている。', 'Its surface is covered in thousands of small triangle tiles of soapstone.'],
+    ['中は コンクリート。 中に かいだんが あり、 しゅうりの 人が 上まで のぼれる。', 'Inside it is concrete, with stairs so repair workers can climb up.']],
+  q: [['キリスト像に よく 落ちてくる ものは？', 'What often strikes Christ the Redeemer?'], [['かみなり', 'Lightning'], ['いんせき', 'Meteorites'], ['ボール', 'Footballs']], 0, ['1年に 何回も かみなりが 落ちるよ。', 'Lightning hits it several times a year.']],
+};
+DEEP.chichen = {
+  y: ['約1100〜1000年前', 'About 1,000–1,100 years ago'],
+  n: ['4つの 面に 91だんずつ。 てっぺんの 1だんを たすと 365だんで、 1年の 日数と おなじ！', '91 steps on each of the four sides, plus one at the top: 365, the days in a year!'],
+  h: [['600年ごろ', 'c. AD 600', 'マヤの 人たちの 町が さかえはじめた。', 'The Maya city began to grow.'],
+    ['900〜1100年ごろ', 'c. 900–1100', 'ククルカンの ピラミッド（エル・カスティーヨ）が つくられた。', 'The Pyramid of Kukulcan, El Castillo, was built.'],
+    ['1988年', '1988', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['春分と 秋分の 夕方、 かいだんの かげが ギザギザに なり、 へびが 下りてくるように 見える。 下には へびの 頭の ほりものが ある。', 'At sunset on the spring and autumn equinoxes, shadows on the steps look like a snake sliding down. Snake heads are carved at the bottom.'],
+    ['ピラミッドの 前で 手を たたくと、 鳥の 鳴き声のような こだまが かえってくる。', 'Clap in front of the pyramid and the echo sounds like a bird chirping.'],
+    ['ピラミッドの 中には、 もっと 古い ピラミッドが かくれている。', 'An older, smaller pyramid is hidden inside it.']],
+  q: [['ククルカンの ピラミッドの かいだんは ぜんぶで 何だん？', 'How many steps does El Castillo have in total?'], [['365だん', '365'], ['100だん', '100'], ['1000だん', '1,000']], 0, ['91だん×4 ＋ 1だんで 365だん。 こよみに なっているんだ。', '91 × 4 + 1 = 365. It works like a calendar!']],
+};
+DEEP.petra = {
+  y: ['約2000年前（エル・ハズネ）', 'About 2,000 years ago (the Treasury)'],
+  n: ['エル・ハズネの 高さは 約40m。 1つの 大きな 岩を ほって つくった。', 'The Treasury is about 40 m tall, carved out of a single cliff.'],
+  h: [['紀元前300年ごろ', 'c. 300 BC', 'ナバテア人が、 さばくを 行き来する 商人の 町として さかえさせた。', 'The Nabataeans built a rich city on desert trade routes.'],
+    ['1世紀ごろ', 'c. 1st century AD', '岩を ほって エル・ハズネ（{宝物殿|ほうもつでん}）が つくられた。', 'The Treasury, Al-Khazneh, was carved into the rock.'],
+    ['1812年', '1812', 'スイスの たんけん家 ブルクハルトが ヨーロッパに しょうかいした。', 'The Swiss explorer Burckhardt told Europe about it.'],
+    ['1985年', '1985', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['つみあげて つくったのでは なく、 がけを 上から 下へ ほって つくった。 まちがえても やりなおしが できない！', 'It was not built up from blocks: it was carved down from the top of a cliff. No room for mistakes!'],
+    ['入り口は「シーク」という 長さ 約1.2kmの せまい 谷。 ぬけると いきなり エル・ハズネが あらわれる。', 'You enter through the Siq, a narrow gorge about 1.2 km long, then suddenly the Treasury appears.'],
+    ['さばくなのに、 みぞや 水道で 雨水を あつめ、 たくさんの 人が くらせた。', 'Even in the desert, channels and pipes collected rainwater for thousands of people.']],
+  q: [['ペトラの エル・ハズネは どうやって つくった？', 'How was Petra\'s Treasury made?'], [['がけの 岩を ほって', 'Carved into the cliff'], ['石を つみあげて', 'Stacked from stone blocks'], ['木で くんで', 'Built from wood']], 0, ['がけを 上から ほって つくったんだ。', 'It was carved from the top of the cliff down.']],
+};
+DEEP.sagrada = {
+  y: ['1882年から 今も 工事中！', 'Since 1882, still being built!'],
+  n: ['いちばん 高い「イエスの とう」は 高さ 約172m。 世界で いちばん 高い 教会の とう。', 'The tallest tower, the Tower of Jesus Christ, is about 172 m: the tallest church tower in the world.'],
+  h: [['1882年', '1882', '工事が はじまった。', 'Building began.'],
+    ['1883年', '1883', 'わかい {建築家|けんちくか} アントニ・ガウディが まかされ、 一生を かけた。', 'The young architect Antoni Gaudí took over and spent the rest of his life on it.'],
+    ['1926年', '1926', 'ガウディが 路面電車の じこで なくなった。 その時 できていたのは ほんの 一部。', 'Gaudí died after being hit by a tram. Only a small part was finished.'],
+    ['1936年', '1936', 'スペインの 内戦で、 ガウディの 図面や もけいの 多くが こわされた。 のこった かけらから 研究して つづけている。', 'In the Spanish Civil War many of Gaudí\'s plans and models were destroyed. Builders study the pieces that survived.'],
+    ['2005年', '2005', 'ガウディが つくった 部分が 世界{遺産|いさん}に なった。', 'The parts built by Gaudí became a World Heritage Site.']],
+  s: [['日本人の ちょうこく家 {外尾悦郎|そとおえつろう}さんが 1978年から 40年 以上、 ここで ちょうこくを つくっている！', 'A Japanese sculptor, Etsuro Sotoo, has worked here for more than 40 years, since 1978!'],
+    ['中の はしらは 木の えだのように 分かれていて、 森の 中に いるみたい。', 'Inside, the columns branch out like trees, so it feels like a forest.'],
+    ['国の お金では なく、 入場りょうと きふで つくられている。', 'It is paid for by tickets and donations, not by the government.']],
+  q: [['サグラダ・ファミリアで 40年 以上 はたらいている ちょうこく家は どこの 国の 人？', 'Where is the sculptor who has worked at the Sagrada Família for over 40 years from?'], [['日本', 'Japan'], ['アメリカ', 'USA'], ['エジプト', 'Egypt']], 0, ['日本人の {外尾悦郎|そとおえつろう}さんだよ。', 'Etsuro Sotoo, from Japan!']],
+};
+DEEP.terracotta = {
+  y: ['約2200年前', 'About 2,200 years ago'],
+  n: ['土で できた へいたいは 8000体 以上（と 考えられている）。', 'More than 8,000 clay soldiers are thought to be buried there.'],
+  h: [['紀元前246年ごろ', 'c. 246 BC', '中国を はじめて 1つに まとめた {始皇帝|しこうてい}が、 自分の お墓を つくりはじめた。', 'The First Emperor of China began building his tomb.'],
+    ['紀元前210年', '210 BC', '{始皇帝|しこうてい}が なくなった。 へいたいたちは あの世で 王を 守るため、 お墓の 近くに うめられた。', 'The emperor died. The soldiers were buried near his tomb to guard him in the afterlife.'],
+    ['1974年', '1974', '井戸を ほっていた 農家の 人たちが、 ぐうぜん かけらを 見つけた。', 'Farmers digging a well found pieces by chance.'],
+    ['1987年', '1987', '世界{遺産|いさん}に なった。', 'It became a World Heritage Site.']],
+  s: [['へいたいの 顔は 1人ずつ ぜんぶ ちがう！ ひげや かみがたも いろいろ。', 'Every soldier\'s face is different, with different beards and hairstyles.'],
+    ['できた ときは 色が ぬってあった。 ほりだすと 空気に ふれて、 色が すぐに はがれてしまう。', 'They were once painted. When dug up, the paint flakes off quickly in the air.'],
+    ['へいたいだけで なく、 馬や 戦車も 土で つくられている。 {始皇帝|しこうてい}の お墓 そのものは まだ ほられていない。', 'There are clay horses and chariots too. The emperor\'s own tomb has still not been opened.']],
+  q: [['{兵馬俑|へいばよう}を 見つけたのは だれ？', 'Who found the Terracotta Army?'], [['井戸を ほっていた 農家の 人', 'Farmers digging a well'], ['うちゅう飛行士', 'An astronaut'], ['子どもの サッカーチーム', 'A children\'s football team']], 0, ['1974年に 井戸を ほっていて 見つけたんだ。', 'Farmers found it while digging a well in 1974.']],
+};
+DEEP.bigben = {
+  y: ['1859年', '1859'],
+  n: ['大きな かね「ビッグ・ベン」の 重さは 約13.7トン。 とうの 高さは 約96m。', 'The great bell, Big Ben, weighs about 13.7 tonnes. The tower is about 96 m tall.'],
+  h: [['1834年', '1834', '火事で 古い 国会の たてものが もえた。 新しい たてものと 時計とうを つくることに なった。', 'A fire destroyed the old Parliament buildings, so a new one with a clock tower was planned.'],
+    ['1858年', '1858', '1つ目の かねは ためしに ならすと われてしまい、 つくりなおされた。', 'The first bell cracked during testing and had to be recast.'],
+    ['1859年', '1859', '時計が うごきはじめ、 かねが なりはじめた。', 'The clock started and the bell began to ring.'],
+    ['2012年', '2012', 'エリザベス女王の 60年を いわって「エリザベス・タワー」と 名前が かわった。', 'The tower was renamed the Elizabeth Tower for Queen Elizabeth II\'s 60 years on the throne.'],
+    ['2017〜2022年', '2017–2022', '大きな しゅうりで、 時計の はりが 黒から 昔の こい青色に もどった。', 'A big repair turned the clock hands back from black to their original deep blue.']],
+  s: [['時計の ふりこの 上に 古い コインを のせて、 時間を ちょうせいしている。 1まいで 1日に 約0.4秒 かわる。', 'Old coins on the pendulum fine-tune the clock. One coin changes it by about 0.4 seconds a day.'],
+    ['ビッグ・ベンの かねには 大きな ひびが ある。 ひびが 広がらないよう、 たたく ところを 少し かえた。', 'Big Ben has a crack. The bell was turned so the hammer hits a different spot.'],
+    ['とうは じつは ほんの 少し かたむいている。 てっぺんは 約0.5m ずれている。', 'The tower leans very slightly; the top is about half a metre off.']],
+  q: [['ビッグ・ベンの 時計の ずれを なおすのに つかう ものは？', 'What is used to adjust Big Ben\'s clock?'], [['古い コイン', 'Old coins'], ['ねんど', 'Clay'], ['スマホ', 'A smartphone']], 0, ['ふりこに コインを のせたり とったり して ちょうせいするよ。', 'Coins are added to or taken off the pendulum.']],
+};
+DEEP.uluru = {
+  y: ['約5億年前に できた 岩', 'Rock formed about 500 million years ago'],
+  n: ['高さ 約348m・まわり 約9.4km。 歩いて 1しゅう 3〜4時間！', 'About 348 m high and 9.4 km round. Walking around it takes 3–4 hours!'],
+  h: [['何万年も 前から', 'For tens of thousands of years', '先住民の アナング族が この 土地で くらし、 大切な 場所として 守ってきた。', 'The Anangu people have lived here and cared for it as a sacred place.'],
+    ['1873年', '1873', 'ヨーロッパの たんけん家が「エアーズロック」と 名前を つけた。', 'A European explorer named it Ayers Rock.'],
+    ['1985年', '1985', '土地が アナング族に かえされた。', 'The land was handed back to the Anangu.'],
+    ['2019年', '2019', 'アナング族の ねがいで、 岩に のぼることが きんしされた。', 'At the request of the Anangu, climbing the rock was banned.']],
+  s: [['夕日に てらされると、 赤・オレンジ・むらさきと 色が かわって 見える。', 'At sunset it glows red, orange and purple.'],
+    ['岩の 赤い 色は、 鉄が さびた 色。', 'The red colour comes from rusted iron in the rock.'],
+    ['ウルルは アナング族の ことばの 名前。 1993年から 2つの 名前が つかわれ、 今は ウルルが 先に 書かれる。', '"Uluru" is its Anangu name. Since 1993 it has had both names, and now Uluru comes first.']],
+  q: [['2019年から ウルルで できなくなったことは？', 'What has not been allowed at Uluru since 2019?'], [['岩に のぼること', 'Climbing the rock'], ['写真を とること', 'Taking photos'], ['近くを 歩くこと', 'Walking around it']], 0, ['アナング族の 大切な 場所なので、 のぼるのは きんしに なったよ。', 'It is sacred to the Anangu, so climbing was banned.']],
+};
+DEEP.everest = {
+  y: ['約5000万年前から 少しずつ もりあがってきた', 'Pushed up over about 50 million years'],
+  n: ['高さ 8849m。 富士山の 2こ分より まだ 高い！', '8,849 m tall: higher than two Mount Fujis stacked up!'],
+  h: [['約5000万年前', 'c. 50 million years ago', 'インドが のった 大地が アジアに ぶつかり、 ヒマラヤ山脈が もりあがりはじめた。', 'The land carrying India crashed into Asia and the Himalayas began to rise.'],
+    ['1953年5月29日', '29 May 1953', 'ニュージーランドの ヒラリーと ネパールの シェルパ テンジンが はじめて ちょうじょうに 立った。', 'Edmund Hillary from New Zealand and Tenzing Norgay, a Sherpa from Nepal, were the first to reach the top.'],
+    ['1975年5月16日', '16 May 1975', '日本の {田部井淳子|たべいじゅんこ}さんが、 女の人で 世界で はじめて ちょうじょうに 立った！', 'Junko Tabei from Japan became the first woman to reach the top!'],
+    ['2020年', '2020', 'ネパールと 中国が いっしょに はかり、 高さを 8848.86mと 発表した。', 'Nepal and China measured it together and announced its height as 8,848.86 m.']],
+  s: [['ちょうじょうの 岩には、 大昔の 海の 生き物の 化石が ある。 むかしは 海の そこだった！', 'The rock at the top contains fossils of sea creatures. It used to be the sea floor!'],
+    ['今も 1年に 数mmずつ 高くなっている と いわれている。', 'It is said to still be growing a few millimetres every year.'],
+    ['ネパールでは「サガルマータ」、 チベットでは「チョモランマ」と よばれる。', 'In Nepal it is called Sagarmatha; in Tibet, Chomolungma.']],
+  q: [['女の人で はじめて エベレストに のぼったのは どこの 国の 人？', 'The first woman to climb Everest was from which country?'], [['日本', 'Japan'], ['イギリス', 'The UK'], ['アメリカ', 'The USA']], 0, ['日本の {田部井淳子|たべいじゅんこ}さん（1975年）だよ。', 'Junko Tabei from Japan, in 1975!']],
+};

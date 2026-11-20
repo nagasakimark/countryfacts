@@ -47,7 +47,7 @@
 
   /* ---------- board ---------- */
   var mode = null, cur = null, curPage = 'p1', arg = null;
-  function open(m, a) { mode = m; arg = a; $('#board').classList.add('on'); Globe.setOffset(278); $('#tip').style.opacity = 0; render(); }
+  function open(m, a) { if (window.TK && TK.onOpen) TK.onOpen(m); mode = m; arg = a; $('#board').classList.add('on'); Globe.setOffset(278); $('#tip').style.opacity = 0; render(); }
   function close() {
     endGame(); if (Globe.riding()) Globe.unride();
     mode = null; cur = null; Globe.select(null); $('#board').classList.remove('on'); Globe.setOffset(0);
@@ -135,7 +135,7 @@
     var f = INFO(c.id), a = window.ATLAS[c.id];
     return mini(c) + '<span class="lab">ことば</span><div class="box">' + rb(a.lng) + '<br><span class="mut">話されている 主な ことば：' + esc(f.lang) + '</span></div>' +
       '<div class="sayrow"><div class="sayb" data-say="hello" lang="' + esc(f.voice || '') + '">' + esc(f.hello.text) + '<small>' + esc(f.hello.kana) + '・こんにちは</small></div><div class="sayb" data-say="thanks" lang="' + esc(f.voice || '') + '">' + esc(f.thanks.text) + '<small>' + esc(f.thanks.kana) + '・ありがとう</small></div></div>' +
-      '<div class="mut ctr" style="margin-top:4px">' + (f.hello.audio ? 'ほんものの 人の 声' : 'パソコンの 読み上げの 声') + '</div>' +
+      '<div class="mut ctr" style="margin-top:4px">' + (f.hello.audio ? 'ほんものの 人の 声' : 'パソコンの 読み上げの 声') + '</div>' + (f.helloNote ? '<div class="box" style="margin-top:6px">🚀 ' + esc(f.helloNote) + '</div>' : '') +
       '<span class="lab">ひとびと</span><div class="box">' + rb(a.ppl) + '</div><span class="lab">しゅうきょう</span><div class="box">' + rb(a.rel) + '</div>';
   };
   PG.p4 = function (c) {
@@ -152,12 +152,13 @@
   PG.p5 = function (c) {
     var J = App.JP, out = mini(c), off = c.tz ? App.offsetFromJapan(c.tz) : null;
     out += '<div class="big">' + esc(c.ja) + 'は 日本の <b>' + App.ratioText(c.area, J.area) + '</b>の 広さ。' + (off == null ? '' : off === 0 ? ' 時間は 日本と おなじ！' : ' 時差は <b>' + Math.abs(off) + '時間</b>。') + '</div>';
+    out += (window.TK && TK.tsBox ? TK.tsBox(c, 200) : '');
     out += '<div class="tiles"><div class="tile">広さ<b>' + App.fmtArea(c.area) + '</b>' + (App.rankArea.r[c.id] ? '世界で ' + App.rankArea.r[c.id] + '番目' : '') + '</div><div class="tile">人口<b>' + App.fmtPeople(c.pop) + '</b>' + (App.rankPop.r[c.id] ? '世界で ' + App.rankPop.r[c.id] + '番目' : '') + '</div></div>';
     if (c.pop) { var dens = Math.round(c.pop / c.area), jd = Math.round(J.pop / J.area); out += '<div class="box" style="margin-top:8px">1 km² に すむ 人：' + esc(c.ja) + ' ' + dens.toLocaleString() + '人 ／ 日本 ' + jd.toLocaleString() + '人' + (dens < jd / 3 ? '（日本より ずっと ゆったり！）' : dens > jd * 1.5 ? '（日本より ぎゅうぎゅう！）' : '') + '</div>'; }
     out += '<span class="lab">くらべてみよう</span>' + barRow('平均じゅみょう', c.life && App.round1(c.life), App.round1(J.life), '歳', c) + barRow('学校で 学ぶ 年数', c.school && App.round1(c.school), App.round1(J.school), '年', c) + barRow('しあわせ度（10点まで）', c.happy && App.round1(c.happy), App.round1(J.happy), '点', c, 10) + barRow('マクドナルドの セットの ねだん', c.mac, J.mac, '円', c);
     if (c.tz) { var se = App.seasonText(c), km = App.distanceKm(c), p = App.localParts(c.tz); out += '<span class="lab">時間・きょり・きせつ</span><div class="box">いま ' + esc(c.ja) + 'は <b>' + App.clockText(p.h, p.m) + '</b>。<br>' + esc(App.kidActivity(p, c.id).replace(/^\S+\s/, '')) + '</div><div class="box">' + esc(se.text) + '</div><div class="box">東京から 首都 ' + esc(App.capitalName(c)) + 'まで 約 <b>' + km.toLocaleString() + ' km</b>。 ひこうきで 約' + flyH(km) + '時間。</div>'; }
     if (c.links) { var Lk = c.links; var tl = function (l, v, n) { return v == null ? '' : '<div class="tile">' + l + '<b>' + App.fmtMan(v) + '</b>' + (n || '') + '</div>'; }; out += '<span class="lab">日本との つながり</span><div class="tiles">' + tl(esc(c.ja) + 'から 日本へ 来た 人（2024年）', Lk.in) + tl('日本から ' + esc(c.ja) + 'へ 行った 人（2024年）', Lk.out, Lk.outApprox ? 'めやす' : '') + tl('日本に すんでいる ' + esc(c.ja) + 'の 人', Lk.res) + tl(esc(c.ja) + 'に すんでいる 日本人', Lk.abroad) + '</div>'; }
-    out += '<div class="ctr"><a class="btn" href="index.html#/size/' + c.id + '">ほんとうの 大きさで かさねる</a></div><div style="height:6px"></div>'; return out;
+    out += '<div class="ctr"><button class="btn" data-go="size:' + c.id + '">📏 ほんとうの 大きさで かさねる</button></div><div style="height:6px"></div>'; return out;
   };
   var quiz = null;
   PG.p6 = function (c) { quiz = makeQ(c); var got = App.save.stamps[c.id]; return mini(c) + (got ? '<div class="box" style="background:#d6f5dd">この 国の スタンプは もう もらったよ（' + got + '）。 もう一度 ちょうせん してもいいよ！</div>' : '<div class="box" style="background:#fff6c4">こたえて スタンプを もらおう！</div>') + '<div class="big" id="qq">' + quiz.q + '</div><div id="qo">' + quiz.o.map(function (x, i) { return '<button class="opt" data-i="' + i + '">' + esc(x) + '</button>'; }).join('') + '</div><div id="qr"></div>'; };
@@ -333,7 +334,7 @@
     if (tab === 'an') h += ANS.map(function (a) { var g = S.an[a.id]; return '<div class="cell' + (g ? '' : ' no') + '" data-k="an:' + a.id + '"><span class="e">' + a.e + '</span>' + (g ? esc(nm(a)) : '？') + '</div>'; }).join('');
     if (tab === 've') h += RTS.map(function (r) { var g = S.ve[r.id]; return '<div class="cell' + (g ? '' : ' no') + '" data-k="ve:' + r.id + '"><img src="' + vthumb(r) + '" alt="">' + (g ? rb(nm(r)).replace(/^(ひこうき|Plane:|フェリー|Ferry:|コンテナ船|Container ship:|新幹線|Shinkansen:)\s*/, '') : '？') + '</div>'; }).join('');
     if (tab === 'st') h += featured.map(function (c) { var g = App.save.stamps[c.id]; return '<div class="cell' + (g ? '' : ' no') + '" data-k="st:' + c.id + '">' + flagImg(c).replace('<img', '<img style="width:52px;height:39px;border:2px solid #3b2a5c;object-fit:cover' + (g ? '' : ';filter:grayscale(1) opacity(.35)') + '"') + esc(cn(c)) + '</div>'; }).join('');
-    return h + '</div>' + (tab === 'st' ? '<div class="ctr"><a class="btn pu" href="index.html#/passport">' + L('パスポートを 見る', 'Open the passport') + '</a></div>' : '') + '<div style="height:8px"></div>';
+    return h + '</div>' + (tab === 'st' && window.TK && TK.badges ? TK.badges() : '') + '<div style="height:8px"></div>';
   };
   B.book = function (pg) {
     Array.prototype.forEach.call(pg.querySelectorAll('[data-tab]'), function (b) { b.onclick = function () { beep(); arg = b.dataset.tab; render(); }; });
@@ -356,15 +357,15 @@
     return '<div class="cname"><h1>🎮 ' + L('ゲーム', 'Games') + '</h1></div>' +
       '<button class="gbtn" data-g="where"><span class="gi" style="background:#ffc531">📍</span><span><b>' + L('どこかな？', 'Where in the world?') + '</b><small>' + L('地球を まわして、 国・たてもの・どうぶつの ばしょを タッチ！ 10もん', 'Spin the globe and tap where it is. 10 questions') + '<br>⭐ ' + best('where') + ' / 30</small></span></button>' +
       '<button class="gbtn" data-g="flag"><span class="gi" style="background:#ff6f91">🏳️</span><span><b>' + L('こっき クイズ', 'Flag quiz') + '</b><small>' + L('この 国旗は どこの 国？ 10もん', 'Whose flag is this? 10 questions') + '<br>⭐ ' + best('flag') + ' / 10</small></span></button>' +
-      '<button class="gbtn" data-g="old"><span class="gi" style="background:#33c9a0">🧩</span><span><b>' + L('くらべっこ ゲーム', 'More games') + '</b><small>' + L('日本 何こ分？ シルエット クイズ など', 'Size, silhouettes and more (in Japanese)') + '</small></span></button>';
+      (window.TK && TK.moreGames ? TK.moreGames() : '');
   };
   B.games = function (pg) {
     Array.prototype.forEach.call(pg.querySelectorAll('[data-g]'), function (b) {
-      b.onclick = function () { boing(); var g = b.dataset.g; if (g === 'old') location.href = 'index.html#/games'; else startGame(g); };
+      b.onclick = function () { boing(); var g = b.dataset.g; if (window.TK && TK.isMore(g)) TK.startMore(g); else startGame(g); };
     });
   };
   var game = null;
-  function endGame() { if (!game) return; game = null; Globe.quiz = false; Globe.onTap = null; Globe.pins = []; }
+  function endGame() { if (window.TK && TK.onEnd) TK.onEnd(); if (!game) return; game = null; Globe.quiz = false; Globe.onTap = null; Globe.pins = []; }
   function startGame(kind) {
     if (Globe.riding()) Globe.unride(); Globe.select(null);
     var qs = [];
@@ -478,18 +479,23 @@
   /* ---------- dock & buttons ---------- */
   function dock() {
     var toys = [
-      ['#ffc531', L('さがす', 'Search'), '<circle cx="18" cy="18" r="10" fill="#fff" stroke="#3b2a5c" stroke-width="4"/><path d="M26 26l9 9" stroke="#3b2a5c" stroke-width="6" stroke-linecap="round"/>', function () { sq.focus(); }],
+      ['#ffc531', L('さがす', 'Search'), '<circle cx="18" cy="18" r="10" fill="#fff" stroke="#3b2a5c" stroke-width="4"/><path d="M26 26l9 9" stroke="#3b2a5c" stroke-width="6" stroke-linecap="round"/>', function () { open('countries'); }],
       ['#ff7a2f', L('のりもの', 'Rides'), '<path d="M4 22l14-4 4-12 4 1-2 10 12-3 2 3-12 6-1 10-4 1-1-9-14 4z" fill="#fff" stroke="#3b2a5c" stroke-width="3" stroke-linejoin="round"/>', function () { open('vehicles'); }],
       ['#33c9a0', L('ゲーム', 'Games'), '<rect x="4" y="12" width="32" height="18" rx="9" fill="#fff" stroke="#3b2a5c" stroke-width="4"/><path d="M13 16v10M8 21h10" stroke="#3b2a5c" stroke-width="3"/><circle cx="26" cy="20" r="2.5" fill="#3b2a5c"/><circle cx="31" cy="24" r="2.5" fill="#3b2a5c"/>', function () { endGame(); open('games'); }],
       ['#4fb3ff', L('ずかん', 'Stickers'), '<rect x="8" y="4" width="24" height="32" rx="4" fill="#fff" stroke="#3b2a5c" stroke-width="4"/><circle cx="20" cy="18" r="6" fill="none" stroke="#ff5a4d" stroke-width="3"/>', function () { open('book', 'lm'); }],
       ['#7a4bd8', L('ランダム', 'Surprise'), '<rect x="6" y="6" width="28" height="28" rx="7" fill="#fff" stroke="#3b2a5c" stroke-width="4"/><circle cx="14" cy="14" r="3" fill="#3b2a5c"/><circle cx="20" cy="20" r="3" fill="#3b2a5c"/><circle cx="26" cy="26" r="3" fill="#3b2a5c"/>', function () { var r = Math.random(); if (r < 0.4) choose(App.pick(featured).id); else if (r < 0.7) showLandmark(App.pick(LMS).id); else showAnimal(App.pick(ANS).id); }],
-      ['#ff6f91', L('さいず', 'Size'), '<path d="M6 30h12V16H6zM22 30h14V8H22z" fill="#fff" stroke="#3b2a5c" stroke-width="4" stroke-linejoin="round"/>', function () { location.href = 'index.html#/size' + (cur ? '/' + cur.id : ''); }]];
+      ['#ff6f91', L('さいず', 'Size'), '<path d="M6 30h12V16H6zM22 30h14V8H22z" fill="#fff" stroke="#3b2a5c" stroke-width="4" stroke-linejoin="round"/>', function () { open('size', cur && cur.id !== 'JPN' ? cur.id : null); }]];
     $('#dock').innerHTML = toys.map(function (x, i) { return '<div class="toy" style="background:' + x[0] + '" data-i="' + i + '"><svg viewBox="0 0 40 40">' + x[2] + '</svg><span>' + x[1] + '</span></div>'; }).join('');
     Array.prototype.forEach.call(document.querySelectorAll('.toy'), function (e) { e.onclick = function () { boing(); toys[e.dataset.i][3](); }; });
   }
   $('#zi').onclick = function () { beep(); Globe.zoom(1 / 1.7); }; $('#zo').onclick = function () { beep(); Globe.zoom(1.7); }; $('#zh').onclick = function () { beep(); Globe.home(); };
   $('#langp').onclick = function () { beep(); setLang(lang === 'en' ? 'ja' : 'en'); };
   $('#cntp').onclick = function () { beep(); open('book', 'lm'); };
+
+  /* ---------- shared with tanken/more.js (size compare, more games, country list, landmark deep dives, help) ---------- */
+  window.TK = { R: R, B: B, S: S, open: open, close: close, render: render, tabs: tabs, persist: persist, upd: upd, say: say, beep: beep, boing: boing, fanfare: fanfare, confetti: confetti, tone: tone,
+    L: function (ja, en) { return L(ja, en); }, lang: function () { return lang; }, rb: rb, nm: nm, cn: cn, flagImg: flagImg, choose: choose, showLandmark: showLandmark, showAnimal: showAnimal,
+    mode: function () { return mode; }, arg: function () { return arg; }, setArg: function (a) { arg = a; }, cur: function () { return cur; }, featured: featured, newSticker: newSticker };
 
   /* ---------- start ---------- */
   setLang(lang); upd(); setSpeed(1);

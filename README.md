@@ -42,6 +42,8 @@ The root `index.html` is the original app (true-size, games, passport). The 3D g
 - **Games**: どこかな？ (tap where a country, landmark or animal is, with north/south/east/west hints) and a flag quiz. Best scores are saved.
 - **ずかん (sticker book)**: landmarks, animals, rides and the country stamps. Tapping a ? gives a hint about where to look.
 - The 36 featured countries keep their six pages (もよう, れきし, ひと・ことば, くらし, くらべる, クイズ).
+- **Everything from the first app now lives here too** (`tanken/more.js`): 📏 true-size compare on the globe (drag the red Japan and a blue country; they keep their real size; 8 one-tap demos), the 5 compare games (日本 何こ分？, どっちが 大きい？, あいさつ, シルエット, 時差), passport badges (plus new ones for stickers and landmark quizzes) in the sticker book, a country list by continent (the さがす button), and a ❓ help + about/credits page (credits are plain text, no links out of the app).
+- **Landmark deep dives** (`data/deep.js`): 30 landmarks (Nagasaki/Japan first, then world icons) have extra tabs: れきし (timeline), ひみつ (secrets) and クイズ. A right answer puts a ⭐ on that sticker. Draft content: please fact-check with a co-teacher.
 - **Day and night** follow the real time: the side of the Earth where it is night now is dark, with city lights.
 - **City labels** with population appear as you zoom in (capitals have a red star). Japanese cities show Japanese names; other cities use English names.
 - **EN button**: switches the interface, names and the new content to English. The country pages' long texts are still Japanese only.
@@ -50,6 +52,7 @@ The root `index.html` is the original app (true-size, games, passport). The 3D g
 Editing:
 - `data/toy.js`: landmarks, animals and vehicle routes (Japanese + English). Check kanji with `python3 tools/kcheck.py data/toy.js`.
 - `tanken/models.js`: the low-poly models, built from boxes, cylinders and spheres. A new landmark can reuse any existing model key.
+- `data/deep.js`: landmark deep dives (timeline, secrets, quiz). Add one by copying an entry and using the landmark's id from `data/toy.js`. Check kanji with `python3 tools/kcheck.py data/deep.js`.
 - `data/atlas.js`: cultural content for the country pages (draft, needs fact-check and co-teacher review).
 - Flags from flag-icons (MIT) in `flags/`. No network needed at runtime.
 
