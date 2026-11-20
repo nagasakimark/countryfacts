@@ -322,6 +322,32 @@
   };
 
   /* ======================================================================
+     🐾 endangered status (IUCN Red List) on animal cards: r field in data/toy.js
+     ====================================================================== */
+  var RL = { CR: ['#d7263d', 'ぜつめつ すんぜん', 'Critically Endangered', '野生では もう すぐ いなくなって しまうかも しれない。', 'It could soon disappear from the wild.'],
+    EN: ['#f46036', 'とても あぶない', 'Endangered', '数が とても へっていて、 いなくなる きけんが 高い。', 'Its numbers have fallen a lot. It is at high risk of disappearing.'],
+    VU: ['#f2b705', 'あぶない', 'Vulnerable', '数が へっていて、 このままだと あぶない。', 'Its numbers are falling. It could be in danger.'],
+    NT: ['#8bc34a', 'もうすぐ あぶないかも', 'Near Threatened', 'いまは だいじょうぶだが、 気を つけて 見守る 必要が ある。', 'It is okay for now, but needs watching.'],
+    LC: ['#2b9de0', 'いまは だいじょうぶ', 'Least Concern', '野生に たくさん いて、 いまは 心配が 少ない。', 'There are plenty in the wild for now.'],
+    DD: ['#9a8bb8', 'よく わかっていない', 'Data Deficient', 'しらべる ための 数の データが まだ 足りない。', 'Scientists do not have enough data yet.'],
+    DOM: ['#a0785a', '人が かっている どうぶつ', 'Farm animal', '人が 牧場などで かっている どうぶつ。 野生の しらべ方とは ちがう。', 'It is kept by people on farms, so it is not on the wild list.'] };
+  var SCALE = ['LC', 'NT', 'VU', 'EN', 'CR'];
+  function rlBox(a) {
+    var r = RL[a.r]; if (!r) return '';
+    var bar = a.r === 'DOM' || a.r === 'DD' ? '' : '<div class="rlbar">' + SCALE.map(function (k) { return '<span style="background:' + RL[k][0] + (k === a.r ? '' : ';opacity:.25') + '">' + (k === a.r ? '▼' : '') + '</span>'; }).join('') + '</div><div class="rlends"><span>' + L('あんしん', 'Safe') + '</span><span>' + L('あぶない', 'In danger') + '</span></div>';
+    return '<div class="box rlbox"><div class="rlhead"><span class="rltag" style="background:' + r[0] + '">' + (a.r === 'DOM' ? '🏠' : a.r) + '</span><b>' + rb(L(r[1], r[2])) + '</b></div>' + bar +
+      '<div style="font-size:14px">' + rb(L(r[3], r[4])) + '</div><div class="mut" style="font-size:11px;margin-top:2px">' + rb(L('IUCN（{国際|こくさい}自然{保護|ほご}連合）レッドリスト', 'IUCN Red List')) + '</div></div>';
+  }
+  TK.rl = function (id) { return RL[id]; };
+  var oAn = R.animal;
+  R.animal = function (o) { var a = Globe.animal(o.id), html = oAn(o); return html.replace('<div class="btns">', rlBox(a) + '<div class="btns">'); };
+  var oBook2 = B.book;
+  B.book = function (pg, a) {
+    oBook2(pg, a);
+    each(pg, '[data-k^="an:"]', function (e) { var an = Globe.animal(e.dataset.k.slice(3)), r = an && RL[an.r]; if (r && TK.S.an[an.id] && an.r !== 'LC' && an.r !== 'DOM') e.insertAdjacentHTML('beforeend', '<i class="rldot" style="background:' + r[0] + '">' + an.r + '</i>'); });
+  };
+
+  /* ======================================================================
      ❓ help + about (data sources and credits; no links that leave the app)
      ====================================================================== */
   R.help = function () {
