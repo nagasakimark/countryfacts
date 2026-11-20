@@ -42,7 +42,7 @@
   App.toast = say;
   var cf = $('#conf'), cc = cf.getContext('2d'), ps = [];
   function confetti() { for (var i = 0; i < 60; i++) ps.push({ x: 1080, y: 140, vx: (Math.random() - 0.5) * 14, vy: -Math.random() * 10 - 2, c: ['#ffc531', '#ff6f91', '#33c9a0', '#fff', '#7a4bd8'][i % 5], r: Math.random() * 6, l: 70 }); }
-  (function lp() { if (ps.length) { cc.clearRect(0, 0, W, H); } ps = ps.filter(function (p) { return p.l > 0; }); ps.forEach(function (p) { p.x += p.vx; p.y += p.vy; p.vy += 0.5; p.l--; cc.save(); cc.translate(p.x, p.y); cc.rotate(p.r += 0.2); cc.fillStyle = p.c; cc.fillRect(-5, -3, 10, 6); cc.restore(); }); if (!ps.length) cc.clearRect(0, 0, W, H); requestAnimationFrame(lp); })();
+  (function lp() { if (ps.length) { cc.clearRect(0, 0, W, cf.height); } ps = ps.filter(function (p) { return p.l > 0; }); ps.forEach(function (p) { p.x += p.vx; p.y += p.vy; p.vy += 0.5; p.l--; cc.save(); cc.translate(p.x, p.y); cc.rotate(p.r += 0.2); cc.fillStyle = p.c; cc.fillRect(-5, -3, 10, 6); cc.restore(); }); if (!ps.length) cc.clearRect(0, 0, W, cf.height); requestAnimationFrame(lp); })();
   function newSticker(kind, id, label) { if (collect(kind, id)) { setTimeout(function () { fanfare(); confetti(); say('🏅 ' + L('シール ゲット！ ', 'New sticker: ') + esc(plain(label))); }, 350); return true; } return false; }
 
   /* ---------- board ---------- */

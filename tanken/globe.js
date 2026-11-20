@@ -665,7 +665,8 @@
   /* ---------- size / loop ---------- */
   var bg = $('#bg'), stage = $('#stage');
   var STARS = document.createElement('canvas'); STARS.width = W; STARS.height = H;
-  (function stars() { var c = STARS.getContext('2d'); var g = c.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 820); g.addColorStop(0, '#17337d'); g.addColorStop(1, '#050b25'); c.fillStyle = g; c.fillRect(0, 0, W, H); c.fillStyle = '#fff'; for (var i = 0; i < 140; i++) { c.globalAlpha = 0.3 + Math.random() * 0.6; var s = Math.random() * 1.7 + 0.4; c.fillRect(Math.random() * W, Math.random() * H, s, s); } c.globalAlpha = 1; })();
+  function drawStars() { STARS.width = W; STARS.height = H; var c = STARS.getContext('2d'); var g = c.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 820); g.addColorStop(0, '#17337d'); g.addColorStop(1, '#050b25'); c.fillStyle = g; c.fillRect(0, 0, W, H); c.fillStyle = '#fff'; for (var i = 0; i < 140; i++) { c.globalAlpha = 0.3 + Math.random() * 0.6; var s = Math.random() * 1.7 + 0.4; c.fillRect(Math.random() * W, Math.random() * H, s, s); } c.globalAlpha = 1; }
+  drawStars();
   bg.width = W; bg.height = H; bg.getContext('2d').drawImage(STARS, 0, 0);
   // Sky: when the camera is low, space turns into a sky coloured by the real time of day where you are looking.
   scene.fog = new T.Fog(0x9fd0f0, 1e8, 2e8);
@@ -692,7 +693,18 @@
   }
   G.info = function () { return { frames: renderer.info.render.frame, calls: renderer.info.render.calls, tris: renderer.info.render.triangles, tex: renderer.info.memory.textures, geo: renderer.info.memory.geometries }; };
   G.quality = function () { return { low: qLow, scale: QSCALE }; };
+  // Taller screens (e.g. a Chromebook in full screen: 1366x768) get a taller stage instead of black bars.
+  // The vertical field of view grows with the height, so the globe stays the same size and you simply see more of it.
+  var H0 = 598, FOV0 = FOV;
+  function setHeight(h) {
+    if (h === H) return; H = h;
+    stage.style.height = H + 'px'; camera.fov = 2 * Math.atan(Math.tan(FOV0 / 2 * D2R) * H / H0) / D2R; camera.aspect = W / H; camera.updateProjectionMatrix();
+    drawStars(); bg.height = H; skyKey = ''; bg.getContext('2d').drawImage(STARS, 0, 0);
+    var cf = $('#conf'); if (cf) cf.height = H; ov.width = 0; lastSig = ''; G.H = H;
+  }
+  G.H = H;
   function fit() {
+    setHeight(Math.max(H0, Math.min(900, Math.round(W * innerHeight / Math.max(1, innerWidth)))));
     var s = Math.min(innerWidth / W, innerHeight / H); stage.style.transform = 'translate(-50%,-50%) scale(' + s + ')';
     var q = Math.min(1, s * (window.devicePixelRatio || 1)) * QSCALE;
     renderer.setPixelRatio(q); renderer.setSize(W, H, false); if (G.lightU) G.lightU.uK.value = q;
