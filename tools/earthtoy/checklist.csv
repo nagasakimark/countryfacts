@@ -296,7 +296,7 @@ Landmark,Yemen,Dar al-Hajar,yes,daralhajar,Dar al-Hajar
 Landmark,Albania,Clock Tower of Tirana,yes,clocktirana,Clock Tower of Tirana
 Landmark,Austria,Hallstatt,yes,hallstatt,Hallstatt
 Landmark,Austria,Schönbrunn Palace,yes,schonbrunn,Schönbrunn Palace
-Landmark,Austria,St. Stephen's Cathedral,no,,
+Landmark,Austria,St. Stephen's Cathedral,yes,ststephen,St. Stephen's Cathedral
 Landmark,Belarus,National Library of Belarus,yes,belaruslib,National Library of Belarus
 Landmark,Belgium,Atomium,yes,atomium,Atomium
 Landmark,Bosnia & Herzegovina,"Stari Most, Mostar",yes,starimost,"Stari Most, Mostar"
@@ -308,7 +308,7 @@ Landmark,Czechia,Prague Astronomical Clock,yes,pragueclock,Prague Astronomical C
 Landmark,Denmark,Nyhavn,yes,nyhavn,Nyhavn
 Landmark,Estonia,Tallinn Old Town,yes,tallinn,Tallinn Old Town
 Landmark,Finland,Helsinki Cathedral,yes,helsinki,Helsinki Cathedral
-Landmark,Finland,Temppeliaukio Church (Rock Church),no,,
+Landmark,Finland,Temppeliaukio Church (Rock Church),yes,temppeliaukio,Temppeliaukio Church
 Landmark,Finland,Uspenski Cathedral,no,,
 Landmark,France,Arc de Triomphe,yes,arc,Arc de Triomphe
 Landmark,France,Chartres Cathedral,no,,
@@ -398,7 +398,7 @@ Landmark,Spain,Santiago de Compostela Cathedral,no,,
 Landmark,Sweden,Avicii Arena (Globen),no,,
 Landmark,Sweden,Stockholm City Hall,yes,stockholm,Stockholm City Hall
 Landmark,Sweden,Vasa Museum,yes,vasa,Vasa Museum
-Landmark,Switzerland,CERN – Globe of Science and Innovation,no,,
+Landmark,Switzerland,CERN – Globe of Science and Innovation,yes,cernglobe,CERN Globe of Science and Innovation
 Landmark,Switzerland,Matterhorn,yes,matterhorn,Matterhorn
 Landmark,Türkiye,Basilica Cistern,no,,
 Landmark,Türkiye,Dolmabahçe Palace,no,,
@@ -521,7 +521,7 @@ Landmark,Tunisia,Great Mosque of Kairouan,yes,kairouan,Great Mosque of Kairouan
 Landmark,Uganda,Murchison Falls,yes,murchison,Murchison Falls
 Landmark,Zambia,Victoria Falls,yes,victoria,Victoria Falls
 Landmark,Zimbabwe,Great Zimbabwe,yes,greatzim,Great Zimbabwe
-Landmark,Zimbabwe,Khami Ruins,no,,
+Landmark,Zimbabwe,Khami Ruins,yes,khami,Khami Ruins
 Landmark,Bahamas,The Royal at Atlantis,no,,
 Landmark,Barbados,"Parliament Buildings, Bridgetown",yes,bridgetown,"Parliament Buildings, Bridgetown"
 Landmark,Belize,Great Blue Hole,yes,bluehole,Great Blue Hole
@@ -710,9 +710,9 @@ Landmark,Argentina,Obelisco de Buenos Aires,yes,obelisco,Obelisco of Buenos Aire
 Landmark,Argentina,Palace of the Argentine National Congress,no,,
 Landmark,Argentina,Palacio Barolo,no,,
 Landmark,Argentina,Perito Moreno Glacier,yes,peritomoreno,Perito Moreno Glacier
-Landmark,Argentina,Teatro Colón,no,,
+Landmark,Argentina,Teatro Colón,yes,teatrocolon,Teatro Colón
 Landmark,Bolivia,"Basilica of San Francisco, La Paz",no,,
-Landmark,Bolivia,Cristo de la Concordia,no,,
+Landmark,Bolivia,Cristo de la Concordia,yes,concordia,Cristo de la Concordia
 Landmark,Bolivia,Potosí (Cerro Rico),no,,
 Landmark,Bolivia,Salar de Uyuni,yes,uyuni,Salar de Uyuni
 Landmark,Bolivia,Tiwanaku (Gate of the Sun),yes,tiwanaku,Gate of the Sun (Tiwanaku)
@@ -816,7 +816,7 @@ Landmark,Tonga,Royal Palace of Tonga,yes,tongapalace,Royal Palace of Tonga
 Landmark,Vanuatu,Chief Roi Mata's Domain,yes,roimata,Chief Roi Mata's Domain
 Landmark,Antarctica,Amundsen–Scott South Pole Station,yes,southpole,Amundsen–Scott South Pole Station
 Landmark,Antarctica,Concordia Station,no,,
-Landmark,Antarctica,Halley VI Research Station,no,,
+Landmark,Antarctica,Halley VI Research Station,yes,halley,Halley VI Research Station
 Landmark,Antarctica,Jang Bogo Station,no,,
 Landmark,Antarctica,King Sejong Station,no,,
 Landmark,Antarctica,McMurdo Station,no,,
@@ -828,7 +828,7 @@ Landmark,Azerbaijan,Flame Towers,yes,flametowers,Flame Towers
 Landmark,Cyprus,Kolossi Castle,yes,kolossi,Kolossi Castle
 Landmark,Georgia,Gergeti Trinity Church,yes,gergeti,Gergeti Trinity Church
 Landmark,Georgia,Svetitskhoveli Cathedral,yes,svetitskhoveli,Svetitskhoveli Cathedral
-Landmark,Kazakhstan,Baikonur Cosmodrome,no,,
+Landmark,Kazakhstan,Baikonur Cosmodrome,yes,baikonur,Baikonur Cosmodrome
 Landmark,Kazakhstan,Baiterek Tower,yes,bayterek,Bayterek Tower
 Landmark,Russia,Manpupuner Rock Formations,no,,
 Landmark,Trinidad & Tobago,Temple in the Sea,yes,templesea,Temple in the Sea
@@ -850,7 +850,7 @@ Animal,Mammal,Arabian oryx,no,,
 Animal,Mammal,Arctic fox,yes,arcticfox,Arctic fox
 Animal,Mammal,Arctic hare,no,,
 Animal,Mammal,Argali,no,,
-Animal,Mammal,Asian elephant,no,,
+Animal,Mammal,Asian elephant,yes,aelephant,Asian elephant
 Animal,Mammal,Asiatic black bear (Moon bear),no,,
 Animal,Mammal,Asiatic cheetah,no,,
 Animal,Mammal,Asiatic lion,no,,
@@ -868,7 +868,7 @@ Animal,Mammal,Bharal,no,,
 Animal,Mammal,Bighorn sheep,no,,
 Animal,Mammal,Binturong,no,,
 Animal,Mammal,Black-tailed prairie dog,no,,
-Animal,Mammal,Blue whale,no,,
+Animal,Mammal,Blue whale,yes,bluewhale,Blue whale
 Animal,Mammal,Blue wildebeest,no,,
 Animal,Mammal,Bonobo,no,,
 Animal,Mammal,Bornean orangutan,yes,orangutan,Orangutan
@@ -883,7 +883,7 @@ Animal,Mammal,Caracal,no,,
 Animal,Mammal,Caspian seal,no,,
 Animal,Mammal,Chamois,no,,
 Animal,Mammal,Cheetah,yes,cheetah,Cheetah
-Animal,Mammal,Chimpanzee,no,,
+Animal,Mammal,Chimpanzee,yes,chimp,Chimpanzee
 Animal,Mammal,Chinchilla,no,,
 Animal,Mammal,Chinese white dolphin,no,,
 Animal,Mammal,Clouded leopard,no,,
@@ -898,7 +898,7 @@ Animal,Mammal,Crabeater seal,no,,
 Animal,Mammal,Dall's porpoise,no,,
 Animal,Mammal,Dingo,no,,
 Animal,Mammal,Dromedary camel,yes,camel,Dromedary camel
-Animal,Mammal,Dugong,no,,
+Animal,Mammal,Dugong,yes,dugong,Dugong
 Animal,Mammal,Eastern gray squirrel,no,,
 Animal,Mammal,Emperor tamarin,no,,
 Animal,Mammal,Ethiopian wolf,no,,

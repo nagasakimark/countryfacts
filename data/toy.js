@@ -761,7 +761,23 @@ TOY.landmarks = [
 {id:'chinguetti',c:'MRT',ll:[-12.3633,20.4626],m:'chinguetti',ja:'シンゲッティ',en:'Chinguetti',k:'しんげってぃ もーりたにあ',
   t:'モーリタニアの サハラ{砂漠|さばく}に ある 古い 町。 何百年も 前に 手で 書かれた 本の 図書館が のこる。 モスクの {塔|とう}の 上には ダチョウの たまごが 5つ。',te:'An old town in the Sahara in Mauritania, with libraries of handwritten books hundreds of years old. Five ostrich eggs sit on top of its mosque tower.'},
 {id:'predjama',c:'SVN',ll:[14.1270,45.8157],m:'predjama',ja:'プレッドヤマ{城|じょう}',en:'Predjama Castle',k:'ぷれっどやまじょう すろべにあ',
-  t:'スロベニアの 高い がけの とちゅうに ある、 どうくつの 入り口に はまるように たてられた お{城|しろ}。 750年ほど 前から ある。',te:'A castle built right into the mouth of a cave halfway up a cliff in Slovenia, first mentioned about 750 years ago.'}
+  t:'スロベニアの 高い がけの とちゅうに ある、 どうくつの 入り口に はまるように たてられた お{城|しろ}。 750年ほど 前から ある。',te:'A castle built right into the mouth of a cave halfway up a cliff in Slovenia, first mentioned about 750 years ago.'},
+{id:'temppeliaukio',c:'FIN',ll:[24.9254,60.1728],m:'temppeliaukio',ja:'テンペリアウキオ教会',en:'Temppeliaukio Church',k:'てんぺりあうきおきょうかい いわのきょうかい へるしんき',
+  t:'ヘルシンキの 岩を くりぬいて つくった 教会。 1969年に できた。 天井は 長さ 22kmの 銅の テープを うずまきに した 大きな まるい 屋根。 音が よく ひびくので コンサートにも 使われる。',te:'A church dug out of solid rock in Helsinki, opened in 1969. Its round roof is a coil of copper strip about 22 km long. The sound is so good that concerts are held inside.'},
+{id:'khami',c:'ZWE',ll:[28.4180,-20.1530],m:'khami',ja:'カミの いせき',en:'Khami Ruins',k:'かみのいせき じんばぶえ',
+  t:'ジンバブエの 石の いせき。 500年ほど 前、 王国の 都が あった。 セメントを 使わずに 石を つんだ かべに、 チェックや ギザギザの もようが ある。 世界{遺産|いさん}。',te:'Stone ruins in Zimbabwe, the capital of a kingdom about 500 years ago. The walls were built without mortar and decorated with chequer and zig-zag patterns. A World Heritage Site.'},
+{id:'baikonur',c:'KAZ',ll:[63.3050,45.9200],m:'baikonur',ja:'バイコヌール{宇宙|うちゅう}基地',en:'Baikonur Cosmodrome',k:'ばいこぬーるうちゅうきち ろけっと',
+  t:'カザフスタンの 草原に ある、 世界で 最初の {宇宙|うちゅう}ロケット 発しゃ場。 1961年、 ガガーリンが ここから 人類で はじめて {宇宙|うちゅう}へ 行った。',te:'The world\'s first spaceport, out on the steppe of Kazakhstan. In 1961 Yuri Gagarin launched from here to become the first person in space.'},
+{id:'cernglobe',c:'CHE',ll:[6.0557,46.2341],m:'cernglobe',ja:'CERNの 科学の 球',en:'CERN Globe of Science and Innovation',k:'せるん さいえんすぐろーぶ すいす',
+  t:'スイスの 研究所 CERN（セルン）に ある 木で できた 大きな 球。 高さ 27m。 地下 100mには 1しゅう 27kmの 大きな わが あり、 小さな つぶを ぶつけて {宇宙|うちゅう}の なぞを しらべている。',te:'A giant ball made of wood at CERN, the science lab in Switzerland. 100 m underground is a 27 km ring where tiny particles are smashed together to learn the secrets of the universe.'},
+{id:'teatrocolon',c:'ARG',ll:[-58.3833,-34.6011],m:'teatrocolon',ja:'テアトロ・コロン',en:'Teatro Colón',k:'てあとろころん ぶえのすあいれす',
+  t:'ブエノスアイレスの オペラの {劇場|げきじょう}。 1908年に できた。 音の ひびきが 世界で トップクラスと いわれる。',te:'The opera house of Buenos Aires, opened in 1908. Its sound is said to be among the best in the world.'},
+{id:'ststephen',c:'AUT',ll:[16.3731,48.2085],m:'ststephen',ja:'シュテファン{大聖堂|だいせいどう}',en:'St. Stephen\'s Cathedral',k:'しゅてふぁんだいせいどう うぃーん',
+  t:'ウィーンの まん中に ある 大きな 教会。 屋根には 約23万まいの カラフルな タイルで もようや ワシが えがかれている。 南の とうは 高さ 136m。',te:'The great church in the middle of Vienna. About 230,000 coloured tiles on its roof make zig-zags and eagles. The south tower is 136 m tall.'},
+{id:'concordia',c:'BOL',ll:[-66.1355,-17.3847],m:'concordia',ja:'コンコルディアの キリスト像',en:'Cristo de la Concordia',k:'くりすとでらこんこるでぃあ こちゃばんば ぼりびあ',
+  t:'ボリビアの コチャバンバに ある 大きな キリスト像。 1994年に できた。 台を 入れた 高さは 約40mで、 ブラジルの キリスト像より 少し 高い。',te:'A huge statue of Christ above Cochabamba, Bolivia, finished in 1994. With its base it is about 40 m tall, a little taller than the one in Rio.'},
+{id:'halley',c:'ATA',ll:[-26.20,-75.58],m:'halley',ja:'ハリー6 {観測|かんそく}基地',en:'Halley VI Research Station',k:'はりーきち なんきょく かんそくきち',
+  t:'イギリスの 南きょくの 基地。 雪に うもれないように 長い 足の 先に スキーが ついていて、 引っぱって ひっこしが できる。 ここの 科学者は 1985年に「オゾンホール」を 見つけた。',te:'A British base in Antarctica. Its modules stand on long legs with skis, so the whole station can be towed to a new spot. Scientists here discovered the ozone hole in 1985.'}
 ];
 
 TOY.animals = [
@@ -831,7 +847,11 @@ TOY.animals = [
  {id:'tarsier',r:'NT',e:'🐒',ll:[124.0,9.8],ja:'フィリピンメガネザル',en:'Philippine tarsier',t:'フィリピンの ボホール島などに すむ、 手の ひらに のるほど 小さな サル。 目の 1つが {脳|のう}と 同じくらい 大きい。',te:'A tiny primate from the Philippines that fits in your hand. Each of its eyes is about as big as its brain.'},
  {id:'mandrill',r:'VU',e:'🐒',ll:[11.5,-0.8],ja:'マンドリル',en:'Mandrill',t:'ガボンの 森に すむ。 赤と 青の あざやかな 顔で、 世界で いちばん カラフルな サルと 言われる。',te:'It lives in the forests of Gabon. With its bright red-and-blue face, it is said to be the most colourful monkey in the world.'},
  {id:'specbear',r:'VU',e:'🐻',ll:[-78.3,-1.5],ja:'メガネグマ',en:'Spectacled bear',t:'エクアドルなど アンデスの 森に すむ、 南アメリカで ただ1つの クマ。 目の まわりの もようが メガネのように 見える。',te:'The only bear in South America, living in the Andes forests of Ecuador and nearby. The pale markings round its eyes look like glasses.'},
- {id:'crane',r:'VU',e:'🐦',ll:[144.4,43.1],ja:'タンチョウ',en:'Red-crowned crane',t:'北海道の {釧路|くしろ}の しつ原に すむ。 頭の てっぺんが 赤い。 冬には つがいで ダンスを する。',te:'It lives in the wetlands of Kushiro, Hokkaido. The top of its head is red, and in winter pairs dance together in the snow.'}
+ {id:'crane',r:'VU',e:'🐦',ll:[144.4,43.1],ja:'タンチョウ',en:'Red-crowned crane',t:'北海道の {釧路|くしろ}の しつ原に すむ。 頭の てっぺんが 赤い。 冬には つがいで ダンスを する。',te:'It lives in the wetlands of Kushiro, Hokkaido. The top of its head is red, and in winter pairs dance together in the snow.'},
+ {id:'aelephant',r:'EN',e:'🐘',ll:[98.9,18.9],ja:'アジアゾウ',en:'Asian elephant',t:'タイの 森に すむ。 アフリカゾウより 小さく、 耳も 小さい。 タイでは 国の シンボル。',te:'It lives in the forests of Thailand. It is smaller than the African elephant, with smaller ears, and it is a national symbol of Thailand.'},
+ {id:'chimp',r:'EN',e:'🐒',ll:[-7.3,5.8],ja:'チンパンジー',en:'Chimpanzee',t:'人に いちばん 近い 動物の なかま。 コートジボワールの 森では、 石を 道具に して かたい 木の実を わって 食べる。',te:'One of our closest animal relatives. In the forests of Côte d\'Ivoire, chimps use stones as tools to crack hard nuts.'},
+ {id:'bluewhale',r:'EN',e:'🐋',ll:[80.6,5.4],ja:'シロナガスクジラ',en:'Blue whale',t:'地球に いた 動物で いちばん 大きい。 長さ 30m 近くに なることも ある。 スリランカの 南の 海で 見られる。',te:'The biggest animal that has ever lived, up to about 30 m long. It can be seen in the sea off southern Sri Lanka.'},
+ {id:'dugong',r:'VU',e:'🦭',ll:[113.7,-25.9],ja:'ジュゴン',en:'Dugong',t:'海草だけを 食べる 海の ほにゅうるい。 オーストラリアの シャーク{湾|わん}には 1万頭 以上 いる。',te:'A sea mammal that eats only seagrass. More than 10,000 live in Shark Bay, Australia.'}
 ];
 
 /* Vehicles travel there and back forever. p = route points [lon,lat] (great-circle between points).
